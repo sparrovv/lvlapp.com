@@ -1,0 +1,1 @@
+@LApp = angular.module("LApp", [])
