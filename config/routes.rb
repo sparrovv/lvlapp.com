@@ -1,4 +1,6 @@
 Landl::Application.routes.draw do
+  resources :audio_videos
+
   root :to => 'home#index'
   resource :home, :only => [:index]
   # The priority is based upon order of creation: first created -> highest priority.

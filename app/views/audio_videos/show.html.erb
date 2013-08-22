@@ -1,0 +1,26 @@
+<script> 
+  window.rawTranscript = <%= @audio_video.transcript %>;
+</script>
+
+<div ng-app='LApp'>
+  <div data-id='video-player'>
+    <video id="example_video_1" class="video-js vjs-default-skin"
+    controls preload="auto" width="640" height="264"
+    poster="http://video-js.zencoder.com/oceans-clip.png"
+    data-setup='{"example_option":true}'>
+    <source src="<%= @audio_video.url %>" type='video/mp4' />
+    </video>
+  </div>
+
+  <div id="transcript-player" data-id='text-player' ng-controller="TranscriptCtrl">
+    <ul style="top:{{currentLineTopPosition}}px">
+      <li ng-repeat="line in transcript">
+      <p data-line-id={{line.htmlId()}} ng-controller="LineCtrl">
+      <span>{{line.time}}</span>
+
+      <span ng-click="lookUpInDict(this)" data-word="{{word}}" ng-repeat="word in line.words()">{{word}} </span>
+      </p>
+      </li>
+    </ul>
+  </div>
+</div>

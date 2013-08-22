@@ -1,0 +1,7 @@
+<ul>
+<% @audio_videos.each do |audio_video| %>
+  <li>
+    <%= link_to audio_video.name, audio_video_path(audio_video) %>
+  </li>
+<% end %>
+</ul>
