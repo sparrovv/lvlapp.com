@@ -24,6 +24,7 @@ gem 'jquery-rails'
 # Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
 gem 'jbuilder', '~> 1.2'
 gem 'nokogiri', '1.5.2'
+gem 'rails_admin'
 
 group :development do
   gem 'capistrano'
@@ -47,3 +48,6 @@ end
 
 # Use debugger
 # gem 'debugger', group: [:development, :test]
+
+
+gem "devise"

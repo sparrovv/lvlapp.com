@@ -3,7 +3,7 @@ LApp.factory "transcriptFactory", ->
   decoratedTranscript = undefined
 
   # transcipt is set as a global var
-  decoratedTranscript = _.map(transcriptSourceTest, (line, index) ->
+  decoratedTranscript = _.map(rawTranscript, (line, index) ->
     new LApp.TranscriptLine(line.time, line.text, index)
   )
   factory.transcript = new LApp.decoreateWithBlanks(decoratedTranscript)

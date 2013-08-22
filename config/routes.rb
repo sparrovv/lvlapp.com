@@ -1,16 +1,13 @@
 Landl::Application.routes.draw do
+  devise_for :admin_users
+  mount RailsAdmin::Engine => '/admin', :as => 'rails_admin'
+
   resources :audio_videos
 
-  root :to => 'home#index'
+  root :to => 'audio_videos#index'
   resource :home, :only => [:index]
-  # The priority is based upon order of creation: first created -> highest priority.
-  # See how all your routes lay out with "rake routes".
 
-  # You can have the root of your site routed with "root"
-  # root 'welcome#index'
-
-  # Example of regular route:
-  #   get 'products/:id' => 'catalog#view'
+  get 'ted_transcript/' => 'admin/ted_transcripts#show'
 
   # Example of named route that can be invoked with purchase_url(id: product.id)
   #   get 'products/:id/purchase' => 'catalog#purchase', as: :purchase
