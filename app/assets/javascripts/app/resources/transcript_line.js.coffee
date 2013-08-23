@@ -19,7 +19,7 @@ class LApp.TranscriptLine
     @guessedWords = []
 
   htmlId: ->
-    "#" + (@time * 1000)
+    "#" + (@time.toFixed(2).replace('.','') )
 
   words: ->
     @guessedWithBlanks().split " "
