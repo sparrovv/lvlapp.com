@@ -1,4 +1,6 @@
 Landl::Application.routes.draw do
+  resources :phrases
+
   devise_for :admin_users
   mount RailsAdmin::Engine => '/admin', :as => 'rails_admin'
 

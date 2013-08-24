@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20130822205519) do
+ActiveRecord::Schema.define(version: 20130824110553) do
 
   create_table "admin_users", force: true do |t|
     t.string   "email",                  default: "", null: false
@@ -37,6 +37,16 @@ ActiveRecord::Schema.define(version: 20130822205519) do
     t.text     "transcript"
     t.string   "url"
     t.integer  "length"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "phrases", force: true do |t|
+    t.string   "name"
+    t.integer  "audio_video_id"
+    t.text     "definition"
+    t.text     "examples"
+    t.string   "translation"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
