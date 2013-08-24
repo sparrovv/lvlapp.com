@@ -5,7 +5,10 @@ class PhrasesController < ApplicationController
   end
 
   def create
+    audio_video = AudioVideo.find(audio_video_id)
     phrase = Phrase.new(phrase_params)
+    phrase.audio_video_id = audio_video.id
+
     if phrase.save
       render :json => phrase
     else
@@ -13,9 +16,22 @@ class PhrasesController < ApplicationController
     end
   end
 
+  def destroy
+    @phrase = Phrase.find(phrase_id)
+    render :json => @phrase.destroy
+  end
+
   private
 
+  def phrase_id
+    params.required(:id)
+  end
+
+  def audio_video_id
+    params.required(:audio_video_id)
+  end
+
   def phrase_params
-    params.required(:phrase).permit(:name, :audio_video_id)
+    params.required(:phrase).permit(:name)
   end
 end

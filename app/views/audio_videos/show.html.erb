@@ -18,7 +18,7 @@
       <p data-line-id={{line.htmlId()}} ng-controller="LineCtrl">
       <span>{{line.time}}</span>
 
-      <span ng-click="lookUpInDict(this)" data-word="{{word}}" ng-repeat="word in line.words()">{{word}} </span>
+      <span class="word" ng-click="lookUpInDict(this)" data-word="{{word}}" ng-repeat="word in line.words()"><span class='raw-word'>{{word}} </span></span>
       </p>
       </li>
     </ul>
@@ -28,6 +28,7 @@
     <ul>
       <li ng-repeat="phrase in phrases">
         <span>{{phrase.name}}</span>
+        <a href="" ng-click='removePhrase()' data-phrase-id="{{phrase.id}}">x</a>
       </li>
     </ul>
   </div>

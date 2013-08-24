@@ -1,3 +1,52 @@
-// Place all the styles related to the AudioVideos controller here.
-// They will automatically be included in application.css.
-// You can use Sass (SCSS) here: http://sass-lang.com/
+.highlight {
+  background: #ffffe0;
+}
+
+#transcript-player{
+  float:left;
+  width: 40%;
+  position: relative;
+  height: 300px;
+  overflow: hidden;
+}
+
+#transcript-player ul{
+  position: absolute;
+}
+
+#transcript-player ul li p{
+  margin:0;
+
+}
+#transcript-player ul li{
+  display: block;
+  list-style-type: none;
+  list-style-position: outside;
+  height: 32px;
+  line-height: 32px;
+  text-align: center;
+  border-bottom: 1px solid #D7DDEA;
+  color: #606060;
+
+  .word{
+    position: relative;
+
+    &:hover{
+      cursor: pointer;
+      position: relative;
+      background: image-url('plus-icon.png') no-repeat 50% 50%;
+    }
+  }
+
+  .raw-word{
+    &:hover{
+      opacity: 0.5;
+    }
+  }
+}
+
+#phrase-book{
+  width: 50%;
+  border: 1px solid;
+  float:right;
+}

@@ -14,9 +14,11 @@ describe PhrasesController do
   end
 
   describe '#create' do
+    let(:audio_video) { create(:audio_video) }
+
     context 'when valid args' do
       before do
-        post :create, :phrase=>{name: 'foobar', audio_video_id: 1}
+        post :create, audio_video_id: audio_video.id, phrase: {name: 'foobar'}
       end
 
       it { expect(response).to be_success }
@@ -30,7 +32,7 @@ describe PhrasesController do
 
     context 'when not valid args' do
       before do
-        post :create, :phrase=>{name: '', audio_video_id: 1}
+        post :create, audio_video_id: audio_video.id, phrase: {name: ''}
       end
 
       it { expect(response).to_not be_success }
@@ -39,6 +41,16 @@ describe PhrasesController do
         body = JSON.parse(response.body)
         expect(body['name']).to be_present
       end
+    end
+  end
+
+  describe '#destroy' do
+    it 'destroys phrase' do
+      phrase = create(:phrase)
+
+      delete :destroy, :audio_video_id => phrase.audio_video_id, :id => phrase.id
+
+      expect(Phrase.count).to eq 0
     end
   end
 end

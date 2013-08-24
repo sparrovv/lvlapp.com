@@ -1,14 +1,4 @@
-LApp.phrases = []
-
-LApp.controller "LineCtrl", ($scope, transcriptFactory) ->
+LApp.controller "LineCtrl", ($scope, transcriptFactory, Phrase) ->
   $scope.lookUpInDict = (e) ->
-    LApp.PhraseCollection.create(e.word)
-
-class LApp.PhraseCollection
-  @create: (name)->
-    foo = new LApp.Phrase(name)
-    LApp.phrases.push(foo)
-
-class LApp.Phrase
-  constructor: (@name) ->
+    Phrase.create audioVideoId: 1, name: e.word
 

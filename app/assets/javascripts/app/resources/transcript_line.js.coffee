@@ -14,8 +14,8 @@ class LApp.TranscriptLine
     @time = parseFloat(time)
     @text = text
     @index = index
-    @removedWords = []
     @guessed = []
+    @removedWords = []
     @guessedWords = []
 
   htmlId: ->
@@ -43,6 +43,7 @@ class LApp.TranscriptLine
     @guessed.push letter
     diff = _.difference(@removedWords, @guessedWords)
     regexp = new RegExp("^" + @guessedWords.join(""), "gi")
+
     left = @guessed.join("").replace(regexp, "")
     _.each diff, (word) ->
       r = new RegExp("^" + word, "gi")
@@ -56,6 +57,7 @@ class LApp.TranscriptLine
       @addGuessed @firstBlankCharacter()
       true
     else
+
       false
 
   nextWord: ->

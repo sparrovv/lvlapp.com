@@ -4,7 +4,9 @@ Landl::Application.routes.draw do
   devise_for :admin_users
   mount RailsAdmin::Engine => '/admin', :as => 'rails_admin'
 
-  resources :audio_videos
+  resources :audio_videos do
+    resources :phrases
+  end
 
   root :to => 'audio_videos#index'
   resource :home, :only => [:index]
