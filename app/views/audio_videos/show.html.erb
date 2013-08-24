@@ -23,4 +23,12 @@
       </li>
     </ul>
   </div>
+
+  <div id="phrase-book" ng-controller='PhrasesCtrl'>
+    <ul>
+      <li ng-repeat="phrase in phrases">
+        <span>{{phrase.name}}</span>
+      </li>
+    </ul>
+  </div>
 </div>

@@ -17,8 +17,9 @@
 }
 
 #transcript-player{
+  float:left;
+  width: 40%;
   position: relative;
-  width: 600px;
   height: 300px;
   overflow: hidden;
 }
@@ -39,4 +40,10 @@
   text-align: center;
   border-bottom: 1px solid #D7DDEA;
   color: #606060;
+}
+
+#phrase-book{
+  width: 50%;
+  border: 1px solid;
+  float:right;
 }
