@@ -9,6 +9,7 @@ LApp.spellCheckService = (transcriptFactory, $scope) ->
 
   @skipWord = ->
     line = transcriptFactory.firstWithBlanks()
+    line.clearBuffer()
     nextWord = line.nextMissingWord()
     if nextWord
       _.each nextWord.split(""), (letter) ->

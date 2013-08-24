@@ -70,7 +70,10 @@ class LApp.TranscriptLine
       @guessedWords.push(word)
       missingWordObj = @getMissingWordObj(word)
       @textWithBlanks = @textWithBlanks.replaceAt(missingWordObj.index, missingWordObj.word)
-      @currentLettersBuffer = ''
+      @clearBuffer()
+
+  clearBuffer: ->
+    @currentLettersBuffer = ''
 
   guess: (letter) ->
     @addGuessed(letter)
