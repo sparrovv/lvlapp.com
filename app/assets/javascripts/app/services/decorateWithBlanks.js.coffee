@@ -23,7 +23,8 @@ LApp.decoreateWithBlanks = (transcript) ->
       if removedWord is NO_MATCH
         line.textWithBlanks = line.text
       else
-        line.removedWords.push removedWord
+        index = line.text.indexOf(removedWord)
+        line.removedWordsCollection.push(new LApp.RemovedWord(removedWord, index))
         line.textWithBlanks = line.text.replace(
           new RegExp(removedWord), Array(removedWord.length + 1).join(".")
         )

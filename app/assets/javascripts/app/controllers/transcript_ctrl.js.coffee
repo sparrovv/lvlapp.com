@@ -37,6 +37,14 @@ LApp.controller "TranscriptCtrl", ($scope, transcriptFactory) ->
     $scope.navigator.lineDown()  if e.keyCode is 40
     $scope.navigator.lineUp()  if e.keyCode is 38
     $scope.spellChecker.skipWord()  if e.keyCode is 9
-    false  if e.keyCode is 40 or e.keyCode is 38 or e.keyCode is 9
+    if e.keyCode is 8
+      e.preventDefault()
+
+      $scope.currentLine.removeLastFromBuffer() 
+      $scope.$apply()
+
+      return false
+
+    false  if e.keyCode is 40 or e.keyCode is 38 or e.keyCode is 9 or e.keyCode is 8
 
   window.scope = $scope

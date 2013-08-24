@@ -1,3 +1,6 @@
+String.prototype.replaceAt = (index, character) ->
+  this.substr(0, index) + character + this.substr(index+character.length)
+
 class LApp.NullTranscriptLine
   constructor: (time, text, index) ->
     @index = 0
@@ -8,14 +11,20 @@ class LApp.NullTranscriptLine
   htmlId: ->
     "ThereIsNoSpoon"
 
-class LApp.TranscriptLine
+  removeLastFromBuffer: ->
+    true
 
-  constructor: (time, text, index) ->
+class LApp.RemovedWord
+  constructor: (@word, @index) ->
+
+  length: ->
+    @word.length
+
+class LApp.TranscriptLine
+  constructor: (time, @text, @index) ->
     @time = parseFloat(time)
-    @text = text
-    @index = index
-    @guessed = []
-    @removedWords = []
+    @currentLettersBuffer = ""
+    @removedWordsCollection = []
     @guessedWords = []
 
   htmlId: ->
@@ -24,42 +33,50 @@ class LApp.TranscriptLine
   words: ->
     @guessedWithBlanks().split " "
 
+  removeLastFromBuffer: ->
+    @currentLettersBuffer = @currentLettersBuffer.slice(0,-1)
+
   guessedWithBlanks: ->
-    word = @guessed.join("")
-    @textWithBlanks.replace Array(word.length + 1).join("."), word
+    missingWordObj = @getMissingWordObj(@nextMissingWord())
+
+    if missingWordObj
+      @textWithBlanks.replaceAt(missingWordObj.index, @currentLettersBuffer)
+    else
+      @textWithBlanks
 
   isMatchingOrignal: ->
     @hasBlanks() is false
 
+  removedWords: ->
+    _.map @removedWordsCollection, (removedWord)->
+      removedWord.word
+
   hasBlanks: ->
-    @removedWords.join("") isnt @guessed.join("")
+    @removedWords().join('') isnt @guessedWords.join('')
 
   firstBlankCharacter: ->
-    regexp = new RegExp("^" + @guessed.join(""), "g")
-    @removedWords.join("").replace(regexp, "")[0]
+    regexp = new RegExp("^" + @currentLettersBuffer, "g")
+    @nextMissingWord().replace(regexp, "")[0]
+
+  getMissingWordObj: (word) ->
+    _.find @removedWordsCollection, (w)->
+      w.word == word
 
   addGuessed: (letter) ->
-    self = this
-    @guessed.push letter
-    diff = _.difference(@removedWords, @guessedWords)
-    regexp = new RegExp("^" + @guessedWords.join(""), "gi")
+    @currentLettersBuffer += letter
 
-    left = @guessed.join("").replace(regexp, "")
-    _.each diff, (word) ->
-      r = new RegExp("^" + word, "gi")
-      if left.match(r)
-        self.guessedWords.push word
-        left = left.replace(r, "")
-
+    if @nextMissingWord().toLowerCase() is @currentLettersBuffer.toLowerCase()
+      word = @nextMissingWord()
+      @guessedWords.push(word)
+      missingWordObj = @getMissingWordObj(word)
+      @textWithBlanks = @textWithBlanks.replaceAt(missingWordObj.index, missingWordObj.word)
+      @currentLettersBuffer = ''
 
   guess: (letter) ->
-    if letter.toLowerCase() is @firstBlankCharacter().toLowerCase()
-      @addGuessed @firstBlankCharacter()
-      true
-    else
+    @addGuessed(letter)
+    true
 
-      false
-
-  nextWord: ->
+  nextMissingWord: ->
     index = @guessedWords.length
-    @removedWords[index]
+    @removedWords()[index]
+
