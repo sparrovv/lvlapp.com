@@ -30,6 +30,8 @@
 
   .word{
     position: relative;
+    fault{ color: red; }
+    correct{ color: green; }
 
     &:hover{
       cursor: pointer;

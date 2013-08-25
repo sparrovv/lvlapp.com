@@ -15,10 +15,14 @@
   <div id="transcript-player" data-id='text-player' ng-controller="TranscriptCtrl">
     <ul style="top:{{currentLineTopPosition}}px">
       <li ng-repeat="line in transcript">
-      <p data-line-id={{line.htmlId()}} ng-controller="LineCtrl">
-      <span>{{line.time}}</span>
 
-      <span class="word" ng-click="lookUpInDict(this)" data-word="{{word}}" ng-repeat="word in line.words()"><span class='raw-word'></span>{{word}} </span>
+      <p data-line-id={{line.htmlId()}} ng-controller="LineCtrl">
+        <span>{{line.time}}</span>
+
+        <span class="word" ng-click="lookUpInDict(this)" data-word="{{word}}" ng-repeat="word in line.words()">
+          <span class="raw-word" ng-bind-html-unsafe="word">&nbsp;</span>
+        </span>
+
       </p>
       </li>
     </ul>

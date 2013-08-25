@@ -1,6 +1,9 @@
 String.prototype.replaceAt = (index, character) ->
   this.substr(0, index) + character + this.substr(index+character.length)
 
+String.prototype.replaceAtWithLength = (index, character, length) ->
+  this.substr(0, index) + character + this.substr(index+length)
+
 class LApp.NullTranscriptLine
   constructor: (time, text, index) ->
     @index = 0
@@ -31,16 +34,28 @@ class LApp.TranscriptLine
     "#" + (@time.toFixed(2).replace('.','') )
 
   words: ->
-    @guessedWithBlanks().split " "
+    @guessedWithBlanks().split(" ")
 
   removeLastFromBuffer: ->
     @currentLettersBuffer = @currentLettersBuffer.slice(0,-1)
+
+  decorateLettersWithErrors: (original, buffer) ->
+    original = original.toLowerCase()
+    bar = _.map buffer.split(''), (letter, index) ->
+      if letter.toLowerCase() is original[index]
+        "<correct>#{letter}</correct>"
+      else
+        "<fault>#{letter}</fault>"
+
+    bar.join('')
 
   guessedWithBlanks: ->
     missingWordObj = @getMissingWordObj(@nextMissingWord())
 
     if missingWordObj
-      @textWithBlanks.replaceAt(missingWordObj.index, @currentLettersBuffer)
+      decoratedWord = @decorateLettersWithErrors(missingWordObj.word, @currentLettersBuffer)
+
+      @textWithBlanks.replaceAtWithLength(missingWordObj.index, decoratedWord, @currentLettersBuffer.length)
     else
       @textWithBlanks
 
