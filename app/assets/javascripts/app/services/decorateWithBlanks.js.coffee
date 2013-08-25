@@ -18,6 +18,7 @@ LApp.decoreateWithBlanks = (transcript) ->
 
   _generateNew = (transcript) ->
     _.map transcript, (line) ->
+
       removedWord = _cutRandomWord(line.text)
 
       if removedWord is NO_MATCH

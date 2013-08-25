@@ -63,7 +63,9 @@ class LApp.TranscriptLine
     @hasBlanks() is false
 
   removedWords: ->
-    _.map @removedWordsCollection, (removedWord)->
+    sortedWords =_.sortBy @removedWordsCollection, (removedWord)->
+      removedWord.index
+    _.map sortedWords, (removedWord)->
       removedWord.word
 
   hasBlanks: ->

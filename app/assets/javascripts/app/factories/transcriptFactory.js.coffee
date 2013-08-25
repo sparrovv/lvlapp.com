@@ -11,7 +11,6 @@ LApp.factory "transcriptFactory", ->
     _.find factory.transcript, (line) ->
       line.hasBlanks() is true
 
-
   factory.getPrev = (line) ->
     factory.transcript[line.index - 1] or line
 

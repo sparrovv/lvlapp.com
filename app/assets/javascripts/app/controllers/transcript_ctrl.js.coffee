@@ -39,8 +39,9 @@ LApp.controller "TranscriptCtrl", ($scope, transcriptFactory) ->
     $scope.spellChecker.skipWord()  if e.keyCode is 9
     if e.keyCode is 8
       e.preventDefault()
+      currentLineWithBlanks = transcriptFactory.firstWithBlanks()
+      currentLineWithBlanks.removeLastFromBuffer() 
 
-      $scope.currentLine.removeLastFromBuffer() 
       $scope.$apply()
 
       return false
