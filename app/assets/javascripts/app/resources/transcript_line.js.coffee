@@ -79,7 +79,10 @@ class LApp.TranscriptLine
     _.find @removedWordsCollection, (w)->
       w.word == word
 
-  addGuessed: (letter) ->
+  clearBuffer: ->
+    @currentLettersBuffer = ''
+
+  guess: (letter) ->
     @currentLettersBuffer += letter
 
     if @nextMissingWord().toLowerCase() is @currentLettersBuffer.toLowerCase()
@@ -88,13 +91,9 @@ class LApp.TranscriptLine
       missingWordObj = @getMissingWordObj(word)
       @textWithBlanks = @textWithBlanks.replaceAt(missingWordObj.index, missingWordObj.word)
       @clearBuffer()
-
-  clearBuffer: ->
-    @currentLettersBuffer = ''
-
-  guess: (letter) ->
-    @addGuessed(letter)
-    true
+      true
+    else
+      false
 
   nextMissingWord: ->
     index = @guessedWords.length

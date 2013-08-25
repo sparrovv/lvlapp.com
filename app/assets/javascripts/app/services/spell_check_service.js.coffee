@@ -3,16 +3,19 @@ LApp.spellCheckService = (transcriptFactory, $scope) ->
 
   @nextLetter = (letter) ->
     line = transcriptFactory.firstWithBlanks()
-    if line.guess(letter) is true
-      $scope.$apply()
-      $scope.videoPlayer.play()  if line.isMatchingOrignal()
+    console.log('guessed') if line.guess(letter)
+    $scope.$apply()
+
+    if line.isMatchingOrignal()
+      $scope.videoPlayer.play()
 
   @skipWord = ->
     line = transcriptFactory.firstWithBlanks()
     line.clearBuffer()
     nextWord = line.nextMissingWord()
+
     if nextWord
-      _.each nextWord.split(""), (letter) ->
-        self.nextLetter letter
+      line.guess(nextWord)
+      $scope.$apply()
 
   this
