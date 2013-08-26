@@ -1,11 +1,7 @@
-<script> 
-  window.rawTranscript = <%= raw @audio_video.transcript %>;
-</script>
+<script> window.audioVideo = <%= raw @audio_video.to_json %>; </script>
 
 <div ng-app='LApp' class="span12">
-
   <div class="span8">
-
     <div data-id='video-player'>
       <video id="example_video_1" class="video-js vjs-default-skin"
       controls preload="auto" height="264" width="770"

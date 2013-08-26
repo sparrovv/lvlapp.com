@@ -1,13 +1,13 @@
-LApp.factory "transcriptFactory", ->
+LApp.factory "transcriptFactory", (audioVideo)->
   factory = {}
   decoratedTranscript = undefined
 
-  # transcipt is set as a global var
-  decoratedTranscript = _.map(rawTranscript, (line, index) ->
+  decoratedTranscript = _.map(audioVideo.rawTranscript, (line, index) ->
     new LApp.TranscriptLine(line.time, line.text, index)
   )
 
   factory.transcript = new LApp.decoreateWithBlanks(decoratedTranscript)
+
   factory.numberOfBlanks = ->
     size = 0
 
