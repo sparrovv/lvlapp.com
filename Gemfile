@@ -25,6 +25,7 @@ gem 'jquery-rails'
 gem 'jbuilder', '~> 1.2'
 gem 'nokogiri', '1.5.2'
 gem 'rails_admin'
+gem 'bootstrap-sass', '~> 2.3.2.1'
 
 group :development do
   gem 'capistrano'

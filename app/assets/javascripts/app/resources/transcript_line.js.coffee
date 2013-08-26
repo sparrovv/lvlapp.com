@@ -41,21 +41,21 @@ class LApp.TranscriptLine
 
   decorateLettersWithErrors: (original, buffer) ->
     original = original.toLowerCase()
-    bar = _.map buffer.split(''), (letter, index) ->
+    decoratedBuffer = _.map buffer.split(''), (letter, index) ->
       if letter.toLowerCase() is original[index]
         "<correct>#{letter}</correct>"
       else
         "<fault>#{letter}</fault>"
 
-    bar.join('')
+    decoratedBuffer.join('')
 
   guessedWithBlanks: ->
     missingWordObj = @getMissingWordObj(@nextMissingWord())
 
     if missingWordObj
-      decoratedWord = @decorateLettersWithErrors(missingWordObj.word, @currentLettersBuffer)
+      decoratedBuffer = @decorateLettersWithErrors(missingWordObj.word, @currentLettersBuffer)
 
-      @textWithBlanks.replaceAtWithLength(missingWordObj.index, decoratedWord, @currentLettersBuffer.length)
+      @textWithBlanks.replaceAtWithLength(missingWordObj.index, decoratedBuffer, @currentLettersBuffer.length)
     else
       @textWithBlanks
 

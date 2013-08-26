@@ -3,15 +3,17 @@
 }
 
 #transcript-player{
-  float:left;
-  width: 40%;
   position: relative;
   height: 300px;
   overflow: hidden;
-}
+  border-left: 1px solid;
+  border-right: 1px solid;
 
-#transcript-player ul{
-  position: absolute;
+  ul{
+    width: 100%;
+    position: absolute;
+    margin:0;
+  }
 }
 
 #transcript-player ul li p{
@@ -47,8 +49,5 @@
   }
 }
 
-#phrase-book{
-  width: 50%;
-  border: 1px solid;
-  float:right;
+#phrase-book ul{
 }

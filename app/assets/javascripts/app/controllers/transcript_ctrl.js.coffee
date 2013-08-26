@@ -1,8 +1,9 @@
-LApp.controller "TranscriptCtrl", ($scope, transcriptFactory) ->
+LApp.controller "TranscriptCtrl", ($scope, transcriptFactory, Stats) ->
   $scope.currentLine = new LApp.NullTranscriptLine()
   $scope.transcript = transcriptFactory.transcript
-  $scope.spellChecker = new LApp.spellCheckService(transcriptFactory, $scope)
+  $scope.spellChecker = new LApp.spellCheckService(transcriptFactory, $scope, Stats)
 
+  Stats.setBlanks(transcriptFactory.numberOfBlanks())
   # @todo move to factory/service... maybe
   $scope.transcriptTimeRange = LApp.getTimeRange($scope.transcript)
   $scope.videoPlayer = videojs("example_video_1")

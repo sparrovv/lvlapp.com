@@ -196,6 +196,7 @@ PLATFORMS
 
 DEPENDENCIES
   bogus
+  bootstrap-sass (~> 2.3.2.1)
   capistrano
   capistrano-ext
   capistrano_colors
