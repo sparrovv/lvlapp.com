@@ -1,6 +1,7 @@
 LApp.controller "TranscriptCtrl", ($scope, transcriptFactory, Stats) ->
-  $scope.currentLine = new LApp.NullTranscriptLine()
   $scope.transcript = transcriptFactory.transcript
+  $scope.currentLine = $scope.transcript[0]
+
   $scope.spellChecker = new LApp.spellCheckService(transcriptFactory, $scope, Stats)
 
   Stats.setBlanks(transcriptFactory.numberOfBlanks())
@@ -18,17 +19,18 @@ LApp.controller "TranscriptCtrl", ($scope, transcriptFactory, Stats) ->
     LApp.highlightService $scope.currentLine
 
   $scope.setCurrentLine = (line) ->
-    if line.isMatchingOrignal()
-      $scope.currentLine = line
-      $scope.videoPlayer.currentTime(line.time).play()
-      $scope.$digest()
+    $scope.currentLine = line
+    $scope.videoPlayer.currentTime(line.time).play()
+    $scope.$digest()
 
   $scope.$on "newLine", (event, newLine) ->
     if $scope.currentLine.isMatchingOrignal()
       $scope.currentLine = newLine
       $scope.$digest()
     else
-      $scope.videoPlayer.pause() # @todo put into timeout, cause there are a lot of time mismatches. .....
+      pauseABitLater = ->
+        $scope.videoPlayer.pause()
+      setTimeout(pauseABitLater, 700)
 
   $(document).keypress (event) ->
     letter = String.fromCharCode(event.which)

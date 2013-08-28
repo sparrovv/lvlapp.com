@@ -3,10 +3,12 @@ LApp.factory "transcriptFactory", (audioVideo)->
   decoratedTranscript = undefined
 
   decoratedTranscript = _.map(audioVideo.rawTranscript, (line, index) ->
-    new LApp.TranscriptLine(line.time, line.text, index)
+    new LApp.TranscriptLine(line.time, line.text, index+1)
   )
 
   factory.transcript = new LApp.decoreateWithBlanks(decoratedTranscript)
+  # put a null transcript line at the beginning of the transcript
+  factory.transcript.unshift(new LApp.TranscriptLine(0, '', 0))
 
   factory.numberOfBlanks = ->
     size = 0

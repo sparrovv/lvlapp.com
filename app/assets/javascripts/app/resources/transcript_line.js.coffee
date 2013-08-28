@@ -4,19 +4,6 @@ String.prototype.replaceAt = (index, character) ->
 String.prototype.replaceAtWithLength = (index, character, length) ->
   this.substr(0, index) + character + this.substr(index+length)
 
-class LApp.NullTranscriptLine
-  constructor: (time, text, index) ->
-    @index = 0
-
-  isMatchingOrignal: ->
-    true
-
-  htmlId: ->
-    "ThereIsNoSpoon"
-
-  removeLastFromBuffer: ->
-    true
-
 class LApp.RemovedWord
   constructor: (@word, @index) ->
 
@@ -29,6 +16,7 @@ class LApp.TranscriptLine
     @currentLettersBuffer = ""
     @removedWordsCollection = []
     @guessedWords = []
+    @textWithBlanks = ''
 
   htmlId: ->
     "#" + (@time.toFixed(2).replace('.','') )
