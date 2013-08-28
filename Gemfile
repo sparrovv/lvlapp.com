@@ -26,15 +26,16 @@ gem 'jbuilder', '~> 1.2'
 gem 'nokogiri', '1.5.2'
 gem 'rails_admin'
 gem 'bootstrap-sass', '~> 2.3.2.1'
+gem 'puma'
 
 group :development do
   gem 'capistrano'
   gem 'capistrano_colors'
+  gem 'capistrano-ext'
 end
 group :test, :development do
   gem 'pry-rails'
   gem 'rspec-rails'
-  gem 'capistrano-ext'
   gem 'factory_girl_rails'
   gem 'bogus'
 end
