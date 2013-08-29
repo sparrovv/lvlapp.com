@@ -51,4 +51,13 @@ LApp.controller "TranscriptCtrl", ($scope, transcriptFactory, Stats) ->
 
     false  if e.keyCode is 40 or e.keyCode is 38 or e.keyCode is 9 or e.keyCode is 8
 
+  $scope.playerNextState = 'Play'
+  $scope.togglePlayer = ->
+    if $scope.videoPlayer.paused()
+      $scope.videoPlayer.play()
+      $scope.playerNextState = 'Pause'
+    else
+      $scope.videoPlayer.pause()
+      $scope.playerNextState = 'Play'
+
   window.scope = $scope
