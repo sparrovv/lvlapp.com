@@ -1,4 +1,6 @@
 class PhrasesController < ApplicationController
+  before_filter :authorize_user
+
   def index
     @phrases = Phrase.by_audio_video(params[:audio_video_id])
     render :json => @phrases

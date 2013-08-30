@@ -1,4 +1,5 @@
 Landl::Application.routes.draw do
+  devise_for :users
   resources :phrases
 
   devise_for :admin_users
