@@ -6,6 +6,9 @@ TODOs:
 -[] Stats consider adding Time, so we will keep information how long it took to get all the words.
 
 -[] Deploy somewhere
+  DigitalOcean 146.185.132.161
+  ruby 1.9.3, bundler, mysql
+
 
 
 -[] Add User model

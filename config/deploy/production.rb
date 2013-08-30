@@ -1,6 +1,6 @@
 require 'puma/capistrano'
 
-set :domain, "91.228.199.154"
+set :domain, "146.185.132.161" # digital ocean
 set :user, "sparrovv"
 set :port, 22
 
