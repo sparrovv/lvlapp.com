@@ -24,7 +24,6 @@ LApp.controller "TranscriptCtrl", ($scope, transcriptFactory, Stats) ->
     $scope.$digest()
 
   $scope.nextLineTimeout = null
-
   $scope.$on "newLine", (event, newLine) ->
     if $scope.currentLine.isMatchingOrignal()
       clearTimeout($scope.nextLineTimeout) if $scope.nextLineTimeout
@@ -44,28 +43,38 @@ LApp.controller "TranscriptCtrl", ($scope, transcriptFactory, Stats) ->
     letter = String.fromCharCode(event.which)
     $scope.spellChecker.nextLetter letter
 
+  $(document).click (event) ->
+    targetElInsideTranscriptPlayer = $(event.target).parents('#transcript-player').length == 1
+    $scope.pause() if not targetElInsideTranscriptPlayer
+
   $(document).keydown (e) ->
-    $scope.navigator.lineDown()  if e.keyCode is 40
-    $scope.navigator.lineUp()  if e.keyCode is 38
-    $scope.spellChecker.skipWord()  if e.keyCode is 9
-    if e.keyCode is 8
+    $scope.navigator.lineDown()    if e.keyCode is 40 # down
+    $scope.navigator.lineUp()      if e.keyCode is 38 # up
+    $scope.spellChecker.skipWord() if e.keyCode is 9  # tab
+
+    if e.keyCode is 8 # backspace
       e.preventDefault()
       currentLineWithBlanks = transcriptFactory.firstWithBlanks()
-      currentLineWithBlanks.removeLastFromBuffer() 
+      currentLineWithBlanks.removeLastFromBuffer()
 
       $scope.$apply()
-
-      return false
 
     false  if e.keyCode is 40 or e.keyCode is 38 or e.keyCode is 9 or e.keyCode is 8
 
   $scope.playerNextState = 'Play'
   $scope.togglePlayer = ->
     if $scope.videoPlayer.paused()
-      $scope.videoPlayer.play()
-      $scope.playerNextState = 'Pause'
+      $scope.play()
     else
-      $scope.videoPlayer.pause()
-      $scope.playerNextState = 'Play'
+      $scope.pause()
+
+  $scope.play = ->
+    $scope.videoPlayer.play()
+    $scope.playerNextState = 'Pause'
+
+  $scope.pause = ->
+    $scope.videoPlayer.pause()
+    $scope.playerNextState = 'Play'
+    $scope.$digest()
 
   window.scope = $scope
