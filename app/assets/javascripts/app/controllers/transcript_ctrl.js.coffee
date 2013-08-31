@@ -23,14 +23,22 @@ LApp.controller "TranscriptCtrl", ($scope, transcriptFactory, Stats) ->
     $scope.videoPlayer.currentTime(line.time).play()
     $scope.$digest()
 
+  $scope.nextLineTimeout = null
+
   $scope.$on "newLine", (event, newLine) ->
     if $scope.currentLine.isMatchingOrignal()
+      clearTimeout($scope.nextLineTimeout) if $scope.nextLineTimeout
+      $scope.nextLineTimeout = null
+
       $scope.currentLine = newLine
       $scope.$digest()
     else
       pauseABitLater = ->
-        $scope.videoPlayer.pause()
-      setTimeout(pauseABitLater, 700)
+        if not $scope.currentLine.isMatchingOrignal()
+          $scope.videoPlayer.pause()
+
+      if not $scope.nextLineTimeout
+        $scope.nextLineTimeout = setTimeout(pauseABitLater, 500)
 
   $(document).keypress (event) ->
     letter = String.fromCharCode(event.which)
