@@ -7,11 +7,12 @@ LApp.decoreateWithBlanks = (transcript) ->
 
   _cutRandomWord = (text) ->
     anyWordWithAphostrophe = /\w+'\w?/g
-    specialChars = /[,.\(\)\[\]:;\|\?]/g
+    specialChars = /[",.\(\)\[\]:;\|\?]/g
 
     filteredWords = _.filter(text.replace(specialChars, "").replace(anyWordWithAphostrophe, "").split(" "), (e) ->
       e.length > 3
     )
+
     randomNumber = getRandomInt(0, filteredWords.length)
 
     filteredWords[randomNumber] or NO_MATCH

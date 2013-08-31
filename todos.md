@@ -1,6 +1,4 @@
 TODOs:
-
-
 -[] Stats consider adding Time, so we will keep information how long it took to get all the words.
 
 -[] Add User model
@@ -9,6 +7,7 @@ TODOs:
 
 
 -[] Shorter Videos
+
 -[] Better Phrase Book 
   - Fetching defs, transalations, and usage in words
   - spatial repetition
