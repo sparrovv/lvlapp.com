@@ -15,7 +15,8 @@ LApp.controller "TranscriptCtrl", ($scope, transcriptFactory, Stats) ->
   $scope.currentLineTopPosition = 30
   $scope.$watch "currentLine", ->
     start = 30
-    $scope.currentLineTopPosition = start - ($scope.currentLine.index * 31)
+    lineHeight = 32.5
+    $scope.currentLineTopPosition = start - ($scope.currentLine.index * lineHeight)
     LApp.highlightService $scope.currentLine
 
   $scope.setCurrentLine = (line) ->
@@ -25,22 +26,24 @@ LApp.controller "TranscriptCtrl", ($scope, transcriptFactory, Stats) ->
 
   $scope.nextLineTimeout = null
   $scope.clearNextLineTimeout = ->
+    clearTimeout($scope.nextLineTimeout) 
     $scope.nextLineTimeout = null
+
+  $scope.pauseOnNonFinishedLine = ->
+    pauseABitLater = ->
+      if not $scope.currentLine.isMatchingOrignal()
+        $scope.videoPlayer.pause()
+
+    if not $scope.nextLineTimeout
+      $scope.nextLineTimeout = setTimeout(pauseABitLater, 500)
 
   $scope.$on "newLine", (event, newLine) ->
     if $scope.currentLine.isMatchingOrignal()
-      clearTimeout($scope.nextLineTimeout) if $scope.nextLineTimeout
       $scope.clearNextLineTimeout()
-
       $scope.currentLine = newLine
       $scope.$digest()
     else
-      pauseABitLater = ->
-        if not $scope.currentLine.isMatchingOrignal()
-          $scope.videoPlayer.pause()
-
-      if not $scope.nextLineTimeout
-        $scope.nextLineTimeout = setTimeout(pauseABitLater, 500)
+      $scope.pauseOnNonFinishedLine()
 
   $(document).keypress (event) ->
     letter = String.fromCharCode(event.which)
