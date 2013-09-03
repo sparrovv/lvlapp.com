@@ -24,10 +24,13 @@ LApp.controller "TranscriptCtrl", ($scope, transcriptFactory, Stats) ->
     $scope.$digest()
 
   $scope.nextLineTimeout = null
+  $scope.clearNextLineTimeout = ->
+    $scope.nextLineTimeout = null
+
   $scope.$on "newLine", (event, newLine) ->
     if $scope.currentLine.isMatchingOrignal()
       clearTimeout($scope.nextLineTimeout) if $scope.nextLineTimeout
-      $scope.nextLineTimeout = null
+      $scope.clearNextLineTimeout()
 
       $scope.currentLine = newLine
       $scope.$digest()
@@ -69,8 +72,9 @@ LApp.controller "TranscriptCtrl", ($scope, transcriptFactory, Stats) ->
       $scope.pause()
 
   $scope.play = ->
-    $scope.videoPlayer.play()
     $scope.playerNextState = 'Pause'
+    if $scope.currentLine.isMatchingOrignal()
+      $scope.videoPlayer.play()
 
   $scope.pause = ->
     $scope.videoPlayer.pause()
