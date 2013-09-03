@@ -30,3 +30,18 @@ DONE
   ruby 1.9.3, bundler, mysql, git
 
 -[x] It seems that after couple minutes the video won't pause. It says that it paused, but it still playing, with very irritating sound. Looks like a player problem, or the setTiemout issue, but can't see a big connection between setTiemout and this problem.  But maybe it is. Need more information, but definitely it has to be fixed before releasing to public.
+
+
+
+Yo dudes, mam prośbę.
+
+Ostatnio spędziłem troche czasu nad projektem prostej gry edukacyjnej.
+
+Jest jeszcze w fazie ultra-alfa, niemniej chcialbym dostać jakiś feedback, czy koncept tej appki jest jasny, i co Wy byście w niej zobaczyli, zmienili.
+
+Rozumiem też, że nie do końca możecie być targetem, aczkolwiek docenie każdy komentarz.
+
+Nie chce was niczym sugerowac, wiec nie bede więcej pisał.
+Dodam tylko, że nie zaimplementowałem konceptu użytkownika, ale to jest jak najbardziej w planach.
+
+
