@@ -14,12 +14,13 @@ TODOs:
 
 
 BUG:
-
+-[] When reaching the last line: (in skipWord) Uncaught TypeError: Cannot call method 'clearBuffer' of undefined 
 -[] Smarter blanks, there is some issue with: "why"
 -[] compressed javascript doesn't work
 
 KNOWN BUGS:
 
+-[] videojs youtube players seems to not work with angular. 
 -[] videojs when controls are disabled, they still appears on pause. It is fixed on master branch, but not yet released. Will wait couple days and see what is the release process.
 
 DONE
