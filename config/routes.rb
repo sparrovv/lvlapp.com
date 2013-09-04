@@ -12,6 +12,7 @@ Landl::Application.routes.draw do
   resource :home, :only => [:index]
 
   get 'ted_transcript/' => 'admin/ted_transcripts#show'
+  get 'shift_transcript/' => 'admin/audio_video_lrc#shift'
 
   # Example of named route that can be invoked with purchase_url(id: product.id)
   #   get 'products/:id/purchase' => 'catalog#purchase', as: :purchase

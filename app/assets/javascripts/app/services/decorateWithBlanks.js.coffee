@@ -6,6 +6,8 @@ LApp.decoreateWithBlanks = (transcript) ->
     Math.floor Math.random() * (max - min) + min
 
   _cutRandomWord = (text) ->
+    return NO_MATCH if text.length is 0
+
     anyWordWithAphostrophe = /\w+'\w?/g
     specialChars = /[",.\(\)\[\]:;\|\?]/g
 
