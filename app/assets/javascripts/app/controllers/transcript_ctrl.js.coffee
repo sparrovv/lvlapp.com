@@ -1,4 +1,5 @@
 LApp.controller "TranscriptCtrl", ($scope, transcriptFactory, Stats) ->
+  $scope.transcriptFactory = transcriptFactory
   $scope.transcript = transcriptFactory.transcript
   $scope.currentLine = $scope.transcript[0]
 

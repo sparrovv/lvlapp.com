@@ -1,3 +1,7 @@
+# TODO
+# @fixme: lrc files has always inforamtion about track
+# invalid format: [ti:maybe]\r\n[ar:Jay Sean]\r\n[00:00.00]Jay Sean]
+#
 class LRCConverter
   def convert(lrc_content)
     lrc_content.split("\n").map do |line|
