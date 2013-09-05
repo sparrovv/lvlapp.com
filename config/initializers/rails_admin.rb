@@ -1,7 +1,8 @@
 RailsAdmin.config do |config|
-  config.authorize_with do
-    authenticate_or_request_with_http_basic('Site Message') do |username, password|
-      username == 'foo' && password == 'bar'
+  config.authorize_with do |controller|
+    unless current_user.admin?
+      flash[:error] = "You are not an admin"
+      redirect_to root_path
     end
   end
 end

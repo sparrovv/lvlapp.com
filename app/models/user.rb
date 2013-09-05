@@ -10,4 +10,8 @@ class User < ActiveRecord::Base
   def phrases_by_audio_video(audio_video)
     phrases.where(audio_video: audio_video)
   end
+
+  def admin?
+    email == 'sparrovv@gmail.com'
+  end
 end
