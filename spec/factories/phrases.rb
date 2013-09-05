@@ -3,7 +3,8 @@
 FactoryGirl.define do
   factory :phrase do
     name "ubiquitous"
-    audio_video_id 1
+    association :audio_video, factory: :audio_video
+    association :user, factory: :user, strategy: :build
     definition 'Present, appearing, or found everywhere: "his ubiquitous influence"'
     examples "Cowboy hats are ubiquitous among the male singers."
     translation "Wszechobecny"

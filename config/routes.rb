@@ -2,7 +2,6 @@ Landl::Application.routes.draw do
   devise_for :users
   resources :phrases
 
-  devise_for :admin_users
   mount RailsAdmin::Engine => '/admin', :as => 'rails_admin'
 
   resources :audio_videos do
