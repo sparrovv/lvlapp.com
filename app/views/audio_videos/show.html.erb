@@ -16,12 +16,10 @@
 
       <ul style="top:{{currentLineTopPosition}}px">
         <li ng-repeat="line in transcript">
-
         <p data-line-id={{line.htmlId()}} ng-controller="LineCtrl">
         <span class="word" ng-click="lookUpInDict(this)" data-word="{{word}}" ng-repeat="word in line.words()">
           <span class="raw-word" ng-bind-html-unsafe="word">&nbsp;</span>
         </span>
-
         </p>
         </li>
       </ul>
@@ -49,11 +47,15 @@
 
   <div id="phrase-book" ng-controller='PhrasesCtrl' class="span4">
     <h4>Phrase Book</h4>
+    <% if current_user %>
     <ul>
       <li ng-repeat="phrase in phrases">
       <span>{{phrase.name}}</span>
       <a href="" ng-click='removePhrase()' data-phrase-id="{{phrase.id}}">x</a>
       </li>
     </ul>
+  <% else %>
+    <p> Please <%= link_to 'sign in', user_session_path %></p>
+  <% end %>
   </div>
 </div>

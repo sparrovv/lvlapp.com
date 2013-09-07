@@ -33,11 +33,16 @@ group :development do
   gem 'capistrano_colors'
   gem 'capistrano-ext'
 end
+
 group :test, :development do
   gem 'pry-rails'
   gem 'rspec-rails'
   gem 'factory_girl_rails'
+end
+
+group :test do
   gem 'bogus'
+  gem 'database_cleaner'
 end
 
 group :doc do

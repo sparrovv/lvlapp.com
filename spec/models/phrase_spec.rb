@@ -16,4 +16,10 @@ describe Phrase do
     phrase.audio_video_id = nil
     expect(phrase).to_not be_valid
   end
+
+  it 'belongs to audio_video' do
+    audio_video = build(:audio_video)
+    phrase.audio_video = audio_video
+    phrase.audio_video.should == audio_video
+  end
 end
