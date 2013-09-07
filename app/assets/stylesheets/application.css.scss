@@ -15,13 +15,6 @@
 @import "bootstrap";
 @import "bootstrap-responsive";
 
-.navbar-brand {
-  float: left;
-  padding: 19.5px 15px;
-  font-size: 19px;
-  line-height: 21px;
-}
-
 .navbar {
   font-family: "News Cycle", "Arial Narrow Bold", sans-serif;
   font-size: 18px;
@@ -30,6 +23,19 @@
   border-bottom: 2px solid #eeeeee;
 }
 
+.navbar-brand {
+  float: left;
+  padding: 10px 15px;
+  font-size: 19px;
+  line-height: 21px;
+}
+
 .navbar-default .navbar-brand {
   color: #000000;
+}
+.nav{
+  form{
+    margin:0;
+    padding: 10px 15px 10px;
+  }
 }
