@@ -49,11 +49,15 @@
 
   <div id="phrase-book" ng-controller='PhrasesCtrl' class="span4">
     <h4>Phrase Book</h4>
+    <% if current_user %>
     <ul>
       <li ng-repeat="phrase in phrases">
       <span>{{phrase.name}}</span>
       <a href="" ng-click='removePhrase()' data-phrase-id="{{phrase.id}}">x</a>
       </li>
     </ul>
+  <% else %>
+    <p> Please <%= link_to 'sign in', user_session_path %></p>
+  <% end %>
   </div>
 </div>
