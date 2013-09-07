@@ -1,16 +1,16 @@
 TODOs:
--[] Stats consider adding Time, so we will keep information how long it took to get all the words.
-
 -[] Add User model
-  -[] Save phrases per users
-  -[] Find some APIs and get usage of word / def / transalation
+  -[x] Sign in / sign out user
+  -[x] Save phrases per users
 
 
+-[] Stats consider adding Time, so we will keep information how long it took to get all the words.
 -[] Shorter Videos
+-[] youtube player
 
 -[] Better Phrase Book 
-  - Fetching defs, transalations, and usage in words
-  - spatial repetition
+  -[] Find some APIs and get usage of word / def / transalation
+  -[] spatial repetition
 
 
 BUG:
