@@ -1,17 +1,43 @@
 TODOs:
+
+Maybe lyrics/text/subtitles hero / or maybe as the one of the categories.
+
 -[] Add User model
   -[x] Sign in / sign out user
   -[x] Save phrases per users
 
 
--[] Stats consider adding Time, so we will keep information how long it took to get all the words.
--[] Shorter Videos
--[] youtube player
+-[] Lyrics Player
+  -[] Introduce more lvls
 
--[] Better Phrase Book 
+-[] Phrase Book
+  -[] List of phrases per video
+  -[] Creating own lists
   -[] Find some APIs and get usage of word / def / transalation
-  -[] spatial repetition
 
+
+-[] Stats 
+  -[] tracking users progress
+  -[] consider adding Time, so we will keep information how long it takes to get all the words.
+
+
+-[] Shorter Videos
+  -[] youtube music - is short and nice
+  -[] self hosting - have no clue what would be performance
+
+-[] Youtube 
+  -[] music / lyrics
+  -[] probably new player
+
+-[] Front Page 
+  -[]/ with video and lyrics player, at the end examples how to do it
+  -[] fiverr - someone will read it
+  -[] new format of transcript, where you can indicate what words are missing, instead of randoms
+
+-[] congratulations at the end
+
+-[] testing ?!
+-[] refactoring, more angularjs knowledge I need ?!
 
 BUG:
 -[] When reaching the last line: (in skipWord) Uncaught TypeError: Cannot call method 'clearBuffer' of undefined 
@@ -32,17 +58,6 @@ DONE
 
 -[x] It seems that after couple minutes the video won't pause. It says that it paused, but it still playing, with very irritating sound. Looks like a player problem, or the setTiemout issue, but can't see a big connection between setTiemout and this problem.  But maybe it is. Need more information, but definitely it has to be fixed before releasing to public.
 
+FOR FAR FUTURE:
 
-
-Yo dudes, mam prośbę.
-
-Ostatnio spędziłem troche czasu nad projektem prostej gry edukacyjnej.
-
-Jest jeszcze w fazie ultra-alfa, niemniej chcialbym dostać jakiś feedback, czy koncept tej appki jest jasny, i co Wy byście w niej zobaczyli, zmienili.
-
-Rozumiem też, że nie do końca możecie być targetem, aczkolwiek docenie każdy komentarz.
-
-Nie chce was niczym sugerowac, wiec nie bede więcej pisał.
-Dodam tylko, że nie zaimplementowałem konceptu użytkownika, ale to jest jak najbardziej w planach.
-
-
+  -[] spaced repetition - exporting to anki / this should happen sometime in the future, not now
