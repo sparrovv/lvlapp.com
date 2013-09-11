@@ -2,6 +2,7 @@ Landl::Application.routes.draw do
   devise_for :users
   resources :phrases
 
+  get 'admin/help' => 'admin/help#index'
   mount RailsAdmin::Engine => '/admin', :as => 'rails_admin'
 
   resources :audio_videos do
