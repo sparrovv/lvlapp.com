@@ -1,5 +1,7 @@
 <!-- 1. The <iframe> (and video player) will replace this <div> tag. -->
-<div id="youtube-player"></div>
+<div id='youtube-player-container' style="z-index: 999">
+  <div id="youtube-player"></div>
+</div>
 
 <script>
   var tag = document.createElement('script');
@@ -11,7 +13,7 @@
 
   function onYouTubeIframeAPIReady() {
     youtubePlayer = new YT.Player('youtube-player', {
-      playerVars: { 'autoplay': 0, 'controls': 0 },
+      playerVars: { 'autoplay': 0, 'controls': 0, 'disablekb':1, 'modestbranding':1, 'rel':0, 'showinfo':0, 'theme': 'light' },
       height: '340',
       width: '770',
       videoId: "<%= audio_video.url[/watch\?v=(.+)/, 1]%>",
