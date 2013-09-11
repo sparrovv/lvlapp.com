@@ -1,4 +1,12 @@
 class Admin::AudioVideoLrcController < ApplicationController
+  def new
+  end
+
+  def create
+    @lrc = LRCConverter.new.convert params[:content]
+    render :show
+  end
+
   def shift
     audio_video = AudioVideo.find params[:audio_video_id]
     time = BigDecimal(params[:time])

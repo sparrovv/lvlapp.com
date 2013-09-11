@@ -8,7 +8,7 @@ class LRCConverter
       foo = line.gsub("\\",'').strip.scan(/\A\[(.+)\](.+)?/).flatten
 
       {
-        'time' => convert_time_to_sec(foo[0]),
+        'time' => convert_time_to_sec(foo[0]).to_s,
         'text' => foo[1].to_s
       }
     end
