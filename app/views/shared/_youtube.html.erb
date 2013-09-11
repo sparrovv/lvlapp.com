@@ -1,0 +1,41 @@
+<!-- 1. The <iframe> (and video player) will replace this <div> tag. -->
+<div id="youtube-player"></div>
+
+<script>
+  var tag = document.createElement('script');
+  tag.src = "https://www.youtube.com/iframe_api";
+  var firstScriptTag = document.getElementsByTagName('script')[0];
+  firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
+
+  var youtubePlayer;
+
+  function onYouTubeIframeAPIReady() {
+    youtubePlayer = new YT.Player('youtube-player', {
+      playerVars: { 'autoplay': 0, 'controls': 0 },
+      height: '340',
+      width: '770',
+      videoId: "<%= audio_video.url[/watch\?v=(.+)/, 1]%>",
+      events: {
+        'onReady': onYoutubePlayerReady
+      }
+    });
+
+    $(document).trigger('youtubeVideoLoaded')
+
+    var videotime = 0;
+
+    function onYoutubePlayerReady() {
+      function updateTime() {
+        var oldTime = videotime;
+        if(youtubePlayer && youtubePlayer.getCurrentTime) {
+          videotime = youtubePlayer.getCurrentTime();
+        }
+        if(videotime !== oldTime) {
+          $(document).trigger('youtubeVideoCurrentTime');
+        }
+      }
+
+      timeupdater = setInterval(updateTime, 100);
+    }
+  }
+</script>

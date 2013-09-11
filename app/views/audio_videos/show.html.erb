@@ -1,15 +1,14 @@
 <script> window.audioVideo = <%= raw @audio_video.to_json %>; </script>
+<script> window.isYoutubeVideo = <%= raw @audio_video.youtube? %>; </script>
 
 <div ng-app='LApp' class="span12">
   <div class="span8">
-    <div data-id='video-player'>
-      <video id="example_video_1" class="video-js vjs-default-skin"
-      preload="auto" height="264" width="770"
-      <%#poster="http://video-js.zencoder.com/oceans-clip.png"%>
-      data-setup='{"example_option":true}'>
-      <source src="<%= @audio_video.url %>" type='video/mp4' />
-      </video>
-    </div>
+
+    <% if @audio_video.youtube? %>
+      <%= render 'shared/youtube', audio_video: @audio_video %>
+    <% else %>
+      <%= render 'shared/videojs', audio_video: @audio_video  %>
+    <%end %>
 
     <div id="transcript-player" data-id='text-player' ng-controller="TranscriptCtrl">
       <div class='player-overlay {{playerNextState}}'><a ng-click="togglePlayer()"><%= image_tag 'play_button.png' %></a></div>

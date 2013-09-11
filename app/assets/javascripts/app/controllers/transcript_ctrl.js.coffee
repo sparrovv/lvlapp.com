@@ -8,9 +8,10 @@ LApp.controller "TranscriptCtrl", ($scope, transcriptFactory, Stats) ->
   Stats.setBlanks(transcriptFactory.numberOfBlanks())
   # @todo move to factory/service... maybe
   $scope.transcriptTimeRange = LApp.getTimeRange($scope.transcript)
-  $scope.videoPlayer = videojs("example_video_1")
-  $scope.videoPlayer.on "timeupdate", ->
-    LApp.locateCurrentLine @currentTime(), $scope
+
+  # this decorates $scope with videoPlayer
+  # there can be some timing issues if ......... tests
+  LApp.VideoPlayerFactory.init($scope, window.isYoutubeVideo)
 
   $scope.navigator = LApp.navigateOverTranscript($scope, transcriptFactory)
   $scope.currentLineTopPosition = 30
@@ -22,7 +23,7 @@ LApp.controller "TranscriptCtrl", ($scope, transcriptFactory, Stats) ->
 
   $scope.setCurrentLine = (line) ->
     $scope.currentLine = line
-    $scope.videoPlayer.currentTime(line.time).play()
+    $scope.videoPlayer.setCurrentTime(line.time)
     $scope.$digest()
 
   $scope.nextLineTimeout = null
