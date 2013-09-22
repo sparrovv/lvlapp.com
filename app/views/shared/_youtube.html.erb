@@ -18,13 +18,25 @@
       width: '770',
       videoId: "<%= audio_video.url[/watch\?v=(.+)/, 1]%>",
       events: {
-        'onReady': onYoutubePlayerReady
+        'onReady': onYoutubePlayerReady,
+        'onStateChange': onYoutubePlayerStateChanged
       }
     });
 
     $(document).trigger('youtubeVideoLoaded')
 
     var videotime = 0;
+    function onYoutubePlayerStateChanged(status) {
+      if(status.data == 0) {
+        $(document).trigger('youtubeVideoEnded');
+      }
+      if(status.data == 1) {
+        $(document).trigger('youtubeVideoStart');
+      }
+      if(status.data == 2) {
+        $(document).trigger('youtubeVideoPause');
+      }
+    }
 
     function onYoutubePlayerReady() {
       function updateTime() {

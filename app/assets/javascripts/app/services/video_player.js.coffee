@@ -40,6 +40,10 @@ class LApp.VideoJSProxy
     @original_player.on "timeupdate", ->
       funct(self.currentTime(), scope)
 
+  onVideoEnded: (funct) ->
+    @original_player.on "ended", ->
+      funct()
+
 class LApp.YoutubVideoPlayerProxy
   constructor:(@original_player) ->
 
@@ -64,4 +68,8 @@ class LApp.YoutubVideoPlayerProxy
     self = @
     $(document).on 'youtubeVideoCurrentTime', ->
       funct(self.currentTime(), $scope)
+
+  onVideoEnded: (funct) ->
+    $(document).on 'youtubeVideoEnded', ->
+      funct()
 
