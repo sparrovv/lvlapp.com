@@ -1,4 +1,4 @@
-LApp.controller "TranscriptCtrl", ($scope, transcriptFactory, Stats) ->
+LApp.controller "TranscriptCtrl", ($scope, transcriptFactory, Stats, Key) ->
   $scope.transcriptFactory = transcriptFactory
   $scope.transcript = transcriptFactory.transcript
   $scope.currentLine = $scope.transcript[0]
@@ -48,6 +48,8 @@ LApp.controller "TranscriptCtrl", ($scope, transcriptFactory, Stats) ->
       $scope.pauseOnNonFinishedLine()
 
   $(document).keypress (event) ->
+    return false  if Key.isSpecial(event.which)
+
     letter = String.fromCharCode(event.which)
     $scope.spellChecker.nextLetter letter
 
@@ -56,18 +58,18 @@ LApp.controller "TranscriptCtrl", ($scope, transcriptFactory, Stats) ->
     $scope.pause() if not targetElInsideTranscriptPlayer
 
   $(document).keydown (e) ->
-    $scope.navigator.lineDown()    if e.keyCode is 40 # down
-    $scope.navigator.lineUp()      if e.keyCode is 38 # up
-    $scope.spellChecker.skipWord() if e.keyCode is 9  # tab
+    $scope.navigator.lineDown()    if Key.isKeyDown(e.keyCode)
+    $scope.navigator.lineUp()      if Key.isKeyUp(e.keyCode)
+    $scope.spellChecker.skipWord() if Key.isTab(e.keyCode)
 
-    if e.keyCode is 8 # backspace
+    if Key.isBackspace(e.keyCode)
       e.preventDefault()
       currentLineWithBlanks = transcriptFactory.firstWithBlanks()
       currentLineWithBlanks.removeLastFromBuffer()
 
       $scope.$apply()
 
-    false  if e.keyCode is 40 or e.keyCode is 38 or e.keyCode is 9 or e.keyCode is 8
+    return false  if Key.isSpecial(e.keyCode)
 
   $scope.playerNextState = 'Play'
   $scope.togglePlayer = ->
