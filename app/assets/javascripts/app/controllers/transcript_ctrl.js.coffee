@@ -61,6 +61,7 @@ LApp.controller "TranscriptCtrl", ($scope, transcriptFactory, Stats, Key) ->
     $scope.navigator.lineDown()    if Key.isKeyDown(e.keyCode)
     $scope.navigator.lineUp()      if Key.isKeyUp(e.keyCode)
     $scope.spellChecker.skipWord() if Key.isTab(e.keyCode)
+    $scope.togglePlayer()          if Key.isEnter(e.keyCode)
 
     if Key.isBackspace(e.keyCode)
       e.preventDefault()
@@ -71,21 +72,32 @@ LApp.controller "TranscriptCtrl", ($scope, transcriptFactory, Stats, Key) ->
 
     return false  if Key.isSpecial(e.keyCode)
 
-  $scope.playerNextState = 'Play'
+  $scope.currentState = 'paused'
   $scope.togglePlayer = ->
-    if $scope.videoPlayer.paused()
+    if $scope.currentState == 'paused'
       $scope.play()
     else
       $scope.pause()
 
+  # As a workaround to make it possible to play the current paused line, it starts from the beginning.
   $scope.play = ->
-    $scope.playerNextState = 'Pause'
+    $scope.currentState = 'playing'
+
     if $scope.currentLine.isMatchingOrignal()
       $scope.videoPlayer.play()
+    else
+      line = $scope.currentLine
+      $scope.videoPlayer.setCurrentTime(line.time)
+
+    $scope.$digest()
 
   $scope.pause = ->
-    $scope.videoPlayer.pause()
-    $scope.playerNextState = 'Play'
+    $scope.clearNextLineTimeout()
+    $scope.currentState = 'paused'
     $scope.$digest()
+    $scope.videoPlayer.pause()
+
+  $scope.onPlayClick = ->
+    $scope.play()
 
   window.scope = $scope

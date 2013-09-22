@@ -1,5 +1,5 @@
 .highlight {
-  background: #ffffe0;
+  background: #C7E7FF;
 }
 
 #transcript-player{
@@ -33,7 +33,7 @@
   .word{
     position: relative;
     fault{ color: red; }
-    correct{ color: green; }
+    correct{ color: #1EA51E; }
 
     &:hover{
       cursor: pointer;
@@ -49,11 +49,11 @@
   }
 }
 
-.player-overlay.Pause{
+.player-overlay.playing{
   display:none;
 }
 
-.player-overlay.Play{
+.player-overlay.paused{
   position: absolute;
   width: 100%;
   height: 100%;

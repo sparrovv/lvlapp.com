@@ -45,6 +45,7 @@ class LApp.YoutubVideoPlayerProxy
 
   play: ->
     @original_player.playVideo()
+
   pause: ->
     @original_player.pauseVideo()
 

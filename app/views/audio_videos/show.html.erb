@@ -11,7 +11,7 @@
     <%end %>
 
     <div id="transcript-player" data-id='text-player' ng-controller="TranscriptCtrl">
-      <div class='player-overlay {{playerNextState}}'><a ng-click="togglePlayer()"><%= image_tag 'play_button.png' %></a></div>
+      <div class='player-overlay {{currentState}}'><a ng-click="onPlayClick()"><%= image_tag 'play_button.png' %></a></div>
 
       <ul style="top:{{currentLineTopPosition}}px">
         <li ng-repeat="line in transcript">
@@ -28,6 +28,7 @@
   <div id="help" class="span4">
     <h4>Help</h4>
     <div>tab - <span>skip word</span></div>
+    <div>enter - <span>play / pause</span></div>
     <div> ↑ - <span>previous line</span></div>
     <div> ↓ - <span>next line</span></div>
   </div>
