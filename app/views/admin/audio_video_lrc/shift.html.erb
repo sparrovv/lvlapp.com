@@ -1,0 +1,11 @@
+<%= form_tag shift_transcript_path, :method => :get do %>
+  <label>audio video id</label>
+  <input name='audio_video_id' value="<%=@audio_video_id %>" type='text'/>
+  <label>time</label>
+  <input name='time' type='text' value="<%= @time %>"/>
+  <input type="submit" value="pozdro techo" /> 
+<% end %>
+
+<pre>
+  <%= @shifted_transcript.try(:to_json) %>
+</pre>

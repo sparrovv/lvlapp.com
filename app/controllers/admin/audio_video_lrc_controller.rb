@@ -8,12 +8,15 @@ class Admin::AudioVideoLrcController < ApplicationController
   end
 
   def shift
-    audio_video = AudioVideo.find params[:audio_video_id]
-    time = BigDecimal(params[:time])
-    lrc = LRCConverter.new
+    @audio_video_id = params[:audio_video_id]
+    @time = params[:time]
 
-    shifted_transcript = lrc.shift_time_by(audio_video.transcript_in_hash, time)
+    if @audio_video_id && @time
+      audio_video = AudioVideo.find @audio_video_id
+      lrc = LRCConverter.new
+      @shifted_transcript = lrc.shift_time_by(audio_video.transcript_in_hash, BigDecimal(@time))
+    end
 
-    render :text => shifted_transcript.to_json
+    render :shift
   end
 end
