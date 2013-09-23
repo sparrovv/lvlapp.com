@@ -2,8 +2,17 @@ require 'spec_helper'
 
 describe User do
   let(:user) { build(:user) }
+
   it 'has valid factory' do
     user.should be_valid
+  end
+
+  it 'has admin flag false by default' do
+    user = User.new
+    expect(user.admin?).to be_false
+
+    user.admin = true
+    expect(user.admin?).to be_true
   end
 
   it 'has many phrases' do
