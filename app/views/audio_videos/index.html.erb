@@ -1,7 +1,17 @@
-<ul>
+<h2>Recent videos</h2>
+
+<div class='media-grid'>
 <% @audio_videos.each do |audio_video| %>
-  <li>
-    <%= link_to audio_video.name, audio_video_path(audio_video) %>
-  </li>
+  <div class='video'>
+    <%= link_to image_tag('http://placehold.it/210x166'), audio_video_path(audio_video), :class => 'preview' %>
+    <div class='info'>
+      <div>
+        <%= link_to audio_video.name, audio_video_path(audio_video), :class => 'preview' %>
+      </div>
+      <span>
+        Added: <%= time_ago_in_words(audio_video.created_at) %> ago
+      </span>
+    </div>
+  </div>
 <% end %>
-</ul>
+</div>

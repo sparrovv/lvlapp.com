@@ -1,6 +1,6 @@
 class AudioVideosController < ApplicationController
   def index
-    @audio_videos = AudioVideo.all
+    @audio_videos = AudioVideo.order('created_at desc')
   end
 
   def show
