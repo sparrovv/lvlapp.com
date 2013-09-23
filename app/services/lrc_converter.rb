@@ -4,13 +4,19 @@
 #
 class LRCConverter
   def convert(lrc_content)
-    lrc_content.split("\n").map do |line|
-      foo = line.gsub("\\",'').strip.scan(/\A\[(.+)\](.+)?/).flatten
+    line_collection = []
+    lrc_content.each_line do |line|
+      next if line.strip.blank?
 
-      {
-        'time' => convert_time_to_sec(foo[0]).to_s,
-        'text' => foo[1].to_s
+      line_with_time = line.gsub("\\",'').strip.scan(/\A\[(.+)\](.+)?/).flatten
+      line_collection << {
+        'time' => convert_time_to_sec(line_with_time[0]).to_s,
+        'text' => line_with_time[1].to_s
       }
+    end
+
+    line_collection.sort_by do |h|
+      h['time'].to_f
     end
   end
 
