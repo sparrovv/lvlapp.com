@@ -2,6 +2,11 @@
   background: #C7E7FF;
 }
 
+.player-containter{
+  height: 340px;
+  background: image-url('spinner.gif') no-repeat 50% 50%;
+}
+
 #transcript-player{
   position: relative;
   height: 300px;
@@ -20,6 +25,23 @@
   margin:0;
 
 }
+.signed-in {
+  #transcript-player ul li{
+    .raw-word{
+      &:hover{
+        opacity: 0.5;
+      }
+    }
+    .word{
+      &:hover{
+        cursor: pointer;
+        position: relative;
+        background: image-url('plus-icon.png') no-repeat 50% 50%;
+      }
+    }
+  }
+}
+
 #transcript-player ul li{
   display: block;
   list-style-type: none;
@@ -34,19 +56,8 @@
     position: relative;
     fault{ color: red; }
     correct{ color: #1EA51E; }
-
-    &:hover{
-      cursor: pointer;
-      position: relative;
-      background: image-url('plus-icon.png') no-repeat 50% 50%;
-    }
   }
 
-  .raw-word{
-    &:hover{
-      opacity: 0.5;
-    }
-  }
 }
 
 .player-overlay.playing{
