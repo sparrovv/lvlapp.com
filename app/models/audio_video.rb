@@ -1,7 +1,12 @@
 class AudioVideo < ActiveRecord::Base
+  LEVEL = ['easy', 'medium', 'hard']
+
   validates :name, presence: true
   validates :transcript, presence: true
   validates :url, presence: true
+  validates :category, presence: true
+
+  belongs_to :category
 
   def youtube?
     !!url.match(/youtube/i)
