@@ -7,6 +7,7 @@ FactoryGirl.define do
     transcript "{'foo': 'bar'}"
     url "MyString"
     length 1
+    status 'pending'
     association :category, factory: :category
     association :level, factory: :level
   end

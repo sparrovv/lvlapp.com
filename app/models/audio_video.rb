@@ -1,9 +1,17 @@
 class AudioVideo < ActiveRecord::Base
+  ACTIVE = 'active'
+  PENDING = 'pending'
+
+  STATUSES = [PENDING, ACTIVE]
+
+  after_initialize :init
+
   validates :name, presence: true
   validates :transcript, presence: true
   validates :url, presence: true
   validates :category, presence: true
   validates :level, presence: true
+  validates :status, presence: true, inclusion: STATUSES
 
   belongs_to :category
   belongs_to :level
@@ -12,9 +20,14 @@ class AudioVideo < ActiveRecord::Base
     if category
       where(category_id: category.id)
     else
-      scoped
+      all
     end
   }
+
+  scope :by_status, lambda { |status|
+    where(status: status)
+  }
+
   delegate :name, to: :level, :prefix => true, :allow_nil => true
 
   def youtube?
@@ -26,5 +39,10 @@ class AudioVideo < ActiveRecord::Base
       t['time'] = BigDecimal(t['time'])
       t
     }
+  end
+
+  private
+  def init
+    self.status ||= PENDING
   end
 end

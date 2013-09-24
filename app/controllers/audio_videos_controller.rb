@@ -4,6 +4,7 @@ class AudioVideosController < ApplicationController
   def index
     @category = load_category # can be nil
     @audio_videos = AudioVideo.
+      by_status(AudioVideo::ACTIVE).
       by_category(@category).order('created_at desc')
   end
 

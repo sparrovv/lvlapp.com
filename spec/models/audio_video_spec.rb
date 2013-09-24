@@ -7,6 +7,30 @@ describe AudioVideo do
     expect(audio_video).to be_valid
   end
 
+  describe '#status' do
+    it 'initializes with pending status' do
+      av = AudioVideo.new
+      av.status.should == AudioVideo::PENDING
+    end
+
+    it 'requires status' do
+      audio_video.status = nil
+      expect(audio_video).to_not be_valid
+      expect(audio_video.errors).to include(:status)
+    end
+
+    it 'can be pending or active' do
+      audio_video.status = 'pending'
+      expect(audio_video).to be_valid
+
+      audio_video.status = 'active'
+      expect(audio_video).to be_valid
+
+      audio_video.status = 'notsuchstatus'
+      expect(audio_video).to_not be_valid
+    end
+  end
+
   it 'validates name' do
     audio_video.name = nil
     expect(audio_video).to_not be_valid
