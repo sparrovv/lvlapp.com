@@ -21,3 +21,10 @@ if Category.count.zero?
     Category.create(name: name)
   end
 end
+
+if Level.count.zero?
+  ['easy', 'medium', 'hard'].each do |name|
+    Level.create(name: name)
+  end
+end
+

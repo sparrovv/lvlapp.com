@@ -37,4 +37,22 @@ describe AudioVideo do
       audio_video.valid?.should be_true
     end
   end
+
+  it 'valdates level presence' do
+    level = build(:level)
+
+    audio_video.level = nil
+    audio_video.valid?.should be_false
+    audio_video.level = level
+
+    audio_video.valid?.should be_true
+  end
+
+  describe '#level_name' do
+    it 'returns level name' do
+      level = build(:level, name: 'foo')
+      audio_video.level = level
+      expect(audio_video.level_name).to eql 'foo'
+    end
+  end
 end

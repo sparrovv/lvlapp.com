@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20130923231232) do
+ActiveRecord::Schema.define(version: 20130924175952) do
 
   create_table "audio_videos", force: true do |t|
     t.string   "name"
@@ -22,9 +22,11 @@ ActiveRecord::Schema.define(version: 20130923231232) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "category_id"
+    t.integer  "level_id"
   end
 
   add_index "audio_videos", ["category_id"], name: "index_audio_videos_on_category_id", using: :btree
+  add_index "audio_videos", ["level_id"], name: "index_audio_videos_on_level_id", using: :btree
 
   create_table "categories", force: true do |t|
     t.string   "name"
@@ -33,6 +35,12 @@ ActiveRecord::Schema.define(version: 20130923231232) do
   end
 
   add_index "categories", ["name"], name: "index_categories_on_name", unique: true, using: :btree
+
+  create_table "levels", force: true do |t|
+    t.string   "name"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "phrases", force: true do |t|
     t.string   "name"

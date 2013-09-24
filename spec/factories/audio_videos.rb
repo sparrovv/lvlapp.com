@@ -8,5 +8,6 @@ FactoryGirl.define do
     url "MyString"
     length 1
     association :category, factory: :category
+    association :level, factory: :level
   end
 end
