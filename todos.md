@@ -15,19 +15,17 @@ Maybe lyrics/text/subtitles hero / or maybe as the one of the categories.
   -[] Creating own lists
   -[] Find some APIs and get usage of word / def / transalation
 
-
 -[] Stats 
   -[] tracking users progress
   -[] consider adding Time, so we will keep information how long it takes to get all the words.
-
 
 -[] Shorter Videos
   -[] youtube music - is short and nice
   -[] self hosting - have no clue what would be performance
 
--[] Youtube 
-  -[] music / lyrics
-  -[] probably new player
+-[x] Youtube 
+  -[x] music / lyrics
+  -[x] probably new player
 
 -[] Front Page 
   -[]/ with video and lyrics player, at the end examples how to do it
@@ -40,6 +38,7 @@ Maybe lyrics/text/subtitles hero / or maybe as the one of the categories.
 -[] refactoring, more angularjs knowledge I need ?!
 
 BUG:
+-[] words with 
 -[] When reaching the last line: (in skipWord) Uncaught TypeError: Cannot call method 'clearBuffer' of undefined 
 -[] Smarter blanks, there is some issue with: "why"
 -[] compressed javascript doesn't work

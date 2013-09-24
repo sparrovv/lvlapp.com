@@ -1,6 +1,7 @@
 LApp.decoreateWithBlanks = (transcript) ->
 
   NO_MATCH = "there_was_no_word_matching_criteria"
+  SPECIAL_CHARS = /[",.\(\)\[\]:;\|\?]/g
 
   getRandomInt = (min, max) ->
     Math.floor Math.random() * (max - min) + min
@@ -8,10 +9,9 @@ LApp.decoreateWithBlanks = (transcript) ->
   _cutRandomWord = (text) ->
     return NO_MATCH if text.length is 0
 
-    anyWordWithAphostrophe = /\w+'\w?/g
-    specialChars = /[",.\(\)\[\]:;\|\?]/g
+    anyWordWithAphostrophe = /\w+('|`|’)\w?/g
 
-    filteredWords = _.filter(text.replace(specialChars, "").replace(anyWordWithAphostrophe, "").split(" "), (e) ->
+    filteredWords = _.filter(text.replace(SPECIAL_CHARS, "").replace(anyWordWithAphostrophe, "").split(" "), (e) ->
       e.length > 3
     )
 
