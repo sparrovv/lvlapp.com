@@ -1,6 +1,6 @@
 <h2>Recent videos</h2>
 
-<div class='media-grid'>
+<div class='media-grid span8'>
 <% @audio_videos.each do |audio_video| %>
   <div class='video'>
     <%= link_to image_tag('http://placehold.it/210x166'), audio_video_path(audio_video), :class => 'preview' %>
@@ -14,4 +14,14 @@
     </div>
   </div>
 <% end %>
+</div>
+
+<div class='span3'>
+  <ul class='nav nav-list'>
+  <% @categories.each do |category| %>
+    <li class='<%= (category == @category ) ? "active" : ""%>'>
+      <%= link_to category.name, audio_videos_path(:category_id => category.id)%>
+    </li>
+  <% end %>
+  <ul>
 </div>

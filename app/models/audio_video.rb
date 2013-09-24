@@ -8,6 +8,13 @@ class AudioVideo < ActiveRecord::Base
   belongs_to :category
   belongs_to :level
 
+  scope :by_category, lambda { |category|
+    if category
+      where(category_id: category.id)
+    else
+      scoped
+    end
+  }
   delegate :name, to: :level, :prefix => true, :allow_nil => true
 
   def youtube?

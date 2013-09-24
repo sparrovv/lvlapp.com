@@ -43,6 +43,7 @@ end
 group :test do
   gem 'bogus'
   gem 'database_cleaner'
+  gem 'shoulda-matchers'
 end
 
 group :doc do
