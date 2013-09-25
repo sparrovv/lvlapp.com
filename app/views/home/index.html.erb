@@ -1,22 +1,36 @@
-<div ng-app='LApp'>
-  <div data-id='video-player'>
-    <video id="example_video_1" class="video-js vjs-default-skin"
-    controls preload="auto" width="640" height="264"
-    poster="http://video-js.zencoder.com/oceans-clip.png"
-    data-setup='{"example_option":true}'>
-    <source src="http://imonit.pl/foo.mp4" type='video/mp4' />
-    </video>
-  </div>
+<section id="about">
+<div class="row">
+    <div class='row span6'>
+      <%= image_tag 'front_home.png' %>
+    </div>
+    <div class="primary_info span6">
+      <h1><em>Play and learn at the same time. </em>Measure the progress</h1>
 
-  <div id="transcript-player" data-id='text-player' ng-controller="TranscriptCtrl">
-    <ul style="top:{{currentLineTopPosition}}px">
-      <li ng-repeat="line in transcript">
-      <p data-line-id={{line.htmlId()}} ng-controller="LineCtrl">
-      <span>{{line.time}}</span>
-
-      <span ng-click="lookUpInDict(this)" data-word="{{word}}" ng-repeat="word in line.words()">{{word}} </span>
+      <p>
+        Learn new vocabulary by listening to your favourite songs and interesting video clips.
       </p>
-      </li>
-    </ul>
-  </div>
-</div>
+      <p>
+        Fill in missing words in the transcripts.
+      </p>
+      <p>
+        Use spaced repletion to truly remember new phrases.
+      </p>
+      <p><%= link_to 'Check out now', audio_videos_path, class: 'btn'%></p>
+    </div>
+    </div>
+
+  <div class="row top-buffer">
+        <div class="span4">
+          <h2>Listening</h2>
+          <p>There is no better way to practice another language than active listening. Choose from several levels and fill in the missing words in the video's transcript.</p>
+        </div><!-- /.span4 -->
+        <div class="span4">
+          <h2>Spaced repetition</h2>
+          <p>Spaced repetition is a learning technique that incorporates increasing intervals of time between subsequent review of previously learned material in order....</p>
+        </div><!-- /.span4 -->
+        <div class="span4">
+          <h2>Fun</h2>
+          <p>Listen to your favorite songs, learn lyrics and sing along:)</p>
+        </div><!-- /.span4 -->
+      </div>
+</section>

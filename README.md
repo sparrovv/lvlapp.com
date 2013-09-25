@@ -3,11 +3,12 @@
 There are many ways to improve your english. 
 The one that I find the most helpful is to go out and start speak with other people, especially with natives.
 
-Unfortunately this not always an option. The other method that I find very successful is to listen english without any subtitles. 
+Unfortunately this not always is an option.
+The other method that I find very helpful is to listen english without any subtitles.
 The listening has to be active, and you should make an effort to understand everything.
 
 To validate that is to put down what you hear, and then compare with existing transcript and see how good was your understanding of heared audio.
-Listening and writing is very hard per se, and validating this is very cumbersome.
+Listening and writing is very hard per se, and validating this is even more cumbersome.
 I created that app to help with that.
 
 Choose an audio from all available, choose the type that you're interested in.
@@ -16,9 +17,9 @@ Choose an audio from all available, choose the type that you're interested in.
 2. Intermediate - type only first letters
 3. Intermediate - type only missing words
 
-Gather exp, and compare with others. See how you elevate over time.
+Gather exp, and compare with others. Observe how you language skill elevate over time.
 
-Files are split into very categories:
+Videos are split into very categories:
 
 * by level [easy, medium, hard]
 * by time [short, …. long]

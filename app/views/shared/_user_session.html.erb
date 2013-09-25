@@ -2,6 +2,9 @@
   <li>
     <%= link_to 'Home', root_path %>
   </li>
+  <li>
+    <%= link_to 'Browse', audio_videos_path %>
+  </li>
   <% if current_user %>
     <li>
       <a><%= current_user.email %></a>

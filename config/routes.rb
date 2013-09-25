@@ -9,8 +9,7 @@ Landl::Application.routes.draw do
     resources :phrases
   end
 
-  root :to => 'audio_videos#index'
-  resource :home, :only => [:index]
+  root :to => 'home#index'
 
   get 'ted_transcript/' => 'admin/ted_transcripts#show'
   get 'shift_transcript/' => 'admin/audio_video_lrc#shift'
