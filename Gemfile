@@ -23,12 +23,14 @@ gem 'jquery-rails'
 
 # Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
 gem 'jbuilder', '~> 1.2'
-gem 'nokogiri', '1.5.2'
+gem 'nokogiri', '~> 1.6'
 gem 'rails_admin'
 gem 'bootstrap-sass', '~> 2.3.2.1'
 gem 'puma'
 
 gem 'wordnik'
+gem 'bing_translator', '~> 4.0'
+
 group :development do
   gem 'capistrano'
   gem 'capistrano_colors'

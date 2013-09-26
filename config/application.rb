@@ -26,6 +26,12 @@ module Landl
     # config.i18n.default_locale = :de
 
     # CUSTOM CONFIG
+    # Wordnik
     config.wordnik_api = '***REMOVED***'
+
+    # Microsoft
+    config.azure_primary_account_key = '***REMOVED***'
+    config.azure_customer_id = '***REMOVED***'
+    config.azure_secret = '***REMOVED***'
   end
 end

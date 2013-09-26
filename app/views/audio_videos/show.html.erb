@@ -54,10 +54,9 @@
   <div id="phrase-book" ng-controller='PhrasesCtrl' class="span4">
     <h4>Phrase Book</h4>
     <% if current_user %>
-    <ul>
-      <li ng-repeat="phrase in phrases">
-      <span>{{phrase.name}}</span>
-      <a href="" ng-click='removePhrase()' data-phrase-id="{{phrase.id}}">x</a>
+    <ul class='nav nav-list'>
+      <li class="" ng-repeat="phrase in phrases">
+        <phrase phrase-object={{phrase}}></phrase>
       </li>
     </ul>
   <% else %>
