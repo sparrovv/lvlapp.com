@@ -28,6 +28,7 @@ gem 'rails_admin'
 gem 'bootstrap-sass', '~> 2.3.2.1'
 gem 'puma'
 
+gem 'wordnik'
 group :development do
   gem 'capistrano'
   gem 'capistrano_colors'

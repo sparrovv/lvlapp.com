@@ -1,4 +1,8 @@
 class Phrase < ActiveRecord::Base
+  serialize :definition, JSON
+  serialize :examples, JSON
+  serialize :related, JSON
+
   validates :name, presence: true
   validates :audio_video_id, presence: true
 

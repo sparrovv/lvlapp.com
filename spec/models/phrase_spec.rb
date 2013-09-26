@@ -22,4 +22,18 @@ describe Phrase do
     phrase.audio_video = audio_video
     phrase.audio_video.should == audio_video
   end
+
+  it 'serializes fields' do
+    arry = ['x']
+
+    phrase.definition = arry
+    phrase.examples = arry
+    phrase.related = arry
+
+    phrase.save and phrase.reload
+
+    phrase.definition.should == arry
+    phrase.examples.should == arry
+    phrase.related.should == arry
+  end
 end

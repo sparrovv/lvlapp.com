@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20130924195111) do
+ActiveRecord::Schema.define(version: 20130926201504) do
 
   create_table "audio_videos", force: true do |t|
     t.string   "name"
@@ -53,6 +53,7 @@ ActiveRecord::Schema.define(version: 20130924195111) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "user_id"
+    t.string   "related"
   end
 
   add_index "phrases", ["user_id"], name: "index_phrases_on_user_id", using: :btree

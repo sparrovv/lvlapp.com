@@ -33,6 +33,9 @@ describe PhrasesController do
       let(:audio_video) { create(:audio_video) }
 
       context 'when valid args' do
+        before do
+          PhraseWorker.stub(:enrich)
+        end
         def dispatch(audio_video)
           post :create, audio_video_id: audio_video.id, phrase: {name: 'foobar'}
         end
@@ -53,6 +56,12 @@ describe PhrasesController do
           body = JSON.parse(response.body)
 
           expect(body["name"]).to eq 'foobar'
+        end
+
+        it 'calls PhraseWorker.assign' do
+          PhraseWorker.should_receive(:enrich).with(kind_of Phrase)
+
+          dispatch(audio_video)
         end
       end
 

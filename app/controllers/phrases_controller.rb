@@ -14,6 +14,7 @@ class PhrasesController < ApplicationController
     end
 
     if phrase.save
+      PhraseWorker.enrich(phrase)
       render :json => phrase
     else
       render :json => phrase.errors, :status => 409
