@@ -15,6 +15,8 @@
 @import "bootstrap";
 @import "bootstrap-responsive";
 
+$logo-color: #d95525;
+
 .navbar {
   font-family: "News Cycle", "Arial Narrow Bold", sans-serif;
   font-size: 18px;
@@ -31,7 +33,7 @@
 }
 
 .navbar-default .navbar-brand {
-  color: #000000;
+  color: $logo-color;
 }
 
 .nav{
@@ -43,4 +45,12 @@
 
 .top-buffer{
   margin-top:40px;
+}
+.primary_info{
+  h1{
+    font-size: 32px;
+    em{
+      color: $logo-color;
+    }
+  }
 }
