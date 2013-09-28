@@ -16,6 +16,7 @@ class AudioVideosController < ApplicationController
   def load_categories
     @categories = Category.all
   end
+
   def load_category
     @category = Category.where(id: params[:category_id]).first
   end
