@@ -3,6 +3,7 @@ LApp.factory 'Key', ()->
 
   keyUp = 38
   keyDown = 40
+  keyLeft = 37
   backspace = 8
   enter = 13
   tab = 9
@@ -24,4 +25,8 @@ LApp.factory 'Key', ()->
 
   key.isEnter= (keyCode) ->
     enter == keyCode
+
+  key.isKeyLeft= (keyCode) ->
+    keyLeft == keyCode
+
   key

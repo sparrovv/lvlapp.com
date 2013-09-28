@@ -11,4 +11,8 @@ LApp.navigateOverTranscript = ($scope, transcriptFactory) ->
     line = transcriptFactory.getPrev($scope.currentLine)
     $scope.setCurrentLine line
 
+  nav.beginningOfline = ->
+    $scope.clearNextLineTimeout()
+    $scope.setCurrentLine $scope.currentLine
+
   nav

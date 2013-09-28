@@ -60,6 +60,7 @@ LApp.controller "TranscriptCtrl", ($scope, transcriptFactory, Stats, Key) ->
   $(document).keydown (e) ->
     $scope.navigator.lineDown()    if Key.isKeyDown(e.keyCode)
     $scope.navigator.lineUp()      if Key.isKeyUp(e.keyCode)
+    $scope.navigator.beginningOfline() if Key.isKeyLeft(e.keyCode)
     $scope.spellChecker.skipWord() if Key.isTab(e.keyCode)
     $scope.togglePlayer()          if Key.isEnter(e.keyCode)
 
