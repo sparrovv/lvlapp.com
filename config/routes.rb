@@ -1,4 +1,4 @@
-Landl::Application.routes.draw do
+Lvlapp::Application.routes.draw do
   devise_for :users
   resources :phrases
 

@@ -3,4 +3,4 @@
 
 require File.expand_path('../config/application', __FILE__)
 
-Landl::Application.load_tasks
+Lvlapp::Application.load_tasks

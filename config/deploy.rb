@@ -7,7 +7,7 @@ set :stages, ['production']
 set :default_stage, 'production'
 require 'capistrano/ext/multistage'
 
-set :application, "landl"
+set :application, "lvlapp"
 set :deploy_to, "/home/sparrovv/#{application}"
 set :scm, :git
 set :repository, "git@gitlab.com:sparrovv/landl.git"

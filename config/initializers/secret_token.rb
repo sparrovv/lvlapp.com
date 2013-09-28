@@ -9,4 +9,4 @@
 
 # Make sure your secret_key_base is kept private
 # if you're sharing your code publicly.
-Landl::Application.config.secret_key_base = '2c31b44bef3c2dbf73e32bc62b579ab90c540a0a3cb43a33746920cce218af6ab8a69722860f1ec3e8aa6e9ddd5b6dba9158ca0acef256263817c575a7b191da'
+Lvlapp::Application.config.secret_key_base = '2c31b44bef3c2dbf73e32bc62b579ab90c540a0a3cb43a33746920cce218af6ab8a69722860f1ec3e8aa6e9ddd5b6dba9158ca0acef256263817c575a7b191da'
