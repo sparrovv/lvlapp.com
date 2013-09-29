@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20130926201504) do
+ActiveRecord::Schema.define(version: 20130929201355) do
 
   create_table "audio_videos", force: true do |t|
     t.string   "name"
@@ -37,6 +37,21 @@ ActiveRecord::Schema.define(version: 20130926201504) do
   end
 
   add_index "categories", ["name"], name: "index_categories_on_name", unique: true, using: :btree
+
+  create_table "game_data", force: true do |t|
+    t.integer  "user_id"
+    t.integer  "audio_video_id"
+    t.integer  "blanks"
+    t.integer  "guessed"
+    t.integer  "skipped"
+    t.integer  "mistakes"
+    t.integer  "time"
+    t.string   "level"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "game_data", ["user_id", "audio_video_id"], name: "index_game_data_on_user_id_and_audio_video_id", using: :btree
 
   create_table "levels", force: true do |t|
     t.string   "name"

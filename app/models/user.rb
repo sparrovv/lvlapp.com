@@ -6,6 +6,7 @@ class User < ActiveRecord::Base
          :recoverable, :rememberable, :trackable, :validatable
 
   has_many :phrases
+  has_many :game_data
 
   def phrases_by_audio_video(audio_video)
     phrases.where(audio_video: audio_video)
