@@ -1,9 +1,11 @@
+require 'lrc_parser'
+
 class Admin::AudioVideoLrcController < ApplicationController
   def new
   end
 
   def create
-    @lrc = LRCConverter.new.convert params[:content]
+    @lrc = LRC::Parser.new(params[:content]).lvl_app_lines
     render :show
   end
 
