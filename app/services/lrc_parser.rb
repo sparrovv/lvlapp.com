@@ -35,7 +35,7 @@ module LRC
 
       content.each_line do |line|
         line.sub!(/\s*\Z/, "")
-        if line =~ /\A\[\p{L}/
+        if line =~ /\A\[[A-Za-z]{1,}/
           meta_information << line
           next
         end
