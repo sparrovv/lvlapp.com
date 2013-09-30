@@ -73,17 +73,23 @@ class LApp.TranscriptLine
   guess: (letter) ->
     @currentLettersBuffer += letter
 
-    if @nextMissingWord().toLowerCase() is @currentLettersBuffer.toLowerCase()
+    if @_isBufferEqlToTheNextMissingWord()
       word = @nextMissingWord()
       @guessedWords.push(word)
       missingWordObj = @getMissingWordObj(word)
       @textWithBlanks = @textWithBlanks.replaceAt(missingWordObj.index, missingWordObj.word)
       @clearBuffer()
-      true
+      {correctLetter: true, correctWord: true}
     else
-      false
+      {correctLetter: @_isCorrectLetter(letter), correctWord: false}
 
   nextMissingWord: ->
     index = @guessedWords.length
     @removedWords()[index]
 
+  _isBufferEqlToTheNextMissingWord: () ->
+    @nextMissingWord().toLowerCase() is @currentLettersBuffer.toLowerCase()
+
+  _isCorrectLetter: (letter) ->
+    size = @currentLettersBuffer.length
+    @nextMissingWord().toLowerCase()[size-1] is letter.toLowerCase()

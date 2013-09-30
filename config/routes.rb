@@ -7,6 +7,7 @@ Lvlapp::Application.routes.draw do
 
   resources :audio_videos do
     resources :phrases
+    resources :game_data, only: [:create]
   end
   resources :phrases
 

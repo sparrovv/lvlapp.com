@@ -7,7 +7,12 @@ LApp.spellCheckService = (transcriptFactory, $scope, Stats) ->
 
   @nextLetter = (letter) ->
     line = transcriptFactory.firstWithBlanks()
-    Stats.increaseGuessed() if line.guess(letter)
+
+    result = line.guess(letter)
+
+    Stats.increaseGuessed() if result.correctWord
+    Stats.increaseMistakes() if !result.correctLetter
+
     $scope.$apply()
 
     _playNextLine(line)

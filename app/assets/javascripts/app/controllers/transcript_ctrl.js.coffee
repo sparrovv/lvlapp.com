@@ -1,4 +1,4 @@
-LApp.controller "TranscriptCtrl", ($scope, transcriptFactory, Stats, Key) ->
+LApp.controller "TranscriptCtrl", ($scope, transcriptFactory, Stats, Key, audioVideo) ->
   $scope.transcriptFactory = transcriptFactory
   $scope.transcript = transcriptFactory.transcript
   $scope.currentLine = $scope.transcript[0]
@@ -8,10 +8,19 @@ LApp.controller "TranscriptCtrl", ($scope, transcriptFactory, Stats, Key) ->
   Stats.setBlanks(transcriptFactory.numberOfBlanks())
   # @todo move to factory/service... maybe
   $scope.transcriptTimeRange = LApp.getTimeRange($scope.transcript)
+  $scope.stats = Stats # just for debug
 
-  # this decorates $scope with videoPlayer
-  # there can be some timing issues if ......... tests
-  LApp.VideoPlayerFactory.init($scope, window.isYoutubeVideo)
+  videoCallbacks = (videoPlayer) ->
+    onVideoStart = ->
+      Stats.init({level: 'normal', audio_video_id: audioVideo.id})
+
+    onVideoEnded = ->
+      Stats.persist()
+
+    videoPlayer.onVideoStart(onVideoStart)
+    videoPlayer.onVideoEnded(onVideoEnded)
+
+  LApp.VideoPlayerFactory.init($scope, window.isYoutubeVideo, videoCallbacks)
 
   $scope.navigator = LApp.navigateOverTranscript($scope, transcriptFactory)
   $scope.currentLineTopPosition = 30

@@ -1,21 +1,23 @@
 class LApp.VideoPlayerFactory
-  @init: (scope, isYoutubeVideo) ->
+  @init: (scope, isYoutubeVideo, callbacks) ->
     if isYoutubeVideo
-      LApp.VideoPlayerFactory.youtube(scope)
+      LApp.VideoPlayerFactory.youtube(scope, callbacks)
     else
-      LApp.VideoPlayerFactory.videojs(scope)
+      LApp.VideoPlayerFactory.videojs(scope, callbacks)
 
-  @youtube: (scope) ->
+  @youtube: (scope, callbacks) ->
     $(document).on 'youtubeVideoLoaded' , ->
       #
       #youtubePlayer is an object on windows defined in view :////
       #
       scope.videoPlayer = new LApp.YoutubVideoPlayerProxy(youtubePlayer)
       scope.videoPlayer.onTimeUpdate(LApp.locateCurrentLine, scope)
+      callbacks(scope.videoPlayer)
 
-  @videojs: (scope) ->
+  @videojs: (scope, callbacks) ->
     scope.videoPlayer = new LApp.VideoJSProxy(videojs("videojs-video"))
     scope.videoPlayer.onTimeUpdate(LApp.locateCurrentLine, scope)
+    callbacks(scope.videoPlayer)
 
 class LApp.VideoJSProxy
   constructor:(@original_player) ->
@@ -43,6 +45,12 @@ class LApp.VideoJSProxy
   onVideoEnded: (funct) ->
     @original_player.on "ended", ->
       funct()
+
+  onVideoStart: (funct) ->
+    self = @
+    @original_player.on "play", ->
+      if self.currentTime() < 0.12
+        funct()
 
 class LApp.YoutubVideoPlayerProxy
   constructor:(@original_player) ->
@@ -73,3 +81,8 @@ class LApp.YoutubVideoPlayerProxy
     $(document).on 'youtubeVideoEnded', ->
       funct()
 
+  onVideoStart: (funct) ->
+    self = @
+    $(document).on 'youtubeVideoStart', ->
+      if self.currentTime() < 0.12
+        funct()
