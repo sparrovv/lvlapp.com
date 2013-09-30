@@ -6,7 +6,7 @@ LApp.factory 'Phrase', ($resource) ->
     query: {method:'GET', params:{phraseId:''}, isArray:true}
 
   @all = (opts) ->
-    allPhrases = PhraseResource.query(opts)
+    allPhrases =  PhraseResource.query(opts)
 
   @create = (opts)->
     PhraseResource.save opts, (p)->

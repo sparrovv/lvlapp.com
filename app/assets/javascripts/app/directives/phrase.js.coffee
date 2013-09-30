@@ -5,9 +5,9 @@
       <a ng-href="" ng-click="showDef()">(more)</a>
       <a ng-href="" ng-click="removePhrase()" data-phrase-id="{{phrase.id}}">x</a>
       <p class="hidden">{{phrase.translation}}</p>
-      <p class="hidden">{{phrase.definition}}</p>
-      <p class="hidden">{{phrase.examples}}</p>
-      <p class="hidden">{{phrase.related}}</p>
+      <p class="hidden">{{phrase.definition | json}}</p>
+      <p class="hidden">{{phrase.examples | json}}</p>
+      <p class="hidden">{{phrase.related | json}}</p>
     </div>'
 
   replace: true

@@ -1,5 +1,23 @@
-<ul>
-  <% @game_data.each do |data| %>
-    <li><%= item.to_s %></li>
+<h3>Game Stats</h3>
+
+<table class='table table-bordered'>
+
+  <% headers = [:blanks, :guessed , :skipped , :mistakes, :time] %>
+  <% ths = headers.map{|name| "<th>#{name}</th>" }.join('') %>
+
+  <tr>
+    <th>nb</th><th>video</th>
+    <%= ths.html_safe %>
+    <th>performed at</th>
+  </tr>
+  <% @game_data.each_with_index do |datum, index| %>
+    <tr>
+      <td><%= index + 1 %></td>
+      <td><%= link_to(datum.audio_video.name, audio_video_path(datum.audio_video))%></td>
+      <% headers.each do |field_name| %>
+        <td><%= datum.send(field_name) %></td>
+      <% end %>
+      <td><%= time_tag datum.created_at %></td>
+    </tr>
   <% end %>
-<ul>
+</table>
