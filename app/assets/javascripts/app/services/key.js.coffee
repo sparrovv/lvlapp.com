@@ -7,9 +7,10 @@ LApp.factory 'Key', ()->
   backspace = 8
   enter = 13
   tab = 9
+  spacebar = 32
 
   key.isSpecial = (keyCode)->
-    [keyUp, enter, keyDown, backspace, tab].indexOf(keyCode) != -1
+    [keyUp, enter, keyDown, backspace, tab, spacebar].indexOf(keyCode) != -1
 
   key.isTab = (keyCode) ->
     tab == keyCode
@@ -28,5 +29,8 @@ LApp.factory 'Key', ()->
 
   key.isKeyLeft= (keyCode) ->
     keyLeft == keyCode
+
+  key.isSpacebar = (keyCode) ->
+    spacebar == keyCode
 
   key
