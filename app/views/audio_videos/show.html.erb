@@ -14,6 +14,7 @@
 
     <div id="transcript-player" data-id='text-player' ng-controller="TranscriptCtrl" ng-keypress='listenForKey'>
       <div class='player-overlay {{currentState}}'><a ng-click="onPlayClick()"><%= image_tag 'play_button.png' %></a></div>
+    <div id="transcript-player" data-id='text-player' tabindex="1" ng-controller="TranscriptCtrl" ng-keypress='listenForKey'>
 
       <ul style="top:{{currentLineTopPosition}}px">
         <li ng-repeat="line in transcript">

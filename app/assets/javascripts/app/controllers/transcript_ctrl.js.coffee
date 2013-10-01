@@ -13,6 +13,7 @@ LApp.controller "TranscriptCtrl", ($scope, transcriptFactory, Stats, Key, audioV
 
   videoCallbacks = (videoPlayer) ->
     onVideoStart = ->
+      $('#transcript-player').focus()
       $scope.play() if $scope.currentState == 'paused'
       Stats.init({level: 'normal', audio_video_id: audioVideo.id})
 
