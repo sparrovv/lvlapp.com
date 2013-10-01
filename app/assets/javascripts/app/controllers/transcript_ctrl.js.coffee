@@ -1,4 +1,5 @@
 LApp.controller "TranscriptCtrl", ($scope, transcriptFactory, Stats, Key, audioVideo) ->
+  $scope.currentState = 'paused'
   $scope.transcriptFactory = transcriptFactory
   $scope.transcript = transcriptFactory.transcript
   $scope.currentLine = $scope.transcript[0]
@@ -12,6 +13,7 @@ LApp.controller "TranscriptCtrl", ($scope, transcriptFactory, Stats, Key, audioV
 
   videoCallbacks = (videoPlayer) ->
     onVideoStart = ->
+      $scope.play() if $scope.currentState == 'paused'
       Stats.init({level: 'normal', audio_video_id: audioVideo.id})
 
     onVideoEnded = ->
@@ -56,33 +58,42 @@ LApp.controller "TranscriptCtrl", ($scope, transcriptFactory, Stats, Key, audioV
     else
       $scope.pauseOnNonFinishedLine()
 
-  $(document).keypress (event) ->
-    return false  if Key.isSpecial(event.which)
+  bindPlayPause = ->
+    $(document).keydown (e) ->
+      $scope.togglePlayer() if Key.isEnter(e.keyCode)
 
-    letter = String.fromCharCode(event.which)
-    $scope.spellChecker.nextLetter letter
+  bindPlayPause()
+  unbindKeyDownKeyPress = ->
+    $(document).unbind('keypress')
+    $(document).unbind('keydown')
+    bindPlayPause()
+
+  bindKeyDownKeyPress = ->
+    $(document).keypress (event) ->
+      return false  if Key.isSpecial(event.which)
+
+      letter = String.fromCharCode(event.which)
+      $scope.spellChecker.nextLetter letter
+
+    $(document).keydown (e) ->
+      $scope.navigator.lineDown()    if Key.isKeyDown(e.keyCode)
+      $scope.navigator.lineUp()      if Key.isKeyUp(e.keyCode)
+      $scope.navigator.beginningOfline() if Key.isKeyLeft(e.keyCode)
+      $scope.spellChecker.skipWord() if Key.isTab(e.keyCode)
+
+      if Key.isBackspace(e.keyCode)
+        e.preventDefault()
+        currentLineWithBlanks = transcriptFactory.firstWithBlanks()
+        currentLineWithBlanks.removeLastFromBuffer()
+
+        $scope.$apply()
+
+      return false  if Key.isSpecial(e.keyCode)
 
   $(document).click (event) ->
     targetElInsideTranscriptPlayer = $(event.target).parents('#transcript-player').length == 1
     $scope.pause() if not targetElInsideTranscriptPlayer
 
-  $(document).keydown (e) ->
-    $scope.navigator.lineDown()    if Key.isKeyDown(e.keyCode)
-    $scope.navigator.lineUp()      if Key.isKeyUp(e.keyCode)
-    $scope.navigator.beginningOfline() if Key.isKeyLeft(e.keyCode)
-    $scope.spellChecker.skipWord() if Key.isTab(e.keyCode)
-    $scope.togglePlayer()          if Key.isEnter(e.keyCode)
-
-    if Key.isBackspace(e.keyCode)
-      e.preventDefault()
-      currentLineWithBlanks = transcriptFactory.firstWithBlanks()
-      currentLineWithBlanks.removeLastFromBuffer()
-
-      $scope.$apply()
-
-    return false  if Key.isSpecial(e.keyCode)
-
-  $scope.currentState = 'paused'
   $scope.togglePlayer = ->
     if $scope.currentState == 'paused'
       $scope.play()
@@ -92,6 +103,7 @@ LApp.controller "TranscriptCtrl", ($scope, transcriptFactory, Stats, Key, audioV
   # As a workaround to make it possible to play the current paused line, it starts from the beginning.
   $scope.play = ->
     $scope.currentState = 'playing'
+    bindKeyDownKeyPress()
 
     if $scope.currentLine.isMatchingOrignal()
       $scope.videoPlayer.play()
@@ -99,13 +111,15 @@ LApp.controller "TranscriptCtrl", ($scope, transcriptFactory, Stats, Key, audioV
       line = $scope.currentLine
       $scope.videoPlayer.setCurrentTime(line.time)
 
-    $scope.$digest()
+    if !$scope.$$phase
+      $scope.$digest()
 
   $scope.pause = ->
-    $scope.clearNextLineTimeout()
     $scope.currentState = 'paused'
-    $scope.$digest()
+    unbindKeyDownKeyPress()
+    $scope.clearNextLineTimeout()
     $scope.videoPlayer.pause()
+    $scope.$digest()
 
   $scope.onPlayClick = ->
     $scope.play()

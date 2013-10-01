@@ -12,9 +12,9 @@ LApp.factory "transcriptFactory", (audioVideo)->
 
   factory.numberOfBlanks = ->
     size = 0
-
     _.each factory.transcript, (line) ->
-      size += line.removedWordsCollection.length
+      if line.hasBlanks() is true
+        size += line.removedWordsCollection.length
 
     size
 
