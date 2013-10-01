@@ -1,26 +1,27 @@
 TODOs:
 
-Maybe lyrics/text/subtitles hero / or maybe as the one of the categories.
-
--[] Add User model
-  -[x] Sign in / sign out user
-  -[x] Save phrases per users
+- [] Number of blanks is incorrect, or something else, but affter tabing it doesn't sum up
+- [] generate blanks in callback after start of the player, maybe it's time to introduce lvls
+- [] At the end of video, It would be cool to see something that it saved....
+- [] Time indicator would be usefulllllll
+- [] Start game on clicking in youtube video
+- [] smarter feeeling blanks: fix: good bye
 
 
 -[] Lyrics Player
   -[] Introduce more lvls
 
 -[] Phrase Book
-  -[] List of phrases per video
+  -[x] List of phrases per video
   -[] Creating own lists
-  -[] Find some APIs and get usage of word / def / transalation
+  -[x] Find some APIs and get usage of word / def / transalation
 
--[] Stats 
-  -[] tracking users progress
+-[x] Stats 
+  -[x] tracking users progress
   -[] consider adding Time, so we will keep information how long it takes to get all the words.
 
 -[] Shorter Videos
-  -[] youtube music - is short and nice
+  -[x] youtube music - is short and nice
   -[] self hosting - have no clue what would be performance
 
 -[x] Youtube 
@@ -56,6 +57,10 @@ DONE
   ruby 1.9.3, bundler, mysql, git
 
 -[x] It seems that after couple minutes the video won't pause. It says that it paused, but it still playing, with very irritating sound. Looks like a player problem, or the setTiemout issue, but can't see a big connection between setTiemout and this problem.  But maybe it is. Need more information, but definitely it has to be fixed before releasing to public.
+
+-[] Add User model
+  -[x] Sign in / sign out user
+  -[x] Save phrases per users
 
 FOR FAR FUTURE:
 
