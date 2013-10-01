@@ -1,21 +1,22 @@
 LApp.controller "TranscriptCtrl", ($scope, transcriptFactory, Stats, Key, audioVideo) ->
   $scope.currentState = 'paused'
+  $scope.level = 'normal'
   $scope.transcriptFactory = transcriptFactory
   $scope.transcript = transcriptFactory.transcript
+  $scope.transcriptTimeRange = LApp.getTimeRange($scope.transcript)
   $scope.currentLine = $scope.transcript[0]
 
   $scope.spellChecker = new LApp.spellCheckService(transcriptFactory, $scope, Stats)
-
-  Stats.setBlanks(transcriptFactory.numberOfBlanks())
-  # @todo move to factory/service... maybe
-  $scope.transcriptTimeRange = LApp.getTimeRange($scope.transcript)
   $scope.stats = Stats # just for debug
 
   videoCallbacks = (videoPlayer) ->
     onVideoStart = ->
       $('#transcript-player').focus()
+      transcriptFactory.setupBlanks($scope.level)
+      $scope.$digest()
       $scope.play() if $scope.currentState == 'paused'
-      Stats.init({level: 'normal', audio_video_id: audioVideo.id})
+      Stats.init
+        level: 'normal', audio_video_id: audioVideo.id, blanks: transcriptFactory.numberOfBlanks()
 
     onVideoEnded = ->
       Stats.persist()
@@ -122,7 +123,8 @@ LApp.controller "TranscriptCtrl", ($scope, transcriptFactory, Stats, Key, audioV
     $scope.videoPlayer.pause()
     $scope.$digest()
 
-  $scope.onPlayClick = ->
+  $scope.onPlayClick = (level)->
+    $scope.level = level
     $scope.play()
 
   window.scope = $scope

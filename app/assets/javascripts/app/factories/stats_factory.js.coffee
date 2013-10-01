@@ -22,6 +22,7 @@ LApp.factory 'Stats', (GameData) ->
     stats.startTime = new Date()
     stats.level = attr.level
     stats.audioVideoId = attr.audio_video_id
+    stats.allBlanks = attr.blanks
 
   stats.persist = ->
     stats._setTime()

@@ -1,10 +1,8 @@
 TODOs:
 
-- [] Number of blanks is incorrect, or something else, but affter tabing it doesn't sum up
 - [] generate blanks in callback after start of the player, maybe it's time to introduce lvls
 - [] At the end of video, It would be cool to see something that it saved....
 - [] Time indicator would be usefulllllll
-- [] Start game on clicking in youtube video
 - [] smarter feeeling blanks: fix: good bye
 
 
@@ -65,3 +63,8 @@ DONE
 FOR FAR FUTURE:
 
   -[] spaced repetition - exporting to anki / this should happen sometime in the future, not now
+
+
+- [x] Number of blanks is incorrect, or something else, but affter tabing it doesn't sum up
+  it looks okay, I think that was an issue with metrics that was cleard at start, and me skipping before starting
+- [] Start game on clicking in youtube video
