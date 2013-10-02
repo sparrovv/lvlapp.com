@@ -46,6 +46,10 @@ class LApp.VideoJSProxy
     @original_player.on "ended", ->
       funct()
 
+  setVolume: (v)->
+    percentAsDecimal = v / 100
+    @original_player.volume(percentAsDecimal)
+
   onVideoStart: (funct) ->
     self = @
     @original_player.on "play", ->
@@ -71,6 +75,9 @@ class LApp.YoutubVideoPlayerProxy
 
   currentTime: ->
     @original_player.getCurrentTime()
+
+  setVolume: (v)->
+    @original_player.setVolume(v)
 
   onTimeUpdate: (funct, $scope) ->
     self = @

@@ -3,7 +3,16 @@ LApp.spellCheckService = (transcriptFactory, $scope, Stats) ->
 
   _playNextLine = (line) ->
     if line.isMatchingOrignal()
-      $scope.videoPlayer.play()
+      nextLine = transcriptFactory.getNext(line)
+      return if !nextLine
+
+      diff = $scope.videoPlayer.currentTime() - nextLine.time
+      maxNumberOfSecondsUntilYouStartTheLineOver = 2
+
+      if diff > maxNumberOfSecondsUntilYouStartTheLineOver
+        $scope.setCurrentLine(nextLine)
+      else
+        $scope.videoPlayer.play()
 
   @nextLetter = (letter) ->
     line = transcriptFactory.firstWithBlanks()
