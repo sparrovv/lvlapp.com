@@ -7,6 +7,8 @@ TODOs:
 - [] Start game on clicking in youtube video
 - [] smarter feeeling blanks: fix: good bye
 
+Krupnik Sugestions:
+- key down should skip word as well
 
 -[] Lyrics Player
   -[] Introduce more lvls

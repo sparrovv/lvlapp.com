@@ -34,6 +34,7 @@ LApp.controller "TranscriptCtrl", ($scope, transcriptFactory, Stats, Key, audioV
     LApp.highlightService $scope.currentLine
 
   $scope.setCurrentLine = (line) ->
+    $scope.clearNextLineTimeout()
     $scope.currentLine = line
     $scope.videoPlayer.setCurrentTime(line.time)
     $scope.$digest()
