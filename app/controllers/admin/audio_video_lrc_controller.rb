@@ -15,8 +15,7 @@ class Admin::AudioVideoLrcController < ApplicationController
 
     if @audio_video_id && @time
       audio_video = AudioVideo.find @audio_video_id
-      lrc = LRCConverter.new
-      @shifted_transcript = lrc.shift_time_by(audio_video.transcript_in_hash, BigDecimal(@time))
+      @shifted_transcript = TimeShifter.shift_by(audio_video.transcript_in_hash, BigDecimal(@time))
     end
 
     render :shift
