@@ -31,6 +31,14 @@ LApp.factory 'Stats', (GameData) ->
   stats.setBlanks = (blanks)->
     stats.blanks = blanks
 
+  stats.currentTime = ()->
+    if stats.time != 0
+      stats.time
+    else if stats.startTime
+      new Date - stats.startTime
+    else
+      '0'
+
   stats.increaseSkpped = ()->
     stats.skipped += 1
 

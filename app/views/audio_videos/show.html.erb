@@ -15,7 +15,7 @@
     <div id="transcript-player" data-id='text-player' tabindex="1" ng-controller="TranscriptCtrl" ng-keypress='listenForKey' class='transcript-player'>
       <div class='game-end game-shared-screen {{currentState}}'>
         <h3>Congratulations! </h3>
-        <p>It took you {{stats.time}} s to finish.</p>
+        <p>It took you {{stats.time | millisecondsToTime}} to complete that video.</p>
         <p>And you guessed {{stats.guessed}} out of {{stats.blanks}} words.</p>
 
         <p>Your score was saved</p>
@@ -52,6 +52,9 @@
       </tr>
       <tr>
         <td>mistakes</td><td>{{stats.mistakes}}</td>
+      </tr>
+      <tr>
+        <td>time</td><td>{{stats.currentTime() | millisecondsToTime}}</td>
       </tr>
     </table>
   </div>

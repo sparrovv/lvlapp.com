@@ -1,15 +1,11 @@
-@LApp.filter 'joinwith', ->
+@LApp.filter 'millisecondsToTime', ->
   (input, withTag) ->
-    #bar = ''
-    #foo = ['<div>',bar,'</div>']
 
-    console.log input
-    json = JSON.parse input
-    console.log json
+    _millisecondsToTime = (milli) ->
+      milliseconds = milli % 1000
+      seconds = Math.floor((milli / 1000) % 60)
+      minutes = Math.floor((milli / (60 * 1000)) % 60)
 
-    #biz = _.map json, (i) ->
-      #['<div>',i,'</div>'].join('')
+      minutes + "m " + seconds + "s"
 
-    json.join(', ')
-
-
+    _millisecondsToTime(input)
