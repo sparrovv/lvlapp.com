@@ -8,11 +8,14 @@ class Admin::TedTranscriptsController < ApplicationController
   # example:
   # /ted_transcripts?url=http://....&shift=
   #
-  def show
-    transcript = TedTranscriptScrapper.getFromHtml(
+  def new
+  end
+
+  def create
+    @transcript = TedTranscriptScrapper.getFromHtml(
       params[:url], params[:shift].to_f
     )
 
-    render :text => transcript
+    render :new
   end
 end

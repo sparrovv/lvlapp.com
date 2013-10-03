@@ -1,0 +1,20 @@
+<pre>
+  Visit the video page and check in the  web-console: talkDetails.mediaPad
+  From the experience it can be 2 values 
+    11.82 or 15.33      or maybe it is something new
+
+  URLs looks something this line:
+
+    http://www.ted.com/talks/subtitles/id/848/lang/en/format/html) 
+
+  Remember: format/html
+            lang/en
+</pre>
+<%= form_tag ted_transcript_create_path do %>
+  <input name='url' type='text'/>
+  <input name='shift' type='text' value='11.82'/>
+  <input type="submit" value="pozdro techo" /> 
+<% end %>
+<pre>
+  <%= @transcript %>
+<pre>
