@@ -9,7 +9,6 @@ LApp.factory "transcriptFactory", (audioVideo, blanksFactory)->
 
   factory.setupBlanks = (level)->
     factory.transcript = blanksFactory.generateBlanks(level, factory.transcript)
-    factory.transcript.unshift(new LApp.TranscriptLine(0, '', 0))
 
   factory.numberOfBlanks = ->
     size = 0

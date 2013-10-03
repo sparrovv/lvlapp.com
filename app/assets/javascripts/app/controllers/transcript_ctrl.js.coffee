@@ -1,25 +1,28 @@
-LApp.controller "TranscriptCtrl", ($scope, transcriptFactory, Stats, Key, audioVideo) ->
-  VOLUME_MAX = 100
-  $scope.currentState = 'paused'
+LApp.controller "TranscriptCtrl", ($scope, GameConfig, GameStates, transcriptFactory, Stats, Key, audioVideo) ->
+  $scope.currentState = GameStates.setup
   $scope.level = 'normal'
-  $scope.transcriptFactory = transcriptFactory
+
+  $scope.stats = Stats
   $scope.transcript = transcriptFactory.transcript
   $scope.transcriptTimeRange = LApp.getTimeRange($scope.transcript)
   $scope.currentLine = $scope.transcript[0]
 
   $scope.spellChecker = new LApp.spellCheckService(transcriptFactory, $scope, Stats)
-  $scope.stats = Stats # just for debug
 
   videoCallbacks = (videoPlayer) ->
     onVideoStart = ->
+      $(document).bind 'click', onClickOutsidePlayer
       $('#transcript-player').focus()
+      bindPlayPause()
       transcriptFactory.setupBlanks($scope.level)
       $scope.$digest()
-      $scope.play() if $scope.currentState == 'paused'
+      $scope.play() if $scope.currentState == GameStates.setup
       Stats.init
-        level: 'normal', audio_video_id: audioVideo.id, blanks: transcriptFactory.numberOfBlanks()
+        level: $scope.level, audio_video_id: audioVideo.id, blanks: transcriptFactory.numberOfBlanks()
 
     onVideoEnded = ->
+      $(document).unbind 'click', onClickOutsidePlayer
+      $scope.currentState = GameStates.finished
       Stats.persist()
 
     videoPlayer.onVideoStart(onVideoStart)
@@ -28,11 +31,9 @@ LApp.controller "TranscriptCtrl", ($scope, transcriptFactory, Stats, Key, audioV
   LApp.VideoPlayerFactory.init($scope, window.isYoutubeVideo, videoCallbacks)
 
   $scope.navigator = LApp.navigateOverTranscript($scope, transcriptFactory)
-  $scope.currentLineTopPosition = 30
+  $scope.currentLineTopPosition = GameConfig.lineStartPosition
   $scope.$watch "currentLine", ->
-    start = 30
-    lineHeight = 32.5
-    $scope.currentLineTopPosition = start - ($scope.currentLine.index * lineHeight)
+    $scope.currentLineTopPosition = GameConfig.lineStartPosition - ($scope.currentLine.index * GameConfig.lineHeight)
     LApp.highlightService $scope.currentLine
 
   $scope.setCurrentLine = (line) ->
@@ -45,7 +46,7 @@ LApp.controller "TranscriptCtrl", ($scope, transcriptFactory, Stats, Key, audioV
   $scope.volumeInterval = null
   $scope.clearVolumeInterval = ->
     clearInterval($scope.volumeInterval)
-    $scope.videoPlayer.setVolume(VOLUME_MAX)
+    $scope.videoPlayer.setVolume(GameConfig.volumeMax)
     $scope.volumeInterval = null
 
   $scope.clearNextLineTimeout = ->
@@ -54,7 +55,7 @@ LApp.controller "TranscriptCtrl", ($scope, transcriptFactory, Stats, Key, audioV
     $scope.nextLineTimeout = null
 
   $scope.pauseOnNonFinishedLine = ->
-    startVolume = VOLUME_MAX
+    startVolume = GameConfig.volumeMax
 
     volumeDown = ->
       startVolume -=2
@@ -83,7 +84,6 @@ LApp.controller "TranscriptCtrl", ($scope, transcriptFactory, Stats, Key, audioV
     $(document).keydown (e) ->
       $scope.togglePlayer() if Key.isEnter(e.keyCode)
 
-  bindPlayPause()
   unbindKeyDownKeyPress = ->
     $(document).unbind('keypress')
     $(document).unbind('keydown')
@@ -111,19 +111,21 @@ LApp.controller "TranscriptCtrl", ($scope, transcriptFactory, Stats, Key, audioV
 
       return false  if Key.isSpecial(e.keyCode)
 
-  $(document).click (event) ->
+  onClickOutsidePlayer = (event) ->
     targetElInsideTranscriptPlayer = $(event.target).parents('#transcript-player').length == 1
-    $scope.pause() if not targetElInsideTranscriptPlayer
+
+    $scope.pause() if !targetElInsideTranscriptPlayer && !$(event.target).is '#transcript-player'
 
   $scope.togglePlayer = ->
-    if $scope.currentState == 'paused'
+    if $scope.currentState == GameStates.paused
       $scope.play()
     else
       $scope.pause()
 
   # As a workaround to make it possible to play the current paused line, it starts from the beginning.
   $scope.play = ->
-    $scope.currentState = 'playing'
+    $scope.clearNextLineTimeout()
+    $scope.currentState = GameStates.playing
     bindKeyDownKeyPress()
 
     if $scope.currentLine.isMatchingOrignal()
@@ -136,7 +138,7 @@ LApp.controller "TranscriptCtrl", ($scope, transcriptFactory, Stats, Key, audioV
       $scope.$digest()
 
   $scope.pause = ->
-    $scope.currentState = 'paused'
+    $scope.currentState = GameStates.paused
     unbindKeyDownKeyPress()
     $scope.clearNextLineTimeout()
     $scope.videoPlayer.pause()

@@ -12,11 +12,19 @@
     <%end %>
     </div>
 
-    <div id="transcript-player" data-id='text-player' tabindex="1" ng-controller="TranscriptCtrl" ng-keypress='listenForKey'>
-      <div class='player-overlay {{currentState}}'>
-        <a ng-click="onPlayClick('karaoke')">Karaoke</a>
-        <a ng-click="onPlayClick('normal')">Normal</a>
-        <%#<a ng-click="onPlayClick('normal')"><%= image_tag 'play_button.png' %>
+    <div id="transcript-player" data-id='text-player' tabindex="1" ng-controller="TranscriptCtrl" ng-keypress='listenForKey' class='transcript-player'>
+      <div class='game-end game-shared-screen {{currentState}}'>
+        <h3>Congratulations! Your score was saved:</h3>
+        <p>It took you {{stats.time}} s to finish.</p>
+        <p>And you guessed {{stats.guessed}} out of {{stats.blanks}} words.</p>
+      </div>
+
+      <div class='game-menu game-shared-screen {{currentState}}'>
+        <h3>Select difficulty:</h3>
+        <ul>
+          <li><a ng-click="onPlayClick('karaoke')">Karaoke</a></li>
+          <li><a ng-click="onPlayClick('normal')">Normal (blank word / line)</a></li>
+        </ul>
       </div>
 
       <ul style="top:{{currentLineTopPosition}}px">
@@ -35,10 +43,7 @@
     <h4>Stats</h4>
     <table class='table table-condensed sidebar-table'>
       <tr>
-        <td>blanks</td><td>{{stats.allBlanks}}</td>
-      </tr>
-      <tr>
-        <td>guessed</td><td>{{stats.guessed}}</td>
+        <td>words</td><td>{{stats.guessed}} / {{stats.allBlanks}}</td>
       </tr>
       <tr>
         <td>skipped</td><td>{{stats.skipped}}</td>

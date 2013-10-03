@@ -2,6 +2,7 @@ LApp.decoreateWithBlanks = (transcript) ->
 
   NO_MATCH = "there_was_no_word_matching_criteria"
   SPECIAL_CHARS = /[",.\(\)\[\]:;\|\?\!]/g
+  BLANK_CHAR = '•'
 
   getRandomInt = (min, max) ->
     Math.floor Math.random() * (max - min) + min
@@ -30,7 +31,7 @@ LApp.decoreateWithBlanks = (transcript) ->
         index = line.text.indexOf(removedWord)
         line.removedWordsCollection.push(new LApp.RemovedWord(removedWord, index))
         line.textWithBlanks = line.text.replace(
-          new RegExp(removedWord), Array(removedWord.length + 1).join(".")
+          new RegExp(removedWord), Array(removedWord.length + 1).join(BLANK_CHAR)
         )
 
       line
