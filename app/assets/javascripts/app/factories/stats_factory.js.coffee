@@ -1,13 +1,13 @@
 LApp.factory 'Stats', (GameData) ->
   stats =
-    allBlanks:  0
+    blanks:  0
     guessed: 0
     skipped: 0
     mistakes: 0
     time: 0
 
   stats.attributes = ->
-    blanks: stats.allBlanks
+    blanks: stats.blanks
     guessed: stats.guessed
     skipped: stats.skipped
     mistakes: stats.mistakes
@@ -22,14 +22,14 @@ LApp.factory 'Stats', (GameData) ->
     stats.startTime = new Date()
     stats.level = attr.level
     stats.audioVideoId = attr.audio_video_id
-    stats.allBlanks = attr.blanks
+    stats.blanks = attr.blanks
 
   stats.persist = ->
     stats._setTime()
     GameData.save stats.attributes()
 
   stats.setBlanks = (blanks)->
-    stats.allBlanks = blanks
+    stats.blanks = blanks
 
   stats.increaseSkpped = ()->
     stats.skipped += 1
