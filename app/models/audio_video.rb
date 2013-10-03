@@ -36,7 +36,7 @@ class AudioVideo < ActiveRecord::Base
 
   def transcript_in_hash
     JSON.parse(transcript).map{ |t|
-      t['time'] = BigDecimal(t['time'])
+      t['time'] = BigDecimal(t['time'].to_s)
       t
     }
   end

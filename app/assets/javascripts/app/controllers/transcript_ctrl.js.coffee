@@ -1,4 +1,5 @@
 LApp.controller "TranscriptCtrl", ($scope, transcriptFactory, Stats, Key, audioVideo) ->
+  VOLUME_MAX = 100
   $scope.currentState = 'paused'
   $scope.level = 'normal'
   $scope.transcriptFactory = transcriptFactory
@@ -35,22 +36,40 @@ LApp.controller "TranscriptCtrl", ($scope, transcriptFactory, Stats, Key, audioV
     LApp.highlightService $scope.currentLine
 
   $scope.setCurrentLine = (line) ->
+    $scope.clearNextLineTimeout()
     $scope.currentLine = line
     $scope.videoPlayer.setCurrentTime(line.time)
     $scope.$digest()
 
   $scope.nextLineTimeout = null
+  $scope.volumeInterval = null
+  $scope.clearVolumeInterval = ->
+    clearInterval($scope.volumeInterval)
+    $scope.videoPlayer.setVolume(VOLUME_MAX)
+    $scope.volumeInterval = null
+
   $scope.clearNextLineTimeout = ->
+    $scope.clearVolumeInterval()
     clearTimeout($scope.nextLineTimeout) 
     $scope.nextLineTimeout = null
 
   $scope.pauseOnNonFinishedLine = ->
+    startVolume = VOLUME_MAX
+
+    volumeDown = ->
+      startVolume -=2
+      if startVolume > 0
+        $scope.videoPlayer.setVolume(startVolume)
+      else
+        $scope.clearVolumeInterval()
+
     pauseABitLater = ->
       if not $scope.currentLine.isMatchingOrignal()
         $scope.videoPlayer.pause()
 
     if not $scope.nextLineTimeout
-      $scope.nextLineTimeout = setTimeout(pauseABitLater, 500)
+      $scope.volumeInterval = setInterval(volumeDown, 50)
+      $scope.nextLineTimeout = setTimeout(pauseABitLater, 2500)
 
   $scope.$on "newLine", (event, newLine) ->
     if $scope.currentLine.isMatchingOrignal()

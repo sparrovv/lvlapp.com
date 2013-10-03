@@ -31,6 +31,8 @@ gem 'puma'
 gem 'wordnik'
 gem 'bing_translator', '~> 4.0'
 
+# parse srt input files
+gem 'srt'
 group :development do
   gem 'capistrano'
   gem 'capistrano_colors'

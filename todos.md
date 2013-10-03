@@ -1,10 +1,14 @@
 TODOs:
 
+- [] debug what happens if there are words separated witch commas without space foo,bar  boys like these,younger
+- [] valdate transcript that after comma or colon, period there is a space
 - [] generate blanks in callback after start of the player, maybe it's time to introduce lvls
 - [] At the end of video, It would be cool to see something that it saved....
 - [] Time indicator would be usefulllllll
 - [] smarter feeeling blanks: fix: good bye
 
+Krupnik Sugestions:
+- key down should skip word as well
 
 -[] Lyrics Player
   -[] Introduce more lvls

@@ -1,7 +1,7 @@
 LApp.decoreateWithBlanks = (transcript) ->
 
   NO_MATCH = "there_was_no_word_matching_criteria"
-  SPECIAL_CHARS = /[",.\(\)\[\]:;\|\?]/g
+  SPECIAL_CHARS = /[",.\(\)\[\]:;\|\?\!]/g
 
   getRandomInt = (min, max) ->
     Math.floor Math.random() * (max - min) + min
