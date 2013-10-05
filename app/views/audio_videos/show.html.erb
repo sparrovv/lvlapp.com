@@ -24,10 +24,12 @@
       <div class='game-menu game-shared-screen {{currentState}}'>
         <h3>Select difficulty:</h3>
         <ul>
-          <li><a ng-click="onPlayClick('karaoke')">Karaoke</a></li>
-          <li><a ng-click="onPlayClick('normal')">Normal (blank word / line)</a></li>
+          <li><a ng-click="selectGameLevel('karaoke')">Karaoke</a></li>
+          <li><a ng-click="selectGameLevel('normal')">Normal (blank word / line)</a></li>
         </ul>
       </div>
+
+      <div class='game-starting game-shared-screen {{currentState}}'></div>
 
       <ul style="top:{{currentLineTopPosition}}px">
         <li ng-repeat="line in transcript">

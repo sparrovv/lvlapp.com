@@ -8,5 +8,19 @@
   $httpProvider.defaults.headers.common['X-CSRF-Token'] = csrfToken
 ]
 
-@LApp.constant 'GameConfig', {volumeMax:100, lineStartPosition: 92, lineHeight: 32.5}
-@LApp.constant 'GameStates', {setup: 'setup', paused: 'paused', playing: 'playing', finished: 'finished'}
+gameConfig =
+  isYoutubeVideo: ->
+    window.isYoutubeVideo
+  volumeMax: 100
+  lineStartPosition: 92
+  lineHeight: 32.5
+
+gameStates =
+  loading: 'starting'
+  setup: 'setup'
+  paused: 'paused'
+  playing: 'playing'
+  finished: 'finished'
+
+@LApp.constant 'GameConfig', gameConfig
+@LApp.constant 'GameStates', gameStates

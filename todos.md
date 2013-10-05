@@ -1,55 +1,40 @@
 TODOs:
 
+- [] it sometimes skips line, I presume that is when it ends volumes down and the new line event is triggered...
 - [] debug what happens if there are words separated witch commas without space foo,bar  boys like these,younger
 - [] valdate transcript that after comma or colon, period there is a space
-- [] generate blanks in callback after start of the player, maybe it's time to introduce lvls
-- [] At the end of video, It would be cool to see something that it saved....
-- [] Time indicator would be usefulllllll
 - [] smarter feeeling blanks: fix: good bye
 
-Krupnik Sugestions:
+BUG:
+
+- [] When reaching the last line: (in skipWord) Uncaught TypeError: Cannot call method 'clearBuffer' of undefined 
+- [] Smarter blanks, there is some issue with: "why"
+- [] compressed javascript doesn't work
+
+SUGESTIONS:
+
 - key down should skip word as well
 
--[] Lyrics Player
-  -[] Introduce more lvls
+FOR Further FUTURE:
+
+-[] spaced repetition - exporting to anki / this should happen sometime in the future, not now
 
 -[] Phrase Book
   -[x] List of phrases per video
   -[] Creating own lists
   -[x] Find some APIs and get usage of word / def / transalation
 
--[x] Stats 
-  -[x] tracking users progress
-  -[] consider adding Time, so we will keep information how long it takes to get all the words.
-
 -[] Shorter Videos
   -[x] youtube music - is short and nice
   -[] self hosting - have no clue what would be performance
-
--[x] Youtube 
-  -[x] music / lyrics
-  -[x] probably new player
 
 -[] Front Page 
   -[]/ with video and lyrics player, at the end examples how to do it
   -[] fiverr - someone will read it
   -[] new format of transcript, where you can indicate what words are missing, instead of randoms
 
--[] congratulations at the end
-
 -[] testing ?!
 -[] refactoring, more angularjs knowledge I need ?!
-
-BUG:
--[] words with 
--[] When reaching the last line: (in skipWord) Uncaught TypeError: Cannot call method 'clearBuffer' of undefined 
--[] Smarter blanks, there is some issue with: "why"
--[] compressed javascript doesn't work
-
-KNOWN BUGS:
-
--[] videojs youtube players seems to not work with angular. 
--[] videojs when controls are disabled, they still appears on pause. It is fixed on master branch, but not yet released. Will wait couple days and see what is the release process.
 
 DONE
 
@@ -60,15 +45,20 @@ DONE
 
 -[x] It seems that after couple minutes the video won't pause. It says that it paused, but it still playing, with very irritating sound. Looks like a player problem, or the setTiemout issue, but can't see a big connection between setTiemout and this problem.  But maybe it is. Need more information, but definitely it has to be fixed before releasing to public.
 
+- [x] Start game on clicking in youtube video
+- [x] generate blanks in callback after start of the player, maybe it's time to introduce lvls
+- [x] At the end of video, It would be cool to see something that it saved....
+- [x] Time indicator would be usefulllllll
+- [x] Number of blanks is incorrect, or something else, but affter tabing it doesn't sum up
+  it looks okay, I think that was an issue with metrics that was cleard at start, and me skipping before starting
 -[] Add User model
   -[x] Sign in / sign out user
   -[x] Save phrases per users
+-[x] Stats 
+  -[x] tracking users progress
+  -[x] consider adding Time, so we will keep information how long it takes to get all the words.
+-[x] Youtube 
+  -[x] music / lyrics
+  -[x] probably new player
+-[x] update videojs when controls are disabled, they still appears on pause. It is fixed on master branch, but not yet released. Will wait couple days and see what is the release process.
 
-FOR FAR FUTURE:
-
-  -[] spaced repetition - exporting to anki / this should happen sometime in the future, not now
-
-
-- [x] Number of blanks is incorrect, or something else, but affter tabing it doesn't sum up
-  it looks okay, I think that was an issue with metrics that was cleard at start, and me skipping before starting
-- [] Start game on clicking in youtube video

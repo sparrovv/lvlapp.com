@@ -53,7 +53,7 @@ class LApp.VideoJSProxy
   onVideoStart: (funct) ->
     self = @
     @original_player.on "play", ->
-      if self.currentTime() < 0.12
+      if self.currentTime() < 0.16
         funct()
 
 class LApp.YoutubVideoPlayerProxy
@@ -91,5 +91,5 @@ class LApp.YoutubVideoPlayerProxy
   onVideoStart: (funct) ->
     self = @
     $(document).on 'youtubeVideoStart', ->
-      if self.currentTime() < 0.12
+      if self.currentTime() < 0.16
         funct()

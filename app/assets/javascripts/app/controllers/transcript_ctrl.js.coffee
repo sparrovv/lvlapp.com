@@ -1,5 +1,5 @@
 LApp.controller "TranscriptCtrl", ($scope, GameConfig, GameStates, transcriptFactory, Stats, Key, audioVideo) ->
-  $scope.currentState = GameStates.setup
+  $scope.currentState = GameStates.loading
   $scope.level = 'normal'
 
   $scope.stats = Stats
@@ -9,26 +9,39 @@ LApp.controller "TranscriptCtrl", ($scope, GameConfig, GameStates, transcriptFac
 
   $scope.spellChecker = new LApp.spellCheckService(transcriptFactory, $scope, Stats)
 
+  bindNewLineListener = ->
+    $scope.$on "newLine", (event, newLine) ->
+      if $scope.currentLine.isMatchingOrignal()
+        $scope.clearNextLineTimeout()
+        $scope.currentLine = newLine
+        $scope.$digest()
+      else
+        $scope.pauseOnNonFinishedLine()
+
   videoCallbacks = (videoPlayer) ->
     onVideoStart = ->
-      $(document).bind 'click', onClickOutsidePlayer
-      $('#transcript-player').focus()
-      bindPlayPause()
+      return if $scope.currentState != GameStates.loading # safeguard, so it won't triggered twice
+      console.log 'videoStarted'
       transcriptFactory.setupBlanks($scope.level)
-      $scope.$digest()
-      $scope.play() if $scope.currentState == GameStates.setup
       Stats.init
         level: $scope.level, audio_video_id: audioVideo.id, blanks: transcriptFactory.numberOfBlanks()
+      $scope.$digest()
+      $scope.play()
+      bindNewLineListener()
+      $('#transcript-player').focus()
+      $(document).bind 'click', onClickOutsidePlayer
+      bindPlayPause()
 
     onVideoEnded = ->
       $(document).unbind 'click', onClickOutsidePlayer
       $scope.currentState = GameStates.finished
       Stats.persist()
 
+    $scope.currentState = GameStates.setup
     videoPlayer.onVideoStart(onVideoStart)
     videoPlayer.onVideoEnded(onVideoEnded)
 
-  LApp.VideoPlayerFactory.init($scope, window.isYoutubeVideo, videoCallbacks)
+  LApp.VideoPlayerFactory.init($scope, GameConfig.isYoutubeVideo(), videoCallbacks)
 
   $scope.navigator = LApp.navigateOverTranscript($scope, transcriptFactory)
   $scope.currentLineTopPosition = GameConfig.lineStartPosition
@@ -46,8 +59,8 @@ LApp.controller "TranscriptCtrl", ($scope, GameConfig, GameStates, transcriptFac
   $scope.volumeInterval = null
   $scope.clearVolumeInterval = ->
     clearInterval($scope.volumeInterval)
-    $scope.videoPlayer.setVolume(GameConfig.volumeMax)
     $scope.volumeInterval = null
+    $scope.videoPlayer.setVolume(GameConfig.volumeMax)
 
   $scope.clearNextLineTimeout = ->
     $scope.clearVolumeInterval()
@@ -71,14 +84,6 @@ LApp.controller "TranscriptCtrl", ($scope, GameConfig, GameStates, transcriptFac
     if not $scope.nextLineTimeout
       $scope.volumeInterval = setInterval(volumeDown, 50)
       $scope.nextLineTimeout = setTimeout(pauseABitLater, 2500)
-
-  $scope.$on "newLine", (event, newLine) ->
-    if $scope.currentLine.isMatchingOrignal()
-      $scope.clearNextLineTimeout()
-      $scope.currentLine = newLine
-      $scope.$digest()
-    else
-      $scope.pauseOnNonFinishedLine()
 
   bindPlayPause = ->
     $(document).keydown (e) ->
@@ -144,8 +149,10 @@ LApp.controller "TranscriptCtrl", ($scope, GameConfig, GameStates, transcriptFac
     $scope.videoPlayer.pause()
     $scope.$digest()
 
-  $scope.onPlayClick = (level)->
+  $scope.selectGameLevel = (level)->
     $scope.level = level
-    $scope.play()
+    $scope.currentState = GameStates.loading
+    $scope.videoPlayer.pause()
+    $scope.videoPlayer.setCurrentTime(0)
 
   window.scope = $scope
