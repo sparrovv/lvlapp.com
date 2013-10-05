@@ -1,9 +1,9 @@
 <script> window.audioVideo = <%= raw @audio_video.to_json %>; </script>
 <script> window.isYoutubeVideo = <%= raw @audio_video.youtube? %>; </script>
 
+<h3 class=""> <%= @audio_video.name %> </h3>
 <div ng-app='LApp' class="span12">
   <div class="span8">
-
     <div class='player-containter'>
     <% if @audio_video.youtube? %>
       <%= render 'shared/youtube', audio_video: @audio_video %>
