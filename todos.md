@@ -1,5 +1,8 @@
-TODOs:
+[[TODOs:]]
 
+- [] Add HUD - head up display, that will have some navs, prompts, messages, flash messages....kk
+- [] Filter what words can be add to the phrasebook, don't add missing ones, and maybe 1 letters, prepare filtter for that, so it decorates it wit...
+  [ ] Maybe line directive ? That would make a lot of sense
 - [] it sometimes skips line, I presume that is when it ends volumes down and the new line event is triggered...
 - [] debug what happens if there are words separated witch commas without space foo,bar  boys like these,younger
 - [] valdate transcript that after comma or colon, period there is a space
