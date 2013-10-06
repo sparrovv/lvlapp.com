@@ -1,0 +1,35 @@
+$logo-color: #d95525;
+#front-about{
+  background: #44403C;
+  color: #D6CFCF;
+  h2{
+    color: #C38E58;
+  }
+  .front-prompt{
+    margin-top:50px;
+    font-size: 16px;
+    a{
+      color: #F76335
+    }
+    a:hover{
+      color: #F76335
+    }
+  }
+}
+
+.primary_info{
+  h1{
+    font-size: 32px;
+    em{
+      color: $logo-color;
+    }
+  }
+}
+
+#front-recently-added{
+  background: #fff;
+}
+
+.top-buffer{
+  margin-top:40px;
+}

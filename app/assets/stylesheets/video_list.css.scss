@@ -1,11 +1,29 @@
 .media-grid {
   .video {
     float: left;
-    margin: 0 38px 20px 0;
+    margin: 0 30px 20px 0;
     width: 210px;
     font-size: 15px;
-
+  }
+}
+.horizontal-3.media-grid {
+  .video {
     &:nth-child(3n+1){
+      clear: left;
+    }
+  }
+}
+.horizontal-4.media-grid {
+  .video {
+    &:nth-child(4n+1){
+      clear: left;
+    }
+  }
+}
+
+.horizontal-5.media-grid {
+  .video {
+    &:nth-child(4n+1){
       clear: left;
     }
   }

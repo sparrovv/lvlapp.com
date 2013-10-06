@@ -23,6 +23,7 @@ $logo-color: #d95525;
   font-weight: bold;
   color: #000;
   border-bottom: 2px solid #eeeeee;
+  margin-bottom: 0px;
 }
 
 .navbar-brand {
@@ -43,14 +44,3 @@ $logo-color: #d95525;
   }
 }
 
-.top-buffer{
-  margin-top:40px;
-}
-.primary_info{
-  h1{
-    font-size: 32px;
-    em{
-      color: $logo-color;
-    }
-  }
-}

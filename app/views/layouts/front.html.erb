@@ -13,16 +13,9 @@
   <body class="<%= current_user ? 'signed-in' : '' %>">
     <%= render 'shared/navbar' %>
 
-    <div class="container">
-      <div class="row">
-        <%= yield %>
-      </div>
+    <%= yield %>
 
-      <div class="row">
-      <hr>
-      </div>
-
-      <%= render 'shared/footer' %>
-    </div>
-  </body>
+    <%= render 'shared/footer' %>
+  </div>
+</body>
 </html>
