@@ -14,6 +14,7 @@ gameConfig =
   volumeMax: 100
   lineStartPosition: 92
   lineHeight: 32.5
+  blankChar: '•'
 
 gameStates =
   loading: 'starting'
