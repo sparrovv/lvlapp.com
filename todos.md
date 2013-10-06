@@ -1,7 +1,10 @@
 [[TODOs:]]
 
-- [] Add HUD - head up display, that will have some navs, prompts, messages, flash messages....kk
+
+- [] Footer and add views number to the audio_video, so it can be filtered by popularity, all, pagination. Improve nav
 - [] Filter what words can be add to the phrasebook, don't add missing ones, and maybe 1 letters, prepare filtter for that, so it decorates it wit...
+- [] TED videos preview images
+- [] Add HUD - head up display, that will have some navs, prompts, messages, flash messages....kk
   [ ] Maybe line directive ? That would make a lot of sense
 - [] it sometimes skips line, I presume that is when it ends volumes down and the new line event is triggered...
 - [] debug what happens if there are words separated witch commas without space foo,bar  boys like these,younger

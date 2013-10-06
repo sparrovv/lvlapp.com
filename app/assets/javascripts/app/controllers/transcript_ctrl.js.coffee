@@ -96,7 +96,7 @@ LApp.controller "TranscriptCtrl", ($scope, GameConfig, GameStates, transcriptFac
 
   bindKeyDownKeyPress = ->
     $(document).keypress (event) ->
-      return false  if Key.isSpecial(event.which)
+      return false if Key.isSpecial(event.keyCode) # firefox accepts keyCode, chrome which and keyCode
 
       letter = String.fromCharCode(event.which)
       $scope.spellChecker.nextLetter letter
