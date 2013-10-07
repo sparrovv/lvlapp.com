@@ -2,5 +2,12 @@ LApp.locateCurrentLine = (currentTime, $scope) ->
   _.each $scope.transcriptTimeRange, (range) ->
     if range.range[0] < currentTime and range.range[1] > currentTime
       line = range.line
-      $scope.$emit "newLine", line  unless $scope.currentLine is line
+
+      # Had to introduce this safeguard and global state so it will knew that there was a new line triggered and should ignore it
+      if $scope.lineUpPressed
+        $scope.lineUpPressed = undefined
+        return
+
+      if $scope.currentLine.index != line.index && line.index > $scope.currentLine.index
+        $scope.$emit "newLine", line
 
