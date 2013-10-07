@@ -5,6 +5,7 @@ LApp.spellCheckService = (transcriptFactory, $scope, Stats) ->
     if line.isMatchingOrignal()
       nextLine = transcriptFactory.getNext(line)
       return if !nextLine
+      return if nextLine == line
 
       diff = $scope.videoPlayer.currentTime() - nextLine.time
       maxNumberOfSecondsUntilYouStartTheLineOver = 2
