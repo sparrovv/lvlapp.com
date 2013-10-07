@@ -1,20 +1,19 @@
 [[TODOs:]]
 
 
-- [] Footer and add views number to the audio_video, so it can be filtered by popularity, all, pagination. Improve nav
+- [] and add views number to the audio_video, so it can be filtered by popularity, all, pagination. Improve nav
 - [] Filter what words can be add to the phrasebook, don't add missing ones, and maybe 1 letters, prepare filtter for that, so it decorates it wit...
 - [] TED videos preview images
 - [] Add HUD - head up display, that will have some navs, prompts, messages, flash messages....kk
   [ ] Maybe line directive ? That would make a lot of sense
-- [] it sometimes skips line, I presume that is when it ends volumes down and the new line event is triggered...
 - [] debug what happens if there are words separated witch commas without space foo,bar  boys like these,younger
 - [] valdate transcript that after comma or colon, period there is a space
 - [] smarter feeeling blanks: fix: good bye
 
+- [] it sometimes skips line, I presume that is when it ends volumes down and the new line event is triggered... / That mabye was fixed when I updated smarter newline
 BUG:
 
-- [] When reaching the last line: (in skipWord) Uncaught TypeError: Cannot call method 'clearBuffer' of undefined 
-- [] Smarter blanks, there is some issue with: "why"
+- [] Smarter blanks, there is some issue with: "why" whoa, ...
 - [] compressed javascript doesn't work
 
 SUGESTIONS:
@@ -68,3 +67,4 @@ DONE
   -[x] probably new player
 -[x] update videojs when controls are disabled, they still appears on pause. It is fixed on master branch, but not yet released. Will wait couple days and see what is the release process.
 
+- [] When reaching the last line: (in skipWord) Uncaught TypeError: Cannot call method 'clearBuffer' of undefined 

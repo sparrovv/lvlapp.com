@@ -29,6 +29,12 @@ describe AudioVideosController do
   end
 
   describe '#show' do
+    let(:view_counter) { double('view_counter', :increment => nil) }
+
+    before do
+      allow(controller).to receive(:view_counter) { view_counter }
+    end
+
     it 'renders and everyting is working' do
       get :show, id: audio_video.id
 
@@ -36,6 +42,13 @@ describe AudioVideosController do
 
       should render_template :show
       response.should be_success
+    end
+
+    it 'should be counted as a visit' do
+      get :show, id: audio_video.id
+
+      expect(view_counter).to have_received(:increment).
+        with(audio_video, cookies)
     end
   end
 end

@@ -10,6 +10,7 @@ class AudioVideosController < ApplicationController
 
   def show
     @audio_video = AudioVideo.find(params[:id])
+    view_counter.increment(@audio_video, cookies)
   end
 
   private
@@ -19,5 +20,9 @@ class AudioVideosController < ApplicationController
 
   def load_category
     @category = Category.where(id: params[:category_id]).first
+  end
+
+  def view_counter
+    ViewCounter.new
   end
 end

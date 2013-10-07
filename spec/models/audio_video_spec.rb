@@ -79,4 +79,23 @@ describe AudioVideo do
       expect(audio_video.level_name).to eql 'foo'
     end
   end
+
+  describe 'scopes' do
+    describe '.popular' do
+      before do
+        @av_1 = create(:audio_video, views_count: 4)
+        @av_2 = create(:audio_video, views_count: 6)
+        @av_3 = create(:audio_video, views_count: 1)
+        @av_4 = create(:audio_video, views_count: 0)
+      end
+
+      it 'returns in ordered by views_count' do
+        audio_videos = AudioVideo.popular
+        expect(audio_videos.size).to be 3
+        expect(audio_videos[0]).to eq @av_2
+        expect(audio_videos[1]).to eq @av_1
+        expect(audio_videos[2]).to eq @av_3
+      end
+    end
+  end
 end
