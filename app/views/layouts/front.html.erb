@@ -17,5 +17,7 @@
 
     <%= render 'shared/footer' %>
   </div>
+
+  <%= render('shared/google_analytics') if Rails.env == 'production' %>
 </body>
 </html>
