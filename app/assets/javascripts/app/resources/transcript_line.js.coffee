@@ -13,6 +13,9 @@ class LApp.RemovedWord
 class LApp.TranscriptLine
   constructor: (time, @text, @index) ->
     @time = parseFloat(time)
+    @initTemporaryState()
+
+  initTemporaryState: ->
     @currentLettersBuffer = ""
     @removedWordsCollection = []
     @guessedWords = []

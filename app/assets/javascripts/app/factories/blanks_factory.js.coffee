@@ -1,6 +1,7 @@
 LApp.factory "normalLevelBlanksGenerator", (blanksHelper) ->
   generate: (transcript) ->
     _.map transcript, (line) ->
+      line.initTemporaryState()
 
       removedWord = blanksHelper.cutRandomWord(line.text)
 
@@ -18,11 +19,13 @@ LApp.factory "normalLevelBlanksGenerator", (blanksHelper) ->
 LApp.factory "karaokeLevelBlanksGenerator", ->
   generate: (transcript) ->
     _.map transcript, (line) ->
+      line.initTemporaryState()
       line.textWithBlanks = line.text
       line
 
 LApp.factory "hardLevelBlanksGenerator", (blanksHelper) ->
   lineObfuscator = (line) ->
+    line.initTemporaryState()
     line.textWithBlanks = line.text
 
     preFilteredWords = line.text.
