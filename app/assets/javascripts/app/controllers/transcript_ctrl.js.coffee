@@ -142,6 +142,7 @@ LApp.controller "TranscriptCtrl", ($scope, GameConfig, GameStates, transcriptFac
     unbindKeyDownKeyPress()
     $scope.currentState = GameStates.setup
     $scope.level = 'normal'
+    $scope.videoPlayer.setCurrentTime(0)
     $scope.videoPlayer.pause()
 
   $scope.selectGameLevel = (level)->
