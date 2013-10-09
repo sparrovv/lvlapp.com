@@ -33,7 +33,10 @@
       </div>
 
       <div class='game-starting game-shared-screen {{currentState}}'></div>
-
+      <div class='controls'>
+        <a ng-click="restartGame()">restart game</a>
+        <a ng-click="navigator.beginningOfline()">replay line</a>
+      </div>
       <ul style="top:{{currentLineTopPosition}}px">
         <li ng-repeat="line in transcript">
         <p data-line-id={{line.htmlId()}} ng-controller="LineCtrl">

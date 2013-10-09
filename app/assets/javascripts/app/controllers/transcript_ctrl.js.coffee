@@ -149,6 +149,11 @@ LApp.controller "TranscriptCtrl", ($scope, GameConfig, GameStates, transcriptFac
     $scope.videoPlayer.pause()
     $scope.$digest()
 
+  $scope.restartGame = ->
+    $scope.currentState = GameStates.setup
+    $scope.level = 'normal'
+    $scope.videoPlayer.pause()
+
   $scope.selectGameLevel = (level)->
     $scope.level = level
     $scope.currentState = GameStates.loading
