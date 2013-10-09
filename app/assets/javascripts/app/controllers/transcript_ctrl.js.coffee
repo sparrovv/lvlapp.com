@@ -87,7 +87,7 @@ LApp.controller "TranscriptCtrl", ($scope, GameConfig, GameStates, transcriptFac
 
   bindPlayPause = ->
     $(document).keydown (e) ->
-      $scope.togglePlayer() if Key.isEnter(e.keyCode)
+      $scope.togglePlayer() if Key.isSpacebar(e.keyCode)
 
   unbindKeyDownKeyPress = ->
     $(document).unbind('keypress')
@@ -104,7 +104,7 @@ LApp.controller "TranscriptCtrl", ($scope, GameConfig, GameStates, transcriptFac
     $(document).keydown (e) ->
       $scope.navigator.lineDown()    if Key.isKeyDown(e.keyCode)
       $scope.navigator.lineUp()      if Key.isKeyUp(e.keyCode)
-      $scope.navigator.beginningOfline() if Key.isKeyLeft(e.keyCode)
+      $scope.navigator.beginningOfline() if Key.isEnter(e.keyCode)
       $scope.spellChecker.skipWord() if Key.isTab(e.keyCode)
 
       if Key.isBackspace(e.keyCode)
