@@ -64,7 +64,9 @@ class LApp.TranscriptLine
     @nextMissingWord().replace(regexp, "")[0]
 
   getMissingWordObj: (word) ->
-    _.find @removedWordsCollection, (w)->
+    leftWords = @removedWordsCollection.slice(@guessedWords.length)
+
+    _.find leftWords, (w)->
       w.word == word
 
   clearBuffer: ->
@@ -75,8 +77,8 @@ class LApp.TranscriptLine
 
     if @_isBufferEqlToTheNextMissingWord()
       word = @nextMissingWord()
-      @guessedWords.push(word)
       missingWordObj = @getMissingWordObj(word)
+      @guessedWords.push(word)
       @textWithBlanks = @textWithBlanks.replaceAt(missingWordObj.index, missingWordObj.word)
       @clearBuffer()
       {correctLetter: true, correctWord: true}
