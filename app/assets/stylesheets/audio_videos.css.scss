@@ -29,16 +29,11 @@ $videoSetupBG: #262C35;
 
 .signed-in {
   .transcript-player ul li{
-    .raw-word{
-      &:hover{
-        opacity: 0.5;
-      }
-    }
     .word{
       &:hover{
         cursor: pointer;
         position: relative;
-        background: image-url('plus-icon.png') no-repeat 50% 50%;
+        color: #d95525;
       }
     }
   }
