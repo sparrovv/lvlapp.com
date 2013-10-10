@@ -1,5 +1,6 @@
-LApp.controller "TranscriptCtrl", ($scope, $timeout, $rootScope, GameConfig, GameStates, transcriptFactory, Stats, Key, audioVideo) ->
+LApp.controller "TranscriptCtrl", ($scope, $timeout, $rootScope, LineTorch, GameConfig, GameStates, transcriptFactory, Stats, Key, audioVideo) ->
   $scope.currentState = GameStates.loading
+  $scope.currentLineTopPosition = GameConfig.lineStartPosition
   $scope.level = 'normal'
 
   $scope.stats = Stats
@@ -51,10 +52,9 @@ LApp.controller "TranscriptCtrl", ($scope, $timeout, $rootScope, GameConfig, Gam
   LApp.VideoPlayerFactory.init($scope, GameConfig.isYoutubeVideo(), videoCallbacks)
 
   $scope.navigator = LApp.navigateOverTranscript($scope, transcriptFactory)
-  $scope.currentLineTopPosition = GameConfig.lineStartPosition
+
   $scope.$watch "currentLine", ->
-    $scope.currentLineTopPosition = GameConfig.lineStartPosition - ($scope.currentLine.index * GameConfig.lineHeight)
-    LApp.highlightService $scope.currentLine
+    LineTorch.highlight($scope.currentLine, $scope)
 
   $scope.setCurrentLine = (line) ->
     $scope.clearNextLineTimeout()
@@ -172,4 +172,3 @@ LApp.controller "TranscriptCtrl", ($scope, $timeout, $rootScope, GameConfig, Gam
     $scope.spellChecker.skipWord()     if action == 'skipWord'
 
   window.scope = $scope
-

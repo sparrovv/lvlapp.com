@@ -1,15 +1,11 @@
-LApp.factory 'Phrase', ($resource) ->
+LApp.factory 'Phrase', (PhraseResource) ->
   allPhrases = []
-
-  PhraseResource = $resource '/audio_videos/:audioVideoId/phrases/:phraseId', {audioVideoId: '@audioVideoId'},
-
-    query: {method:'GET', params:{phraseId:''}, isArray:true}
 
   @all = (opts) ->
     allPhrases =  PhraseResource.query(opts)
 
   @create = (opts)->
-    return false if @findByName(opts.name)
+    return false if @_findByName(opts.name)
 
     index = allPhrases.push(_.extend({loading: 'loading'}, opts))
 
@@ -24,7 +20,7 @@ LApp.factory 'Phrase', ($resource) ->
       index = allPhrases.indexOf(phrase)
       allPhrases.splice(index, 1)
 
-  @findByName = (name) ->
+  @_findByName = (name) ->
     _.find allPhrases, (phrase) ->
       phrase.name == name
 
