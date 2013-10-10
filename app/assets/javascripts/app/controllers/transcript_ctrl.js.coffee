@@ -154,7 +154,6 @@ LApp.controller "TranscriptCtrl", ($scope, $rootScope, GameConfig, GameStates, t
 
   $rootScope.$on 'userAction', (event, args) ->
     return unless GameStates.started($scope.currentState)
-
     action = args.action
 
     $scope.togglePlayer()              if action == 'togglePlayer'
