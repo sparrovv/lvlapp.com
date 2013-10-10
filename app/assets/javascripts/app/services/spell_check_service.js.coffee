@@ -1,21 +1,21 @@
-LApp.spellCheckService = (transcriptFactory, $scope, Stats) ->
-  self = this
+LApp.factory 'SpellChecker', (Stats, transcriptFactory) ->
 
-  _playNextLine = (line) ->
-    if line.isMatchingOrignal()
-      nextLine = transcriptFactory.getNext(line)
-      return if !nextLine
-      return if nextLine == line
+  _playNextLine = (line, $scope) ->
+    return false unless line.isMatchingOrignal()
 
-      diff = $scope.videoPlayer.currentTime() - nextLine.time
-      maxNumberOfSecondsUntilYouStartTheLineOver = 2
+    nextLine = transcriptFactory.getNext(line)
+    return if !nextLine
+    return if nextLine == line
 
-      if diff > maxNumberOfSecondsUntilYouStartTheLineOver
-        $scope.setCurrentLine(nextLine)
-      else
-        $scope.videoPlayer.play()
+    diff = $scope.videoPlayer.currentTime() - nextLine.time
+    maxNumberOfSecondsUntilYouStartTheLineOver = 2
 
-  @nextLetter = (letter) ->
+    if diff > maxNumberOfSecondsUntilYouStartTheLineOver
+      $scope.setCurrentLine(nextLine)
+    else
+      $scope.videoPlayer.play()
+
+  nextLetter: (letter, $scope) ->
     line = transcriptFactory.firstWithBlanks()
 
     result = line.guess(letter)
@@ -25,17 +25,16 @@ LApp.spellCheckService = (transcriptFactory, $scope, Stats) ->
 
     $scope.$apply()
 
-    _playNextLine(line)
+    _playNextLine(line, $scope)
 
-  @skipWord = ->
+  skipWord: ($scope) ->
     line = transcriptFactory.firstWithBlanks()
     line.clearBuffer()
     nextWord = line.nextMissingWord()
 
-    if nextWord
-      Stats.increaseSkpped()
-      line.guess(nextWord)
-      _playNextLine(line)
-      $scope.$digest() if !$scope.$$phase
+    return false unless nextWord
 
-  this
+    Stats.increaseSkpped()
+    line.guess(nextWord)
+    _playNextLine(line, $scope)
+    $scope.$digest() if !$scope.$$phase

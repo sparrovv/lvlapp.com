@@ -1,4 +1,4 @@
-LApp.controller "TranscriptCtrl", ($scope, $timeout, $rootScope, LineTorch, GameConfig, GameStates, transcriptFactory, Stats, Key, audioVideo) ->
+LApp.controller "TranscriptCtrl", ($scope, $timeout, $rootScope, LineTorch, GameConfig, GameStates, transcriptFactory, Stats, Key, audioVideo, SpellChecker) ->
   $scope.currentState = GameStates.loading
   $scope.currentLineTopPosition = GameConfig.lineStartPosition
   $scope.level = 'normal'
@@ -7,8 +7,6 @@ LApp.controller "TranscriptCtrl", ($scope, $timeout, $rootScope, LineTorch, Game
   $scope.transcript = transcriptFactory.transcript
   $scope.transcriptTimeRange = LApp.getTimeRange($scope.transcript)
   $scope.currentLine = $scope.transcript[0]
-
-  $scope.spellChecker = new LApp.spellCheckService(transcriptFactory, $scope, Stats)
 
   bindNewLineListener = ->
     $scope.$on "newLine", (event, newLine) ->
@@ -31,6 +29,7 @@ LApp.controller "TranscriptCtrl", ($scope, $timeout, $rootScope, LineTorch, Game
     onVideoStart = ->
       return if $scope.currentState != GameStates.loading # safeguard, so it won't triggered twice
       console.log 'videoStarted'
+
       bindKeyDownKeyPress()
       transcriptFactory.setupBlanks($scope.level)
       Stats.init
@@ -102,7 +101,7 @@ LApp.controller "TranscriptCtrl", ($scope, $timeout, $rootScope, LineTorch, Game
       return false if Key.isSpecial(event.keyCode) # firefox accepts keyCode, chrome which and keyCode
 
       letter = String.fromCharCode(event.which)
-      $scope.spellChecker.nextLetter letter
+      SpellChecker.nextLetter letter, $scope
 
     emit = (action) ->
       $rootScope.$emit 'userAction', {action: action}
@@ -169,6 +168,6 @@ LApp.controller "TranscriptCtrl", ($scope, $timeout, $rootScope, LineTorch, Game
     $scope.navigator.lineDown()        if action == 'lineDown'
     $scope.navigator.lineUp()          if action == 'lineUp'
     $scope.navigator.beginningOfline() if action == 'beginningOfline'
-    $scope.spellChecker.skipWord()     if action == 'skipWord'
+    SpellChecker.skipWord($scope)      if action == 'skipWord'
 
   window.scope = $scope
