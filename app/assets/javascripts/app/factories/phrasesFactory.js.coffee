@@ -9,8 +9,12 @@ LApp.factory 'Phrase', ($resource) ->
     allPhrases =  PhraseResource.query(opts)
 
   @create = (opts)->
+    return false if @findByName(opts.name)
+
+    index = allPhrases.push(_.extend({loading: 'loading'}, opts))
+
     PhraseResource.save opts, (p)->
-      allPhrases.push(p)
+      allPhrases[index-1] = p
 
   @remove = (opts)->
     PhraseResource.delete opts, (p)->
@@ -19,5 +23,9 @@ LApp.factory 'Phrase', ($resource) ->
 
       index = allPhrases.indexOf(phrase)
       allPhrases.splice(index, 1)
+
+  @findByName = (name) ->
+    _.find allPhrases, (phrase) ->
+      phrase.name == name
 
   this
