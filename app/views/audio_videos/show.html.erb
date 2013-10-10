@@ -33,10 +33,11 @@
       </div>
 
       <div class='game-starting game-shared-screen {{currentState}}'></div>
+
       <div class='controls'>
-        <a ng-click="restartGame()">restart game</a>
-        <a ng-click="navigator.beginningOfline()">replay line</a>
+        <a ng-click="restartGame()">Restart game</a>
       </div>
+
       <ul style="top:{{currentLineTopPosition}}px">
         <li ng-repeat="line in transcript">
         <p data-line-id={{line.htmlId()}} ng-controller="LineCtrl">
@@ -67,18 +68,17 @@
     </table>
   </div>
 
-  <div id="help" class="span4">
+  <div id="help" class="span4" ng-controller='HelpCtrl' >
     <h4>Help</h4>
     <h5>Type and fill in the blank spaces</h5>
 
     <table class='table table-condensed sidebar-table'>
-      <tr> <td>tab</td><td>skip word</td> </tr>
-      <tr> <td>space</td><td>play / pause</td> </tr>
-      <tr> <td>enter</td><td>replay line</td> </tr>
-      <tr> <td>&uarr;</td><td>previous line</td> </tr>
-      <tr> <td>&darr;</td><td>next line</td> </tr>
+      <tr> <td><a ng-click='invokeAction("skipWord")'>tab</a></td><td>skip word</td> </tr>
+      <tr> <td><a ng-click='invokeAction("togglePlayer")'>space</a></td><td>play / pause</td> </tr>
+      <tr> <td><a ng-click='invokeAction("beginningOfline")'>enter</a></td><td>replay line</td> </tr>
+      <tr> <td><a ng-click='invokeAction("lineUp")'>&uarr;</a></td><td>previous line</td> </tr>
+      <tr> <td><a ng-click='invokeAction("lineDown")'>&darr;</a></td><td>next line</td> </tr>
     </table>
-
   </div>
 
   <div id="phrase-book" ng-controller='PhrasesCtrl' class="span4">

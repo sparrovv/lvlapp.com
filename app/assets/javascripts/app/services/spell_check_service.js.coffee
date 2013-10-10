@@ -36,6 +36,6 @@ LApp.spellCheckService = (transcriptFactory, $scope, Stats) ->
       Stats.increaseSkpped()
       line.guess(nextWord)
       _playNextLine(line)
-      $scope.$apply()
+      $scope.$digest() if !$scope.$$phase
 
   this

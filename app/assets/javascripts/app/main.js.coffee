@@ -22,6 +22,9 @@ gameStates =
   paused: 'paused'
   playing: 'playing'
   finished: 'finished'
+  started: (currentState) ->
+    _.contains(['playing', 'started'], currentState)
+
 
 @LApp.constant 'GameConfig', gameConfig
 @LApp.constant 'GameStates', gameStates

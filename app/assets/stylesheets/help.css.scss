@@ -1,0 +1,12 @@
+#help{
+  td{
+    a{
+      display: block;
+      cursor: pointer;
+      &:hover{
+        background: #eeeeee;
+        text-decoration:none;
+      }
+    }
+  }
+}

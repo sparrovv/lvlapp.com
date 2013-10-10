@@ -1,4 +1,4 @@
-LApp.controller "TranscriptCtrl", ($scope, GameConfig, GameStates, transcriptFactory, Stats, Key, audioVideo) ->
+LApp.controller "TranscriptCtrl", ($scope, $rootScope, GameConfig, GameStates, transcriptFactory, Stats, Key, audioVideo) ->
   $scope.currentState = GameStates.loading
   $scope.level = 'normal'
 
@@ -14,7 +14,7 @@ LApp.controller "TranscriptCtrl", ($scope, GameConfig, GameStates, transcriptFac
       if $scope.currentLine.isMatchingOrignal()
         $scope.clearNextLineTimeout()
         $scope.currentLine = newLine
-        $scope.$digest()
+        $scope.$digest() if !$scope.$$phase
       else
         $scope.pauseOnNonFinishedLine()
 
@@ -50,8 +50,9 @@ LApp.controller "TranscriptCtrl", ($scope, GameConfig, GameStates, transcriptFac
   $scope.setCurrentLine = (line) ->
     $scope.clearNextLineTimeout()
     $scope.currentLine = line
+    $scope.currentState = GameStates.playing
     $scope.videoPlayer.setCurrentTime(line.time)
-    $scope.$digest()
+    $scope.$digest() if !$scope.$$phase
 
   $scope.nextLineTimeout = null
   $scope.volumeInterval = null
@@ -94,12 +95,14 @@ LApp.controller "TranscriptCtrl", ($scope, GameConfig, GameStates, transcriptFac
       letter = String.fromCharCode(event.which)
       $scope.spellChecker.nextLetter letter
 
+    emit = (action) ->
+      $rootScope.$emit 'userAction', {action: action}
     $(document).keydown (e) ->
-      $scope.togglePlayer()          if Key.isSpacebar(e.keyCode)
-      $scope.navigator.lineDown()    if Key.isKeyDown(e.keyCode)
-      $scope.navigator.lineUp()      if Key.isKeyUp(e.keyCode)
-      $scope.navigator.beginningOfline() if Key.isEnter(e.keyCode)
-      $scope.spellChecker.skipWord() if Key.isTab(e.keyCode)
+      emit('togglePlayer')    if Key.isSpacebar(e.keyCode)
+      emit('lineDown')        if Key.isKeyDown(e.keyCode)
+      emit('lineUp')          if Key.isKeyUp(e.keyCode)
+      emit('beginningOfline') if Key.isEnter(e.keyCode) || Key.isKeyLeft(e.keyCode)
+      emit('skipWord')        if Key.isTab(e.keyCode)
 
       if Key.isBackspace(e.keyCode)
         e.preventDefault()
@@ -120,7 +123,6 @@ LApp.controller "TranscriptCtrl", ($scope, GameConfig, GameStates, transcriptFac
   $scope.play = ->
     $scope.clearNextLineTimeout()
     $scope.currentState = GameStates.playing
-    #bindKeyDownKeyPress()
 
     if $scope.currentLine.isMatchingOrignal()
       $scope.videoPlayer.play()
@@ -128,14 +130,13 @@ LApp.controller "TranscriptCtrl", ($scope, GameConfig, GameStates, transcriptFac
       line = $scope.currentLine
       $scope.videoPlayer.setCurrentTime(line.time)
 
-    if !$scope.$$phase
-      $scope.$digest()
+    $scope.$digest() if !$scope.$$phase
 
   $scope.pause = ->
     $scope.currentState = GameStates.paused
     $scope.clearNextLineTimeout()
     $scope.videoPlayer.pause()
-    $scope.$digest()
+    $scope.$digest() if !$scope.$$phase
 
   $scope.restartGame = ->
     $scope.currentLine = $scope.transcript[0]
@@ -151,4 +152,16 @@ LApp.controller "TranscriptCtrl", ($scope, GameConfig, GameStates, transcriptFac
     $scope.videoPlayer.pause()
     $scope.videoPlayer.setCurrentTime(0)
 
+  $rootScope.$on 'userAction', (event, args) ->
+    return unless GameStates.started($scope.currentState)
+
+    action = args.action
+
+    $scope.togglePlayer()              if action == 'togglePlayer'
+    $scope.navigator.lineDown()        if action == 'lineDown'
+    $scope.navigator.lineUp()          if action == 'lineUp'
+    $scope.navigator.beginningOfline() if action == 'beginningOfline'
+    $scope.spellChecker.skipWord()     if action == 'skipWord'
+
   window.scope = $scope
+
