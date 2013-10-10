@@ -16,6 +16,14 @@ $videoSetupBG: #44403C; //#262C35;
   border-left: 1px solid;
   border-right: 1px solid;
 
+  .video-info{
+    background: #44403C;
+    color: #F7F1D9;
+    span{
+      padding: 0 10px;
+    }
+  }
+
   .controls{
     text-align: center;
     height:20px;
@@ -48,7 +56,10 @@ $videoSetupBG: #44403C; //#262C35;
       text-align: center;
       border-bottom: 1px solid #D7DDEA;
       color: #606060;
-
+      .time{
+        position:absolute;
+        left: 5px;
+      }
       .word{
         position: relative;
         fault{ color: red; }
@@ -56,6 +67,7 @@ $videoSetupBG: #44403C; //#262C35;
       }
 
       p{
+        position:relative;
         margin:0;
       }
     }
