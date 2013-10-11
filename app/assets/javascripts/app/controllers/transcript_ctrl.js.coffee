@@ -9,7 +9,7 @@ LApp.controller "TranscriptCtrl", ($scope, $timeout, $rootScope, LineTorch, Game
   $scope.currentLine = $scope.transcript[0]
 
   bindNewLineListener = ->
-    $scope.$on "newLine", (event, newLine) ->
+    $scope.removeNewLineListener = $scope.$on "newLine", (event, newLine) ->
       if $scope.currentLine.isMatchingOrignal()
         nextLine = transcriptFactory.getNext($scope.currentLine)
         $scope.currentLine = nextLine
@@ -42,6 +42,7 @@ LApp.controller "TranscriptCtrl", ($scope, $timeout, $rootScope, LineTorch, Game
       updateCurrentTimeInterval()
 
     onVideoEnded = ->
+      $scope.removeNewLineListener()
       $scope.currentState = GameStates.finished
       Stats.persist()
 
@@ -118,6 +119,7 @@ LApp.controller "TranscriptCtrl", ($scope, $timeout, $rootScope, LineTorch, Game
     $scope.$digest() if !$scope.$$phase
 
   $scope.restartGame = ->
+    $scope.removeNewLineListener()
     $scope.currentLine = $scope.transcript[0]
     unbindKeyDownKeyPress()
     $scope.currentState = GameStates.setup
