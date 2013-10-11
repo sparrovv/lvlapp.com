@@ -11,8 +11,9 @@ LApp.controller "TranscriptCtrl", ($scope, $timeout, $rootScope, LineTorch, Game
   bindNewLineListener = ->
     $scope.$on "newLine", (event, newLine) ->
       if $scope.currentLine.isMatchingOrignal()
+        nextLine = transcriptFactory.getNext($scope.currentLine)
+        $scope.currentLine = nextLine
         lineTimeoutService.clearNextLineTimeout($scope)
-        $scope.currentLine = newLine
         $scope.$digest() if !$scope.$$phase
       else
         lineTimeoutService.pauseOnNonFinishedLine($scope)
