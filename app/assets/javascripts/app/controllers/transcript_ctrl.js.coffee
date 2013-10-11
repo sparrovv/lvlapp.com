@@ -1,4 +1,4 @@
-LApp.controller "TranscriptCtrl", ($scope, $timeout, $rootScope, LineTorch, GameConfig, GameStates, transcriptFactory, Stats, Key, audioVideo, SpellChecker) ->
+LApp.controller "TranscriptCtrl", ($scope, $timeout, $rootScope, LineTorch, GameConfig, GameStates, transcriptFactory, Stats, Key, audioVideo, SpellChecker, lineTimeoutService) ->
   $scope.currentState = GameStates.loading
   $scope.currentLineTopPosition = GameConfig.lineStartPosition
   $scope.level = 'normal'
@@ -11,11 +11,11 @@ LApp.controller "TranscriptCtrl", ($scope, $timeout, $rootScope, LineTorch, Game
   bindNewLineListener = ->
     $scope.$on "newLine", (event, newLine) ->
       if $scope.currentLine.isMatchingOrignal()
-        $scope.clearNextLineTimeout()
+        lineTimeoutService.clearNextLineTimeout($scope)
         $scope.currentLine = newLine
         $scope.$digest() if !$scope.$$phase
       else
-        $scope.pauseOnNonFinishedLine()
+        lineTimeoutService.pauseOnNonFinishedLine($scope)
 
   videoCallbacks = (videoPlayer) ->
     updateCurrentTimeInterval = ->
@@ -56,41 +56,11 @@ LApp.controller "TranscriptCtrl", ($scope, $timeout, $rootScope, LineTorch, Game
     LineTorch.highlight($scope.currentLine, $scope)
 
   $scope.setCurrentLine = (line) ->
-    $scope.clearNextLineTimeout()
+    lineTimeoutService.clearNextLineTimeout($scope)
     $scope.currentLine = line
     $scope.currentState = GameStates.playing
     $scope.videoPlayer.setCurrentTime(line.time)
     $scope.$digest() if !$scope.$$phase
-
-  $scope.nextLineTimeout = null
-  $scope.volumeInterval = null
-  $scope.clearVolumeInterval = ->
-    clearInterval($scope.volumeInterval)
-    $scope.volumeInterval = null
-    $scope.videoPlayer.setVolume(GameConfig.volumeMax)
-
-  $scope.clearNextLineTimeout = ->
-    $scope.clearVolumeInterval()
-    clearTimeout($scope.nextLineTimeout) 
-    $scope.nextLineTimeout = null
-
-  $scope.pauseOnNonFinishedLine = ->
-    startVolume = GameConfig.volumeMax
-
-    volumeDown = ->
-      startVolume -=2
-      if startVolume > 0
-        $scope.videoPlayer.setVolume(startVolume)
-      else
-        $scope.clearVolumeInterval()
-
-    pauseABitLater = ->
-      if not $scope.currentLine.isMatchingOrignal()
-        $scope.videoPlayer.pause()
-
-    if not $scope.nextLineTimeout
-      $scope.volumeInterval = setInterval(volumeDown, 50)
-      $scope.nextLineTimeout = setTimeout(pauseABitLater, 2500)
 
   unbindKeyDownKeyPress = ->
     $(document).unbind('keypress')
@@ -129,7 +99,7 @@ LApp.controller "TranscriptCtrl", ($scope, $timeout, $rootScope, LineTorch, Game
 
   # As a workaround to make it possible to play the current paused line, it starts from the beginning.
   $scope.play = ->
-    $scope.clearNextLineTimeout()
+    lineTimeoutService.clearNextLineTimeout($scope)
     $scope.currentState = GameStates.playing
 
     if $scope.currentLine.isMatchingOrignal()
@@ -142,7 +112,7 @@ LApp.controller "TranscriptCtrl", ($scope, $timeout, $rootScope, LineTorch, Game
 
   $scope.pause = ->
     $scope.currentState = GameStates.paused
-    $scope.clearNextLineTimeout()
+    lineTimeoutService.clearNextLineTimeout($scope)
     $scope.videoPlayer.pause()
     $scope.$digest() if !$scope.$$phase
 
