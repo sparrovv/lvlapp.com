@@ -27,7 +27,7 @@
             <td>related:</td>
           </tr>
           <tr>
-            <td colspan="2"><span ng-repeat="word in phrase.words">{{word}}; </span></td>
+            <td colspan="2"><span ng-repeat="word in phrase.related">{{word}}; </span></td>
           </tr>
         </table>
       </div>
