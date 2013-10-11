@@ -1,0 +1,31 @@
+<script> window.phrases = <%= raw @phrases.to_json %>; </script>
+
+<h1>Memorize</h1>
+
+<div ng-app='LApp' class="row">
+<div ng-controller='MemorizeCtrl'>
+  <div class='memoize span6'>
+    <div class='question'>
+      <div class='center'>
+        <div>{{flashCard.question}}</div>
+      </div>
+    </div>
+
+    <div class='show-answer center'> <a ng-click='showAnswer()'> Show answer </a></div>
+
+    <div class='answer center {{state}}'> 
+      {{flashCard.answer}}
+    </div>
+
+    <div class='score {{state}}'>
+      <a ng-click='rateAnswer("again")'>Again</a>
+      <a ng-click='rateAnswer("hard")'>Hard</a>
+      <a ng-click='rateAnswer("good")'>Good</a>
+      <a ng-click='rateAnswer("easy")'>Easy</a>
+    </div>
+    <div class='exit'>
+      <a ng-click='saveAndExit()'>Save and exit</a>
+    </div>
+  </div>
+</div>
+</div>

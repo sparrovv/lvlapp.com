@@ -1,0 +1,2 @@
+module MemorizeHelper
+end

@@ -1,5 +1,10 @@
 Lvlapp::Application.routes.draw do
 
+  get "memorize/show"
+  get "memorize/index"
+  get "memorize/create"
+  get "memorize/update"
+
   devise_for :users
 
   get 'admin/help' => 'admin/help#index'
