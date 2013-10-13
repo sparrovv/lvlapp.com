@@ -17,6 +17,7 @@ $videoSetupBG: #44403C; //#262C35;
   border-right: 1px solid;
 
   .video-info{
+    text-align: right;
     background: #44403C;
     color: #F7F1D9;
     span{
@@ -148,4 +149,14 @@ $videoSetupBG: #44403C; //#262C35;
 .game-starting.starting{
   background: $videoSetupBG image-url('game-loading.gif') no-repeat 50% 50%;
   display: block;
+}
+
+// ################### EDIT ################
+.transcript-player{
+  input.time{
+    width:10%;
+  }
+  input.word{
+    width:70%;
+  }
 }

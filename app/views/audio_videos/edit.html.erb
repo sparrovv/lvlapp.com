@@ -1,0 +1,101 @@
+<script> window.audioVideo = <%= raw @audio_video.to_json %>; </script>
+<script> window.isYoutubeVideo = <%= raw @audio_video.youtube? %>; </script>
+
+<div class="">
+  <h3 > <%= @audio_video.name %> </h3>
+</div>
+<div ng-app='LApp' class="row">
+  <div class="span8" ng-controller="TranscriptCtrl" >
+    <div class='player-containter'>
+    <% if @audio_video.youtube? %>
+      <%= render 'shared/youtube', audio_video: @audio_video %>
+    <% else %>
+      <%= render 'shared/videojs', audio_video: @audio_video  %>
+    <%end %>
+    </div>
+
+    <div id="transcript-player" data-id='text-player' tabindex="1" ng-keypress='listenForKey' class='transcript-player'>
+      <div class='video-info' ng-controller="VideoInfoCtrl">
+        <span>{{currentVideoTime | limitTo:10}}</a>
+      </div>
+      <div class='game-end game-shared-screen {{currentState}}'>
+        <h3>Congratulations! </h3>
+        <p>It took you {{stats.time | millisecondsToTime}} to complete that video.</p>
+        <p>And you guessed {{stats.guessed}} out of {{stats.blanks}} words.</p>
+
+        <p>Your score was saved</p>
+        <p><a ng-click="restartGame()">Restart game</a></p>
+      </div>
+
+      <div class='game-menu game-shared-screen {{currentState}}'>
+        <h3>Select difficulty:</h3>
+        <ul>
+          <li><a ng-click="selectGameLevel('karaoke', 'true')">Karaoke and edit</a></li>
+        </ul>
+      </div>
+
+      <div class='game-starting game-shared-screen {{currentState}}'></div>
+
+      <div class='controls'>
+        <a ng-click="restartGame()">Restart game</a>
+        <span>{{currentVideoTime}}</a>
+      </div>
+
+      <ul style="top:{{currentLineTopPosition}}px">
+        <li ng-repeat="line in transcript">
+        <p data-line-id={{line.htmlId()}} ng-controller="LineCtrl">
+          <input class='time' ng-model="line.time">
+          <input class='word' ng-model="line.text">
+        </p>
+        </li>
+      </ul>
+    </div>
+      [<span ng-repeat="line in transcript">
+        { "time":"{{line.time}}", "text":"{{line.text}}"},
+      </span>]
+  </div>
+
+  <div class="score span4" ng-controller="StatsCtrl">
+    <h4>Stats</h4>
+    <table class='table table-condensed sidebar-table'>
+      <tr>
+        <td>words</td><td>{{stats.guessed}} / {{stats.blanks}}</td>
+      </tr>
+      <tr>
+        <td>skipped</td><td>{{stats.skipped}}</td>
+      </tr>
+      <tr>
+        <td>mistakes</td><td>{{stats.mistakes}}</td>
+      </tr>
+      <tr>
+        <td>time</td><td>{{stats.currentTime() | millisecondsToTime}}</td>
+      </tr>
+    </table>
+  </div>
+
+  <div id="help" class="span4" ng-controller='HelpCtrl' >
+    <h4>Help</h4>
+    <h5>Type and fill in the blank spaces</h5>
+
+    <table class='table table-condensed sidebar-table'>
+      <tr> <td><a ng-click='invokeAction("skipWord")'>tab</a></td><td>skip word</td> </tr>
+      <tr> <td><a ng-click='invokeAction("togglePlayer")'>space</a></td><td>play / pause</td> </tr>
+      <tr> <td><a ng-click='invokeAction("beginningOfline")'>enter</a></td><td>replay line</td> </tr>
+      <tr> <td><a ng-click='invokeAction("lineUp")'>&uarr;</a></td><td>previous line</td> </tr>
+      <tr> <td><a ng-click='invokeAction("lineDown")'>&darr;</a></td><td>next line</td> </tr>
+    </table>
+  </div>
+
+  <div id="phrase-book" ng-controller='PhrasesCtrl' class="span4">
+    <h4>Phrasebook</h4>
+    <% if current_user %>
+    <table class='table table-condensed sidebar-table'>
+      <tr class="" ng-repeat="phrase in phrases">
+        <td><phrase phrase-object={{phrase}}></phrase><td>
+      </tr>
+    </table>
+    <% else %>
+      <p> Please <%= link_to 'sign in', user_session_path %> to add a word to your phrase book.<br /> Just click on the word you're interested.</p>
+    <% end %>
+  </div>
+</div>

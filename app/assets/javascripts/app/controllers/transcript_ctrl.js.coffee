@@ -31,7 +31,9 @@ LApp.controller "TranscriptCtrl", ($scope, $timeout, $rootScope, LineTorch, Game
       return if $scope.currentState != GameStates.loading # safeguard, so it won't triggered twice
       console.log 'videoStarted'
 
-      bindKeyDownKeyPress()
+      bindKeyDownKeyPress() if $scope.editMode != 'true'
+      bindKeyDownControlls() if $scope.editMode == 'true'
+
       transcriptFactory.setupBlanks($scope.level)
       Stats.init
         level: $scope.level, audio_video_id: audioVideo.id, blanks: transcriptFactory.numberOfBlanks()
@@ -68,6 +70,27 @@ LApp.controller "TranscriptCtrl", ($scope, $timeout, $rootScope, LineTorch, Game
     $(document).unbind('keypress')
     $(document).unbind('keydown')
 
+  _emit = (action) ->
+    $rootScope.$emit 'userAction', {action: action}
+
+  bindKeyDownControlls = ->
+    $(document).keydown (e) ->
+      if Key.isEnter(e.keyCode)
+        _emit('togglePlayer')
+        return false
+
+      #if Key.isKeyLeft(e.keyCode)
+        #_emit('beginningOfline')
+        #return false
+
+      if Key.isKeyDown(e.keyCode)
+        _emit('lineDown')
+        return false
+
+      if Key.isKeyUp(e.keyCode)
+        _emit('lineUp')
+        return false
+
   bindKeyDownKeyPress = ->
     $(document).keypress (event) ->
       return false if Key.isSpecial(event.keyCode) # firefox accepts keyCode, chrome which and keyCode
@@ -75,14 +98,12 @@ LApp.controller "TranscriptCtrl", ($scope, $timeout, $rootScope, LineTorch, Game
       letter = String.fromCharCode(event.which)
       SpellChecker.nextLetter letter, $scope
 
-    emit = (action) ->
-      $rootScope.$emit 'userAction', {action: action}
     $(document).keydown (e) ->
-      emit('togglePlayer')    if Key.isSpacebar(e.keyCode)
-      emit('lineDown')        if Key.isKeyDown(e.keyCode)
-      emit('lineUp')          if Key.isKeyUp(e.keyCode)
-      emit('beginningOfline') if Key.isEnter(e.keyCode) || Key.isKeyLeft(e.keyCode)
-      emit('skipWord')        if Key.isTab(e.keyCode)
+      _emit('togglePlayer')    if Key.isSpacebar(e.keyCode)
+      _emit('lineDown')        if Key.isKeyDown(e.keyCode)
+      _emit('lineUp')          if Key.isKeyUp(e.keyCode)
+      _emit('beginningOfline') if Key.isEnter(e.keyCode) || Key.isKeyLeft(e.keyCode)
+      _emit('skipWord')        if Key.isTab(e.keyCode)
 
       if Key.isBackspace(e.keyCode)
         e.preventDefault()
@@ -127,8 +148,9 @@ LApp.controller "TranscriptCtrl", ($scope, $timeout, $rootScope, LineTorch, Game
     $scope.videoPlayer.setCurrentTime(0)
     $scope.videoPlayer.pause()
 
-  $scope.selectGameLevel = (level)->
+  $scope.selectGameLevel = (level, editMode='false')->
     $scope.level = level
+    $scope.editMode = editMode
     $scope.currentState = GameStates.loading
     $scope.videoPlayer.pause()
     $scope.videoPlayer.setCurrentTime(0)
