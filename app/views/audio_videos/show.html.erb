@@ -2,7 +2,12 @@
 <script> window.isYoutubeVideo = <%= raw @audio_video.youtube? %>; </script>
 
 <div class="">
-  <h3 > <%= @audio_video.name %> </h3>
+  <h3>
+    <%= @audio_video.name %> 
+    <% if current_user && current_user.admin? %> 
+      <span> - </span> <%= link_to 'edit', edit_audio_video_path(@audio_video) %> 
+    <% end %> 
+  </h3>
 </div>
 <div ng-app='LApp' class="row">
   <div class="span8">
