@@ -2,15 +2,10 @@
 <script> window.isYoutubeVideo = <%= raw @audio_video.youtube? %>; </script>
 
 <div class="">
-  <h3>
-    <%= @audio_video.name %> 
-    <% if current_user && current_user.admin? %> 
-      <span> - </span> <%= link_to 'edit', edit_audio_video_path(@audio_video) %> 
-    <% end %> 
-  </h3>
+  <h3 > <%= @audio_video.name %> </h3>
 </div>
 <div ng-app='LApp' class="row">
-  <div class="span8">
+  <div class="span8" ng-controller="TranscriptCtrl" >
     <div class='player-containter'>
     <% if @audio_video.youtube? %>
       <%= render 'shared/youtube', audio_video: @audio_video %>
@@ -19,7 +14,10 @@
     <%end %>
     </div>
 
-    <div id="transcript-player" data-id='text-player' tabindex="1" ng-controller="TranscriptCtrl" ng-keypress='listenForKey' class='transcript-player'>
+    <div id="transcript-player" data-id='text-player' tabindex="1" ng-keypress='listenForKey' class='transcript-player'>
+      <div class='video-info' ng-controller="VideoInfoCtrl">
+        <span>{{currentVideoTime | limitTo:10}}</a>
+      </div>
       <div class='game-end game-shared-screen {{currentState}}'>
         <h3>Congratulations! </h3>
         <p>It took you {{stats.time | millisecondsToTime}} to complete that video.</p>
@@ -32,9 +30,7 @@
       <div class='game-menu game-shared-screen {{currentState}}'>
         <h3>Select difficulty:</h3>
         <ul>
-          <li><a ng-click="selectGameLevel('karaoke')">Karaoke</a></li>
-          <li><a ng-click="selectGameLevel('normal')">Normal</a></li>
-          <li><a ng-click="selectGameLevel('hard')">Hard</a></li>
+          <li><a ng-click="selectGameLevel('karaoke', 'true')">Karaoke and edit</a></li>
         </ul>
       </div>
 
@@ -48,13 +44,15 @@
       <ul style="top:{{currentLineTopPosition}}px">
         <li ng-repeat="line in transcript">
         <p data-line-id={{line.htmlId()}} ng-controller="LineCtrl">
-          <span class="word" ng-click="lookUpInDict(this)" data-word="{{word}}" ng-repeat="word in line.words()">
-            <span class="raw-word" title='Add to pharsebook' ng-bind-html-unsafe="word">&nbsp;</span>
-          </span>
+          <input class='time' ng-model="line.time">
+          <input class='word' ng-model="line.text">
         </p>
         </li>
       </ul>
     </div>
+      [<span ng-repeat="line in transcript">
+        { "time":"{{line.time}}", "text":"{{line.text}}"},
+      </span>]
   </div>
 
   <div class="score span4" ng-controller="StatsCtrl">
