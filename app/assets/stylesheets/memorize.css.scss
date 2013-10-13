@@ -6,7 +6,8 @@
   }
 
   .question{
-    height: 100px;
+    min-height: 50px;
+    font-size: 22px;
     border: 1px solid;
     span{
       padding: 20px 0;
@@ -18,7 +19,7 @@
   }
 
   .answer{
-    min-height: 100px;
+    min-height: 150px;
     border: 1px solid;
   }
 

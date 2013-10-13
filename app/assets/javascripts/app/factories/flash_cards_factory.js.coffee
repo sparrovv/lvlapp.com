@@ -1,9 +1,9 @@
-class FlashCard
-  constructor: (@id, @question, @answer, @exmaple) ->
-    @scores = []
+class FlashCardAnswer
+  constructor: (@translation, @definition, @examples, @related) ->
 
-  fullAnswer: ->
-    [@answer,  @exmaple].join('; ')
+class FlashCard
+  constructor: (@id, @question, @answer) ->
+    @scores = []
 
   addScore: (scoreName) ->
     s = @scoreMap(scoreName)
@@ -23,7 +23,8 @@ LApp.factory "FlashCardsFactory", (blanksHelper) ->
 
   f.init = (phrases) ->
     _.each phrases, (phrase) ->
-      f.flashCards.push new FlashCard(phrase.id, phrase.name, phrase.definition, phrase.examples)
+      answer = new FlashCardAnswer(phrase.translation, phrase.definition, phrase.examples, phrase.related)
+      f.flashCards.push new FlashCard(phrase.id, phrase.name, answer)
 
   f.flashCards = []
 

@@ -4,7 +4,7 @@
 
 <div ng-app='LApp' class="row">
 <div ng-controller='MemorizeCtrl'>
-  <div class='memoize span6'>
+  <div class='memoize span10'>
     <div class='question'>
       <div class='center'>
         <div>{{flashCard.question}}</div>
@@ -14,7 +14,7 @@
     <div class='show-answer center'> <a ng-click='showAnswer()'> Show answer </a></div>
 
     <div class='answer center {{state}}'> 
-      {{flashCard.answer}}
+      <flashcardanswer answer='flashCard.answer'></flashcardanswer>
     </div>
 
     <div class='score {{state}}'>
