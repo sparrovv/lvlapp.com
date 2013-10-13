@@ -1,4 +1,4 @@
-LApp.controller "MemorizeCtrl", ($scope, PhrasesCollection, FlashCardsFactory) ->
+LApp.controller "MemorizeCtrl", ($scope, PhrasesCollection, FlashCardsFactory, SM2Mod) ->
   $scope.flashCardObj = FlashCardsFactory
 
   FlashCardsFactory.init(PhrasesCollection.phrases)
@@ -10,7 +10,14 @@ LApp.controller "MemorizeCtrl", ($scope, PhrasesCollection, FlashCardsFactory) -
 
   $scope.rateAnswer = (scoreName) ->
     # assign score to flashjcard
-    $scope.flashCard.addScore(scoreName)
+    sm2 = SM2Mod.calculate(
+      scoreMap(scoreName),
+      $scope.flashCard.prevInterval(),
+      $scope.flashCard.easinessFactor)
+
+    $scope.flashCard.nextRepetitionDate = sm2.nextRepetitionDate
+    $scope.flashCard.interval = sm2.interval
+    $scope.flashCard.easinessFactor = sm2.easinessFactor
     #
     $scope.flashCard = FlashCardsFactory.next()
     $scope.state = 'answerHidden'
@@ -20,4 +27,11 @@ LApp.controller "MemorizeCtrl", ($scope, PhrasesCollection, FlashCardsFactory) -
 
   window.scope = $scope
 
+  scoreMap = (scoreNmae)->
+    map =
+      'again': 1
+      'hard': 2
+      'good': 3
+      'easy': 4
 
+    map[scoreNmae]
