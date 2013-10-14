@@ -23,6 +23,16 @@ describe Phrase do
     phrase.audio_video.should == audio_video
   end
 
+  context 'SM2 attributes' do
+    it 'can have interval, easiness_factor and repetition_date' do
+      phrase.interval = 1
+      phrase.easiness_factor = '2.1'
+      phrase.repetition_date = Date.tomorrow
+      expect(phrase).to be_valid
+      expect(phrase.easiness_factor).to eq 2.1
+    end
+  end
+
   it 'serializes fields' do
     arry = ['x']
 

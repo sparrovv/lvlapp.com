@@ -96,5 +96,36 @@ describe PhrasesController do
         response.status.should == 403
       end
     end
+
+    describe '#update_sm2' do
+      let(:phrase_1) { create(:phrase, user: user) }
+      let(:phrase_2) { create(:phrase, user: user) }
+
+      let(:dispatch) do
+        post :sm2_update, phrases_sm2: [
+          {id: phrase_1.id, interval: '2' , easiness_factor: '2.1', repetition_date: '1381779908736'},
+          {id: phrase_2.id, interval: '3' , easiness_factor: '2.5', repetition_date: '1381878000000'}
+        ]
+      end
+
+      it 'udpates sm2 attrs' do
+        dispatch
+
+        phrase_1.reload
+        phrase_2.reload
+
+        expect(phrase_1.interval).to eql 2
+        expect(phrase_1.easiness_factor).to eql 2.1
+        expect(phrase_1.repetition_date).to eql '2013-10-14'.to_date
+
+        expect(phrase_2.interval).to eql 3
+        expect(phrase_2.easiness_factor).to eql 2.5
+        expect(phrase_2.repetition_date).to eql '2013-10-16'.to_date
+
+        expect(response.status).to eq 201
+      end
+
+    end
+
   end
 end

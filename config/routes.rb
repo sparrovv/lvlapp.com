@@ -14,7 +14,12 @@ Lvlapp::Application.routes.draw do
     resources :phrases
     resources :game_data, only: [:create]
   end
-  resources :phrases
+
+  resources :phrases do
+    collection do
+      post :sm2_update
+    end
+  end
 
   resources :game_data, only: [:index, :create]
 
