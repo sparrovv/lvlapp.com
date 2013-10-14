@@ -1,38 +1,29 @@
-LApp.controller "MemorizeCtrl", ($scope, $http, PhrasesCollection, FlashCardsFactory, SM2Mod) ->
-  $scope.flashCardObj = FlashCardsFactory
+LApp.controller "MemorizeCtrl", ($scope, $http, PhrasesCollection, FlashCards, SM2Mod) ->
+  $scope.flashCardObj = FlashCards
 
-  FlashCardsFactory.init(PhrasesCollection.phrases)
-  $scope.flashCard = FlashCardsFactory.next()
+  FlashCards.init(PhrasesCollection.phrases)
+  $scope.flashCard = FlashCards.next()
   $scope.state = 'answerHidden'
 
   $scope.showAnswer = ->
     $scope.state = 'answerShowed'
 
   $scope.rateAnswer = (scoreName) ->
-    # assign score to flashjcard
-    sm2 = SM2Mod.calculate(
-      scoreMap(scoreName),
-      $scope.flashCard.prevInterval(),
-      $scope.flashCard.easinessFactor)
-
-    $scope.flashCard.nextRepetitionDate = sm2.nextRepetitionDate
-    $scope.flashCard.interval = sm2.interval
-    $scope.flashCard.easinessFactor = sm2.easinessFactor
-    $scope.flashCard.setReadyToUpdate()
-
-    $scope.flashCard = FlashCardsFactory.next()
+    FlashCards.updateSM2Results($scope.flashCard, scoreMap(scoreName))
+    $scope.flashCard = FlashCards.next()
     $scope.state = 'answerHidden'
 
   $scope.saveAndExit = ->
-    data = FlashCardsFactory.readyToUpdateAttrs()
+    data = FlashCards.readyToUpdateAttrs()
     console.log data
-    unless data.length > 1
+
+    unless data.length > 0
       console.log 'no data'
-      return 
+      return false
 
     $http.post('/phrases/sm2_update', {phrases_sm2: data}).
       success (data, status, headers, config) ->
-        FlashCardsFactory.updateSent()
+        FlashCards.updateSent()
 
   window.scope = $scope
 

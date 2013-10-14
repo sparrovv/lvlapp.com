@@ -22,66 +22,61 @@ class FlashCard
   prevInterval: ->
     @interval
 
-LApp.factory "FlashCardsFactory", (blanksHelper) ->
-  f = {}
+LApp.service "FlashCards",
+  class FlashCards
+    constructor:(@SM2Mod) ->
+      @flashCards = []
+      @forRepetition = []
 
-  f.init = (phrases) ->
-    _.each phrases, (phrase) ->
-      answer = new FlashCardAnswer(phrase.translation, phrase.definition, phrase.examples, phrase.related)
-      interval = phrase.interval
-      easinessFactor = phrase.easiness_factor
-      nextRepetitionDate = phrase.repetition_date_js
+    init: (phrases) ->
+      self = @
+      _.each phrases, (phrase) ->
+        answer = new FlashCardAnswer(phrase.translation, phrase.definition, phrase.examples, phrase.related)
+        interval = phrase.interval
+        easinessFactor = phrase.easiness_factor
+        nextRepetitionDate = phrase.repetition_date_js
 
-      f.flashCards.push new FlashCard(phrase.id, phrase.name, answer, interval, nextRepetitionDate, easinessFactor)
+        self.flashCards.push(new FlashCard(phrase.id, phrase.name, answer, interval, nextRepetitionDate, easinessFactor))
 
-    f.forRepetition = f.generateForRepetition()
-    console.log f.forRepetition
+      @forRepetition = @generateForRepetition()
 
+    updateSM2Results: (flashCard, score) ->
+      sm2 = @SM2Mod.calculate(
+        score,
+        flashCard.prevInterval(),
+        flashCard.easinessFactor)
 
-  f.flashCards = []
-  f.forRepetition = []
+      flashCard.nextRepetitionDate = sm2.nextRepetitionDate
+      flashCard.interval = sm2.interval
+      flashCard.easinessFactor = sm2.easinessFactor
+      flashCard.setReadyToUpdate()
 
-  f.generateForRepetition = ->
-    actualDate = new Date()
-    endOfDayDate = new Date(
-      actualDate.getFullYear() ,actualDate.getMonth() ,actualDate.getDate() ,23,59,59
-    )
+    generateForRepetition: ->
+      actualDate = new Date()
+      endOfDayDate = new Date(
+        actualDate.getFullYear() ,actualDate.getMonth() ,actualDate.getDate() ,23,59,59
+      )
 
-    f.forRepetition = _.filter(f.sortedFlashCardsByDate(), (fc) ->
+      _.filter @sortedFlashCardsByDate(), (fc) ->
+        fc.repetitionDate() <= endOfDayDate
 
-      console.log fc.repetitionDate()
+    sortedFlashCardsByDate: ->
+      _.sortBy @flashCards, (fc) ->
+        fc.repetitionDate
 
-      fc.repetitionDate() <= endOfDayDate
-    )
+    next: ->
+      @forRepetition.pop()
 
-  f.size = ->
-    f.flashCards.length
+    readyToUpdateAttrs: ->
+      readyToUpdate = _.select @flashCards, (fc) ->
+        fc.readyToUpdate == true
 
-  f.sortedFlashCardsByDate = ->
-    _.sortBy f.flashCards, (fCard) ->
-      fCard.repetitionDate
+      _.map readyToUpdate, (fc) ->
+        'id': fc.id
+        'interval': fc.interval
+        'easiness_factor': fc.easinessFactor
+        'repetition_date': fc.nextRepetitionDate
 
-  f.next = ->
-    f.forRepetition.pop()
-
-  f.readyToUpdateAttrs = ->
-    readyToU = _.select f.flashCards, (fc) ->
-      fc.readyToUpdate == true
-
-    _.map readyToU, (fc) ->
-      'id': fc.id
-      'interval': fc.interval
-      'easiness_factor': fc.easinessFactor
-      'repetition_date': fc.nextRepetitionDate
-
-  f.updateSent = ->
-    _.each f.flashCards, (fc) ->
-      fc.unsetReadyToUpdate()
-
-  f.addToReadyToUpdate = (phrase) ->
-    phrase.readyToUpdate
-
-  f._getRandom = (min, max) ->
-    Math.floor(Math.random() * (max - min) + min)
-
-  f
+    updateSent: ->
+      _.each @flashCards, (fc) ->
+        fc.unsetReadyToUpdate()
