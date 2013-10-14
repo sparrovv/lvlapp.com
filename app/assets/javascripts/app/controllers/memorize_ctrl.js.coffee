@@ -1,4 +1,4 @@
-LApp.controller "MemorizeCtrl", ($scope, PhrasesCollection, FlashCardsFactory, SM2Mod) ->
+LApp.controller "MemorizeCtrl", ($scope, $http, PhrasesCollection, FlashCardsFactory, SM2Mod) ->
   $scope.flashCardObj = FlashCardsFactory
 
   FlashCardsFactory.init(PhrasesCollection.phrases)
@@ -18,12 +18,21 @@ LApp.controller "MemorizeCtrl", ($scope, PhrasesCollection, FlashCardsFactory, S
     $scope.flashCard.nextRepetitionDate = sm2.nextRepetitionDate
     $scope.flashCard.interval = sm2.interval
     $scope.flashCard.easinessFactor = sm2.easinessFactor
-    #
+    $scope.flashCard.setReadyToUpdate()
+
     $scope.flashCard = FlashCardsFactory.next()
     $scope.state = 'answerHidden'
 
   $scope.saveAndExit = ->
-    console.log 'noop save and exit'
+    data = FlashCardsFactory.readyToUpdateAttrs()
+    console.log data
+    unless data.length > 1
+      console.log 'no data'
+      return 
+
+    $http.post('/phrases/sm2_update', {phrases_sm2: data}).
+      success (data, status, headers, config) ->
+        FlashCardsFactory.updateSent()
 
   window.scope = $scope
 

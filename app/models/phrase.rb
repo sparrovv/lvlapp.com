@@ -17,4 +17,10 @@ class Phrase < ActiveRecord::Base
     self.name = name.singularize
     self
   end
+
+  def repetition_date_js
+    return nil unless repetition_date
+
+    repetition_date.to_time.to_i * 1000
+  end
 end

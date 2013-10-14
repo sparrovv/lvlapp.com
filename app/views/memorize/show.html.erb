@@ -1,4 +1,4 @@
-<script> window.phrases = <%= raw @phrases.to_json %>; </script>
+<script> window.phrases = <%= raw @phrases.to_json(methods:[:repetition_date_js]) %>; </script>
 
 <h1>Memorize</h1>
 
