@@ -12,6 +12,7 @@ class PhrasesController < ApplicationController
       phrase.audio_video = @audio_video
       phrase.user = current_user
     end
+    phrase.singularize_phrase()
 
     if phrase.save
       PhraseWorker.enrich(phrase)

@@ -36,4 +36,21 @@ describe Phrase do
     phrase.examples.should == arry
     phrase.related.should == arry
   end
+
+  describe '#singularize_phrase' do
+    it 'singularizes name' do
+      p = Phrase.new(name: 'kettles')
+      p.singularize_phrase
+      expect(p.name).to eql 'kettle'
+      p.name = 'sashes'
+      p.singularize_phrase
+      expect(p.name).to eql 'sash'
+      p.name = 'leaves'
+      p.singularize_phrase
+      expect(p.name).to eql 'leaf'
+      p.name = 'knives'
+      p.singularize_phrase
+      expect(p.name).to eql 'knife'
+    end
+  end
 end

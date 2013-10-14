@@ -12,4 +12,9 @@ class Phrase < ActiveRecord::Base
   scope :by_audio_video, lambda { |audio_video_id|
     where(:audio_video_id => audio_video_id)
   }
+
+  def singularize_phrase
+    self.name = name.singularize
+    self
+  end
 end

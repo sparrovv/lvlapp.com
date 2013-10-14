@@ -1,11 +1,18 @@
 [[TODOs:]]
 
+- [] how to singularize words before they goes to dict http://api.rubyonrails.org/classes/ActiveSupport/Inflector.html#method-i-singularize
+- [] add link to source - so there is no problem
+- [] style sign-up and add native language
+  http://www.octolabs.com/posts/2013/1/17/styling_devise_with_twitter_bootstrap
 
-- [] and add views number to the audio_video, so it can be filtered by popularity, all, pagination. Improve nav
+- [] setup contact inforamtion
+- [] make a footer with disclaimer about videos, contact
+- [] Add duration - on adding, or on first show....
+- [] Add featured flag
 - [] Filter what words can be add to the phrasebook, don't add missing ones, and maybe 1 letters, prepare filtter for that, so it decorates it wit...
 - [] TED videos preview images
 - [] Add HUD - head up display, that will have some navs, prompts, messages, flash messages....kk
-  [ ] Maybe line directive ? That would make a lot of sense
+  [] Maybe line directive ? That would make a lot of sense
 - [] debug what happens if there are words separated witch commas without space foo,bar  boys like these,younger
 - [] valdate transcript that after comma or colon, period there is a space
 - [] smarter feeeling blanks: fix: good bye
@@ -68,3 +75,4 @@ DONE
 -[x] update videojs when controls are disabled, they still appears on pause. It is fixed on master branch, but not yet released. Will wait couple days and see what is the release process.
 
 - [] When reaching the last line: (in skipWord) Uncaught TypeError: Cannot call method 'clearBuffer' of undefined 
+- [] and add views number to the audio_video, so it can be filtered by popularity, all, pagination. Improve nav
