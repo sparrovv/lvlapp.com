@@ -69,6 +69,23 @@ Lvlapp::Application.configure do
   # the I18n.default_locale when a translation can not be found).
   config.i18n.fallbacks = true
 
+  # SMTP SETTINGS
+  config.action_mailer.delivery_method = :smtp
+  config.action_mailer.smtp_settings = {
+    address:              'smtp.zoho.com',
+    port:                 465,
+    domain:               'zoho.com',
+    user_name:            ENV['LVLAPP_SMTP_USER_NAME'] || 'support@lvlapp.com',
+    password:             ENV['LVLAPP_SMTP_PASSWORD'],
+    authentication:       :login,
+    ssl:                  true,
+    tls:                  true,
+    enable_starttls_auto: true
+  }
+
+  # required by devise mailer
+  config.action_mailer.default_url_options = { :host => 'lvlapp.com' }
+
   # Send deprecation notices to registered listeners.
   config.active_support.deprecation = :notify
 
