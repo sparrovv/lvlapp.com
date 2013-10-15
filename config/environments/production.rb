@@ -77,7 +77,7 @@ Lvlapp::Application.configure do
     domain:               'zoho.com',
     user_name:            ENV['LVLAPP_SMTP_USER_NAME'] || 'support@lvlapp.com',
     password:             ENV['LVLAPP_SMTP_PASSWORD'],
-    authentication:       :login,
+    authentication:       :plain,
     ssl:                  true,
     tls:                  true,
     enable_starttls_auto: true
