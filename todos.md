@@ -1,6 +1,7 @@
 [[TODOs:]]
 
-- [] how to singularize words before they goes to dict http://api.rubyonrails.org/classes/ActiveSupport/Inflector.html#method-i-singularize
+- [] some problem with sign up that it redirects to non existing page
+- [] doesn't start transcript - probably the event was triggered late need to find a better way
 - [] add link to source - so there is no problem
 - [] style sign-up and add native language
   http://www.octolabs.com/posts/2013/1/17/styling_devise_with_twitter_bootstrap
@@ -76,3 +77,4 @@ DONE
 
 - [] When reaching the last line: (in skipWord) Uncaught TypeError: Cannot call method 'clearBuffer' of undefined 
 - [] and add views number to the audio_video, so it can be filtered by popularity, all, pagination. Improve nav
+- [] how to singularize words before they goes to dict http://api.rubyonrails.org/classes/ActiveSupport/Inflector.html#method-i-singularize
