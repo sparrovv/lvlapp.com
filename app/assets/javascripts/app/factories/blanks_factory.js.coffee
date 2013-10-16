@@ -28,10 +28,7 @@ LApp.factory "hardLevelBlanksGenerator", (blanksHelper) ->
     line.initTemporaryState()
     line.textWithBlanks = line.text
 
-    preFilteredWords = line.text.
-      replace(blanksHelper.SPECIAL_CHARS, "").
-      replace(blanksHelper.ANY_WORD_WITH_APHOSTROPHE, "").
-      split(" ")
+    preFilteredWords = blanksHelper.filterOutWeirdWords(line.text)
 
     filteredWords = _.filter preFilteredWords, (word) ->
       word.length > 1
