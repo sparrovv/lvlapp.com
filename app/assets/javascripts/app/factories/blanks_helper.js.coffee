@@ -4,7 +4,7 @@ LApp.factory "blanksHelper", (GameConfig) ->
   obj.NO_MATCH = "there_was_no_word_matching_criteria"
   obj.SPECIAL_CHARS = /[<>",.\(\)\[\]:;\|\?\!]/g
   obj.ANY_WORD_WITH_APOSTROPHE = /(\w+('|`|’)\w?)|(^|\s)'\w+/g
-  obj.SOUNDS = /\b(\w)\1+\b/g
+  obj.SOUNDS = /\b\w*(\w)\1{2,}\w*\b/g
   obj.BLANK_CHAR = GameConfig.blankChar
 
   obj.getRandomInt = (min, max) ->

@@ -31,10 +31,10 @@ describe "filterOutWeirdWords", ->
     )
 
     it "filters out words that has more than 2 same letters in a row", inject((blanksHelper) ->
-      text = "ooo foo llll"
-      expect(blanksHelper.filterOutWeirdWords(text)).toEqual(['foo'])
+      text = "ooohh yes I said it"
+      expect(blanksHelper.filterOutWeirdWords(text)).toEqual(['yes', 'I', 'said', 'it'])
 
-      text = "don't foo lll kickaboom"
+      text = "don't foo blllah kickaboom"
       expect(blanksHelper.filterOutWeirdWords(text)).toEqual(['foo', 'kickaboom'])
     )
 
