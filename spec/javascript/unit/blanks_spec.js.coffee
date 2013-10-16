@@ -7,7 +7,7 @@ describe "filterOutWeirdWords", ->
       text = 'Hey!()'
       expect(blanksHelper.filterOutWeirdWords(text)).toEqual(['Hey'])
 
-      text = '"<,.Hey?>;:'
+      text = '"<,.Hey?>;:*'
       expect(blanksHelper.filterOutWeirdWords(text)).toEqual(['Hey'])
     )
 
