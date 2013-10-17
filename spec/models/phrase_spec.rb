@@ -63,4 +63,16 @@ describe Phrase do
       expect(p.name).to eql 'knife'
     end
   end
+
+  describe '#sentence' do
+    it 'has sentence' do
+      phrase.sentence = "Improve your language skills by listening to your favourite songs."
+      expect(phrase.sentence).to eq "Improve your language skills by listening to your favourite songs."
+    end
+
+    it 'trims it to 255 chars' do
+      phrase.sentence = "i" * 300
+      expect(phrase.sentence.size).to eq 255
+    end
+  end
 end

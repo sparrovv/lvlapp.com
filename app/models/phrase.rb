@@ -23,4 +23,9 @@ class Phrase < ActiveRecord::Base
 
     repetition_date.to_time.to_i * 1000
   end
+
+  def sentence=(line)
+    line = line[0..254] if line.to_s.size > 255
+    super(line)
+  end
 end

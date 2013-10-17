@@ -37,7 +37,7 @@ describe PhrasesController do
           PhraseWorker.stub(:enrich)
         end
         def dispatch(audio_video)
-          post :create, audio_video_id: audio_video.id, phrase: {name: 'foobar'}
+          post :create, audio_video_id: audio_video.id, phrase: {name: 'foobar', sentence: 'This is foobar'}
         end
 
         it 'is success' do

@@ -1,5 +1,7 @@
 [[TODOs:]]
 
+- [] While adding phrase, add also line that this word is in. Consider even smarter adding by 
+- [] Add HUD - head up display, that will have some navs, prompts, messages, flash messages....kk
 - [] some problem with sign up that it redirects to non existing page
 - [] doesn't start transcript - probably the event was triggered late need to find a better way
 - [] add link to source - so there is no problem
@@ -10,19 +12,24 @@
 - [] make a footer with disclaimer about videos, contact
 - [] Add duration - on adding, or on first show....
 - [] Add featured flag
+
 - [] Filter what words can be add to the phrasebook, don't add missing ones, and maybe 1 letters, prepare filtter for that, so it decorates it wit...
+
 - [] TED videos preview images
-- [] Add HUD - head up display, that will have some navs, prompts, messages, flash messages....kk
-  [] Maybe line directive ? That would make a lot of sense
+- [] Maybe line directive ? That would make a lot of sense
+
 - [] debug what happens if there are words separated witch commas without space foo,bar  boys like these,younger
 - [] valdate transcript that after comma or colon, period there is a space
-- [] smarter feeeling blanks: fix: good bye
 
-- [] it sometimes skips line, I presume that is when it ends volumes down and the new line event is triggered... / That mabye was fixed when I updated smarter newline
 BUG:
 
-- [] Smarter blanks, there is some issue with: "why" whoa, ...
 - [] compressed javascript doesn't work
+
+- [] (BUG) Some singularized words shouldn't be singularized and when this is happen it can't find def/transaltion
+     Also verbs adjectives shouldn't be singularized.....
+
+- [] smarter feeeling blanks: fix: good bye
+- [] Smarter blanks, there is some issue with: "why" whoa, ...
 
 SUGESTIONS:
 
@@ -78,3 +85,4 @@ DONE
 - [] When reaching the last line: (in skipWord) Uncaught TypeError: Cannot call method 'clearBuffer' of undefined 
 - [] and add views number to the audio_video, so it can be filtered by popularity, all, pagination. Improve nav
 - [] how to singularize words before they goes to dict http://api.rubyonrails.org/classes/ActiveSupport/Inflector.html#method-i-singularize
+- [] it sometimes skips line, I presume that is when it ends volumes down and the new line event is triggered... / That mabye was fixed when I updated smarter newline
