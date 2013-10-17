@@ -47,11 +47,7 @@
 
       <ul style="top:{{currentLineTopPosition}}px">
         <li ng-repeat="line in transcript">
-        <p data-line-id={{line.htmlId()}} ng-controller="LineCtrl">
-          <span class="word" ng-click="lookUpInDict(this)" data-word="{{word}}" ng-repeat="word in line.words()">
-            <span class="raw-word" title='Add to pharsebook' ng-bind-html-unsafe="word">&nbsp;</span>
-          </span>
-        </p>
+          <pline line="line" add-to-phrasebook="addToPhrasebook(phrasedata)"></pline>
         </li>
       </ul>
     </div>

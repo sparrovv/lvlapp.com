@@ -18,10 +18,10 @@
             <td colspan="2"><span ng-repeat="definition in phrase.definition | limitTo:2">{{definition}}; </span></td>
           </tr>
           <tr>
-            <td>examples:</td>
+            <td>sentence:</td>
           </tr>
           <tr>
-            <td colspan="2"><span ng-repeat="example in phrase.examples | limitTo:2">{{example}}; </span></td>
+            <td colspan="2"><span>{{phrase.sentence}}</span></td>
           </tr>
           <tr>
             <td>related:</td>

@@ -1,9 +1,10 @@
-LApp.controller "TranscriptCtrl", ($scope, $timeout, $rootScope, LineTorch, GameConfig, GameStates, transcriptFactory, Stats, Key, audioVideo, SpellChecker, lineTimeoutService) ->
+LApp.controller "TranscriptCtrl", ($scope, $timeout, $rootScope, LineTorch, GameConfig, GameStates, transcriptFactory, Stats, Key, audioVideo, SpellChecker, lineTimeoutService, Phrase) ->
   $scope.currentState = GameStates.loading
   $scope.currentLineTopPosition = GameConfig.lineStartPosition
   $scope.level = 'normal'
 
   $scope.stats = Stats
+  $scope.transcriptFactory = transcriptFactory
   $scope.transcript = transcriptFactory.transcript
   $scope.transcriptTimeRange = LApp.getTimeRange($scope.transcript)
   $scope.currentLine = $scope.transcript[0]
@@ -164,5 +165,11 @@ LApp.controller "TranscriptCtrl", ($scope, $timeout, $rootScope, LineTorch, Game
     $scope.navigator.lineUp()          if action == 'lineUp'
     $scope.navigator.beginningOfline() if action == 'beginningOfline'
     SpellChecker.skipWord($scope)      if action == 'skipWord'
+
+  $scope.addToPhrasebook = (attrs) ->
+    return false if attrs.word.match(new RegExp(GameConfig.blankChar))
+    word = attrs.word.replace(/\W/g,'')
+
+    Phrase.create audioVideoId: audioVideo.id, name: attrs.word, sentence: attrs.sentence
 
   window.scope = $scope
