@@ -35,6 +35,10 @@ class AudioVideo < ActiveRecord::Base
     !!url.match(/youtube/i)
   end
 
+  def tedtalk?
+    !!url.match(/ted\.com/i)
+  end
+
   def transcript_in_hash
     JSON.parse(transcript).map{ |t|
       t['time'] = BigDecimal(t['time'].to_s)
