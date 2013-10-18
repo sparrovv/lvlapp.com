@@ -171,5 +171,6 @@ LApp.controller "TranscriptCtrl", ($scope, $timeout, $rootScope, LineTorch, Game
     word = attrs.word.replace(/\W/g,'')
 
     Phrase.create audioVideoId: audioVideo.id, name: attrs.word, sentence: attrs.sentence
+    Phrase.create audioVideoId: audioVideo.id, name: word, sentence: attrs.sentence
 
   window.scope = $scope
