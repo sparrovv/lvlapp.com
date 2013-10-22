@@ -168,9 +168,8 @@ LApp.controller "TranscriptCtrl", ($scope, $timeout, $rootScope, LineTorch, Game
 
   $scope.addToPhrasebook = (attrs) ->
     return false if attrs.word.match(new RegExp(GameConfig.blankChar))
-    word = attrs.word.replace(/\W/g,'')
+    sanitizedWord = attrs.word.replace(/\W/g,'')
 
-    Phrase.create audioVideoId: audioVideo.id, name: attrs.word, sentence: attrs.sentence
-    Phrase.create audioVideoId: audioVideo.id, name: word, sentence: attrs.sentence
+    Phrase.create audioVideoId: audioVideo.id, name: sanitizedWord, sentence: attrs.sentence
 
   window.scope = $scope

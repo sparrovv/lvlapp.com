@@ -1,5 +1,13 @@
 [[TODOs:]]
 
+- This should be debugged: updateCurrentTimeInterval()
+  Looks that if this is commentoed out then I can't get it working
+- [] Fix restarts!!!!!
+- [ ] When a new line triggers timeouts to volume up, and at the same time I go to the beginning of the line it doesn't seem to
+      clear that interval and bring volume to the max. That's annoying. 
+- [] Fix for clicking on youtube video:
+    - apply strange logic ____ if lineTimeoutService.nextLineTimeout && not lineTimeoutService.volumeInterval ____
+    - focus on play 
 - [] While adding phrase, add also line that this word is in. Consider even smarter adding by 
 - [] Add HUD - head up display, that will have some navs, prompts, messages, flash messages....kk
 - [] some problem with sign up that it redirects to non existing page
