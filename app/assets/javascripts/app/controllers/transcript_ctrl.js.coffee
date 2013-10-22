@@ -145,15 +145,13 @@ LApp.controller "TranscriptCtrl", ($scope, $timeout, $rootScope, LineTorch, Game
     $scope.currentLine = $scope.transcript[0]
     unbindKeyDownKeyPress()
     $scope.currentState = GameStates.setup
-    $scope.videoPlayer.setCurrentTime(0)
-    $scope.videoPlayer.pause()
+    $scope.videoPlayer.restart()
 
   $scope.selectGameLevel = (level, editMode='false')->
     $scope.level = level
     $scope.editMode = editMode
     $scope.currentState = GameStates.loading
-    $scope.videoPlayer.pause()
-    $scope.videoPlayer.setCurrentTime(0)
+    $scope.videoPlayer.start()
 
   $rootScope.$on 'userAction', (event, args) ->
     return unless GameStates.started($scope.currentState)

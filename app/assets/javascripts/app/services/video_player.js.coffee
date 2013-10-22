@@ -56,8 +56,18 @@ class LApp.VideoJSProxy
       if self.currentTime() < 0.16
         funct()
 
+  start: () ->
+    @pause()
+    @setCurrentTime(0)
+
+  restart: () ->
+    @setCurrentTime(0)
+    @pause()
+
 class LApp.YoutubVideoPlayerProxy
   constructor:(@original_player) ->
+    @startOfVideoTimeTreshold = 0.50
+    @videoStarted = false
 
   play: ->
     @original_player.playVideo()
@@ -91,5 +101,15 @@ class LApp.YoutubVideoPlayerProxy
   onVideoStart: (funct) ->
     self = @
     $(document).on 'youtubeVideoStart', ->
-      if self.currentTime() < 0.16
+      if (self.currentTime() < self.startOfVideoTimeTreshold) && self.videoStarted == false
         funct()
+
+  start: () ->
+    @videoStarted = false
+    @pause()
+    @setCurrentTime(0)
+
+  restart: () ->
+    @videoStarted = false
+    @setCurrentTime(0)
+    @pause()

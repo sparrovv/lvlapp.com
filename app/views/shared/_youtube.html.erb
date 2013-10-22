@@ -26,10 +26,12 @@
     $(document).trigger('youtubeVideoLoaded')
 
     var videotime = 0;
+
     function onYoutubePlayerStateChanged(status) {
       if(status.data == 0) {
         $(document).trigger('youtubeVideoEnded');
       }
+
       if(status.data == 1) {
         $(document).trigger('youtubeVideoStart');
       }
@@ -49,7 +51,7 @@
         }
       }
 
-      timeupdater = setInterval(updateTime, 100);
+      setInterval(updateTime, 100);
     }
   }
 </script>
