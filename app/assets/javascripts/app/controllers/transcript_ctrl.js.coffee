@@ -145,7 +145,6 @@ LApp.controller "TranscriptCtrl", ($scope, $timeout, $rootScope, LineTorch, Game
     $scope.currentLine = $scope.transcript[0]
     unbindKeyDownKeyPress()
     $scope.currentState = GameStates.setup
-    $scope.level = 'normal'
     $scope.videoPlayer.setCurrentTime(0)
     $scope.videoPlayer.pause()
 
