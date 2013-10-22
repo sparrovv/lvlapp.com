@@ -49,6 +49,14 @@ describe AudioVideo do
     expect(audio_video.errors).to include(:url)
   end
 
+  describe 'duration' do
+    it 'converts from string' do
+      audio_video.duration = '12.33333'
+      audio_video.save
+      audio_video.reload
+      expect(audio_video.duration).to eq BigDecimal.new('12.33')
+    end
+  end
 
   describe '#category' do
     it 'validates category' do

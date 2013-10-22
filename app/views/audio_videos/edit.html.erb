@@ -50,27 +50,11 @@
         </li>
       </ul>
     </div>
+    <p style="margin-top:10px;">
       [<span ng-repeat="line in transcript">
         { "time":"{{line.time}}", "text":"{{line.text}}"},
       </span>]
-  </div>
-
-  <div class="score span4" ng-controller="StatsCtrl">
-    <h4>Stats</h4>
-    <table class='table table-condensed sidebar-table'>
-      <tr>
-        <td>words</td><td>{{stats.guessed}} / {{stats.blanks}}</td>
-      </tr>
-      <tr>
-        <td>skipped</td><td>{{stats.skipped}}</td>
-      </tr>
-      <tr>
-        <td>mistakes</td><td>{{stats.mistakes}}</td>
-      </tr>
-      <tr>
-        <td>time</td><td>{{stats.currentTime() | millisecondsToTime}}</td>
-      </tr>
-    </table>
+    </p>
   </div>
 
   <div id="help" class="span4" ng-controller='HelpCtrl' >
@@ -86,16 +70,9 @@
     </table>
   </div>
 
-  <div id="phrase-book" ng-controller='PhrasesCtrl' class="span4">
-    <h4>Phrasebook</h4>
-    <% if current_user %>
+  <div ng-controller='AdminActionsCtrl' class="span4">
     <table class='table table-condensed sidebar-table'>
-      <tr class="" ng-repeat="phrase in phrases">
-        <td><phrase phrase-object={{phrase}}></phrase><td>
-      </tr>
+      <tr> <td><a ng-click='saveVideoDuration()'>save</a></td><td>save Video length</td> </tr>
     </table>
-    <% else %>
-      <p> Please <%= link_to 'sign in', user_session_path %> to add a word to your phrase book.<br /> Just click on the word you're interested.</p>
-    <% end %>
   </div>
 </div>

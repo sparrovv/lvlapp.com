@@ -1,5 +1,5 @@
 class AudioVideosController < ApplicationController
-  before_filter :load_categories
+  before_filter :load_categories, only: [:index, :show]
   before_filter :authenticate_user!, only: [:edit]
 
   def index
@@ -20,6 +20,14 @@ class AudioVideosController < ApplicationController
     @audio_video = AudioVideo.find(params[:id])
   end
 
+  def update
+    @audio_video = AudioVideo.find(params[:id])
+    @audio_video.duration = duration
+    @audio_video.save
+
+    render json: @audio_video, status: 200
+  end
+
   private
   def load_categories
     @categories = Category.all
@@ -31,5 +39,9 @@ class AudioVideosController < ApplicationController
 
   def view_counter
     ViewCounter.new
+  end
+
+  def duration
+    params.required(:duration)
   end
 end

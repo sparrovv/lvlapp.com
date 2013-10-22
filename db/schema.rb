@@ -11,20 +11,20 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20131017201942) do
+ActiveRecord::Schema.define(version: 20131022150451) do
 
   create_table "audio_videos", force: true do |t|
     t.string   "name"
     t.text     "description"
     t.text     "transcript"
     t.string   "url"
-    t.integer  "length"
+    t.decimal  "duration",    precision: 16, scale: 2
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "category_id"
     t.integer  "level_id"
     t.string   "status"
-    t.integer  "views_count", default: 0
+    t.integer  "views_count",                          default: 0
   end
 
   add_index "audio_videos", ["category_id"], name: "index_audio_videos_on_category_id", using: :btree
