@@ -20,13 +20,9 @@ LApp.controller "TranscriptCtrl", ($scope, $timeout, $rootScope, LineTorch, Game
         lineTimeoutService.pauseOnNonFinishedLine($scope)
 
   videoCallbacks = (videoPlayer) ->
-    updateCurrentTimeInterval = ->
-      $scope.cancelRefresh = $timeout(->
-        $rootScope.$emit('currentVideoTime', {time: videoPlayer.currentTime()})
-
-        if $scope.currentState != GameStates.finished && $scope.currentState != GameStates.setup
-          $scope.cancelRefresh = $timeout(updateCurrentTimeInterval, 300)
-      ,300)
+    currentTimeInterval = null
+    updateCurrentTime = ->
+      $rootScope.$emit('currentVideoTime', {time: videoPlayer.currentTime()})
 
     onVideoStart = ->
       return if $scope.currentState != GameStates.loading # safeguard, so it won't triggered twice
@@ -42,14 +38,17 @@ LApp.controller "TranscriptCtrl", ($scope, $timeout, $rootScope, LineTorch, Game
       $scope.play()
       bindNewLineListener()
       $('#transcript-player').focus()
-      updateCurrentTimeInterval()
+
+      currentTimeInterval = setInterval(updateCurrentTime, 300)
 
     onVideoEnded = ->
       $scope.removeNewLineListener()
       $scope.currentState = GameStates.finished
       Stats.persist()
+      clearInterval(currentTimeInterval)
 
     $scope.currentState = GameStates.setup
+    $scope.$digest() if !$scope.$$phase
     videoPlayer.onVideoStart(onVideoStart)
     videoPlayer.onVideoEnded(onVideoEnded)
 
