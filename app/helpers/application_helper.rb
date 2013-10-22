@@ -22,4 +22,8 @@ module ApplicationHelper
     when :alert then "alert alert-error"
     end
   end
+
+  def common_languages_list
+    LanguageList::COMMON_LANGUAGES.map{|l| [l.name, l.iso_639_1] }
+  end
 end
