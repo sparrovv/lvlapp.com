@@ -30,6 +30,8 @@ gem 'puma'
 
 gem 'wordnik'
 gem 'bing_translator', '~> 4.0'
+gem 'language_list', '~> 1.0.0'
+gem 'simple_form'
 
 # parse srt input files
 gem 'srt'
