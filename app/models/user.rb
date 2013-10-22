@@ -11,4 +11,10 @@ class User < ActiveRecord::Base
   def phrases_by_audio_video(audio_video)
     phrases.where(audio_video: audio_video)
   end
+
+  def native_language
+  end
+
+  def native_language=()
+  end
 end
