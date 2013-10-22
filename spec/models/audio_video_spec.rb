@@ -58,6 +58,16 @@ describe AudioVideo do
     end
   end
 
+  describe '#featured' do
+    let!(:audio_video_1) { create(:audio_video, featured: true)}
+    let!(:audio_video_2) { create(:audio_video, featured: false)}
+
+    it 'loads featured videos' do
+      expect(AudioVideo.featured.size).to be 1
+      expect(AudioVideo.featured).to include audio_video_1
+    end
+  end
+
   describe '#category' do
     it 'validates category' do
       category = build(:category)

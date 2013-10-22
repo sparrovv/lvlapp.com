@@ -29,6 +29,8 @@ class AudioVideo < ActiveRecord::Base
   }
 
   scope :popular, -> { where("views_count > 0").order("views_count DESC") }
+  scope :featured, -> { where(featured: true) }
+
   delegate :name, to: :level, :prefix => true, :allow_nil => true
 
   def youtube?
