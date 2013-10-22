@@ -1,29 +1,31 @@
 [[TODOs:]]
 
-- [] Add featured flag
 - [] Add HUD - head up display, that will have some navs, prompts, messages, flash messages....kk
 
-- [] Fix restarts!!!!! (what?, don't remember what I was referring to)
+- [] When a new line triggers timeouts to volume up, and at the same time I go to the beginning of the line it doesn't seem to clear that interval and bring volume to the max. That's annoying. 
 
-- [ ] When a new line triggers timeouts to volume up, and at the same time I go to the beginning of the line it doesn't seem to
-      clear that interval and bring volume to the max. That's annoying. 
-
+- [] add link to source - so there is no problem
 - [] Fix for clicking on youtube video:
     - apply strange logic ____ if lineTimeoutService.nextLineTimeout && not lineTimeoutService.volumeInterval ____
     - focus on play 
 
-- [] some problem with sign up that it redirects to non existing page
+- [] Finish up the memorize section
+     - agree on first version: word | definition / usage in a word / translation .. more
+     - For now there gonna be 3 ways to repeat:
+       - per video
+       - per 10/20 the least known
 
-- [] add link to source - so there is no problem
-- [] style sign-up and add native language
-  http://www.octolabs.com/posts/2013/1/17/styling_devise_with_twitter_bootstrap
 
+- [] Game Data score per video and overall user score, so it introduces a way to compete with
+     another users...
 
 - [] Filter what words can be add to the phrasebook, don't add missing ones, and maybe 1 letters, prepare filtter for that, so it decorates it wit...
 
 - [] debug what happens if there are words separated witch commas without space foo,bar  boys like these,younger
 - [] validate transcript that after comma or colon, period there is a space
 - [] Smarter adding line when adding to phrasebook, whole sentence
+
+- [] Fix restarts!!!!! (what?, don't remember what I was referring to)
 
 BUG:
 
@@ -99,3 +101,9 @@ DONE
 - [] TED videos preview images
 - [] Maybe line directive ? That would make a lot of sense
 - [] While adding phrase, add also line that this word is in
+- [] Add featured flag
+- [] some problem with sign up that it redirects to non existing page
+- [] style sign-up and add native language
+  http://www.octolabs.com/posts/2013/1/17/styling_devise_with_twitter_bootstrap
+
+
