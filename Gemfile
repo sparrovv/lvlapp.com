@@ -36,6 +36,7 @@ gem 'simple_form'
 # parse srt input files
 gem 'srt'
 group :development do
+  gem 'quiet_assets'
   gem 'capistrano'
   gem 'capistrano_colors'
   gem 'capistrano-ext'
