@@ -5,16 +5,12 @@ class User < ActiveRecord::Base
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable
 
+  validates :native_language, presence: true
+
   has_many :phrases
   has_many :game_data
 
   def phrases_by_audio_video(audio_video)
     phrases.where(audio_video: audio_video)
-  end
-
-  def native_language
-  end
-
-  def native_language=()
   end
 end

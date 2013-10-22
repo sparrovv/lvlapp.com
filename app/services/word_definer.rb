@@ -1,11 +1,12 @@
 class WordDefiner
 
-  def self.get(word)
-    self.new(word).to_attrs
+  def self.get(word, native_language)
+    self.new(word, native_language).to_attrs
   end
 
-  def initialize(word)
+  def initialize(word, native_language)
     @word = word
+    @native_language = native_language
   end
 
   def to_attrs
@@ -36,7 +37,8 @@ class WordDefiner
   end
 
   def translation
-    Translator.new.translate(@word)
+    phrase_lang = 'en'
+    Translator.new.translate(@word, phrase_lang, @native_language)
   end
 
   class Translator

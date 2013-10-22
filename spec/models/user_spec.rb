@@ -7,6 +7,11 @@ describe User do
     user.should be_valid
   end
 
+  it 'validates native language presence' do
+    user.native_language = nil
+    expect(user).to_not be_valid
+  end
+
   it 'has admin flag false by default' do
     user = User.new
     expect(user.admin?).to be_false

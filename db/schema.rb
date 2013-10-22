@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20131022154634) do
+ActiveRecord::Schema.define(version: 20131022195132) do
 
   create_table "audio_videos", force: true do |t|
     t.string   "name"
@@ -99,6 +99,7 @@ ActiveRecord::Schema.define(version: 20131022154634) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.boolean  "admin",                  default: false
+    t.string   "native_language"
   end
 
   add_index "users", ["admin"], name: "index_users_on_admin", using: :btree

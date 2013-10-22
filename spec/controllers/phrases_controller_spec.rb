@@ -59,7 +59,7 @@ describe PhrasesController do
         end
 
         it 'calls PhraseWorker.assign' do
-          PhraseWorker.should_receive(:enrich).with(kind_of Phrase)
+          PhraseWorker.should_receive(:enrich).with((kind_of Phrase), user.native_language)
 
           dispatch(audio_video)
         end

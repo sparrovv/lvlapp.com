@@ -15,7 +15,7 @@ class PhrasesController < ApplicationController
     phrase.singularize_phrase()
 
     if phrase.save
-      PhraseWorker.enrich(phrase)
+      PhraseWorker.enrich(phrase, current_user.native_language)
       render :json => phrase
     else
       render :json => phrase.errors, :status => 409

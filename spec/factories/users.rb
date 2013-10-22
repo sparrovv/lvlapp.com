@@ -6,6 +6,7 @@ FactoryGirl.define do
       "person#{n}@example.com"
     end
 
+    native_language 'pl'
     password 'foobar12'
     password_confirmation 'foobar12'
   end
