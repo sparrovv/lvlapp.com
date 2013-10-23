@@ -25,7 +25,9 @@
 - [] validate transcript that after comma or colon, period there is a space
 - [] Smarter adding line when adding to phrasebook, whole sentence
 
-- [] Fix restarts!!!!! (what?, don't remember what I was referring to)
+- [] Fix puma server restarts! That's annoying that service unavailable. 
+     Get some check or
+- [] Use postgresql
 
 BUG:
 
