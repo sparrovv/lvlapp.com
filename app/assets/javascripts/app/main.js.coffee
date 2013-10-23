@@ -1,4 +1,4 @@
-@LApp = angular.module("LApp", ['ngResource'])
+@LApp = angular.module("LApp", ['ngResource','ui.bootstrap'])
 
 @LApp.config ["$httpProvider", ($httpProvider) ->
   csrfToken = $('meta[name=csrf-token]').attr('content')

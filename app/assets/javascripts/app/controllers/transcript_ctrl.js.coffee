@@ -22,7 +22,7 @@ LApp.controller "TranscriptCtrl", ($scope, $timeout, $rootScope, LineTorch, Game
   videoCallbacks = (videoPlayer) ->
     currentTimeInterval = null
     updateCurrentTime = ->
-      $rootScope.$emit('currentVideoTime', {time: videoPlayer.currentTime()})
+      $rootScope.$emit('currentVideoTime', {time: videoPlayer.currentTime(), duration: videoPlayer.duration()})
 
     onVideoStart = ->
       return if $scope.currentState != GameStates.loading # safeguard, so it won't triggered twice
