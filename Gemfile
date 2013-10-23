@@ -33,6 +33,9 @@ gem 'bing_translator', '~> 4.0'
 gem 'language_list', '~> 1.0.0'
 gem 'simple_form'
 
+# errors reporting
+gem "sentry-raven", :git => "https://github.com/getsentry/raven-ruby.git"
+
 # parse srt input files
 gem 'srt'
 group :development do
