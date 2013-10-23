@@ -5,6 +5,7 @@
 - [] When a new line triggers timeouts to volume up, and at the same time I go to the beginning of the line it doesn't seem to clear that interval and bring volume to the max. That's annoying. 
 
 - [] add link to source - so there is no problem
+- [] add friendlyid - slugs http://norman.github.io/friendly_id/file.Guide.html
 - [] Fix for clicking on youtube video:
     - apply strange logic ____ if lineTimeoutService.nextLineTimeout && not lineTimeoutService.volumeInterval ____
     - focus on play 
@@ -25,8 +26,6 @@
 - [] validate transcript that after comma or colon, period there is a space
 - [] Smarter adding line when adding to phrasebook, whole sentence
 
-- [] Fix puma server restarts! That's annoying that service unavailable. 
-     Get some check or
 - [] Use postgresql
 
 BUG:
@@ -107,5 +106,7 @@ DONE
 - [] some problem with sign up that it redirects to non existing page
 - [] style sign-up and add native language
   http://www.octolabs.com/posts/2013/1/17/styling_devise_with_twitter_bootstrap
+- [] Added favicon, nothing special, but errors in log were irritating
 
-
+- [] Fix puma server restarts! That's annoying that service unavailable. 
+     Switched to TCP socket, hope it will be more reliable.
