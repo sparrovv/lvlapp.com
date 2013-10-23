@@ -44,7 +44,7 @@ environment 'production'
 # Use “path” as the file to store the server info state. This is
 # used by “pumactl” to query and control the server.
 #
-# state_path '/u/apps/lolcat/tmp/pids/puma.state'
+state_path '/home/sparrovv/lvlapp/shared/sockets/puma.state'
 
 # Redirect STDOUT and STDERR to files specified. The 3rd parameter
 # (“append”) specifies whether the output is appended, the default is
