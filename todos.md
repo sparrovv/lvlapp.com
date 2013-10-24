@@ -1,6 +1,7 @@
 [[TODOs:]]
 
 - [] add friendlyid - slugs http://norman.github.io/friendly_id/file.Guide.html
+- [ ] Had to stop start puma afeter adding gem, cause restart didn't help
 - [] Add HUD - head up display, that will have some navs, prompts, messages, flash messages....kk
 
 - [] When a new line triggers timeouts to volume up, and at the same time I go to the beginning of the line it doesn't seem to clear that interval and bring volume to the max. That's annoying. 

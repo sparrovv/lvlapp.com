@@ -1,3 +1,4 @@
+<% title('learn language by playing: ' + @audio_video.name) %>
 <script> window.audioVideo = <%= raw @audio_video.to_json %>; </script>
 <script> window.isYoutubeVideo = <%= raw @audio_video.youtube? %>; </script>
 
