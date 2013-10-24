@@ -1,11 +1,11 @@
 [[TODOs:]]
 
+- [] add friendlyid - slugs http://norman.github.io/friendly_id/file.Guide.html
 - [] Add HUD - head up display, that will have some navs, prompts, messages, flash messages....kk
 
 - [] When a new line triggers timeouts to volume up, and at the same time I go to the beginning of the line it doesn't seem to clear that interval and bring volume to the max. That's annoying. 
 
 - [] add link to source - so there is no problem
-- [] add friendlyid - slugs http://norman.github.io/friendly_id/file.Guide.html
 - [] Fix for clicking on youtube video:
     - apply strange logic ____ if lineTimeoutService.nextLineTimeout && not lineTimeoutService.volumeInterval ____
     - focus on play 

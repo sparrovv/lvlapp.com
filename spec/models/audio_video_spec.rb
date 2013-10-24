@@ -31,6 +31,12 @@ describe AudioVideo do
     end
   end
 
+  it 'generates slug before validation' do
+    audio_video.name = 'foo bar'
+    audio_video.valid?
+    expect(audio_video.slug).to eq 'foo-bar'
+  end
+
   it 'validates name' do
     audio_video.name = nil
     expect(audio_video).to_not be_valid

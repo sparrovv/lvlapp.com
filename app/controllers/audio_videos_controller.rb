@@ -10,18 +10,18 @@ class AudioVideosController < ApplicationController
   end
 
   def show
-    @audio_video = AudioVideo.find(params[:id])
+    @audio_video = AudioVideo.friendly.find(params[:id])
     view_counter.increment(@audio_video, cookies)
   end
 
   def edit
     raise 'You have to be ADMIN' unless current_user.admin?
 
-    @audio_video = AudioVideo.find(params[:id])
+    @audio_video = AudioVideo.friendly.find(params[:id])
   end
 
   def update
-    @audio_video = AudioVideo.find(params[:id])
+    @audio_video = AudioVideo.friendly.find(params[:id])
     @audio_video.duration = duration
     @audio_video.save
 

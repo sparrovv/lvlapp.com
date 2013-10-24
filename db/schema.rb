@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20131022195132) do
+ActiveRecord::Schema.define(version: 20131024172256) do
 
   create_table "audio_videos", force: true do |t|
     t.string   "name"
@@ -26,11 +26,12 @@ ActiveRecord::Schema.define(version: 20131022195132) do
     t.string   "status"
     t.integer  "views_count",                          default: 0
     t.boolean  "featured"
+    t.string   "slug"
   end
 
   add_index "audio_videos", ["category_id"], name: "index_audio_videos_on_category_id", using: :btree
-  add_index "audio_videos", ["featured"], name: "index_audio_videos_on_featured", using: :btree
   add_index "audio_videos", ["level_id"], name: "index_audio_videos_on_level_id", using: :btree
+  add_index "audio_videos", ["slug"], name: "index_audio_videos_on_slug", unique: true, using: :btree
   add_index "audio_videos", ["status"], name: "index_audio_videos_on_status", using: :btree
   add_index "audio_videos", ["views_count"], name: "index_audio_videos_on_views_count", using: :btree
 
