@@ -7,6 +7,20 @@ LApp.factory "blanksHelper", (GameConfig) ->
   obj.SOUNDS = /\b\w*(\w)\1{2,}\w*\b/g
   obj.BLANK_CHAR = GameConfig.blankChar
 
+  obj.decorateWithBlank = (line) ->
+    removedWord = obj.cutRandomWord(line.text)
+
+    if removedWord is obj.NO_MATCH
+      line.textWithBlanks = line.text
+    else
+      index = line.text.indexOf(removedWord)
+      line.removedWordsCollection.push(new LApp.RemovedWord(removedWord, index))
+      line.textWithBlanks = line.text.replace(
+        new RegExp(removedWord), Array(removedWord.length + 1).join(obj.BLANK_CHAR)
+      )
+
+    line
+
   obj.getRandomInt = (min, max) ->
     Math.floor Math.random() * (max - min) + min
 
