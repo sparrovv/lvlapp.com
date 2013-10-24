@@ -17,12 +17,18 @@
 
 $logo-color: #d95525;
 
+h1,h2,h3,h4,h5{
+  font-weight: 400;
+}
+
 .navbar {
+  .container{
+    width:1200px;
+  }
   font-family: "News Cycle", "Arial Narrow Bold", sans-serif;
-  font-size: 18px;
-  font-weight: bold;
+  font-size: 16px;
+  font-weight: normal;
   color: #000;
-  border-bottom: 2px solid #eeeeee;
   margin-bottom: 0px;
 }
 
@@ -31,16 +37,19 @@ $logo-color: #d95525;
   padding: 10px 15px;
   font-size: 19px;
   line-height: 21px;
+  font-weight: bold;
 }
 
 .navbar-default .navbar-brand {
+  text-transform: uppercase;
   color: $logo-color;
 }
 
 .nav{
+  text-transform: uppercase;
   form{
     margin:0;
-    padding: 10px 15px 10px;
+    padding: 8px 15px 0px;
   }
 }
 

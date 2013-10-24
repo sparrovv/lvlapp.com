@@ -2,7 +2,7 @@
 <script> window.audioVideo = <%= raw @audio_video.to_json %>; </script>
 <script> window.isYoutubeVideo = <%= raw @audio_video.youtube? %>; </script>
 
-<div class="">
+<div class="span12">
   <h3>
     <%= @audio_video.name %> 
     <% if current_user && current_user.admin? %> 
@@ -10,7 +10,8 @@
     <% end %> 
   </h3>
 </div>
-<div ng-app='LApp' class="row">
+
+<div ng-app='LApp' class="">
   <div class="span8">
     <div class='player-containter'>
     <% if @audio_video.youtube? %>
