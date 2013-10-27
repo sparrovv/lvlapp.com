@@ -1,4 +1,7 @@
 class AudioVideo < ActiveRecord::Base
+  extend FriendlyId
+  friendly_id :name, :use => :slugged
+
   ACTIVE = 'active'
   PENDING = 'pending'
 

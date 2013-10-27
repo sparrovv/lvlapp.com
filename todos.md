@@ -1,12 +1,14 @@
 [[TODOs:]]
 
 - [] Add HUD - head up display, that will have some navs, prompts, messages, flash messages....kk
+- [] translate whole line, it can be useful in case of phrasals or some expressions with 
+- [] Consider switching to google translate - it's about 20bucks for 125000 words, it's not so bad....
+- [] ISSUE: After adding gem I Had to stop and start puma, because restart didn't help
 
 - [] When a new line triggers timeouts to volume up, and at the same time I go to the beginning of the line it doesn't seem to clear that interval and bring volume to the max. That's annoying. 
 
 - [] add link to source - so there is no problem
-- [] add friendlyid - slugs http://norman.github.io/friendly_id/file.Guide.html
-- [] Fix for clicking on youtube video:
+- [] Fix clicking on youtube video:
     - apply strange logic ____ if lineTimeoutService.nextLineTimeout && not lineTimeoutService.volumeInterval ____
     - focus on play 
 
@@ -15,16 +17,15 @@
      - For now there gonna be 3 ways to repeat:
        - per video
        - per 10/20 the least known
+- [] Memorise - add image search
 
-
-- [] Game Data score per video and overall user score, so it introduces a way to compete with
-     another users...
+- [] Game Data score per video and overall user score, so it introduces a way to compete with another users...
 
 - [] Filter what words can be add to the phrasebook, don't add missing ones, and maybe 1 letters, prepare filtter for that, so it decorates it wit...
 
 - [] debug what happens if there are words separated witch commas without space foo,bar  boys like these,younger
 - [] validate transcript that after comma or colon, period there is a space
-- [] Smarter adding line when adding to phrasebook, whole sentence
+- [] Smarter adding line when adding to phrasebook, whole sentence (from . to . - it can be a problem casue transcript is without periods)
 
 - [] Use postgresql
 
@@ -110,3 +111,4 @@ DONE
 
 - [] Fix puma server restarts! That's annoying that service unavailable. 
      Switched to TCP socket, hope it will be more reliable.
+- [] add friendlyid - slugs http://norman.github.io/friendly_id/file.Guide.html

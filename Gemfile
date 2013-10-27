@@ -32,6 +32,7 @@ gem 'wordnik'
 gem 'bing_translator', '~> 4.0'
 gem 'language_list', '~> 1.0.0'
 gem 'simple_form'
+gem 'friendly_id', git: 'https://github.com/norman/friendly_id.git', branch: '5.0-stable'
 
 # errors reporting
 gem "sentry-raven", :git => "https://github.com/getsentry/raven-ruby.git"

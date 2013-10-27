@@ -7,6 +7,14 @@ GIT
       hashie (>= 1.1.0)
       uuidtools
 
+GIT
+  remote: https://github.com/norman/friendly_id.git
+  revision: 2764077e3af32a88114d68c75e20ef738e4fa829
+  branch: 5.0-stable
+  specs:
+    friendly_id (5.0.0)
+      activerecord (~> 4.0.0)
+
 GEM
   remote: https://rubygems.org/
   specs:
@@ -257,6 +265,7 @@ DEPENDENCIES
   devise
   execjs
   factory_girl_rails
+  friendly_id!
   jbuilder (~> 1.2)
   jquery-rails
   language_list (~> 1.0.0)

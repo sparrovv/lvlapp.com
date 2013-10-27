@@ -1,6 +1,6 @@
 <script> window.phrases = <%= raw @phrases.to_json(methods:[:repetition_date_js]) %>; </script>
 
-<h1>Memorize</h1>
+<h4>Repetition</h4>
 
 <div ng-app='LApp' class="row">
 <div ng-controller='MemorizeCtrl'>
@@ -11,7 +11,7 @@
       </div>
     </div>
 
-    <div class='show-answer center'> <a ng-click='showAnswer()'> Show answer </a></div>
+    <div class='show-answer center'> <a ng-click='showAnswer(this)'> Show answer </a></div>
 
     <div class='answer center {{state}}'> 
       <flashcardanswer answer='flashCard.answer'></flashcardanswer>
@@ -23,11 +23,11 @@
       <a ng-click='rateAnswer("good")'>Good</a>
       <a ng-click='rateAnswer("easy")'>Easy</a>
     </div>
-    <div class='exit'>
-      <a ng-click='saveAndExit()'>Save and exit</a>
-    </div>
   </div>
   <div class='memoize span2'>
+    <div class='exit center'>
+      <a ng-click='saveAndExit()'>Save and exit</a>
+    </div>
     <div class='stats'>
       <div class='left'>all = {{flashCardObj.flashCards.length}}</div>
       <div class='left'>today = {{flashCardObj.forRepetition.length}}</div>

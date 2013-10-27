@@ -100,7 +100,8 @@ $videoSetupBG: #44403C; //#262C35;
   color:   #2BBBD8;
 
   h3{
-    color: #d95525;
+    color: #E4B67C;//#d95525;
+    font-weight:normal;
   }
 
   a {
@@ -116,8 +117,11 @@ $videoSetupBG: #44403C; //#262C35;
     width: 60%;
     left:20%;
     li{
-      padding: 5px;
-      border: 1px solid
+      padding: 4px;
+      border-bottom: 1px dotted #747577;
+      &:nth-last-child(-n+2){
+        border-bottom: none;
+      }
     }
   }
   a{

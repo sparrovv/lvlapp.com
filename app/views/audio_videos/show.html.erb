@@ -1,7 +1,8 @@
+<% title('level up a language by playing: ' + @audio_video.name) %>
 <script> window.audioVideo = <%= raw @audio_video.to_json %>; </script>
 <script> window.isYoutubeVideo = <%= raw @audio_video.youtube? %>; </script>
 
-<div class="">
+<div class="span12">
   <h3>
     <%= @audio_video.name %> 
     <% if current_user && current_user.admin? %> 
@@ -9,7 +10,8 @@
     <% end %> 
   </h3>
 </div>
-<div ng-app='LApp' class="row">
+
+<div ng-app='LApp' class="">
   <div class="span8">
     <div class='player-containter'>
     <% if @audio_video.youtube? %>
@@ -37,10 +39,13 @@
       <div class='game-menu game-shared-screen {{currentState}}'>
         <h3>Select difficulty:</h3>
         <ul>
-          <li><a ng-click="selectGameLevel('karaoke')">Karaoke</a></li>
+          <li><a ng-click="selectGameLevel('easy')">Easy</a></li>
           <li><a ng-click="selectGameLevel('normal')">Normal</a></li>
           <li><a ng-click="selectGameLevel('hard')">Hard</a></li>
+          <li></li>
+          <li><a ng-click="selectGameLevel('karaoke')">Or just listen</a></li>
         </ul>
+
       </div>
 
       <div class='game-starting game-shared-screen {{currentState}}'></div>

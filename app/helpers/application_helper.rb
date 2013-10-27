@@ -1,4 +1,8 @@
 module ApplicationHelper
+  def title(page_title)
+    content_for :title, page_title.to_s
+  end
+
   def flash_messages
     return if flash.empty?
 
