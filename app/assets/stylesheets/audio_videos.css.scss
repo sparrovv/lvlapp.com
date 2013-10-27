@@ -1,5 +1,14 @@
 $videoSetupBG: #44403C; //#262C35;
 
+@mixin notSelectable(){
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -khtml-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
 .highlight {
   background: #C7E7FF;
 }
@@ -9,20 +18,73 @@ $videoSetupBG: #44403C; //#262C35;
   background: image-url('spinner.gif') no-repeat 50% 50%;
 }
 
+.video-info{
+  @include notSelectable();
+  height:20px;
+  z-index:59px;
+  text-left: right;
+  background: #44403C;
+  color: #F7F1D9;
+
+  .app-controls{
+    width:18%;
+    float:left;
+    .play, .pause{
+      display:none;
+    }
+
+    a{
+      color: #F7F1D9;
+      padding:0 3px;
+      cursor:pointer;
+      &:hover{
+        color: #d95525;
+        text-decoration: none;
+      }
+    }
+  }
+
+
+  .app-controls.paused{
+    .play{
+      display: inline;
+    }
+  }
+  .app-controls.playing{
+    .pause{
+      display: inline;
+    }
+  }
+
+  .app-progress{
+    margin-left:1%;
+    height:20px;
+    width:68%;
+    float:left;
+    .progress{
+      margin:7px 0 0 0;
+      height:5px;
+    }
+  }
+  .app-time{
+    text-align:right;
+    margin-left:1%;
+    width:10%;
+    float:left;
+  }
+  clear:left;
+}
 .transcript-player{
+  clear:left;
   position: relative;
   height: 300px;
   overflow: hidden;
-  border-left: 1px solid;
-  border-right: 1px solid;
+  border-left: 1px solid #000;
+  border-right: 1px solid #000;
+  border-bottom: 1px solid #000;
 
-  .video-info{
-    text-align: right;
-    background: #44403C;
-    color: #F7F1D9;
-    span{
-      padding: 0 10px;
-    }
+  &:focus{
+    outline:none;
   }
 
   .controls{

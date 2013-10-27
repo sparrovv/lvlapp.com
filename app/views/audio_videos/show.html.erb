@@ -21,12 +21,25 @@
     <%end %>
     </div>
 
-    <div id="transcript-player" data-id='text-player' tabindex="1" ng-controller="TranscriptCtrl" ng-keypress='listenForKey' class='transcript-player'>
-      <div class='video-info' ng-controller="VideoInfoCtrl">
-        <div><progress percent="progressValue"></progress></div>
-
-        <span>{{progressValue}}</a>
+    <div class='video-info' ng-controller="VideoInfoCtrl">
+      <div class='app-controls {{currentState}}'>
+        <a title='play/pause' class='play' ng-click='invokeAction("togglePlayer")'>▷</a>
+        <a title='pause' class='pause' ng-click='invokeAction("togglePlayer")'>‖</a>
+        <a title='skip word' ng-click='invokeAction("skipWord")'>&#x21E5;</a>
+        <a title='line up' ng-click='invokeAction("lineUp")'>⊻</a>
+        <a title='line down' ng-click='invokeAction("lineDown")'>⊼</a>
+        <a title='replay line' ng-click='invokeAction("beginningOfline")'>↺</a>
+        <a title='restart game' ng-click="restartGame()">⌽</a>
       </div>
+      <div class='app-progress'>
+        <progress percent="progressValue"></progress>
+      </div>
+      <div class='app-time'>{{currentVideoTime | toMinSec}} / {{videoDuration | toMinSec}}</div>
+    </div>
+
+    <div id="transcript-player" data-id='text-player' tabindex="1" ng-controller="TranscriptCtrl" ng-keypress='listenForKey' class='transcript-player'>
+
+
       <div class='game-end game-shared-screen {{currentState}}'>
         <h3>Congratulations! </h3>
         <p>It took you {{stats.time | millisecondsToTime}} to complete that video.</p>
@@ -49,11 +62,6 @@
       </div>
 
       <div class='game-starting game-shared-screen {{currentState}}'></div>
-
-      <div class='controls'>
-        <a ng-click="restartGame()">Restart game</a>
-        <span>{{currentVideoTime}}</a>
-      </div>
 
       <ul style="top:{{currentLineTopPosition}}px">
         <li ng-repeat="line in transcript">

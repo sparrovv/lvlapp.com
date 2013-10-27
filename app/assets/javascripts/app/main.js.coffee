@@ -17,14 +17,17 @@ gameConfig =
   blankChar: '_'#'•'
 
 gameStates =
+  current: ''
   loading: 'starting'
   setup: 'setup'
   paused: 'paused'
   playing: 'playing'
   finished: 'finished'
-  started: (currentState) ->
+  isStarted: (currentState) ->
     _.contains(['playing', 'paused'], currentState)
 
+  isNotStarted: (currentState) ->
+    _.contains(['loading', 'setup'], currentState)
 
 @LApp.constant 'GameConfig', gameConfig
 @LApp.constant 'GameStates', gameStates

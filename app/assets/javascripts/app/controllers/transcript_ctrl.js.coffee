@@ -1,5 +1,9 @@
 LApp.controller "TranscriptCtrl", ($scope, $timeout, $rootScope, LineTorch, GameConfig, GameStates, transcriptFactory, Stats, Key, audioVideo, SpellChecker, lineTimeoutService, Phrase) ->
-  $scope.currentState = GameStates.loading
+  setCurrentState= (state) ->
+    GameStates.current = state
+    $scope.currentState = state
+
+  setCurrentState(GameStates.loading)
   $scope.currentLineTopPosition = GameConfig.lineStartPosition
   $scope.level = 'normal'
 
@@ -43,11 +47,11 @@ LApp.controller "TranscriptCtrl", ($scope, $timeout, $rootScope, LineTorch, Game
 
     onVideoEnded = ->
       $scope.removeNewLineListener()
-      $scope.currentState = GameStates.finished
+      setCurrentState(GameStates.finished)
       Stats.persist()
       clearInterval(currentTimeInterval)
 
-    $scope.currentState = GameStates.setup
+    setCurrentState(GameStates.setup)
     $scope.$digest() if !$scope.$$phase
     videoPlayer.onVideoStart(onVideoStart)
     videoPlayer.onVideoEnded(onVideoEnded)
@@ -62,7 +66,7 @@ LApp.controller "TranscriptCtrl", ($scope, $timeout, $rootScope, LineTorch, Game
   $scope.setCurrentLine = (line) ->
     lineTimeoutService.clearNextLineTimeout($scope)
     $scope.currentLine = line
-    $scope.currentState = GameStates.playing
+    setCurrentState(GameStates.playing)
     $scope.videoPlayer.setCurrentTime(line.time)
     $scope.$digest() if !$scope.$$phase
 
@@ -123,7 +127,7 @@ LApp.controller "TranscriptCtrl", ($scope, $timeout, $rootScope, LineTorch, Game
   # As a workaround to make it possible to play the current paused line, it starts from the beginning.
   $scope.play = ->
     lineTimeoutService.clearNextLineTimeout($scope)
-    $scope.currentState = GameStates.playing
+    setCurrentState(GameStates.playing)
 
     if $scope.currentLine.isMatchingOrignal()
       $scope.videoPlayer.play()
@@ -134,26 +138,31 @@ LApp.controller "TranscriptCtrl", ($scope, $timeout, $rootScope, LineTorch, Game
     $scope.$digest() if !$scope.$$phase
 
   $scope.pause = ->
-    $scope.currentState = GameStates.paused
+    setCurrentState(GameStates.paused)
     lineTimeoutService.clearNextLineTimeout($scope)
     $scope.videoPlayer.pause()
     $scope.$digest() if !$scope.$$phase
 
-  $scope.restartGame = ->
+  restartGame = ->
     $scope.removeNewLineListener()
     $scope.currentLine = $scope.transcript[0]
     unbindKeyDownKeyPress()
-    $scope.currentState = GameStates.setup
+    setCurrentState(GameStates.setup)
     $scope.videoPlayer.restart()
+
+  $rootScope.$on 'restartGame', (event, args) ->
+    return if GameStates.isNotStarted($scope.currentState)
+
+    restartGame()
 
   $scope.selectGameLevel = (level, editMode='false')->
     $scope.level = level
     $scope.editMode = editMode
-    $scope.currentState = GameStates.loading
+    setCurrentState(GameStates.loading)
     $scope.videoPlayer.start()
 
   $rootScope.$on 'userAction', (event, args) ->
-    return unless GameStates.started($scope.currentState)
+    return unless GameStates.isStarted($scope.currentState)
     action = args.action
 
     $scope.togglePlayer()              if action == 'togglePlayer'

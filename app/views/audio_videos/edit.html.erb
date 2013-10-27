@@ -14,10 +14,13 @@
     <%end %>
     </div>
 
-    <div id="transcript-player" data-id='text-player' tabindex="1" ng-keypress='listenForKey' class='transcript-player'>
-      <div class='video-info' ng-controller="VideoInfoCtrl">
-        <span>{{currentVideoTime | limitTo:10}}</a>
+    <div class='video-info' ng-controller="VideoInfoCtrl">
+      <div class='app-progress'>
+        <progress percent="progressValue"></progress>
       </div>
+      <div class='app-time'>{{currentVideoTime}} / {{videoDuration | toMinSec}}</div>
+    </div>
+    <div id="transcript-player" data-id='text-player' tabindex="1" ng-keypress='listenForKey' class='transcript-player'>
       <div class='game-end game-shared-screen {{currentState}}'>
         <h3>Congratulations! </h3>
         <p>It took you {{stats.time | millisecondsToTime}} to complete that video.</p>
