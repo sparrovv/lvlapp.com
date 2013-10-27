@@ -1,5 +1,5 @@
 class FlashCardAnswer
-  constructor: (@translation, @definition, @examples, @related) ->
+  constructor: (@translation, @sentence, @definition, @examples, @related) ->
 
 class FlashCard
   constructor: (@id, @question, @answer, @interval, @nextRepetitionDate, @easinessFactor) ->
@@ -31,7 +31,7 @@ LApp.service "FlashCards",
     init: (phrases) ->
       self = @
       _.each phrases, (phrase) ->
-        answer = new FlashCardAnswer(phrase.translation, phrase.definition, phrase.examples, phrase.related)
+        answer = new FlashCardAnswer(phrase.translation, phrase.sentence, phrase.definition, phrase.examples, phrase.related)
         interval = phrase.interval
         easinessFactor = phrase.easiness_factor
         nextRepetitionDate = phrase.repetition_date_js

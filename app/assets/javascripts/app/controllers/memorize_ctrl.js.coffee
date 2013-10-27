@@ -15,7 +15,6 @@ LApp.controller "MemorizeCtrl", ($scope, $http, PhrasesCollection, FlashCards, S
 
   $scope.saveAndExit = ->
     data = FlashCards.readyToUpdateAttrs()
-    console.log data
 
     unless data.length > 0
       console.log 'no data'
