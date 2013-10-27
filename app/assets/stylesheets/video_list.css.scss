@@ -22,11 +22,8 @@
   }
 }
 
-.horizontal-5.media-grid {
+.horizontal-fluid.media-grid {
   .video {
     width:204px;
-    &:nth-child(6n+1){
-      clear: left;
-    }
   }
 }

@@ -22,9 +22,6 @@ h1,h2,h3,h4,h5{
 }
 
 .navbar {
-  .container{
-    width:1200px;
-  }
   font-family: "News Cycle", "Arial Narrow Bold", sans-serif;
   font-size: 16px;
   font-weight: normal;
@@ -34,15 +31,14 @@ h1,h2,h3,h4,h5{
 
 .navbar-brand {
   float: left;
-  padding: 10px 15px;
+  padding: 10px 0px;
   font-size: 19px;
   line-height: 21px;
   font-weight: bold;
-}
-
-.navbar-default .navbar-brand {
-  text-transform: uppercase;
   color: $logo-color;
+  &:hover{
+    color: $logo-color;
+  }
 }
 
 .nav{
