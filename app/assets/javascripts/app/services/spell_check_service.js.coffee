@@ -29,6 +29,8 @@ LApp.factory 'SpellChecker', (Stats, transcriptFactory) ->
 
   skipWord: ($scope) ->
     line = transcriptFactory.firstWithBlanks()
+    return unless line
+
     line.clearBuffer()
     nextWord = line.nextMissingWord()
 
