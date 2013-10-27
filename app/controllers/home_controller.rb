@@ -4,12 +4,12 @@ class HomeController < ApplicationController
   def index
     @recent_videos = AudioVideo.
       by_status(AudioVideo::ACTIVE).
-      order('created_at desc').limit(8)
+      order('created_at desc').limit(10)
 
     @featured_videos = AudioVideo.
       featured.
       by_status(AudioVideo::ACTIVE).
-      order('created_at desc').limit(8)
+      order('created_at desc').limit(10)
   end
 
 end
