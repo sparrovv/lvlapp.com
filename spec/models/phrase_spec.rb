@@ -75,4 +75,26 @@ describe Phrase do
       expect(phrase.sentence.size).to eq 255
     end
   end
+
+  describe '#grouped_by_audio_video' do
+    it 'returns hash of number of prases mapped to audio video' do
+      phrase_1 = create(:phrase)
+      phrase_2 = create(:phrase, user: phrase_1.user)
+      phrase_3 = create(
+        :phrase, audio_video: phrase_2.audio_video, user: phrase_1.user)
+      phrase_4 = create(
+        :phrase, audio_video: phrase_2.audio_video)
+
+      expected = [
+        Phrase::AudioVideoPhrase.new(2, 2, phrase_2.audio_video),
+        Phrase::AudioVideoPhrase.new(1, 1, phrase_1.audio_video)
+      ]
+
+      result = Phrase.grouped_by_audio_video(phrase_1.user)
+
+      expect(result.size).to eql expected.size
+      expect(result[1]).to eql expected[0]
+      expect(result[0]).to eql expected[1]
+    end
+  end
 end

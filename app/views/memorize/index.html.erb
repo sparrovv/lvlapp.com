@@ -1,2 +1,18 @@
-<h1>Memorize#index</h1>
-<p>Find me in app/views/memorize/index.html.erb</p>
+<h2>Learn</h2>
+<table class='table table-bordered'>
+
+  <% headers = ['Video', 'due to repeat','all phrases', ''] %>
+  <% ths = headers.map{|name| "<th>#{name}</th>" }.join('') %>
+
+  <tr>
+    <%= ths.html_safe %>
+  </tr>
+  <% @audio_video_phrases.each do |audio_video_phrase| %>
+    <tr>
+      <td><%= audio_video_phrase.audio_video.name %></td>
+      <td><%= audio_video_phrase.due_to_repetition %></td>
+      <td><%= audio_video_phrase.size %></td>
+      <td><%= link_to('learn', memorize_show_path(audio_video_id: audio_video_phrase.audio_video.id))%></td>
+    </tr>
+  <% end %>
+</table>
