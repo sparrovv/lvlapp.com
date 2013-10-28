@@ -44,7 +44,7 @@ module LRC
         times, txt = $1, $3
 
         times.split(/\[(.*?)\]/).reject(&:empty?).each do |time|
-          next unless time =~ /\A(\d+):(\d+\.\d+)\Z/
+          next unless time =~ /\A(\d+):(\d+(\.\d+)?)\Z/
 
           entries << [$1.to_i*60 + BigDecimal.new($2), txt]
         end
