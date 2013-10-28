@@ -143,7 +143,7 @@ LApp.controller "TranscriptCtrl", ($scope, $timeout, $rootScope, LineTorch, Game
     $scope.videoPlayer.pause()
     $scope.$digest() if !$scope.$$phase
 
-  restartGame = ->
+  $scope.restartGame = ->
     $scope.removeNewLineListener()
     $scope.currentLine = $scope.transcript[0]
     unbindKeyDownKeyPress()
@@ -153,7 +153,7 @@ LApp.controller "TranscriptCtrl", ($scope, $timeout, $rootScope, LineTorch, Game
   $rootScope.$on 'restartGame', (event, args) ->
     return if GameStates.isNotStarted($scope.currentState)
 
-    restartGame()
+    $scope.restartGame()
 
   $scope.selectGameLevel = (level, editMode='false')->
     $scope.level = level
