@@ -5,8 +5,18 @@ LApp.factory 'Phrase', (PhraseResource) ->
     allPhrases =  PhraseResource.query(opts)
 
   @create = (opts)->
-    return false if @_findByName(opts.name)
+    result = { errors: [] }
+    sanitizedWord = opts.name.replace(/\W/g,'').toLowerCase()
 
+    if sanitizedWord.length < 2
+      result.errors.push('Phrase should have at least 2 characters')
+
+    if @_findByName(sanitizedWord)
+      result.errors.push('This phrase is already in phrasebook')
+
+    return result if result.errors.length > 0
+
+    opts.name = sanitizedWord
     index = allPhrases.push(_.extend({loading: 'loading'}, opts))
 
     PhraseResource.save opts, (p)->
@@ -22,6 +32,6 @@ LApp.factory 'Phrase', (PhraseResource) ->
 
   @_findByName = (name) ->
     _.find allPhrases, (phrase) ->
-      phrase.name == name
+      phrase.name.toLowerCase() == name.toLowerCase()
 
   this

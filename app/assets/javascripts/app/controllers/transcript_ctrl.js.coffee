@@ -1,4 +1,4 @@
-LApp.controller "TranscriptCtrl", ($scope, $timeout, $rootScope, LineTorch, GameConfig, GameStates, transcriptFactory, Stats, Key, audioVideo, SpellChecker, lineTimeoutService, Phrase) ->
+LApp.controller "TranscriptCtrl", ($scope, $rootScope, LineTorch, GameConfig, GameStates, transcriptFactory, Stats, Key, audioVideo, SpellChecker, lineTimeoutService, Phrase) ->
   setCurrentState= (state) ->
     GameStates.current = state
     $scope.currentState = state
@@ -82,10 +82,6 @@ LApp.controller "TranscriptCtrl", ($scope, $timeout, $rootScope, LineTorch, Game
       if Key.isEnter(e.keyCode)
         _emit('togglePlayer')
         return false
-
-      #if Key.isKeyLeft(e.keyCode)
-        #_emit('beginningOfline')
-        #return false
 
       if Key.isKeyDown(e.keyCode)
         _emit('lineDown')
@@ -173,8 +169,8 @@ LApp.controller "TranscriptCtrl", ($scope, $timeout, $rootScope, LineTorch, Game
 
   $scope.addToPhrasebook = (attrs) ->
     return false if attrs.word.match(new RegExp(GameConfig.blankChar))
-    sanitizedWord = attrs.word.replace(/\W/g,'')
 
-    Phrase.create audioVideoId: audioVideo.id, name: sanitizedWord, sentence: attrs.sentence
+    Phrase.create
+      audioVideoId: audioVideo.id, name: attrs.word, sentence: attrs.sentence
 
   window.scope = $scope
