@@ -7,7 +7,7 @@
   <tr>
     <%= ths.html_safe %>
   </tr>
-  <% @audio_video_phrases.each do |audio_video_phrase| %>
+  <% @audio_video_phrases.sort_by{|o| o.due_to_repetition }.reverse.each do |audio_video_phrase| %>
     <tr>
       <td><%= audio_video_phrase.audio_video.name %></td>
       <td><%= audio_video_phrase.due_to_repetition %></td>
