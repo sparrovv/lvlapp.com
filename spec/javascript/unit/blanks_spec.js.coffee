@@ -11,18 +11,21 @@ describe "filterOutWeirdWords", ->
       expect(blanksHelper.filterOutWeirdWords(text)).toEqual(['Hey'])
     )
 
-    it "filters out words with apostrophe", inject((blanksHelper) ->
+    it "filters out words with apostrophe and stars", inject((blanksHelper) ->
       text = "don't be"
       expect(blanksHelper.filterOutWeirdWords(text)).toEqual(['be'])
 
-      text = "don'"
+      text = "don' "
       expect(blanksHelper.filterOutWeirdWords(text)).toEqual([''])
 
-      text = "michal's shoes"
+      text = "michal's shoes f*cking"
       expect(blanksHelper.filterOutWeirdWords(text)).toEqual(['shoes'])
 
       text = "'michal shoes"
       expect(blanksHelper.filterOutWeirdWords(text)).toEqual(['shoes'])
+
+      text = 'And f*cking rip-rip'
+      expect(blanksHelper.filterOutWeirdWords(text)).toEqual(['And', ''])
     )
 
     it "filters out words with apostrophe", inject((blanksHelper) ->

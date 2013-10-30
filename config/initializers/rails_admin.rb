@@ -8,6 +8,9 @@ RailsAdmin.config do |config|
 
   config.model 'AudioVideo' do
     edit do
+      configure :slug do
+        hide
+      end
       configure :status, :enum do
         enum do
           AudioVideo::STATUSES

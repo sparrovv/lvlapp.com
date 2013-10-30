@@ -10,6 +10,8 @@ module.exports = function (config) {
       //libs
       'vendor/assets/javascripts/angular.js',
       'vendor/assets/javascripts/angular-*.js',
+      'vendor/assets/javascripts/angular-*.js',
+      'vendor/assets/javascripts/ui-bootstrap-custom-tpls-0.6.0.min.js',
       'vendor/assets/javascripts/jquery-1.10.2.min.js',
       'vendor/assets/javascripts/underscore.js',
 
