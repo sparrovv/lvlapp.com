@@ -27,6 +27,7 @@ LApp.service "FlashCards",
     constructor:(@SM2Mod) ->
       @flashCards = []
       @forRepetition = []
+      @notAnsweredProperly = []
 
     init: (phrases) ->
       self = @
@@ -51,21 +52,37 @@ LApp.service "FlashCards",
       flashCard.easinessFactor = sm2.easinessFactor
       flashCard.setReadyToUpdate()
 
-    generateForRepetition: ->
-      actualDate = new Date()
-      endOfDayDate = new Date(
-        actualDate.getFullYear() ,actualDate.getMonth() ,actualDate.getDate() ,23,59,59
-      )
+      if flashCard.repetitionDate() <= @_endOfDayDate()
+        @notAnsweredProperly.push flashCard
 
+
+    generateForRepetition: ->
+      self = @
       _.filter @sortedFlashCardsByDate(), (fc) ->
-        fc.repetitionDate() <= endOfDayDate
+        fc.repetitionDate() <= self._endOfDayDate()
 
     sortedFlashCardsByDate: ->
       _.sortBy @flashCards, (fc) ->
         fc.repetitionDate
 
     next: ->
-      @forRepetition.pop()
+      if @forRepetition.length > 0
+        @forRepetition.pop()
+      else
+        if @notAnsweredProperly.length > 0
+          @notAnsweredProperly.pop()
+        else
+          false
+
+    soonestRepetitionDate: ->
+      @sortedFlashCardsByDate()[0].nextRepetitionDate
+
+    _endOfDayDate: ->
+      actualDate = new Date()
+      endOfDayDate = new Date(
+        actualDate.getFullYear() ,actualDate.getMonth() ,actualDate.getDate() ,23,59,59
+      )
+
 
     readyToUpdateAttrs: ->
       readyToUpdate = _.select @flashCards, (fc) ->

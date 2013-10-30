@@ -1,43 +1,63 @@
 <script> window.phrases = <%= raw @phrases.to_json(methods:[:repetition_date_js]) %>; </script>
 
-<h4>Repetition</h4>
+<div class="span12">
+  <h4>Repetition</h4>
 
-<div ng-app='LApp' class="row">
-<div ng-controller='MemorizeCtrl'>
-  <div class='memoize span10'>
-    <div class='question'>
-      <div class='center'>
-        <div>{{flashCard.question}}</div>
+  <div ng-app='LApp' class="row">
+    <div ng-controller='MemorizeCtrl' class="{{state}}">
+      <div class='nothing-to-repeat span9'>
+        <p>
+        There's nothing to repeat today. The next repetition is scheduled for: {{soonestRepetitionDate}}
+        </p>
+        <p>
+        Go to the <%= link_to 'index', memorize_index_path %> page, to choose different set of phrases.
+        </p>
       </div>
-    </div>
+      <div class='end-of-game span10'>
+        <p>
+        That's it for today. The next repetition is scheduled for: {{soonestRepetitionDate}}
+        </p>
+        <p>
+        Go to the <%= link_to 'index', memorize_index_path %> page, to choose different set of phrases.
+        </p>
+      </div>
 
-    <div class='show-answer center'> <a ng-click='showAnswer(this)'> Show answer </a></div>
+      <div class='memorize span9'>
+        <div class='question'>
+          <div class='center'>
+            <div>{{flashCard.question}}</div>
+          </div>
+        </div>
 
-    <div class='answer center {{state}}'> 
-      <flashcardanswer answer='flashCard.answer'></flashcardanswer>
-    </div>
+        <div class='show-answer center'> <a ng-click='showAnswer(this)'> Show answer </a></div>
 
-    <div class='score {{state}}'>
-      <a ng-click='rateAnswer("again")'>Again</a>
-      <a ng-click='rateAnswer("hard")'>Hard</a>
-      <a ng-click='rateAnswer("good")'>Good</a>
-      <a ng-click='rateAnswer("easy")'>Easy</a>
+        <div class='answer center {{state}}'> 
+          <flashcardanswer answer='flashCard.answer'></flashcardanswer>
+        </div>
+
+        <div class='score {{state}}'>
+          <a ng-click='rateAnswer("again")'>Again</a>
+          <a ng-click='rateAnswer("hard")'>Hard</a>
+          <a ng-click='rateAnswer("good")'>Good</a>
+          <a ng-click='rateAnswer("easy")'>Easy</a>
+        </div>
+      </div>
+
+      <div class='span2 memorize-stats'>
+        <div class='exit center'>
+          <div>
+            <%= link_to 'back to index', memorize_index_path %>
+          </div>
+          <div>
+            <a ng-click='saveAndExit()'>Save and exit</a>
+          </div>
+        </div>
+        <div class='stats'>
+          <div class='left'>all = {{flashCardObj.flashCards.length}}</div>
+          <div class='left'>left = {{flashCardObj.forRepetition.length}}</div>
+          <div class='left'>wrong = {{flashCardObj.notAnsweredProperly.length}}</div>
+        </div>
+      </div>
     </div>
   </div>
-  <div class='memoize span2'>
-    <div class='exit center'>
-      <div>
-      <%= link_to 'back to index', memorize_index_path %>
-      </div>
-      <div>
-      <a ng-click='saveAndExit()'>Save and exit</a>
-      </div>
-    </div>
-    <div class='stats'>
-      <div class='left'>all = {{flashCardObj.flashCards.length}}</div>
-      <div class='left'>today = {{flashCardObj.forRepetition.length}}</div>
-      <div class='left'>wrong = todo</div>
-    </div>
-  </div>
-</div>
 </div>

@@ -5,12 +5,12 @@
         <div class="answer-content">
         <table class="table table-condensed">
           <tr>
-            <td class="heading">sentence:</td>
-            <td>{{answer.sentence}}</td>
+            <td class="heading">translation:</td>
+            <td>{{answer.translation}}</td>
           </tr>
           <tr>
-            <td class="heading">definition</td>
-            <td ><div ng-repeat="definition in answer.definition">{{definition}}; </div></td>
+            <td class="heading">sentence:</td>
+            <td>{{answer.sentence}}</td>
           </tr>
         </table>
 
@@ -18,12 +18,12 @@
 
         <table class="table table-condensed more hidden">
           <tr>
-            <td class="heading">translation:</td>
-            <td>{{answer.translation}}</td>
+            <td class="heading">definition</td>
+            <td ><div ng-repeat="definition in answer.definition | limitTo:3">{{definition}}; </div></td>
           </tr>
           <tr>
             <td class="heading">examples:</td>
-            <td><div ng-repeat="example in answer.examples | limitTo:3">{{example}}; </div></td>
+            <td><div ng-repeat="example in answer.examples | limitTo:1">{{example}}; </div></td>
           </tr>
           <tr>
             <td class="heading">related:</td>

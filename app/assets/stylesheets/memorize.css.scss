@@ -1,4 +1,38 @@
-.memoize{
+.nothingToRepeat{ 
+  .memorize, .memorize-stats{
+    display:none;
+  }
+  .nothing-to-repeat{
+    display:block;
+  }
+}
+.endOfRepetition{ 
+  .memorize{
+    display:none;
+  }
+  .end-of-game{
+    display:block;
+  }
+}
+
+
+.end-of-game{
+  display:none;
+  min-height: 100px;
+  text-align: center;
+  padding: 20px 0;
+  border: 1px dashed;
+}
+
+.nothing-to-repeat{
+  display:none;
+  min-height: 100px;
+  text-align: center;
+  padding: 20px 0;
+  border: 1px dashed;
+}
+
+.memorize{
   a{
     cursor: pointer;
   }

@@ -1,17 +1,30 @@
 LApp.controller "MemorizeCtrl", ($scope, $http, PhrasesCollection, FlashCards, SM2Mod) ->
   $scope.flashCardObj = FlashCards
-
   FlashCards.init(PhrasesCollection.phrases)
   $scope.flashCard = FlashCards.next()
-  $scope.state = 'answerHidden'
+
+  _getSoonestRepetitionDate = ->
+    new Date(FlashCards.soonestRepetitionDate()).toDateString()
+
+  if $scope.flashCard
+    $scope.state = 'answerHidden'
+  else
+    $scope.state = 'nothingToRepeat'
+    $scope.soonestRepetitionDate = _getSoonestRepetitionDate()
 
   $scope.showAnswer = ->
     $scope.state = 'answerShowed'
 
   $scope.rateAnswer = (scoreName) ->
     FlashCards.updateSM2Results($scope.flashCard, scoreMap(scoreName))
-    $scope.flashCard = FlashCards.next()
-    $scope.state = 'answerHidden'
+    nextWord = FlashCards.next()
+    if nextWord
+      $scope.flashCard = nextWord
+      $scope.state = 'answerHidden'
+    else
+      $scope.state = 'endOfRepetition'
+      $scope.soonestRepetitionDate = _getSoonestRepetitionDate()
+      $scope.saveAndExit()
 
   $scope.saveAndExit = ->
     data = FlashCards.readyToUpdateAttrs()

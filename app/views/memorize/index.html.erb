@@ -1,18 +1,20 @@
-<h2>Learn</h2>
-<table class='table table-bordered'>
+<div class="span12">
+  <h2>Learn</h2>
+  <table class='table table-bordered'>
 
-  <% headers = ['Video', 'due to repeat','all phrases', ''] %>
-  <% ths = headers.map{|name| "<th>#{name}</th>" }.join('') %>
+    <% headers = ['Video', 'due to repeat','all phrases', ''] %>
+    <% ths = headers.map{|name| "<th>#{name}</th>" }.join('') %>
 
-  <tr>
-    <%= ths.html_safe %>
-  </tr>
-  <% @audio_video_phrases.sort_by{|o| o.due_to_repetition }.reverse.each do |audio_video_phrase| %>
     <tr>
-      <td><%= audio_video_phrase.audio_video.name %></td>
-      <td><%= audio_video_phrase.due_to_repetition %></td>
-      <td><%= audio_video_phrase.size %></td>
-      <td><%= link_to('learn', memorize_show_path(audio_video_id: audio_video_phrase.audio_video.id))%></td>
+      <%= ths.html_safe %>
     </tr>
-  <% end %>
-</table>
+    <% @audio_video_phrases.sort_by{|o| o.due_to_repetition }.reverse.each do |audio_video_phrase| %>
+      <tr>
+        <td><%= audio_video_phrase.audio_video.name %></td>
+        <td><%= audio_video_phrase.due_to_repetition %></td>
+        <td><%= audio_video_phrase.size %></td>
+        <td><%= link_to('learn', memorize_show_path(audio_video_id: audio_video_phrase.audio_video.id))%></td>
+      </tr>
+    <% end %>
+  </table>
+</div>
