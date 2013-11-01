@@ -67,6 +67,12 @@ class LApp.VideoJSProxy
     @setCurrentTime(0)
     @pause()
 
+  onVideoPlay: (funct) ->
+    #noop
+
+  onVideoPause: (funct) ->
+    #noop
+
 class LApp.YoutubVideoPlayerProxy
   constructor:(@original_player) ->
     @startOfVideoTimeTreshold = 0.50
@@ -99,6 +105,14 @@ class LApp.YoutubVideoPlayerProxy
 
   onVideoEnded: (funct) ->
     $(document).on 'youtubeVideoEnded', ->
+      funct()
+
+  onVideoPause: (funct) =>
+    $(document).on 'youtubeVideoPause', ->
+      funct()
+
+  onVideoPlay: (funct) =>
+    $(document).on 'youtubeVideoStart', ->
       funct()
 
   onVideoStart: (funct) ->

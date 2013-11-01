@@ -28,6 +28,13 @@ LApp.controller "TranscriptCtrl", ($scope, $rootScope, LineTorch, GameConfig, Ga
     updateCurrentTime = ->
       $rootScope.$emit('currentVideoTime', {time: videoPlayer.currentTime(), duration: videoPlayer.duration()})
 
+    onVideoPause = ->
+      $('#transcript-player').focus()
+
+    onVideoPlay = ->
+      return if $scope.currentState != GameStates.paused
+      $scope.play()
+
     onVideoStart = ->
       return if $scope.currentState != GameStates.loading # safeguard, so it won't triggered twice
       console.log 'videoStarted'
@@ -41,7 +48,6 @@ LApp.controller "TranscriptCtrl", ($scope, $rootScope, LineTorch, GameConfig, Ga
       $scope.$digest()
       $scope.play()
       bindNewLineListener()
-      $('#transcript-player').focus()
 
       currentTimeInterval = setInterval(updateCurrentTime, 300)
 
@@ -55,6 +61,8 @@ LApp.controller "TranscriptCtrl", ($scope, $rootScope, LineTorch, GameConfig, Ga
     $scope.$digest() if !$scope.$$phase
     videoPlayer.onVideoStart(onVideoStart)
     videoPlayer.onVideoEnded(onVideoEnded)
+    videoPlayer.onVideoPlay(onVideoPlay)
+    videoPlayer.onVideoPause(onVideoPause)
 
   LApp.VideoPlayerFactory.init($scope, GameConfig.isYoutubeVideo(), videoCallbacks)
 
@@ -124,6 +132,7 @@ LApp.controller "TranscriptCtrl", ($scope, $rootScope, LineTorch, GameConfig, Ga
   $scope.play = ->
     lineTimeoutService.clearNextLineTimeout($scope)
     setCurrentState(GameStates.playing)
+    $('#transcript-player').focus()
 
     if $scope.currentLine.isMatchingOrignal()
       $scope.videoPlayer.play()
@@ -133,11 +142,13 @@ LApp.controller "TranscriptCtrl", ($scope, $rootScope, LineTorch, GameConfig, Ga
 
     $scope.$digest() if !$scope.$$phase
 
+  # this is called also in lineTimeoutService!
   $scope.pause = ->
     setCurrentState(GameStates.paused)
     lineTimeoutService.clearNextLineTimeout($scope)
-    $scope.videoPlayer.pause()
     $scope.$digest() if !$scope.$$phase
+
+    $scope.videoPlayer.pause()
 
   $scope.restartGame = ->
     $scope.removeNewLineListener()

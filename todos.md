@@ -3,17 +3,16 @@
 - [] Filter what words can be add to the phrasebook, don't add missing ones, and maybe 1 letters, prepare filtter for that, so it decorates it wit...
 - [] Memorise - Finish up agree on first version: word | definition / usage in a word / translation .. more
   - [] better design
-  - [] index - by audio videos
   - [] last 20 unknown
-  - [] repetion per video
-  - [] add image search
   - [] translate whole line, it can be useful in case of phrasals or some expressions with 
   - [] Smarter adding line when adding to phrasebook, whole sentence (from . to . - it can be a problem casue transcript is without periods)
+  - [] add image search
 
 - [] Add integrations tests - just to be certain that everything works.
 - [] add link to source - so there is no problem
+- [] add go to the end when is the last line, and there is still plenty video to finsihed, becasue of ....
+- [] alwyas focus on start...
 
-- [] When a new line triggers timeouts to volume up, and at the same time I go to the beginning of the line it doesn't seem to clear that interval and bring volume to the max. That's annoying. 
 
 - [] Fix clicking on youtube video:
     - apply strange logic ____ if lineTimeoutService.nextLineTimeout && not lineTimeoutService.volumeInterval ____
@@ -30,12 +29,9 @@
 - [] Add duration - connect to youtube API or after first loading udpate duration.
 
 BUGS:
-- [] when adding audio video there was Slug errors - mysql indexes....
+- [] When a new line triggers timeouts to volume up, and at the same time I go to the beginning of the line it doesn't seem to clear that interval and bring volume to the max. That's annoying. 
 - [] After adding gem I Had to stop and start puma, because restart didn't help
 - [] compressed javascript doesn't work
-
-- [] (BUG) Some singularized words shouldn't be singularized and when this is happen it can't find def/transaltion
-     Also verbs adjectives shouldn't be singularized.....
 
 - [] smarter feeeling blanks: fix: good bye
 - [] Smarter blanks, there is some issue with: "why" whoa, ...
@@ -114,3 +110,7 @@ DONE
      Switched to TCP socket, hope it will be more reliable.
 - [] add friendlyid - slugs http://norman.github.io/friendly_id/file.Guide.html
 - [] Add HUD - head up display, that will have some navs, prompts, messages, flash messages....kk
+- [] when adding audio video there was Slug errors - mysql indexes....
+- [] (BUG) Some singularized words shouldn't be singularized and when this is happen it can't find def/transaltion
+     Also verbs adjectives shouldn't be singularized.....
+

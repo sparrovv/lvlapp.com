@@ -28,7 +28,7 @@ LApp.service 'lineTimeoutService',
 
       pauseABitLater = ->
         if not $scope.currentLine.isMatchingOrignal()
-          $scope.videoPlayer.pause()
+          $scope.pause()
 
       if not @nextLineTimeout
         @volumeInterval = setInterval(volumeDown, 50)
