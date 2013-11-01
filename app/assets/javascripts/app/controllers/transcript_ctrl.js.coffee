@@ -32,6 +32,7 @@ LApp.controller "TranscriptCtrl", ($scope, $rootScope, LineTorch, GameConfig, Ga
       $('#transcript-player').focus()
 
     onVideoPlay = ->
+      $('#transcript-player').focus()
       return if $scope.currentState != GameStates.paused
       $scope.play()
 
@@ -132,7 +133,6 @@ LApp.controller "TranscriptCtrl", ($scope, $rootScope, LineTorch, GameConfig, Ga
   $scope.play = ->
     lineTimeoutService.clearNextLineTimeout($scope)
     setCurrentState(GameStates.playing)
-    $('#transcript-player').focus()
 
     if $scope.currentLine.isMatchingOrignal()
       $scope.videoPlayer.play()
