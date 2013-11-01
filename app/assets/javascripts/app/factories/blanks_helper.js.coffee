@@ -36,12 +36,19 @@ LApp.factory "blanksHelper", (GameConfig) ->
   obj.cutRandomWord = (text) ->
     return obj.NO_MATCH if text.length is 0
 
-    filteredWords = _.filter(obj.filterOutWeirdWords(text), (e) ->
+    filteredWords = _.filter obj.filterOutWeirdWords(text), (e) ->
       e.length > 3
-    )
 
-    randomNumber = obj.getRandomInt(0, filteredWords.length)
+    sortedWords = _.sortBy filteredWords, (e) ->
+      -1*e.length
 
-    filteredWords[randomNumber] or obj.NO_MATCH
+    if sortedWords.length == 1
+      index = 0
+    else if sortedWords.length > 6
+      index = obj.getRandomInt(0, 3)
+    else
+      index = obj.getRandomInt(0, 2)
+
+    sortedWords[index] or obj.NO_MATCH
 
   obj

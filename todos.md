@@ -19,7 +19,7 @@
     - apply strange logic ____ if lineTimeoutService.nextLineTimeout && not lineTimeoutService.volumeInterval ____
     - focus on play 
 
-
+- [] remove singularizing phraes... ambigous -> ambigou ...
 - [] Stats - Game Data score per video and overall user score, so it introduces a way to compete with another users...
 
 - [] debug what happens if there are words separated witch commas without space foo,bar  boys like these,younger
