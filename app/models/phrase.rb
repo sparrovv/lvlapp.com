@@ -28,11 +28,6 @@ class Phrase < ActiveRecord::Base
     end
   end
 
-  def singularize_phrase
-    self.name = name.singularize
-    self
-  end
-
   def repetition_date_js
     return nil unless repetition_date
 

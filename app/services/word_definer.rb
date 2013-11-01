@@ -9,8 +9,19 @@ class WordDefiner
     @native_language = native_language
   end
 
+  def canonical_name
+    @canonical_name ||= begin
+                          if some_def = definition.first and some_def['word'].present?
+                            some_def['word']
+                          else
+                            @word
+                          end
+                        end
+  end
+
   def to_attrs
     {
+      name: canonical_name,
       definition: definitions,
       examples: examples,
       related: related,
@@ -18,8 +29,9 @@ class WordDefiner
     }
   end
 
+
   def definitions
-    Wordnik.word.get_definitions(@word, :use_canonical => true, :source_dictionaries => "wiktionary").map do |d|
+    definition.map do |d|
       d['text'] if d.is_a? Hash
     end.compact
   end
@@ -38,7 +50,7 @@ class WordDefiner
 
   def translation
     phrase_lang = 'en'
-    Translator.new.translate(@word, phrase_lang, @native_language)
+    Translator.new.translate(canonical_name, phrase_lang, @native_language)
   end
 
   class Translator
@@ -49,5 +61,9 @@ class WordDefiner
     def translate(text, from='en', to='pl')
       @translator.translate text, from: from, to: to
     end
+  end
+
+  def definition
+    @definition ||= Wordnik.word.get_definitions(@word, :use_canonical => true, :source_dictionaries => "wiktionary")
   end
 end
