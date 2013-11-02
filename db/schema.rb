@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20131024172256) do
+ActiveRecord::Schema.define(version: 20131102115439) do
 
   create_table "audio_videos", force: true do |t|
     t.string   "name"
@@ -30,6 +30,7 @@ ActiveRecord::Schema.define(version: 20131024172256) do
   end
 
   add_index "audio_videos", ["category_id"], name: "index_audio_videos_on_category_id", using: :btree
+  add_index "audio_videos", ["featured"], name: "index_audio_videos_on_featured", using: :btree
   add_index "audio_videos", ["level_id"], name: "index_audio_videos_on_level_id", using: :btree
   add_index "audio_videos", ["slug"], name: "index_audio_videos_on_slug", unique: true, using: :btree
   add_index "audio_videos", ["status"], name: "index_audio_videos_on_status", using: :btree
@@ -54,8 +55,11 @@ ActiveRecord::Schema.define(version: 20131024172256) do
     t.string   "level"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "total_points"
+    t.text     "summary"
   end
 
+  add_index "game_data", ["total_points"], name: "index_game_data_on_total_points", using: :btree
   add_index "game_data", ["user_id", "audio_video_id"], name: "index_game_data_on_user_id_and_audio_video_id", using: :btree
 
   create_table "levels", force: true do |t|

@@ -1,19 +1,24 @@
 LApp.service 'Stats',
   class Stats
-    constructor: (GameData) ->
+    constructor: (GameData, scoreCalculator) ->
       @gameData = GameData
+      @scoreCalculator = scoreCalculator
+
       @_setupShared()
 
     init: (attr)->
       @_setupShared()
       @blanks = attr.blanks
       @startTime = new Date()
+      @videoDuration = attr.videoDuration
       @level = attr.level
       @audioVideoId = attr.audio_video_id
 
     persist: ->
       @_setTime()
+      score = @generateScore()
       @gameData.save
+        total_points: score.total_points
         blanks: @blanks
         guessed: @guessed
         skipped: @skipped
@@ -21,6 +26,7 @@ LApp.service 'Stats',
         time: @time
         level: @level
         audioVideoId: @audioVideoId
+        summary: score
 
     currentTime: ->
       if @time != 0
@@ -39,6 +45,9 @@ LApp.service 'Stats',
     increaseMistakes: ->
       @mistakes += 1
 
+    generateScore: ->
+      @scoreCalculator.calculate(@)
+
     _setupShared: ->
       @guessed = 0
       @skipped = 0
@@ -47,4 +56,4 @@ LApp.service 'Stats',
       @blanks = 0
 
     _setTime: ->
-      @time = (new Date()) - @startTime
+      @time = ((new Date()) - @startTime) / 1000

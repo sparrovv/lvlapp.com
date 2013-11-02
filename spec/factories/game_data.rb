@@ -6,6 +6,7 @@ FactoryGirl.define do
     association :user, factory: :user, strategy: :build
     blanks 1
     guessed 1
+    total_points 10
     skipped 1
     mistakes 1
     time 1

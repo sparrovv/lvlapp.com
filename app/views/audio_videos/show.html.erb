@@ -41,12 +41,16 @@
 
 
       <div class='game-end game-shared-screen {{currentState}}'>
-        <h3>Congratulations! </h3>
-        <p>It took you {{stats.time | millisecondsToTime}} to complete that video.</p>
-        <p>And you guessed {{stats.guessed}} out of {{stats.blanks}} words.</p>
+        <h3>Good job!</h3>
 
-        <p>Your score was saved</p>
-        <p><a ng-click="restartGame()">Restart game</a></p>
+        <h4 class='total'> Your score: <span class='points'>{{stats.total_points}}</span> points</h4>
+
+        <ul class='breakdown'>
+          <li>words: {{stats.guessed}} guessed words = {{stats.guessed}} points</li>
+          <li>time bonus: {{stats.summary.time_bonus}} </li>
+        </ul>
+
+        <p class='restart'><a ng-click="restartGame()">Restart game</a></p>
       </div>
 
       <div class='game-menu game-shared-screen {{currentState}}'>
@@ -63,7 +67,7 @@
 
       <div class='game-starting game-shared-screen {{currentState}}'></div>
 
-      <ul style="top:{{currentLineTopPosition}}px">
+      <ul class='lines' style="top:{{currentLineTopPosition}}px">
         <li ng-repeat="line in transcript">
           <pline line="line" add-to-phrasebook="addToPhrasebook(phrasedata)"></pline>
         </li>

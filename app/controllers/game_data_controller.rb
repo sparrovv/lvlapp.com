@@ -29,7 +29,9 @@ class GameDataController < ApplicationController
   end
 
   def game_datum_params
-    params.required(:game_datum).permit(:blanks, :guessed, :skipped, :mistakes, :time, :level)
+    params.required(:game_datum).
+      permit(:total_points, :blanks, :guessed, :skipped, :mistakes, :time, :level,
+             {:summary => [:time_bonus, :guessed_points]})
   end
 
 end

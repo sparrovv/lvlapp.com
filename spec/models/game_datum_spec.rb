@@ -7,6 +7,14 @@ describe GameDatum do
     expect(game_datum).to be_valid
   end
 
+  describe '#summary' do
+    it 'serializes it to json' do
+      game_datum.summary = {'foo' => 'bar'}
+      game_datum.save and game_datum.reload
+      expect(game_datum.summary['foo']).to eql "bar"
+    end
+  end
+
   context 'validation' do
     it 'validates presence of user' do
       game_datum.user = nil
@@ -61,6 +69,13 @@ describe GameDatum do
       game_datum.level = nil
       expect(game_datum).to_not be_valid
       game_datum.level = 'normal'
+      expect(game_datum).to be_valid
+    end
+
+    it 'validates presence of total_points' do
+      game_datum.total_points = nil
+      expect(game_datum).to_not be_valid
+      game_datum.total_points = '100'
       expect(game_datum).to be_valid
     end
   end

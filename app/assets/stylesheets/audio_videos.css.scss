@@ -105,7 +105,7 @@ $videoSetupBG: #44403C; //#262C35;
     }
   }
 
-  ul{
+  ul.lines{
     width: 100%;
     position: absolute;
     margin: 0;
@@ -176,9 +176,19 @@ $videoSetupBG: #44403C; //#262C35;
 .game-menu{
   display:none;
   ul{
+    position: absolute;
+    margin: 0;
     width: 60%;
     left:20%;
     li{
+      display: block;
+      list-style-type: none;
+      list-style-position: outside;
+      height: 32px;
+      line-height: 32px;
+      text-align: center;
+      border-bottom: 1px solid #D7DDEA;
+      color: #606060;
       padding: 4px;
       border-bottom: 1px dotted #747577;
       &:nth-last-child(-n+2){
@@ -202,6 +212,30 @@ $videoSetupBG: #44403C; //#262C35;
 
 .game-end{
   display:none;
+  //text-align: left;
+
+  h3{
+    text-align: center;
+  }
+
+  h4.total{
+    .points{
+      color: #fff;
+    }
+
+    padding: 1% 10%;
+    font-size: 20px;
+  }
+
+  .breakdown{
+    display: none;
+    padding: 1% 10%;
+    font-size: 15px;
+  }
+
+  .restart{
+    text-align: center;
+  }
 }
 
 .game-end.finished{

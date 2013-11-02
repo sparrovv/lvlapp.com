@@ -45,7 +45,10 @@ LApp.controller "TranscriptCtrl", ($scope, $rootScope, LineTorch, GameConfig, Ga
 
       transcriptFactory.setupBlanks($scope.level)
       Stats.init
-        level: $scope.level, audio_video_id: audioVideo.id, blanks: transcriptFactory.numberOfBlanks()
+        level: $scope.level
+        videoDuration: videoPlayer.duration()
+        audio_video_id: audioVideo.id
+        blanks: transcriptFactory.numberOfBlanks()
       $scope.$digest()
       $scope.play()
       bindNewLineListener()
