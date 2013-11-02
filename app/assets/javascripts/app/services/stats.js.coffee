@@ -17,8 +17,9 @@ LApp.service 'Stats',
     persist: ->
       @_setTime()
       score = @generateScore()
+      @total_points = score.total_points
       @gameData.save
-        total_points: score.total_points
+        total_points: @total_points
         blanks: @blanks
         guessed: @guessed
         skipped: @skipped
@@ -49,6 +50,7 @@ LApp.service 'Stats',
       @scoreCalculator.calculate(@)
 
     _setupShared: ->
+      @total_points = 0
       @guessed = 0
       @skipped = 0
       @mistakes = 0
