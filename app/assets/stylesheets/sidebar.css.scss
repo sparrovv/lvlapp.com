@@ -1,0 +1,44 @@
+.sidebar-table{
+  width: 60%;
+  td{
+    border-top: none;
+    border-bottom: 1px solid #dddddd;
+    padding: 3px 4px;
+  }
+}
+
+#help{
+  td{
+    a{
+      display: block;
+      cursor: pointer;
+      &:hover{
+        background: #eeeeee;
+        text-decoration:none;
+      }
+    }
+  }
+}
+
+#phrase-book{
+  .loading{
+    a{
+      display: none;
+    }
+    .small-indicator{
+      display: inline-block;
+      width: 16px;
+      height: 16px;
+      background: image-url('small-indicator.gif') no-repeat 50% 50%;
+    }
+  }
+  a{
+    &:hover{
+      cursor: pointer;
+    }
+  }
+}
+
+.video-meta-info{
+
+}

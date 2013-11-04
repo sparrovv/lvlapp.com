@@ -35,6 +35,7 @@ class AudioVideo < ActiveRecord::Base
   scope :featured, -> { where(featured: true) }
 
   delegate :name, to: :level, :prefix => true, :allow_nil => true
+  delegate :name, to: :category, :prefix => true, :allow_nil => true
 
   def youtube?
     !!url.match(/youtube/i)

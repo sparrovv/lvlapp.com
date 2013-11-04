@@ -3,7 +3,7 @@
 <script> window.isYoutubeVideo = <%= raw @audio_video.youtube? %>; </script>
 
 <div class="span12">
-  <h3>
+  <h3 class='audio-video-title'>
     <%= @audio_video.name %> 
     <% if current_user && current_user.admin? %> 
       <span> - </span> <%= link_to 'edit', edit_audio_video_path(@audio_video) %> 
@@ -74,6 +74,19 @@
     </div>
   </div>
 
+  <div class="video-meta-info span4">
+    <table class='table table-condensed sidebar-table'>
+      <tr>
+        <td colspan='2'><%= link_to 'link to orignal', @audio_video.url %></td>
+      </tr>
+      <tr>
+        <td>level</td><td><%= @audio_video.level_name %></td>
+      </tr>
+      <tr>
+        <td>category</td><td><%= link_to @audio_video.category_name, audio_videos_path(category_id: @audio_video.category_id) %></td>
+      </tr>
+    </table>
+  </div>
   <div class="score span4" ng-controller="StatsCtrl">
     <h4>Stats</h4>
     <table class='table table-condensed sidebar-table'>
