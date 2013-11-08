@@ -6,7 +6,7 @@ LApp.factory 'Phrase', (PhraseResource) ->
 
   @create = (opts)->
     result = { errors: [] }
-    sanitizedWord = opts.name.replace(/\W/g,'').toLowerCase()
+    sanitizedWord = opts.name.replace(/[^a-z\-]/ig,'').toLowerCase()
 
     if sanitizedWord.length < 2
       result.errors.push('Phrase should have at least 2 characters')
