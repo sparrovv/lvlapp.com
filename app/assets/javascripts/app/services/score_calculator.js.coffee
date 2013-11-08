@@ -5,9 +5,12 @@ LApp.service 'scoreCalculator',
       bonusTimeFactor =
         @_bonusTimePoints(statsData.videoDuration, statsData.time, skippedToGuessedRatio)
 
-      timeBonus = statsData.guessed * bonusTimeFactor
+      levelFactor = @_levelFactor(statsData.videoLevel)
+      preTotalPoints = statsData.guessed * levelFactor
+      timeBonus = preTotalPoints * bonusTimeFactor
 
-      total_points: statsData.guessed + timeBonus
+      total_points: preTotalPoints + timeBonus
+      level_factor: levelFactor
       guessed_points: statsData.guessed
       time_bonus: timeBonus
 
@@ -19,4 +22,10 @@ LApp.service 'scoreCalculator',
       else
         0
 
+    _levelFactor: (level) ->
+      {
+        'easy': 5,
+        'medium': 6,
+        'hard': 7
+      }[level]
 

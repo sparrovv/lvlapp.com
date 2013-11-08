@@ -11,7 +11,8 @@ LApp.service 'Stats',
       @blanks = attr.blanks
       @startTime = new Date()
       @videoDuration = attr.videoDuration
-      @level = attr.level
+      @videoLevel = attr.videoLevel
+      @difficulty = attr.difficulty
       @audioVideoId = attr.audio_video_id
 
     persist: ->
@@ -25,7 +26,7 @@ LApp.service 'Stats',
         skipped: @skipped
         mistakes: @mistakes
         time: @time
-        level: @level
+        level: @difficulty
         audioVideoId: @audioVideoId
         summary: score
 

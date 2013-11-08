@@ -7,11 +7,13 @@ describe "generateScore", ->
       Stats.skipped = 0 # is skip more than 30% no bonusess
       Stats.time = 20 # when it took you less than the video is taken / depends on lvl
       Stats.videoDuration = 20
+      Stats.videoLevel = 'medium'
 
       expectedResult =
-        total_points: 13
+        total_points: 60 + (60 * 0.3)
+        level_factor: 6
         guessed_points: 10
-        time_bonus: 10 * 0.3
+        time_bonus: 60 * 0.3
 
       expect(Stats.generateScore()).toEqual(expectedResult)
     )
@@ -21,9 +23,11 @@ describe "generateScore", ->
       Stats.skipped = 6
       Stats.time = 20 # when it took you less than the video is taken / depends on lvl
       Stats.videoDuration = 20
+      Stats.videoLevel = 'easy'
 
       expectedResult =
-        total_points: 12
+        total_points: 12 * 5
+        level_factor: 5
         guessed_points: 12
         time_bonus: 0
 
@@ -35,10 +39,12 @@ describe "generateScore", ->
       Stats.skipped = 0
       Stats.time = 24.1 # when it took you less than the video is taken / depends on lvl
       Stats.videoDuration = 20
+      Stats.videoLevel = 'hard'
 
       expectedResult =
-        total_points: 12
+        total_points: 12 * 7
         guessed_points: 12
+        level_factor: 7
         time_bonus: 0
 
       expect(Stats.generateScore()).toEqual(expectedResult)

@@ -5,7 +5,7 @@ LApp.controller "TranscriptCtrl", ($scope, $rootScope, LineTorch, GameConfig, Ga
 
   setCurrentState(GameStates.loading)
   $scope.currentLineTopPosition = GameConfig.lineStartPosition
-  $scope.level = 'normal'
+  $scope.difficulty = 'normal'
 
   $scope.stats = Stats
   $scope.transcriptFactory = transcriptFactory
@@ -43,9 +43,10 @@ LApp.controller "TranscriptCtrl", ($scope, $rootScope, LineTorch, GameConfig, Ga
       bindKeyDownKeyPress() if $scope.editMode != 'true'
       bindKeyDownControlls() if $scope.editMode == 'true'
 
-      transcriptFactory.setupBlanks($scope.level)
+      transcriptFactory.setupBlanks($scope.difficulty)
       Stats.init
-        level: $scope.level
+        difficulty: $scope.difficulty
+        videoLevel: audioVideo.level_name
         videoDuration: videoPlayer.duration()
         audio_video_id: audioVideo.id
         blanks: transcriptFactory.numberOfBlanks()
@@ -165,8 +166,8 @@ LApp.controller "TranscriptCtrl", ($scope, $rootScope, LineTorch, GameConfig, Ga
 
     $scope.restartGame()
 
-  $scope.selectGameLevel = (level, editMode='false')->
-    $scope.level = level
+  $scope.selectGameDifficulty = (difficulty, editMode='false')->
+    $scope.difficulty = difficulty
     $scope.editMode = editMode
     setCurrentState(GameStates.loading)
     $scope.videoPlayer.start()
