@@ -1,4 +1,4 @@
-class Admin::YoutubeParserController < ApplicationController
+class Admin::YoutubeParserController < Admin::BaseController
   def new
   end
 

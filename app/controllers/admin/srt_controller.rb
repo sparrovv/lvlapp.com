@@ -1,4 +1,4 @@
-class Admin::SrtController < ApplicationController
+class Admin::SrtController < Admin::BaseController
   def new
   end
 

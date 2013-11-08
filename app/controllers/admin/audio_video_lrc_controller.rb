@@ -1,6 +1,6 @@
 require 'lrc_parser'
 
-class Admin::AudioVideoLrcController < ApplicationController
+class Admin::AudioVideoLrcController < Admin::BaseController
   def new
   end
 

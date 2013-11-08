@@ -1,4 +1,4 @@
-class Admin::TedTranscriptsController < ApplicationController
+class Admin::TedTranscriptsController < Admin::BaseController
 
   # visit the video page
   #   web-console: talkDetails.mediaPad

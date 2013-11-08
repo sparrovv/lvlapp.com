@@ -4,6 +4,8 @@ class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
   after_filter :store_location
 
+  helper_method :render_ga?
+
   def store_location
     # store last url - this is needed for post-login redirect to whatever the user last visited.
     if (request.get? &&
@@ -18,5 +20,9 @@ class ApplicationController < ActionController::Base
 
   def after_sign_in_path_for(resource)
     session[:previous_url] || root_path
+  end
+
+  def render_ga?
+    Rails.env == 'production'
   end
 end
