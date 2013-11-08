@@ -1,5 +1,5 @@
 <% title('level up a language by playing: ' + @audio_video.name) %>
-<script> window.audioVideo = <%= raw @audio_video.to_json %>; </script>
+<script> window.audioVideo = <%= raw @audio_video.to_json(methods: [:level_name]) %>; </script>
 <script> window.isYoutubeVideo = <%= raw @audio_video.youtube? %>; </script>
 
 <div class="span12">
