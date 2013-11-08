@@ -3,7 +3,6 @@ class GameDataController < ApplicationController
   before_filter :load_audio_video, only: :create
 
   def index
-    @game_data = current_user.game_data.includes(:audio_video).order(:created_at)
     @game_data = current_user.
       game_data.includes(:audio_video).order('created_at desc')
   end
