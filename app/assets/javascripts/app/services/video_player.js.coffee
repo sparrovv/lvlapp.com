@@ -67,6 +67,9 @@ class LApp.VideoJSProxy
     @setCurrentTime(0)
     @pause()
 
+  isEnded: ->
+    (@currentTime() + 0.5) >= @duration()
+
   onVideoPlay: (funct) ->
     #noop
 
@@ -123,6 +126,9 @@ class LApp.YoutubVideoPlayerProxy
 
   duration: ->
     @original_player.getDuration()
+
+  isEnded: ->
+    (@currentTime() + 0.5) >= @duration()
 
   start: () ->
     @videoStarted = false

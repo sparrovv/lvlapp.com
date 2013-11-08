@@ -3,6 +3,7 @@ LApp.controller "TranscriptCtrl", ($scope, $rootScope, LineTorch, GameConfig, Ga
     GameStates.current = state
     $scope.currentState = state
 
+  currentTimeInterval = null
   setCurrentState(GameStates.loading)
   $scope.currentLineTopPosition = GameConfig.lineStartPosition
   $scope.difficulty = 'normal'
@@ -24,7 +25,6 @@ LApp.controller "TranscriptCtrl", ($scope, $rootScope, LineTorch, GameConfig, Ga
         lineTimeoutService.pauseOnNonFinishedLine($scope)
 
   videoCallbacks = (videoPlayer) ->
-    currentTimeInterval = null
     updateCurrentTime = ->
       $rootScope.$emit('currentVideoTime', {time: videoPlayer.currentTime(), duration: videoPlayer.duration()})
 
@@ -57,10 +57,11 @@ LApp.controller "TranscriptCtrl", ($scope, $rootScope, LineTorch, GameConfig, Ga
       currentTimeInterval = setInterval(updateCurrentTime, 300)
 
     onVideoEnded = ->
-      $scope.removeNewLineListener()
-      setCurrentState(GameStates.finished)
-      Stats.persist()
-      clearInterval(currentTimeInterval)
+     unless $scope.currentLine.isMatchingOrignal()
+       console.log 'reached the end of video but the current line is not matching original'
+       return
+
+     $scope.endVideo()
 
     setCurrentState(GameStates.setup)
     $scope.$digest() if !$scope.$$phase
@@ -125,7 +126,7 @@ LApp.controller "TranscriptCtrl", ($scope, $rootScope, LineTorch, GameConfig, Ga
 
         $scope.$apply()
 
-      return false  if Key.isSpecial(e.keyCode)
+      return false if Key.isSpecial(e.keyCode)
 
   $scope.togglePlayer = ->
     if $scope.currentState == GameStates.paused
@@ -171,6 +172,12 @@ LApp.controller "TranscriptCtrl", ($scope, $rootScope, LineTorch, GameConfig, Ga
     $scope.editMode = editMode
     setCurrentState(GameStates.loading)
     $scope.videoPlayer.start()
+
+  $scope.endVideo = ->
+    $scope.removeNewLineListener()
+    setCurrentState(GameStates.finished)
+    Stats.persist()
+    clearInterval(currentTimeInterval)
 
   $rootScope.$on 'userAction', (event, args) ->
     return unless GameStates.isStarted($scope.currentState)

@@ -28,4 +28,7 @@ LApp.factory "transcriptFactory", (audioVideo, blanksFactory)->
   factory.getNext = (line) ->
     factory.transcript[line.index + 1] or line
 
+  factory.isLastLine = (line) ->
+    (line.index + 1) == factory.transcript.length
+
   factory

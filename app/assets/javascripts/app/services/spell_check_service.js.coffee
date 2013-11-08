@@ -3,6 +3,11 @@ LApp.factory 'SpellChecker', (Stats, transcriptFactory) ->
   _playNextLine = (line, $scope) ->
     return false unless line.isMatchingOrignal()
 
+    if transcriptFactory.isLastLine(line)
+      if $scope.videoPlayer.isEnded()
+        $scope.endVideo()
+        return
+
     nextLine = transcriptFactory.getNext(line)
     return if !nextLine
     return if nextLine == line
