@@ -4,6 +4,8 @@ class GameDataController < ApplicationController
 
   def index
     @game_data = current_user.game_data.includes(:audio_video).order(:created_at)
+    @game_data = current_user.
+      game_data.includes(:audio_video).order('created_at desc')
   end
 
   def create
