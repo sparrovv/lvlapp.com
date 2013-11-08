@@ -1,20 +1,13 @@
-[[TODOs:]]
+# TODOs:
 
 - [] Memorise - Finish up agree on first version: word | definition / usage in a word / translation .. more
   - [] better design
 
 - [] add "how-it-works" page, copy, etc
--
-- [] Stats - Game Data score per video and overall user score, so it introduces a way to compete with another users...
 
 - [] debug what happens if there are words separated witch commas without space foo,bar  boys like these,younger
 - [] validate transcript that after comma or colon, period there is a space
-
 - [] Add integrations tests - just to be certain that everything works.
-
-BUGS:
-- [] When a new line triggers timeouts to volume up, and at the same time I go to the beginning of the line it doesn't seem to clear that interval and bring volume to the max. That's annoying.
-
 
 VERSION 2
 
@@ -41,33 +34,33 @@ SUGESTIONS:
 
 FOR Further FUTURE:
 
--[] spaced repetition - exporting to anki / this should happen sometime in the future, not now
+- [] spaced repetition - exporting to anki / this should happen sometime in the future, not now
 
--[] Phrase Book
+- [] Phrase Book
   -[x] List of phrases per video
   -[] Creating own lists
   -[x] Find some APIs and get usage of word / def / transalation
 
--[] Shorter Videos
+- [] Shorter Videos
   -[x] youtube music - is short and nice
   -[] self hosting - have no clue what would be performance
 
--[] Front Page 
+- [] Front Page 
   -[]/ with video and lyrics player, at the end examples how to do it
   -[] fiverr - someone will read it
   -[] new format of transcript, where you can indicate what words are missing, instead of randoms
 
--[] testing ?!
--[] refactoring, more angularjs knowledge I need ?!
+- [] testing ?!
+- [] refactoring, more angularjs knowledge I need ?!
 
 DONE
 
--[x] Make sure that when focus leaves the transcript area, then video stop playing, and keys are not bind.
--[x] Deploy somewhere
+- [x] Make sure that when focus leaves the transcript area, then video stop playing, and keys are not bind.
+- [x] Deploy somewhere
   DigitalOcean 146.185.132.161
   ruby 1.9.3, bundler, mysql, git
 
--[x] It seems that after couple minutes the video won't pause. It says that it paused, but it still playing, with very irritating sound. Looks like a player problem, or the setTiemout issue, but can't see a big connection between setTiemout and this problem.  But maybe it is. Need more information, but definitely it has to be fixed before releasing to public.
+- [x] It seems that after couple minutes the video won't pause. It says that it paused, but it still playing, with very irritating sound. Looks like a player problem, or the setTiemout issue, but can't see a big connection between setTiemout and this problem.  But maybe it is. Need more information, but definitely it has to be fixed before releasing to public.
 
 - [x] Start game on clicking in youtube video
 - [x] generate blanks in callback after start of the player, maybe it's time to introduce lvls
@@ -123,3 +116,6 @@ DONE
     - don't add missing ones, 
     - allow hypen/dash
     - and maybe 1 letters, prepare filtter for that, so it decorates it wit...
+- [] Stats - Game Data score per video and overall user score, so it introduces a way to compete with another users...
+- [] When a new line triggers timeouts to volume up, and at the same time I go to the beginning of the line it doesn't seem to clear that interval and bring volume to the max. That's annoying.
+
