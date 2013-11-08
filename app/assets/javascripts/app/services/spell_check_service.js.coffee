@@ -3,8 +3,7 @@ LApp.factory 'SpellChecker', (Stats, transcriptFactory) ->
   _playNextLine = (line, $scope) ->
     return false unless line.isMatchingOrignal()
 
-    isLastLine = transcriptFactory.isLastLine(line)
-    if isLastLine
+    if transcriptFactory.isLastLine(line)
       if $scope.videoPlayer.isEnded()
         $scope.endVideo()
         return
@@ -16,6 +15,7 @@ LApp.factory 'SpellChecker', (Stats, transcriptFactory) ->
     diff = $scope.videoPlayer.currentTime() - nextLine.time
     maxNumberOfSecondsUntilYouStartTheLineOver = 2
 
+    isLastLine = transcriptFactory.isLastLine(nextLine)
     if (maxNumberOfSecondsUntilYouStartTheLineOver > diff) && !isLastLine
       $scope.videoPlayer.play()
     else
