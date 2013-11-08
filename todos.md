@@ -1,35 +1,39 @@
 [[TODOs:]]
 
-- [] Filter what words can be add to the phrasebook, 
-    - don't add missing ones, 
-    - and maybe 1 letters, prepare filtter for that, so it decorates it wit...
-    - allow hypen/dash
 - [] Memorise - Finish up agree on first version: word | definition / usage in a word / translation .. more
   - [] better design
-  - [] last 20 unknown
-  - [] translate whole line, it can be useful in case of phrasals or some expressions with 
-  - [] Smarter adding line when adding to phrasebook, whole sentence (from . to . - it can be a problem casue transcript is without periods)
-  - [] add image search
 
 - [] add "how-it-works" page, copy, etc
+-
 - [] Stats - Game Data score per video and overall user score, so it introduces a way to compete with another users...
 
 - [] debug what happens if there are words separated witch commas without space foo,bar  boys like these,younger
 - [] validate transcript that after comma or colon, period there is a space
 
-- [] Use postgresql
-- [] Consider switching to google translate - it's about 20bucks for 125000 words, it's not so bad....
-- [] Add duration - connect to youtube API or after first loading udpate duration.
-- [] add go to the end when is the last line, and there is still plenty video to finsihed, becasue of ....
 - [] Add integrations tests - just to be certain that everything works.
 
 BUGS:
-- [] When a new line triggers timeouts to volume up, and at the same time I go to the beginning of the line it doesn't seem to clear that interval and bring volume to the max. That's annoying. 
-- [] After adding gem I Had to stop and start puma, because restart didn't help
-- [] compressed javascript doesn't work
+- [] When a new line triggers timeouts to volume up, and at the same time I go to the beginning of the line it doesn't seem to clear that interval and bring volume to the max. That's annoying.
 
+
+VERSION 2
+
+- [] Use postgresql
+- [] Add duration - connect to youtube API or after first loading udpate duration.
 - [] smarter feeeling blanks: fix: good bye
 - [] Smarter blanks, there is some issue with: "why" whoa, ...
+- [] Memorize - 2nd version 
+  - [] edit and your own stuff
+  - [] add image search
+  - [] last 20 unknown
+  - [] Smarter adding line when adding to phrasebook, whole sentence (from . to . - it can be a problem casue transcript is without periods)
+  - [] translate whole line, it can be useful in case of phrasals or some expressions with 
+- [] add go to the end when is the last line, and there is still plenty video to finsihed, becasue of ....
+- [] Consider switching to google translate - it's about 20bucks for 125000 words, it's not so bad....
+
+BUGS:
+- [] After adding gem I Had to stop and start puma, because restart didn't help
+- [] compressed javascript doesn't work
 
 SUGESTIONS:
 
@@ -115,3 +119,7 @@ DONE
 - [] add link to source - so there is no problem
 - [] alwyas focus on start...
 - [] remove singularizing phraes... ambigous -> ambigou ...
+- [] Filter what words can be add to the phrasebook, 
+    - don't add missing ones, 
+    - allow hypen/dash
+    - and maybe 1 letters, prepare filtter for that, so it decorates it wit...
