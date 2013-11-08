@@ -4,8 +4,8 @@ LApp.locateCurrentLine = (currentTime, $scope) ->
       line = range.line
 
       # Had to introduce this safeguard and global state so it will knew that there was a new line triggered and should ignore it
-      if $scope.lineUpPressed
-        $scope.lineUpPressed = undefined
+      if $scope.lineUpOrBeginningPressed
+        $scope.lineUpOrBeginningPressed = undefined
         return
 
       if $scope.currentLine.index != line.index && line.index > $scope.currentLine.index

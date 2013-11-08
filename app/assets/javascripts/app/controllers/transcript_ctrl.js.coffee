@@ -78,11 +78,11 @@ LApp.controller "TranscriptCtrl", ($scope, $rootScope, LineTorch, GameConfig, Ga
     LineTorch.highlight($scope.currentLine, $scope)
 
   $scope.setCurrentLine = (line) ->
-    lineTimeoutService.clearNextLineTimeout($scope)
-    $scope.currentLine = line
     setCurrentState(GameStates.playing)
     $scope.videoPlayer.setCurrentTime(line.time)
+    $scope.currentLine = line
     $scope.$digest() if !$scope.$$phase
+    lineTimeoutService.clearNextLineTimeout($scope)
 
   unbindKeyDownKeyPress = ->
     $(document).unbind('keypress')
