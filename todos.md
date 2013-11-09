@@ -1,14 +1,21 @@
 # TODOs:
 
+- [] Implement layout improvements 
+- [] shorten video titles add dots ....
+- [] add "how-it-works" page, copy, etc
+- [] improve controls - make proper icons
+- [] Add twitter/facebook/g+ buttons to like
+- [] Style game menus over the video - seems to wrok when it has absolutes values.
+     There's
+
+- [] Add integrations tests - just to be certain that everything works.
+
 - [] Memorise - Finish up agree on first version: word | definition / usage in a word / translation .. more
   - [] better design
 
-- [] improve controls - make proper icons
-- [] add "how-it-works" page, copy, etc
-- [] Add integrations tests - just to be certain that everything works.
-
 VERSION 2
 
+- [] On hove on thumbnail show already the dificulty that you want to play with
 - [] Use postgresql
 - [] Add duration - connect to youtube API or after first loading udpate duration.
 - [] smarter feeeling blanks: fix: good bye
