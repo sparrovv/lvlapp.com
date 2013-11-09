@@ -3,7 +3,7 @@
   <%= link_to image_tag(audio_video.image_url), audio_video_path(audio_video), :class => 'preview' %>
   <div class='info'>
     <div>
-      <%= link_to audio_video.name, audio_video_path(audio_video), :class => 'preview' %>
+      <%= link_to truncate(audio_video.name, length: 40), audio_video_path(audio_video), :class => 'preview' %>
     </div>
     <span>
       Added: <%= time_ago_in_words(audio_video.created_at) %> ago
