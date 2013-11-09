@@ -3,10 +3,8 @@
 - [] Memorise - Finish up agree on first version: word | definition / usage in a word / translation .. more
   - [] better design
 
+- [] improve controls - make proper icons
 - [] add "how-it-works" page, copy, etc
-
-- [] debug what happens if there are words separated witch commas without space foo,bar  boys like these,younger
-- [] validate transcript that after comma or colon, period there is a space
 - [] Add integrations tests - just to be certain that everything works.
 
 VERSION 2
@@ -119,3 +117,5 @@ DONE
 - [] Stats - Game Data score per video and overall user score, so it introduces a way to compete with another users...
 - [] When a new line triggers timeouts to volume up, and at the same time I go to the beginning of the line it doesn't seem to clear that interval and bring volume to the max. That's annoying.
 
+- [] debug what happens if there are words separated witch commas without space foo,bar  boys like these,younger
+- [] validate transcript that after comma or colon, period there is a space

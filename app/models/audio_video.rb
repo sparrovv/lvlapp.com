@@ -15,6 +15,8 @@ class AudioVideo < ActiveRecord::Base
   validates :category, presence: true
   validates :level, presence: true
   validates :status, presence: true, inclusion: STATUSES
+  validate :validate_json_format
+  validate :validate_space_after_period_and_comma
 
   belongs_to :category
   belongs_to :level
@@ -55,5 +57,23 @@ class AudioVideo < ActiveRecord::Base
   private
   def init
     self.status ||= PENDING
+  end
+  def validate_json_format
+    return true unless transcript.present?
+    JSON.parse transcript
+  rescue JSON::ParserError => e
+    errors.add(:transcript, 'Invalid JSON: ' + e.message)
+  end
+
+  def validate_space_after_period_and_comma
+    return true unless transcript.present?
+    parsed = JSON.parse transcript
+    text_array = parsed.map { |r| r['text']}
+    text_array.each do |text|
+      if text.match /\w[,\.]\w/
+        errors.add(:transcript, 'there is no space after . or , at line ' + text)
+      end
+    end
+  rescue JSON::ParserError => e
   end
 end

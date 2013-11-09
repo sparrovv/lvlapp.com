@@ -49,6 +49,24 @@ describe AudioVideo do
     expect(audio_video.errors).to include(:transcript)
   end
 
+  it 'validates transcript that it is valid json' do
+    audio_video.transcript = '[{"text":"foo bar" i}]'
+    expect(audio_video).to_not be_valid
+    expect(audio_video.errors).to include(:transcript)
+  end
+
+  it 'validates that there is space after comma' do
+    audio_video.transcript = '[{"text":"hey yola, go and foo,bar"}]'
+    expect(audio_video).to_not be_valid
+    expect(audio_video.errors).to include(:transcript)
+  end
+
+  it 'validates that there is space after comma' do
+    audio_video.transcript = '[{"text":"Nice to meet your foo.bar"}]'
+    expect(audio_video).to_not be_valid
+    expect(audio_video.errors).to include(:transcript)
+  end
+
   it 'validates url' do
     audio_video.url = nil
     expect(audio_video).to_not be_valid

@@ -4,7 +4,7 @@ FactoryGirl.define do
   factory :audio_video do
     name "MyString"
     description "MyText"
-    transcript "{'foo': 'bar'}"
+    transcript '[{"time": "1.0", "text": "Hey you are all right"}]'
     url "MyString"
     duration 10.10
     status 'active'
