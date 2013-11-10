@@ -1,6 +1,10 @@
-$logo-color: #d95525;
+@import "colors.css.scss";
+
 #front-about{
-  background: #44403C;
+  background: #d9d9d9;
+  .container{
+    background: $navyblue;
+  }
   color: #D6CFCF;
   h2{
     color: #C38E58;
@@ -17,12 +21,20 @@ $logo-color: #d95525;
   }
 }
 
-.primary_info{
+.primary-info-image{
+  padding:40px 0px;
+  float: right;
+}
+.primary-info-text{
+  padding:40px;
   h1{
-    font-size: 32px;
-    em{
-      color: $logo-color;
-    }
+    margin-top:0px;
+    font-size: 22pt;
+    color: $orange;
+  }
+  p{
+    margin: 10px 0 0 15px;
+    font-size: 14pt;
   }
 }
 
@@ -32,4 +44,13 @@ $logo-color: #d95525;
 
 .top-buffer{
   margin-top:40px;
+}
+
+#front-quoted-text{
+  height: 100px;
+  h3{
+    font-size: 24pt;
+    color: $lightblue;
+    text-align: center;
+  }
 }

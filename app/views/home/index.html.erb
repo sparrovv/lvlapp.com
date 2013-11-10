@@ -1,11 +1,8 @@
 <section id="front-about">
 <div class='container'>
-  <div class="row">
-    <div class='span6'>
-      <%= image_tag 'front_home.png' %>
-    </div>
-    <div class="primary_info span6">
-      <h1><em>Level up</em> your second language by listening and smart repetition.</h1>
+  <div class="row ">
+    <div class="primary-info-text span5">
+      <h1>Level up your second language by listening and smart repetition.</h1>
 
       <p>
         Improve your language skills by listening to your favourite songs, movie clips and all variety of videos.
@@ -17,7 +14,9 @@
       Add new words to the <em>phrasebook</em>, and learn them in your spare time.
       </p>
 
-      <p class='front-prompt'><%= link_to 'See it for yourself', audio_videos_path %></p>
+    </div>
+    <div class='primary-info-image span6'>
+      <%= image_tag 'front_home.png' %>
     </div>
   </div>
 
@@ -47,6 +46,14 @@
           <%= render 'shared/audio_video', audio_video: audio_video %>
         <% end %>
       </div>
+    </div>
+  </div>
+</section>
+
+<section id='front-quoted-text' class="">
+  <div class='container'>
+    <div class="row">
+      <h3>Get you English to the next level!</h3>
     </div>
   </div>
 </section>

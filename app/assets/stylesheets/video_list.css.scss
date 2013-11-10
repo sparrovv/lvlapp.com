@@ -1,10 +1,15 @@
 .media-grid {
   .video {
     float: left;
-    margin: 0 30px 20px 0;
+    margin: 10px 30px 0px 0;
     width: 210px;
-    height: 210px;
-    font-size: 15px;
+    height: 225px;
+
+    .info{
+      font-size: 11pt;
+      margin: 5px 0;
+      height: 42px
+    }
   }
 }
 .horizontal-3.media-grid {

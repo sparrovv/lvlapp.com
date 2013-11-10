@@ -14,30 +14,58 @@
  */
 @import "bootstrap";
 @import "bootstrap-responsive";
+@import "colors";
 
-$logo-color: #d95525;
+body{
+  font-family: "Open Sans", Arial, Helvetica, sans-serif;
+}
+a{
+  color: $lightblue;
+
+  &:hover{
+    color: $orange;
+    text-decoration: none;
+  }
+}
 
 h1,h2,h3,h4,h5{
   font-weight: 400;
 }
 
 .navbar {
-  font-family: "News Cycle", "Arial Narrow Bold", sans-serif;
   font-size: 16px;
   font-weight: normal;
-  color: #000;
   margin-bottom: 0px;
+  height: 80px;
+  border-bottom: 1px solid $grey;
 }
 
-.navbar-brand {
-  float: left;
+.top-navbar{
+  font-size: 18pt;
+  padding: 20px 0px 0px;
+  .nav{
+    a{
+      color: $navyblue;
+
+      &:hover{
+        color: $blue;
+      }
+    }
+  }
+}
+
+a.navbar-brand {
+  font-size: 20pt;
   padding: 10px 0px 0px;
-  font-size: 19px;
-  line-height: 21px;
+  color: $orange;
+  float: left;
   font-weight: bold;
-  color: $logo-color;
+
   &:hover{
-    color: $logo-color;
+    color: $orange;
+  }
+  .darky{
+    color: $navyblue;
   }
 }
 
