@@ -64,7 +64,6 @@ class LApp.VideoJSProxy
     @setCurrentTime(0)
 
   restart: () ->
-    @setCurrentTime(0)
     @pause()
 
   isEnded: ->
@@ -137,5 +136,4 @@ class LApp.YoutubVideoPlayerProxy
 
   restart: () ->
     @videoStarted = false
-    @setCurrentTime(0)
     @pause()

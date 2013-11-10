@@ -12,6 +12,7 @@
 
 - [] Memorise - Finish up agree on first version: word | definition / usage in a word / translation .. more
   - [] better design
+- [] On click inside the transcript there always should be focus, and maybe some indication that the focus is in?
 
 VERSION 2
 

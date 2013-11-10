@@ -6,19 +6,29 @@
 </div>
 <div ng-app='LApp' class="row">
   <div class="span8" ng-controller="TranscriptCtrl" >
-    <div class='player-containter'>
-    <% if @audio_video.youtube? %>
-      <%= render 'shared/youtube', audio_video: @audio_video %>
-    <% else %>
-      <%= render 'shared/videojs', audio_video: @audio_video  %>
-    <%end %>
-    </div>
+    <div ng-controller="VideoInfoCtrl">
+      <div class='player-containter'>
+        <% if @audio_video.youtube? %>
+          <%= render 'shared/youtube', audio_video: @audio_video %>
+      <% else %>
+          <%= render 'shared/videojs', audio_video: @audio_video  %>
+      <%end %>
+        <div class='game-menu game-shared-screen {{currentState}}'>
+          <h3>Select difficulty:</h3>
+          <ul>
+            <li><a ng-click="selectGameDifficulty('karaoke', 'true')">Karaoke and edit</a></li>
+          </ul>
 
-    <div class='video-info' ng-controller="VideoInfoCtrl">
-      <div class='app-progress'>
-        <progress percent="progressValue"></progress>
+        </div>
       </div>
-      <div class='app-time'>{{currentVideoTime}} / {{videoDuration | toMinSec}}</div>
+
+      <div class='video-info'>
+        <div class='app-controls {{currentState}}'>
+          <a title='replay line' ng-click='invokeAction("beginningOfline")'>↺</a>
+          <a title='restart game' ng-click="restartGame()">⌽</a>
+        </div>
+        <div class='app-time'>{{currentVideoTime}} / {{videoDuration | toMinSec}}</div>
+      </div>
     </div>
     <div id="transcript-player" data-id='text-player' tabindex="1" ng-keypress='listenForKey' class='transcript-player'>
       <div class='game-end game-shared-screen {{currentState}}'>
@@ -30,19 +40,7 @@
         <p><a ng-click="restartGame()">Restart game</a></p>
       </div>
 
-      <div class='game-menu game-shared-screen {{currentState}}'>
-        <h3>Select difficulty:</h3>
-        <ul>
-          <li><a ng-click="selectGameDifficulty('karaoke', 'true')">Karaoke and edit</a></li>
-        </ul>
-      </div>
-
       <div class='game-starting game-shared-screen {{currentState}}'></div>
-
-      <div class='controls'>
-        <a ng-click="restartGame()">Restart game</a>
-        <span>{{currentVideoTime}}</a>
-      </div>
 
       <ul class="lines" style="top:{{currentLineTopPosition}}px">
         <li ng-repeat="line in transcript">
@@ -53,11 +51,11 @@
         </li>
       </ul>
     </div>
-    <p style="margin-top:10px;">
-      [<span ng-repeat="line in transcript">
-        { "time":"{{line.time}}", "text":"{{line.text}}"},
-      </span>]
-    </p>
+
+    <textarea style="width: 760px; height: 500px;">{{transcript | onlyTimeAndText}}</textarea>
+
+    <p>END</p>
+
   </div>
 
   <div id="help" class="span4" ng-controller='HelpCtrl' >

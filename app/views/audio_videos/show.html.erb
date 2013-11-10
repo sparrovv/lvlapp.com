@@ -13,28 +13,42 @@
 
 <div ng-app='LApp' class="lapp">
   <div class="span8">
-    <div class='player-containter'>
-    <% if @audio_video.youtube? %>
-      <%= render 'shared/youtube', audio_video: @audio_video %>
-    <% else %>
-      <%= render 'shared/videojs', audio_video: @audio_video  %>
-    <%end %>
-    </div>
 
-    <div class='video-info' ng-controller="VideoInfoCtrl">
-      <div class='app-controls {{currentState}}'>
-        <a title='play/pause' class='play' ng-click='invokeAction("togglePlayer")'>▷</a>
-        <a title='pause' class='pause' ng-click='invokeAction("togglePlayer")'>‖</a>
-        <a title='skip word' ng-click='invokeAction("skipWord")'>&#x21E5;</a>
-        <a title='line up' ng-click='invokeAction("lineUp")'>⊻</a>
-        <a title='line down' ng-click='invokeAction("lineDown")'>⊼</a>
-        <a title='replay line' ng-click='invokeAction("beginningOfline")'>↺</a>
-        <a title='restart game' ng-click="restartGame()">⌽</a>
+    <div ng-controller="VideoInfoCtrl">
+      <div class='player-containter'>
+        <% if @audio_video.youtube? %>
+          <%= render 'shared/youtube', audio_video: @audio_video %>
+      <% else %>
+          <%= render 'shared/videojs', audio_video: @audio_video  %>
+      <%end %>
+        <div class='game-menu game-shared-screen {{currentState}}'>
+          <h3>Select difficulty:</h3>
+          <ul>
+            <li><a ng-click="selectGameDifficulty('easy')">Easy</a></li>
+            <li><a ng-click="selectGameDifficulty('normal')">Normal</a></li>
+            <li><a ng-click="selectGameDifficulty('hard')">Hard</a></li>
+            <li></li>
+            <li><a ng-click="selectGameDifficulty('karaoke')">Or just listen</a></li>
+          </ul>
+
+        </div>
       </div>
-      <div class='app-progress'>
-        <progress percent="progressValue"></progress>
+
+      <div class='video-info'>
+        <div class='app-controls {{currentState}}'>
+          <a title='play/pause' class='play' ng-click='invokeAction("togglePlayer")'>▷</a>
+          <a title='pause' class='pause' ng-click='invokeAction("togglePlayer")'>‖</a>
+          <a title='skip word' ng-click='invokeAction("skipWord")'>&#x21E5;</a>
+          <a title='line up' ng-click='invokeAction("lineUp")'>⊼</a>
+          <a title='line down' ng-click='invokeAction("lineDown")'>⊻</a>
+          <a title='replay line' ng-click='invokeAction("beginningOfline")'>↺</a>
+          <a title='restart game' ng-click="restartGame()">⌽</a>
+        </div>
+        <div class='app-progress'>
+          <progress percent="progressValue"></progress>
+        </div>
+        <div class='app-time'>{{currentVideoTime | toMinSec}} / {{videoDuration | toMinSec}}</div>
       </div>
-      <div class='app-time'>{{currentVideoTime | toMinSec}} / {{videoDuration | toMinSec}}</div>
     </div>
 
     <div id="transcript-player" data-id='text-player' tabindex="1" ng-controller="TranscriptCtrl" ng-keypress='listenForKey' class='transcript-player'>
@@ -52,16 +66,8 @@
         <p class='restart'><a ng-click="restartGame()">Restart game</a></p>
       </div>
 
-      <div class='game-menu game-shared-screen {{currentState}}'>
-        <h3>Select difficulty:</h3>
-        <ul>
-          <li><a ng-click="selectGameDifficulty('easy')">Easy</a></li>
-          <li><a ng-click="selectGameDifficulty('normal')">Normal</a></li>
-          <li><a ng-click="selectGameDifficulty('hard')">Hard</a></li>
-          <li></li>
-          <li><a ng-click="selectGameDifficulty('karaoke')">Or just listen</a></li>
-        </ul>
-
+      <div class='game-setup-info game-shared-screen {{currentState}}'>
+        <h3>Start typing after game starts.</h3>
       </div>
 
       <div class='game-starting game-shared-screen {{currentState}}'></div>

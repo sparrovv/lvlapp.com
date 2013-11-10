@@ -2,6 +2,7 @@ LApp.controller "TranscriptCtrl", ($scope, $rootScope, LineTorch, GameConfig, Ga
   setCurrentState= (state) ->
     GameStates.current = state
     $scope.currentState = state
+    $rootScope.$emit 'stateChanged', {state: state}
 
   currentTimeInterval = null
   setCurrentState(GameStates.loading)
@@ -167,9 +168,9 @@ LApp.controller "TranscriptCtrl", ($scope, $rootScope, LineTorch, GameConfig, Ga
 
     $scope.restartGame()
 
-  $scope.selectGameDifficulty = (difficulty, editMode='false')->
-    $scope.difficulty = difficulty
-    $scope.editMode = editMode
+  $rootScope.$on 'selectDifficulty', (event, args) ->
+    $scope.difficulty = args.difficulty
+    $scope.editMode = args.editMode
     setCurrentState(GameStates.loading)
     $scope.videoPlayer.start()
 
