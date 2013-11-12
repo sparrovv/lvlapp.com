@@ -1,7 +1,6 @@
 # TODOs:
 
 - [] Implement layout improvements 
-- [] shorten video titles add dots ....
 - [] add "how-it-works" page, copy, etc
 - [] improve controls - make proper icons
 - [] Add twitter/facebook/g+ buttons to like
@@ -13,6 +12,7 @@
 - [] Memorise - Finish up agree on first version: word | definition / usage in a word / translation .. more
   - [] better design
 - [] On click inside the transcript there always should be focus, and maybe some indication that the focus is in?
+- [] Add sitemap xml generator
 
 VERSION 2
 
@@ -127,3 +127,4 @@ DONE
 
 - [] debug what happens if there are words separated witch commas without space foo,bar  boys like these,younger
 - [] validate transcript that after comma or colon, period there is a space
+- [] shorten video titles add dots ....
