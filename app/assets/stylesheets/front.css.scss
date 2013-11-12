@@ -54,3 +54,17 @@
     text-align: center;
   }
 }
+
+.wrap{
+  margin-top:10px;
+  .center-text{
+    margin-top:5%;
+    text-align:left;
+  }
+  &.no-top-margin{
+    .center-text{
+      margin-top:0 ;
+    }
+  }
+}
+

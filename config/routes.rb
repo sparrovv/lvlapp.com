@@ -24,6 +24,7 @@ Lvlapp::Application.routes.draw do
   resources :game_data, only: [:index, :create]
 
   root :to => 'home#index'
+  get '/about' => 'home#about'
 
   get 'ted_transcript/' => 'admin/ted_transcripts#new'
   post 'ted_transcript/create' => 'admin/ted_transcripts#create'
