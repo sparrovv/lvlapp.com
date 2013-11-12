@@ -2,6 +2,10 @@ default_run_options[:shell] = '/bin/bash -l'
 require 'bundler/capistrano'
 require 'capistrano_colors'
 
+set :whenever_command, "bundle exec whenever"
+set :whenever_environment, defer { stage }
+require "whenever/capistrano"
+
 load 'deploy/assets'
 set :stages, ['production']
 set :default_stage, 'production'

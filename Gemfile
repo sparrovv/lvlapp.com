@@ -34,6 +34,7 @@ gem 'language_list', '~> 1.0.0'
 gem 'simple_form'
 gem 'friendly_id', git: 'https://github.com/norman/friendly_id.git', branch: '5.0-stable'
 gem 'sitemap_generator'
+gem 'whenever', :require => false
 
 # errors reporting
 gem "sentry-raven", :git => "https://github.com/getsentry/raven-ruby.git"
