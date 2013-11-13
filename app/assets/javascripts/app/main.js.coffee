@@ -31,3 +31,5 @@ gameStates =
 
 @LApp.constant 'GameConfig', gameConfig
 @LApp.constant 'GameStates', gameStates
+
+@LvlFront = angular.module("LvlFront", ['ui.bootstrap'])

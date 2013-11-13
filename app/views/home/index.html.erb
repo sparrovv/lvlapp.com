@@ -39,12 +39,36 @@
 
 <section id='front-recently-added' class="">
   <div class='container'>
-    <div class="row">
-      <div class="span-12 media-grid horizontal-fluid">
-        <h2>Recently added</h2>
-        <% @recent_videos.each do |audio_video| %>
-          <%= render 'shared/audio_video', audio_video: audio_video %>
-        <% end %>
+    <div class="row" ng-app="LvlFront">
+      <div class="span-12 media-grid horizontal-fluid tabs" ng-controller="TabsCtrl">
+        <ul class='tnav nav nav-pills'>
+          <li class="{{active == 'recent' && 'active'}}">
+            <a class="" ng-click="change('recent')">Recently added</a>
+          </li>
+          <li class="{{active == 'popular' && 'active'}}">
+            <a class="" ng-click="change('popular')">Popular</a>
+          </li>
+          <li class="{{active == 'featured' && 'active'}}">
+            <a class="" ng-click="change('featured')">Featured</a>
+          </li>
+        </ul>
+        <div class='tcontent'>
+          <div class="tab {{active == 'recent' && 'active'}}">
+            <% @recent_videos.each do |audio_video| %>
+              <%= render 'shared/audio_video', audio_video: audio_video %>
+          <% end %>
+          </div>
+          <div class="tab {{active == 'popular' && 'active'}}">
+            <% @popular_videos.each do |audio_video| %>
+              <%= render 'shared/audio_video', audio_video: audio_video %>
+          <% end %>
+          </div>
+          <div class="tab {{active == 'featured' && 'active'}}">
+            <% @featured_videos.each do |audio_video| %>
+              <%= render 'shared/audio_video', audio_video: audio_video %>
+          <% end %>
+          </div>
+        </div>
       </div>
     </div>
   </div>

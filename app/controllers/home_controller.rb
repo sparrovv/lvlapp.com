@@ -6,6 +6,10 @@ class HomeController < ApplicationController
       by_status(AudioVideo::ACTIVE).
       order('created_at desc').limit(10)
 
+    @popular_videos = AudioVideo.
+      by_status(AudioVideo::ACTIVE).
+      order('views_count desc').limit(10)
+
     @featured_videos = AudioVideo.
       featured.
       by_status(AudioVideo::ACTIVE).
