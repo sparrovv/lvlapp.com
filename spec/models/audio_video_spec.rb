@@ -61,6 +61,13 @@ describe AudioVideo do
     expect(audio_video.errors).to include(:transcript)
   end
 
+  it 'digits are okay with comma and periods' do
+    audio_video.transcript = '[{"text":"hey yola, go and 1,000"}]'
+    expect(audio_video).to be_valid
+    audio_video.transcript = '[{"text":"hey yola, go and 1.000"}]'
+    expect(audio_video).to be_valid
+  end
+
   it 'validates that there is space after comma' do
     audio_video.transcript = '[{"text":"Nice to meet your foo.bar"}]'
     expect(audio_video).to_not be_valid
