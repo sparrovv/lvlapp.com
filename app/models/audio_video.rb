@@ -70,7 +70,7 @@ class AudioVideo < ActiveRecord::Base
     parsed = JSON.parse transcript
     text_array = parsed.map { |r| r['text']}
     text_array.each do |text|
-      if text.match(/\p{L}[,\.]\p{L}/)
+      if text.match(/[a-z][,\.][a-z]/i)
         errors.add(:transcript, 'there is no space after . or , at line ' + text)
       end
     end
