@@ -3,5 +3,6 @@ FactoryGirl.define do
     sequence :name do |n|
       "Rock#{n}"
     end
+    position 1
   end
 end

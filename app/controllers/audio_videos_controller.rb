@@ -30,7 +30,7 @@ class AudioVideosController < ApplicationController
 
   private
   def load_categories
-    @categories = Category.all
+    @categories = Category.order(:position)
   end
 
   def load_category

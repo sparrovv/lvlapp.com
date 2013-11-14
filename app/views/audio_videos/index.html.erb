@@ -1,5 +1,5 @@
 <div class='span12'>
-  <h2>Recent videos</h2>
+  <h4></h4>
 </div>
 
 <div class='media-grid span10'>
@@ -10,6 +10,9 @@
 
 <div class='span2'>
   <ul class='nav nav-list'>
+    <li>
+      <%= link_to 'All', audio_videos_path %>
+    </li>
   <% @categories.each do |category| %>
     <li class='<%= (category == @category ) ? "active" : ""%>'>
       <%= link_to category.name, audio_videos_path(:category_id => category.id)%>
