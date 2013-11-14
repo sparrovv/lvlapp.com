@@ -2,7 +2,7 @@
   <h2>Recent videos</h2>
 </div>
 
-<div class='media-grid horizontal-4 span10'>
+<div class='media-grid span10'>
 <% @audio_videos.each do |audio_video| %>
   <%= render 'shared/audio_video', audio_video: audio_video %>
 <% end %>

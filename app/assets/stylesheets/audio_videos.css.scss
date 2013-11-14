@@ -1,4 +1,5 @@
 $videoSetupBG: #44403C; //#262C35;
+@import "colors.css.scss";
 
 @mixin notSelectable(){
   -webkit-touch-callout: none;
@@ -40,38 +41,56 @@ h3.audio-video-title{
     width: 770px;
     left: 0px;
     top: 0px;
-    height: 350px;
+    height: 360px;
     z-index: 99;
-    ul{
+    background: $blackRgb;
+    background-color: $blackRgbTransparent;
+    color:   #2BBBD8;
+    .menu-wrapper{
+      opacity: none;
       position: absolute;
       margin: 0;
-      width: 60%;
-      left:20%;
-      li{
-        display: block;
-        list-style-type: none;
-        list-style-position: outside;
-        height: 32px;
-        line-height: 32px;
-        text-align: center;
-        border-bottom: 1px solid #D7DDEA;
-        color: #606060;
-        padding: 4px;
-        border-bottom: 1px dotted #747577;
-        &:nth-last-child(-n+2){
-          border-bottom: none;
+      width: 20%;
+      left:40%;
+
+      h3{
+        text-align:center;
+        color: white;//#d95525;
+        font-weight:normal;
+        font-size:20px;
+        margin: 40px 0 0 0;
+      }
+
+      ul{
+        margin: 0;
+        li{
+          opacity: 0.9;
+          &.easy{ background-color:$lightblue; }
+          &.medium{ background-color:$blue; }
+          &.hard{ background-color:$navyblue; }
+          &.just-listen{ background-color:$darkgrey; }
+
+          display: block;
+          list-style-type: none;
+          list-style-position: outside;
+          height: 28px;
+          line-height: 28px;
+          text-align: center;
+          padding: 4px;
+          &:nth-last-child(-n+2){
+            border-bottom: none;
+          }
+          a{
+            display:block;
+            color: white;
+            &:hover{
+              color: #d95525;
+              text-decoration: none;
+            }
+          }
         }
       }
     }
-    a{
-      color: #F7F1D9;
-    }
-
-    a:hover{
-      color: #d95525;
-      text-decoration: none;
-    }
-
   }
 }
 
@@ -214,7 +233,7 @@ h3.audio-video-title{
   text-align: center;
   margin: auto auto;
   padding: 10px 0 0 0px;
-  background: $videoSetupBG;
+  background: $darkgrey;
   z-index: 99;
   opacity: 0.94;
   color:   #2BBBD8;

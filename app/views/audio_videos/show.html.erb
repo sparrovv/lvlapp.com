@@ -21,15 +21,16 @@
       <% else %>
           <%= render 'shared/videojs', audio_video: @audio_video  %>
       <%end %>
-        <div class='game-menu game-shared-screen {{currentState}}'>
+        <div class='game-menu {{currentState}}'>
+          <div class='menu-wrapper'>
           <h3>Select difficulty:</h3>
           <ul>
-            <li><a ng-click="selectGameDifficulty('easy')">Easy</a></li>
-            <li><a ng-click="selectGameDifficulty('normal')">Normal</a></li>
-            <li><a ng-click="selectGameDifficulty('hard')">Hard</a></li>
-            <li></li>
-            <li><a ng-click="selectGameDifficulty('karaoke')">Or just listen</a></li>
+            <li class='easy'><a ng-click="selectGameDifficulty('easy')">Easy</a></li>
+            <li class='medium'><a ng-click="selectGameDifficulty('normal')">Normal</a></li>
+            <li class='hard'><a ng-click="selectGameDifficulty('hard')">Hard</a></li>
+            <li class='just-listen'><a ng-click="selectGameDifficulty('karaoke')">Or just listen</a></li>
           </ul>
+        </div>
 
         </div>
       </div>
