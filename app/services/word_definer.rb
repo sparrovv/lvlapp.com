@@ -25,8 +25,9 @@ class WordDefiner
       definition: definitions,
       examples: examples,
       related: related,
-      translation: translation
-    }
+    }.tap do |hash|
+      hash[:translation] = load_translation? ? translation : ''
+    end
   end
 
 
@@ -65,5 +66,9 @@ class WordDefiner
 
   def definition
     @definition ||= Wordnik.word.get_definitions(@word, :use_canonical => true, :source_dictionaries => "wiktionary")
+  end
+
+  def load_translation?
+    @native_language != User::OTHER_NATIVE_LANG
   end
 end

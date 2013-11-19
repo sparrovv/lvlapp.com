@@ -1,16 +1,13 @@
 # TODOs:
 
+- [] line down when the current one has some missing words should trigger skip all words
+
 - [] Implement layout improvements 
-
 - [] add "how-it-works" page, copy, etc
-
 - [] improve controls - make proper icons
 - [] Add twitter/facebook/g+ buttons to like
-- [] Style game menus over the video - seems to wrok when it has absolutes values.
-     There's
 
 - [] Add integrations tests - just to be certain that everything works.
-
 - [] Memorise - Finish up agree on first version: word | definition / usage in a word / translation .. more
   - [] better design
 - [] On click inside the transcript there always should be focus, and maybe some indication that the focus is in?
@@ -130,3 +127,5 @@ DONE
 - [] validate transcript that after comma or colon, period there is a space
 - [] shorten video titles add dots ....
 - [] Add sitemap xml generator
+- [] Style game menus over the video - seems to wrok when it has absolutes values.
+     There's

@@ -1,4 +1,20 @@
 module ApplicationHelper
+  SUPPORTED_NATIVE_LANGS=[
+    'polish',
+    'czech',
+    'danish',
+    'german',
+    'finnish',
+    'french',
+    'spanish',
+    'russian',
+    'italian',
+    'portuguese',
+    'romanian',
+    'ukrainian',
+    'latvian',
+    'dutch',
+  ]
   def title(page_title)
     content_for :title, page_title.to_s
   end
@@ -28,6 +44,10 @@ module ApplicationHelper
   end
 
   def common_languages_list
-    LanguageList::COMMON_LANGUAGES.map{|l| [l.name, l.iso_639_1] }
+    common_langs = LanguageList::COMMON_LANGUAGES.
+      select{|l| SUPPORTED_NATIVE_LANGS.include?(l.name.downcase) }.
+      map{|l| [l.name, l.iso_639_1] }
+    common_langs << ['Other', User::OTHER_NATIVE_LANG]
+    common_langs
   end
 end

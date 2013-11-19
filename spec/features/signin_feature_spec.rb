@@ -1,11 +1,11 @@
 require 'spec_helper'
 
-feature "Sign Up User" do
+feature "Sign In User" do
   background do
     @user = create(:user)
   end
 
-  scenario "When user sign ups" do
+  scenario "When user signs in" do
     visit root_url
     click_link "Log in"
 
