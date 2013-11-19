@@ -6,3 +6,4 @@
 //= require video
 //= require app/main
 //= require_tree ./app
+//= require social-share-button

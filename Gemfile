@@ -35,6 +35,8 @@ gem 'simple_form'
 gem 'friendly_id', git: 'https://github.com/norman/friendly_id.git', branch: '5.0-stable'
 gem 'sitemap_generator'
 gem 'whenever', :require => false
+gem 'social-share-button'
+gem "devise"
 
 # errors reporting
 gem "sentry-raven", :git => "https://github.com/getsentry/raven-ruby.git"
@@ -73,8 +75,3 @@ end
 # Use unicorn as the app server
 # gem 'unicorn'
 
-# Use debugger
-# gem 'debugger', group: [:development, :test]
-
-
-gem "devise"

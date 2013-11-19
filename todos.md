@@ -6,8 +6,8 @@
 - [] add "how-it-works" page, copy, etc
 - [] improve controls - make proper icons
 - [] Add twitter/facebook/g+ buttons to like
+- [] Consider moving to 960 - looks really awful on bad dimensions
 
-- [] Add integrations tests - just to be certain that everything works.
 - [] Memorise - Finish up agree on first version: word | definition / usage in a word / translation .. more
   - [] better design
 - [] On click inside the transcript there always should be focus, and maybe some indication that the focus is in?
@@ -129,3 +129,4 @@ DONE
 - [] Add sitemap xml generator
 - [] Style game menus over the video - seems to wrok when it has absolutes values.
      There's
+- [] Add integrations tests - just to be certain that everything works.
