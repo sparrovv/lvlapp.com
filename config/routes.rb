@@ -5,7 +5,7 @@ Lvlapp::Application.routes.draw do
   get "memorize/create"
   get "memorize/update"
 
-  devise_for :users
+  devise_for :users, :controllers => {:registrations => "registrations"}
 
   get 'admin/help' => 'admin/help#index'
   mount RailsAdmin::Engine => '/admin', :as => 'rails_admin'
