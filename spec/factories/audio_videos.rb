@@ -2,7 +2,9 @@
 
 FactoryGirl.define do
   factory :audio_video do
-    name "MyString"
+    sequence :name do |n|
+      "Video Title #{n}"
+    end
     description "MyText"
     transcript '[{"time": "1.0", "text": "Hey you are all right"}]'
     url "MyString"
