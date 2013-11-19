@@ -1,0 +1,12 @@
+<pre>
+  Pass the video's time and lyrics, time has to be in seconds!
+</pre>
+<%= form_tag text_lyrics_create_path do %>
+  <input name='duration' type='text' value="<%= @duration %>"/></br>
+  <textarea name='content'><%= @lyrics %></textarea>
+  <input type="submit" value="pozdro techo" /> 
+<% end %>
+
+<pre>
+  <%= @transcript.to_json %>
+</pre>

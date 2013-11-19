@@ -36,4 +36,6 @@ Lvlapp::Application.routes.draw do
   post 'youtube_parser/create' => 'admin/youtube_parser#create'
   get 'srt/new' => 'admin/srt#new'
   post 'srt/create' => 'admin/srt#create'
+  get 'text_lyrics/new' => 'admin/text_lyrics#new'
+  post 'text_lyrics/create' => 'admin/text_lyrics#create'
 end
