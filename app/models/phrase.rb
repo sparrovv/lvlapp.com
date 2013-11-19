@@ -19,12 +19,14 @@ class Phrase < ActiveRecord::Base
   }
 
   def self.grouped_by_audio_video(user)
-    results = self.by_user(user).count(group: 'audio_video_id')
+    results = self.by_user(user).group('audio_video_id').
+      select('phrases.*, count(*) as count_all')
 
-    results.inject([]) do |foo, (audio_video_id, size)|
-      audio_video = AudioVideo.find(audio_video_id)
-      foo << AudioVideoPhrase.new(size, self.due_to_repetition(user,audio_video), audio_video)
-      foo
+    results.inject([]) do |r, phrase|
+      audio_video = AudioVideo.find(phrase.audio_video_id)
+      r << AudioVideoPhrase.new(
+        phrase.count_all, self.due_to_repetition(user,audio_video), audio_video
+      )
     end
   end
 
