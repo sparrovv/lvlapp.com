@@ -2,8 +2,12 @@
   .video {
     float: left;
     margin: 10px 20px 0px 0;
-    width: 175px;
-    height: 205px;
+    width: 215px;
+    height: 210px;
+
+    img{
+      max-height: 160px;
+    }
 
     .info{
       font-size: 11pt;
