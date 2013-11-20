@@ -28,7 +28,7 @@ feature "Shake Down tests" do
     click_link 'Browse'
     click_link @audio_video.name
     expect(page).to have_text(@audio_video.name)
-    expect(page).to have_css('.link-to-orignal')
+    expect(page).to have_css('.link-to-original')
     expect(page).to have_text('Stats')
     expect(page).to have_text('Phrasebook')
     expect(page).to have_text(@audio_video.level_name)
