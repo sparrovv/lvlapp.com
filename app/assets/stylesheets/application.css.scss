@@ -1,20 +1,11 @@
 /*
- * This is a manifest file that'll be compiled into application.css, which will include all the files
- * listed below.
- *
- * Any CSS and SCSS file within this directory, lib/assets/stylesheets, vendor/assets/stylesheets,
- * or vendor/assets/stylesheets of plugins, if any, can be referenced here using a relative path.
- *
- * You're free to add application-wide styles to this file and they'll appear at the top of the
- * compiled file, but it's generally better to create a new file per style scope.
- *
  *= require_self
  *= require video-js
  *= require_tree .
  *= require social-share-button
  */
 @import "bootstrap";
-@import "bootstrap-responsive";
+//@import "bootstrap-responsive";
 @import "colors";
 
 body{
@@ -22,11 +13,20 @@ body{
 }
 a{
   color: $lightblue;
+  cursor: pointer;
 
   &:hover{
     color: $orange;
     text-decoration: none;
   }
+}
+
+.link{
+  @extend a
+}
+
+.hidden{
+  display:none;
 }
 
 h1,h2,h3,h4,h5{
@@ -104,7 +104,7 @@ a.navbar-brand {
       padding-top: 6px;
       margin-top: 2px;
       margin-bottom: 2px;
-      font-size:11px;
+      font-size:10px;
     }
   }
 }
@@ -125,7 +125,7 @@ a.navbar-brand {
 }
 
 .breadcrumb{
-  margin: 10px 0;
+  margin: 5px 0;
   padding: 0px;
   background: none;
   h1{

@@ -1,10 +1,9 @@
 @LApp.directive 'phrase', ->
   restrict: 'E'
   template: '<div class="{{phrase.loading}}">
-      <span ng-click="showDef()">{{phrase.name}}</span>
+      <span ng-click="showDef()" class="phrase-name">{{phrase.name}}</span>
       <span class="small-indicator"></span>
-      <a ng-href="" ng-click="showDef()">(more)</a>
-      <a ng-href="" ng-click="removePhrase()" data-phrase-id="{{phrase.id}}">x</a>
+      <a ng-href="" class="remove-phrase" ng-click="removePhrase()" data-phrase-id="{{phrase.id}}">x</a>
       <div class="hidden">
         <table class="table table-condensed">
           <tr>
@@ -37,6 +36,7 @@
   link: (scope, element, attrs) ->
     attrs.$observe 'phrase', (phrase) ->
       scope.phrase = phrase
+      $(element).find('.phrase-name').addClass('link')
 
     scope.showDef = ->
       $(element).find('div').toggleClass('hidden')
