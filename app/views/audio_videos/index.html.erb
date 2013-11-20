@@ -1,5 +1,8 @@
 <div class='span12'>
-  <h4></h4>
+  <ol class="breadcrumb">
+    <li><%= link_to 'Home', root_path %><span class="divider">/</span></li>
+    <li class="active"><h1><%= @category ? @category.name : 'All' %><h1></li>
+  </ol>
 </div>
 
 <div class='media-grid span10'>

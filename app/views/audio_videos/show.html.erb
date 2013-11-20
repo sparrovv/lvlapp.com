@@ -5,12 +5,11 @@
 <script> window.isYoutubeVideo = <%= raw @audio_video.youtube? %>; </script>
 
 <div class="span12">
-  <h3 class='audio-video-title'>
-    <%= @audio_video.name %> 
-    <% if current_user && current_user.admin? %> 
-      <span> - </span> <%= link_to 'edit', edit_audio_video_path(@audio_video) %> 
-    <% end %> 
-  </h3>
+  <ol class="breadcrumb">
+    <li><%= link_to 'Home', root_path %><span class="divider">/</span></li>
+    <li><%= link_to @audio_video.category_name, audio_videos_path(:category_id => @audio_video.category_id)%><span class="divider">/</span></li>
+    <li class="active"><h1><%= @audio_video.name %><h1></li>
+  </ol>
 </div>
 
 <div ng-app='LApp' class="lapp">
@@ -86,7 +85,7 @@
   <div class="video-meta-info span4">
     <table class='table table-condensed sidebar-table'>
       <tr>
-        <td colspan='2'><%= link_to 'link to orignal', @audio_video.url %></td>
+        <td class='link-to-orignal' colspan='2'><%= link_to truncate(@audio_video.url, length: 40), @audio_video.url %></td>
       </tr>
       <tr>
         <td>share</td>
@@ -95,9 +94,13 @@
       <tr>
         <td>level</td><td><%= @audio_video.level_name %></td>
       </tr>
+      <% if current_user && current_user.admin? %> 
       <tr>
-        <td>category</td><td><%= link_to @audio_video.category_name, audio_videos_path(category_id: @audio_video.category_id) %></td>
+        <td colspan='2'>
+          <%= link_to 'edit', edit_audio_video_path(@audio_video) %> 
+        </td>
       </tr>
+    <% end %> 
     </table>
   </div>
   <div class="score span4" ng-controller="StatsCtrl">
