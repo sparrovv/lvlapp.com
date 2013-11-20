@@ -87,7 +87,7 @@ h3.audio-video-title{
       ul{
         margin: 0;
         li{
-          opacity: 0.9;
+          opacity: 0.7;
           &.easy{ background-color:$lightblue; }
           &.medium{ background-color:$blue; }
           &.hard{ background-color:$navyblue; }
@@ -103,13 +103,13 @@ h3.audio-video-title{
           &:nth-last-child(-n+2){
             border-bottom: none;
           }
+          &:hover{
+            opacity: 1;
+          }
           a{
             display:block;
             color: white;
-            &:hover{
-              color: #d95525;
-              text-decoration: none;
-            }
+            text-decoration: none;
           }
         }
       }
