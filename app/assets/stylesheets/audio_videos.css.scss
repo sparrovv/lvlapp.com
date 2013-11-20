@@ -292,9 +292,16 @@ h3.audio-video-title{
 }
 
 .game-setup-info{
+  color: #000;
   display: none;
+  background: #fff;
+  opacity: 1;
   &.setup{
     display: block;
+  }
+  table{
+    width:50%;
+    margin: 50px auto;
   }
 }
 
