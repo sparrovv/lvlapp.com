@@ -4,10 +4,7 @@
   <div class='info'>
     <div>
       <%= link_to truncate(audio_video.name, length: 40), audio_video_path(audio_video), :class => 'preview' %>
-      <span> - </span>
-      <span class='level-name'>
-        <%= audio_video.level_name %>
-      </span>
+      <%= video_level(audio_video.level_name) %>
     </div>
   </div>
 </div>

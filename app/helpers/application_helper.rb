@@ -50,4 +50,8 @@ module ApplicationHelper
     common_langs << ['Other', User::OTHER_NATIVE_LANG]
     common_langs
   end
+
+  def video_level(level)
+    "<span class='v-level-#{level}'>#{level}</span>".html_safe
+  end
 end

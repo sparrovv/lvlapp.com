@@ -1,6 +1,15 @@
 $videoSetupBG: #44403C;
 @import "colors.css.scss";
 
+.level-common{
+  padding: 0 2px;
+  color: #fff;
+  font-size: 12px;
+}
+.v-level-easy{ @extend .level-common; background: $lightblue; }
+.v-level-medium{ @extend .level-common; background: $navyblue; }
+.v-level-hard{ @extend .level-common; background: $orange; }
+
 @mixin notSelectable(){
   -webkit-touch-callout: none;
   -webkit-user-select: none;
@@ -8,6 +17,17 @@ $videoSetupBG: #44403C;
   -moz-user-select: none;
   -ms-user-select: none;
   user-select: none;
+}
+
+h1.video-title{
+  color: $navyblue;
+  font-size: 18px;
+  line-height:16px;
+  margin:0;
+  padding:0;
+}
+.link-to-original{
+  font-size: 10px;
 }
 
 .lapp{
