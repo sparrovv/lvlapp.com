@@ -1,3 +1,5 @@
+@import 'colors';
+
 .sidebar-table{
   td{
     border-top: none;
@@ -49,6 +51,19 @@
   }
 }
 
-.video-meta-info{
-
+.category-nav-list{
+  text-transform: none;
+  padding:0;
+  @extend .open-sans-bold;
+  li:nth-child(even){
+    background: $lightgrey;
+  }
+  li{
+    padding:0;
+    margin-left:-15px;
+    a{
+      margin:0;
+      padding:2px 5px;
+    }
+  }
 }
