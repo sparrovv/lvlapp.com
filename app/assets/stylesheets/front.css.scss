@@ -4,7 +4,6 @@ a{
   cursor: pointer;
 }
 #front-about{
-  background: #d9d9d9;
   .container{
     background: $navyblue;
   }
@@ -25,20 +24,37 @@ a{
 }
 
 .primary-info-image{
-  padding:40px 0px;
   float: right;
 }
 .primary-info-text{
   padding:40px;
   h1{
-    margin-top:0px;
-    font-size: 22px;
-    color: $orange;
+    @extend .open-sans-bold;
+    line-height: 24px;
+    margin:0;
+    font-size: 24px;
+    color: $lightblue;
   }
-  p{
-    margin: 10px 0 0 15px;
-    font-size: 14px;
-    line-height: 28px;
+  ul{
+    list-style-type: none;
+    position:relative;
+    margin: 20px 0 0 20px;
+
+    li:before {
+      background: image-url('lvlapp-sprites.png') no-repeat 0px -64px;
+      width:22px;
+      height:22px;
+      content: " ";
+      position: absolute;
+      left: -15px;
+    }
+
+    li{
+      padding:5px 0;
+      @extend .open-sans-light;
+      margin: 10px 0 0 15px;
+      font-size: 14px;
+    }
   }
 }
 
@@ -75,9 +91,20 @@ a{
 .tabs{
   .nav{
     margin:10px 0 0 0;
+    a{
+      font-size: 16px;
+      @extend .open-sans-bold;
+      &:hover{
+        background-color: $grey;
+        border-radius: 0;
+        color: black;
+      }
+    }
     .active{
       a{
-        background-color: $blue;
+        color: black;
+        background-color: $grey;
+        border-radius: 0;
       }
     }
   }

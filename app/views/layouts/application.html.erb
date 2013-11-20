@@ -2,7 +2,7 @@
 <html>
   <head>
     <title>LvlApp - <%= yield(:title) %></title>
-    <link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/css?family=Open%20Sans">
+    <%= render 'shared/fonts' %>
     <%= stylesheet_link_tag    "application", media: "all" %>
     <%= javascript_include_tag "application" %>
     <%= csrf_meta_tags %>

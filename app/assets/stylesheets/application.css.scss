@@ -34,31 +34,42 @@ h1,h2,h3,h4,h5{
 }
 
 .navbar {
-  font-size: 16px;
-  font-weight: normal;
+  .rainbow{
+    width:100%;
+    div{
+      width:20%;
+      height: 4px;
+      float:left;
+    }
+    .orange    { background: $orange; }
+    .yellow    { background: $yellow; }
+    .yellow    { background: $yellow; }
+    .lightblue { background: $lightblue; }
+    .blue      { background: $blue; }
+    .navyblue  { background: $navyblue; }
+  }
   margin-bottom: 0px;
-  height: 60px;
-  border-bottom: 1px solid $grey;
-}
+  height: 80px;
+  background: $lightgrey;
 
-.top-navbar{
-  font-size: 18pt;
-  padding: 10px 0px 0px;
-  .nav{
-    a{
-      font-size: 20px;
-      color: $navyblue;
+  .top-navbar{
+    font-size: 18px;
+    .nav{
+      padding: 20px 0px 0px;
+      a{
+        @extend .open-sans-bold;
+        font-size: 18px;
+        color: $navyblue !important;
 
-      &:hover{
-        color: $blue;
+        &:hover{
+          color: $blue !important;
+        }
       }
     }
   }
-}
 
+}
 a.navbar-brand {
-  font-size: 20pt;
-  padding: 10px 0px 0px;
   color: $orange;
   float: left;
   font-weight: bold;
@@ -92,7 +103,7 @@ a.navbar-brand {
   background: #eeeeee;
   font-size: 12px;
   iframe{
-     margin-top: 7px;
+    margin-top: 7px;
   }
   .nav{
     margin-bottom: 0px;
