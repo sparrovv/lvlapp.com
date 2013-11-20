@@ -1,9 +1,11 @@
 .sidebar-table{
-  width: 60%;
   td{
     border-top: none;
     border-bottom: 1px solid #dddddd;
     padding: 3px 4px;
+  }
+  td:nth-child(2){
+    text-align:right;
   }
 }
 
@@ -21,6 +23,14 @@
 }
 
 #phrase-book{
+  .remove-phrase{
+    width:5%;
+    float:right;
+  }
+  .phrase-name{
+    width:95%;
+    float:left;
+  }
   .loading{
     a{
       display: none;

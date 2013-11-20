@@ -121,7 +121,20 @@
     </table>
   </div>
 
-  <div id="help" class="span4" ng-controller='HelpCtrl' >
+  <div id="phrase-book" ng-controller='PhrasesCtrl' class="span4">
+    <h4>Phrasebook</h4>
+    <% if current_user %>
+    <table class='table table-condensed sidebar-table'>
+      <tr class="" ng-repeat="phrase in phrases">
+        <td><phrase phrase-object={{phrase}}></phrase></td>
+      </tr>
+    </table>
+    <% else %>
+      <p> Please <%= link_to 'sign in', user_session_path %> to add a word to your phrasebook.<br /> Just click on the word you're interested in.</p>
+    <% end %>
+  </div>
+
+  <div id="help" class="span4 hidden" ng-controller='HelpCtrl' >
     <h4>Help</h4>
     <h5>Type and fill in the blank spaces</h5>
 
@@ -134,16 +147,4 @@
     </table>
   </div>
 
-  <div id="phrase-book" ng-controller='PhrasesCtrl' class="span4">
-    <h4>Phrasebook</h4>
-    <% if current_user %>
-    <table class='table table-condensed sidebar-table'>
-      <tr class="" ng-repeat="phrase in phrases">
-        <td><phrase phrase-object={{phrase}}></phrase><td>
-      </tr>
-    </table>
-    <% else %>
-      <p> Please <%= link_to 'sign in', user_session_path %> to add a word to your phrasebook.<br /> Just click on the word you're interested in.</p>
-    <% end %>
-  </div>
 </div>

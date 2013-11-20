@@ -1,9 +1,9 @@
 .media-grid {
   .video {
     float: left;
-    margin: 10px 30px 0px 0;
-    width: 210px;
-    height: 225px;
+    margin: 10px 20px 0px 0;
+    width: 175px;
+    height: 205px;
 
     .info{
       font-size: 11pt;
@@ -15,6 +15,7 @@
 
 .horizontal-fluid.media-grid {
   .video {
-    width:204px;
+    margin: 10px 20px 0px 0;
+    width:215px;
   }
 }

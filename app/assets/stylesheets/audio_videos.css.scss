@@ -1,4 +1,4 @@
-$videoSetupBG: #44403C; //#262C35;
+$videoSetupBG: #44403C;
 @import "colors.css.scss";
 
 @mixin notSelectable(){
@@ -12,7 +12,10 @@ $videoSetupBG: #44403C; //#262C35;
 
 .lapp{
   .span8{
-    min-width: 770px;
+    min-width: 640px;
+  }
+  .span4{
+    width: 270px;
   }
 }
 
@@ -28,7 +31,7 @@ h3.audio-video-title{
 
 .player-containter{
   position: relative;
-  height: 340px;
+  height: 280px;
   background: image-url('spinner.gif') no-repeat 50% 50%;
 
   .game-menu.setup{
@@ -38,10 +41,10 @@ h3.audio-video-title{
   .game-menu{
     display: none;
     position: absolute;
-    width: 770px;
+    width: 640px;
     left: 0px;
     top: 0px;
-    height: 360px;
+    height: 298px;
     z-index: 99;
     background: $blackRgb;
     background-color: $blackRgbTransparent;
@@ -50,15 +53,15 @@ h3.audio-video-title{
       opacity: none;
       position: absolute;
       margin: 0;
-      width: 20%;
-      left:40%;
+      width: 30%;
+      left: 36%;
 
       h3{
         text-align:center;
         color: white;//#d95525;
         font-weight:normal;
-        font-size:20px;
-        margin: 40px 0 0 0;
+        font-size:18px;
+        margin: 20px 0 0 0;
       }
 
       ul{
@@ -103,7 +106,7 @@ h3.audio-video-title{
   color: #F7F1D9;
 
   .app-controls{
-    width:18%;
+    width:20%;
     float:left;
     .play, .pause{
       display:none;
@@ -135,7 +138,7 @@ h3.audio-video-title{
   .app-progress{
     margin-left:1%;
     height:20px;
-    width:68%;
+    width:58%;
     float:left;
     .progress{
       margin:7px 0 0 0;
@@ -144,11 +147,11 @@ h3.audio-video-title{
   }
   .app-time{
     text-align:right;
-    margin-left:1%;
-    width:10%;
-    float:left;
+    margin-right:1%;
+    width:20%;
+    float:right;
   }
-  clear:left;
+  clear:both;
 }
 
 .transcript-player{
