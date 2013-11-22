@@ -1,6 +1,7 @@
 # TODOs:
 - non sticky footer
 
+- fonts not loading -----
 - [] line down when the current one has some missing words should trigger skip all words
 
 - [] Implement layout improvements 

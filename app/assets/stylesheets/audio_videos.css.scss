@@ -119,25 +119,77 @@ h3.audio-video-title{
 
 .video-info{
   @include notSelectable();
-  height:20px;
+  position: absolute;
+  bottom: 0px;
+  width: 640px;
+  height:36px;
   z-index:59px;
   text-left: right;
-  background: #44403C;
-  color: #F7F1D9;
+  background: #000;
+  opacity: 0.9;
 
   .app-controls{
-    width:20%;
+    width:230px;
     float:left;
+    margin-top:2px;
+
+    .skip-word{
+      background: image-url('lvlapp-sprites.png') no-repeat -96px 0px;
+      &:hover{
+        background: image-url('lvlapp-sprites.png') no-repeat -96px -32px;
+      }
+    }
+    .replay-line{
+      background: image-url('lvlapp-sprites.png') no-repeat -64px 0px;
+      &:hover{
+        background: image-url('lvlapp-sprites.png') no-repeat -64px -32px;
+      }
+    }
+    .restart-game{
+      background: image-url('lvlapp-sprites.png') no-repeat -32px 0px;
+      &:hover{
+      background: image-url('lvlapp-sprites.png') no-repeat -32px -32px;
+      }
+    }
+    .line-down{
+      background: image-url('lvlapp-sprites.png') no-repeat -128px 0px;
+      &:hover{
+      background: image-url('lvlapp-sprites.png') no-repeat -128px -32px;
+      }
+    }
+    .line-up{
+      background: image-url('lvlapp-sprites.png') no-repeat -160px 0px;
+      &:hover{
+      background: image-url('lvlapp-sprites.png') no-repeat -160px -32px;
+      }
+    }
+    .play{
+      background: image-url('lvlapp-sprites.png') no-repeat -0px 0px;
+      &:hover{
+        background: image-url('lvlapp-sprites.png') no-repeat -0px -32px;
+      }
+    }
+    .pause{
+      background: image-url('lvlapp-sprites.png') no-repeat -0px 0px;
+      &:hover{
+        background: image-url('lvlapp-sprites.png') no-repeat -0px -32px;
+      }
+    }
+
     .play, .pause{
       display:none;
     }
 
     a{
+      display: block;
+      float: left;
+      width:32px;
+      height:32px;
       color: #F7F1D9;
-      padding:0 3px;
+      margin: 0 0px 0 3px;
       cursor:pointer;
+
       &:hover{
-        color: #d95525;
         text-decoration: none;
       }
     }
@@ -146,29 +198,29 @@ h3.audio-video-title{
 
   .app-controls.paused{
     .play{
-      display: inline;
+      display: block;
     }
   }
   .app-controls.playing{
     .pause{
-      display: inline;
+      display: block;
     }
   }
 
   .app-progress{
-    margin-left:1%;
-    height:20px;
-    width:58%;
+    margin-top: 15px;
+    width:300px;
     float:left;
     .progress{
-      margin:7px 0 0 0;
+      margin:0px 0 0 0;
       height:5px;
     }
   }
   .app-time{
-    text-align:right;
-    margin-right:1%;
-    width:20%;
+    font-size: 14px;
+    margin-top: 7px;
+    color: white;
+    width:90px;
     float:right;
   }
   clear:both;

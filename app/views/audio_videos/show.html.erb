@@ -34,22 +34,21 @@
         </div>
 
         </div>
-      </div>
-
-      <div class='video-info'>
-        <div class='app-controls {{currentState}}'>
-          <a title='play/pause' class='play' ng-click='invokeAction("togglePlayer")'>▷</a>
-          <a title='pause' class='pause' ng-click='invokeAction("togglePlayer")'>‖</a>
-          <a title='skip word' ng-click='invokeAction("skipWord")'>&#x21E5;</a>
-          <a title='line up' ng-click='invokeAction("lineUp")'>⊼</a>
-          <a title='line down' ng-click='invokeAction("lineDown")'>⊻</a>
-          <a title='replay line' ng-click='invokeAction("beginningOfline")'>↺</a>
-          <a title='restart game' ng-click="restartGame()">⌽</a>
+        <div class='video-info'>
+          <div class='app-controls {{currentState}}'>
+            <a title='play/pause' class='play' ng-click='invokeAction("togglePlayer")'></a>
+            <a title='pause' class='pause' ng-click='invokeAction("togglePlayer")'></a>
+            <a title='replay line' class="replay-line" ng-click='invokeAction("beginningOfline")'></a>
+            <a title='skip word' class="skip-word" ng-click='invokeAction("skipWord")'></a>
+            <a title='line up' class="line-up" ng-click='invokeAction("lineUp")'></a>
+            <a title='line down' class="line-down" ng-click='invokeAction("lineDown")'></a>
+            <a title='restart game' class="restart-game" ng-click="restartGame()"></a>
+          </div>
+          <div class='app-progress'>
+            <progress percent="progressValue"></progress>
+          </div>
+          <div class='app-time'>{{currentVideoTime | toMinSec}} / {{videoDuration | toMinSec}}</div>
         </div>
-        <div class='app-progress'>
-          <progress percent="progressValue"></progress>
-        </div>
-        <div class='app-time'>{{currentVideoTime | toMinSec}} / {{videoDuration | toMinSec}}</div>
       </div>
     </div>
 
