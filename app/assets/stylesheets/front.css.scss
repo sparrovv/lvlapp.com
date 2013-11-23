@@ -4,10 +4,11 @@ a{
   cursor: pointer;
 }
 #front-about{
+  background: $lightgrey;
   .container{
-    background: $navyblue;
+    background: $lightgrey;
   }
-  color: #D6CFCF;
+  color: #000;
   h2{
     color: #C38E58;
   }
