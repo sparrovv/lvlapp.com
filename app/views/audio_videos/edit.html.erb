@@ -20,14 +20,13 @@
           </ul>
 
         </div>
-      </div>
-
-      <div class='video-info'>
-        <div class='app-controls {{currentState}}'>
-          <a title='replay line' ng-click='invokeAction("beginningOfline")'>↺</a>
-          <a title='restart game' ng-click="restartGame()">⌽</a>
+        <div class='video-info'>
+          <div class='app-controls {{currentState}}'>
+            <a title='replay line' ng-click='invokeAction("beginningOfline")'>↺</a>
+            <a title='restart game' ng-click="restartGame()">⌽</a>
+          </div>
+          <div class='app-time'>{{currentVideoTime}} / {{videoDuration | toMinSec}}</div>
         </div>
-        <div class='app-time'>{{currentVideoTime}} / {{videoDuration | toMinSec}}</div>
       </div>
     </div>
     <div id="transcript-player" data-id='text-player' tabindex="1" ng-keypress='listenForKey' class='transcript-player'>

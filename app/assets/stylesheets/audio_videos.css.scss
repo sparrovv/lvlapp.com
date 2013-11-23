@@ -389,8 +389,10 @@ h3.audio-video-title{
 .transcript-player{
   input.time{
     width:10%;
+    float:left;
   }
   input.word{
-    width:70%;
+    width:89%;
+    float:right;
   }
 }
