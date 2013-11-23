@@ -231,9 +231,6 @@ h3.audio-video-title{
   position: relative;
   height: 300px;
   overflow: hidden;
-  border-left: 1px solid #000;
-  border-right: 1px solid #000;
-  border-bottom: 1px solid #000;
 
   &:focus{
     outline:none;
@@ -263,6 +260,9 @@ h3.audio-video-title{
     position: absolute;
     margin: 0;
 
+    li:nth-child(odd){
+      background: $lightgrey;
+    }
     li{
       display: block;
       list-style-type: none;
@@ -270,7 +270,6 @@ h3.audio-video-title{
       height: 32px;
       line-height: 32px;
       text-align: center;
-      border-bottom: 1px solid #D7DDEA;
       color: #606060;
       .time{
         position:absolute;
@@ -283,6 +282,7 @@ h3.audio-video-title{
       }
 
       p{
+        height: inherit;
         position:relative;
         margin:0;
       }
@@ -371,9 +371,17 @@ h3.audio-video-title{
   &.setup{
     display: block;
   }
+  h4{ color: $orange; }
+  p{ margin:20px 0 0 0; }
   table{
-    width:50%;
-    margin: 50px auto;
+    td{border:none;}
+    span{
+      padding:0 3px;
+      color: #fff;
+      background: $lightblue;
+    }
+    width:60%;
+    margin: 20px auto;
   }
 }
 

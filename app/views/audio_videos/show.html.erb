@@ -70,12 +70,13 @@
       <div class='game-setup-info game-shared-screen {{currentState}}'>
         <div>
           <h4>Type and fill in the blank spaces after the game starts</h4>
+          <p>To help you navigate over the transcript there are some useful keyaboard shortcuts: </p>
           <table class='table table-condensed'>
-            <tr> <td>tab</td><td>skip word</td> </tr>
-            <tr> <td>space</td><td>play / pause</td> </tr>
-            <tr> <td>enter</td><td>replay line</td> </tr>
-            <tr> <td>&uarr;</td><td>previous line</td> </tr>
-            <tr> <td>&darr;</td><td>next line</td> </tr>
+            <tr> <td><span>[tab]</span> skip/show word if you can't guess it</td> </tr>
+            <tr> <td><span>[space]</span> play / pause video</td> </tr>
+            <tr> <td><span>[enter]</span> replay line if you didn't get the missing word</td> </tr>
+            <tr> <td><span>[up]</span> go to previous line</td> </tr>
+            <tr> <td><span>[down]</span> go to next line</td> </tr>
           </table>
         </div>
       </div>
@@ -141,18 +142,4 @@
       <p> Please <%= link_to 'sign in', user_session_path %> to add a word to your phrasebook.<br /> Just click on the word you're interested in.</p>
     <% end %>
   </div>
-
-  <div id="help" class="span4 hidden" ng-controller='HelpCtrl' >
-    <h4>Help</h4>
-    <h5>Type and fill in the blank spaces</h5>
-
-    <table class='table table-condensed sidebar-table'>
-      <tr> <td><a ng-click='invokeAction("skipWord")'>tab</a></td><td>skip word</td> </tr>
-      <tr> <td><a ng-click='invokeAction("togglePlayer")'>space</a></td><td>play / pause</td> </tr>
-      <tr> <td><a ng-click='invokeAction("beginningOfline")'>enter</a></td><td>replay line</td> </tr>
-      <tr> <td><a ng-click='invokeAction("lineUp")'>&uarr;</a></td><td>previous line</td> </tr>
-      <tr> <td><a ng-click='invokeAction("lineDown")'>&darr;</a></td><td>next line</td> </tr>
-    </table>
-  </div>
-
 </div>
