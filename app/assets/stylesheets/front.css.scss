@@ -76,6 +76,23 @@ a{
   }
 }
 
+.about{
+  section{
+    padding:10px 0;
+    margin:10px 0;
+  }
+  section:nth-child(odd){
+    h3{
+      color: $lightblue;
+    }
+  }
+  section:nth-child(even){
+    h3{
+      color: $orange
+    }
+    background: $lightgrey;
+  }
+}
 .wrap{
   margin-top:10px;
   .center-text{

@@ -1,9 +1,9 @@
-<section>
+<div class="about">
+<section id='how-does-it-work'>
   <div class="container">
-    <section>
-      <h2>About</h2>
       <div class="row">
-        <div class="span12">
+        <div class="span7">
+          <h3>How does it work</h3>
           <p>
           <strong>LvlApp</strong>'s goal is to help you to level up English as your second language by listening, writing and smart repetition.
           </p>
@@ -11,35 +11,33 @@
           The idea is simple, pick up the video that you're interested in, choose the difficulty, and start playing by filling in blank spaces. There are plenty of keyboard shortcuts that will help you to navigate over the transcript. You can repeat every line as many times you want. There is no time limit, the goal is to learn!
 
           </p>
-          <p>
-          Another essential feature is a phrasebook. (You can use it after you sign in). 
-          Usage of the phrasebook is straightforward - just click on the word, that you want to save, and then check its definition. After that you can go the repetition section and start learning saved vocabulary.
-          </p>
         </div>
-      </div>
-    </section>
-  </div>
-
-</section>
-
-<section>
-  <div class="container">
-    <section>
-      <h2>How it works</h2>
-
-      <div class="wrap row">
         <div class="span5">
           <img src="http://placehold.it/450x300" alt="">
         </div>
-        <div class="span7 center-text">
-          <h3>Choose the difficulty</h3>
-          <p>
-          The video will load and you will be able to select one of the few difficulty levels. All levels are based on the amount of words that you would have to fill in, and for example medium level has one missing word per line on average.
-          </p>
-        </div>
       </div>
+  </div>
+</section>
 
-      <div class="wrap row">
+<section id='choose-difficulty'>
+  <div class="container">
+    <div class="wrap row">
+      <div class="span5">
+        <img src="http://placehold.it/450x300" alt="">
+      </div>
+      <div class="span7 center-text">
+        <h3>Choose the difficulty</h3>
+        <p>
+        The video will load and you will be able to select one of the few difficulty levels. All levels are based on the amount of words that you would have to fill in, and for example medium level has one missing word per line on average.
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id='fill-in-blanks'>
+  <div class="container">
+    <div class="wrap row">
         <div class="span7 center-text">
           <h3>Fill in the blanks</h3>
           <p>
@@ -49,38 +47,41 @@
         <div class="span5" style="margin-bottom:3em;">
           <img src="http://placehold.it/450x300" alt="">
         </div>
-      </div>
+    </div>
+  </div>
+</section>
 
-      <div class="wrap row no-top-margin">
+<section id='keyboard-shortcuts'>
+  <div class="container">
+    <div class="wrap row">
         <div class="span5">
           <img src="http://placehold.it/450x300" alt="">
         </div>
-        <div class="span7 center-text">
+        <div class="span7">
           <h3>Keyboard shortcuts</h3>
-          <p>
-          To help you navigate over the transcript there are some useful keyboard shortcuts.
-          </p>
-          <table class='table table-condensed'>
-            <tr> <td><span>tab</span></td><td>skip(show) the word if you can't guess it.</td> </tr>
-            <tr> <td><span>space</span></td><td>play / pause the video</td> </tr>
-            <tr> <td><span>enter</span></td><td>replay line if you didn't get the word</td> </tr>
-            <tr> <td><span>&uarr;</span></td><td>go to previous line</td> </tr>
-            <tr> <td><span>&darr;</span></td><td>go to the next line</td> </tr>
-          </table>
+          <%= render 'shared/shortcuts_help' %>
         </div>
-      </div>
+    </div>
+  </div>
+</section>
 
-      <div class="wrap row">
+<section id='adding-words-to-phrasebook'>
+  <div class="container">
+    <div class="wrap row">
         <div class="span7 center-text">
           <h3>Adding words to Phrasebook</h3>
           <p>
-          If you don't know some word click on it and in few moments you will get the definition and translation of that word. NOTICE: <strong>This only works for the signed in users.</strong>
+          Another essential feature is a phrasebook.
+          Usage of the phrasebook is straightforward - just click on the word, that you want to save, and then check its definition. After that you can go the repetition section and start learning saved vocabulary.
+          </p>
+          <p>
+          <strong>This only works for the signed in users.</strong>
           </p>
         </div>
         <div class="span5" style="margin-bottom:3em;">
           <img src="http://placehold.it/450x300" alt="">
         </div>
-      </div>
-    </section><!-- content_wrap -->
+    </div>
   </div>
 </section>
+</div>

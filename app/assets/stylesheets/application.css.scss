@@ -136,7 +136,8 @@ a.navbar-brand {
 }
 
 .breadcrumb{
-  margin: 5px 0;
+  font-size: 12px;
+  margin: 10px 0;
   padding: 0px;
   background: none;
 }
@@ -149,5 +150,13 @@ a.navbar-brand {
     .tooltip-arrow{
       border-bottom-color:$lightblue !important;
     }
+  }
+}
+.shortcuts-help{
+  td{border:none;}
+  span{
+    padding:0 3px;
+    color: #fff;
+    background: $lightblue;
   }
 }

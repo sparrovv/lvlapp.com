@@ -70,14 +70,7 @@
       <div class='game-setup-info game-shared-screen {{currentState}}'>
         <div>
           <h4>Type and fill in the blank spaces after the game starts</h4>
-          <p>To help you navigate over the transcript there are some useful keyaboard shortcuts: </p>
-          <table class='table table-condensed'>
-            <tr> <td><span>[tab]</span> skip/show word if you can't guess it</td> </tr>
-            <tr> <td><span>[space]</span> play / pause video</td> </tr>
-            <tr> <td><span>[enter]</span> replay line if you didn't get the missing word</td> </tr>
-            <tr> <td><span>[up]</span> go to previous line</td> </tr>
-            <tr> <td><span>[down]</span> go to next line</td> </tr>
-          </table>
+          <%= render 'shared/shortcuts_help' %>
         </div>
       </div>
 
@@ -94,14 +87,16 @@
   <div class="video-meta-info span4">
     <table class='table table-condensed sidebar-table'>
       <tr>
-        <td colspan='2'><h1 class="video-title"><%= @audio_video.name %> <%= video_level(@audio_video.level_name) %></h1></td>
+        <td colspan='2'><h1 class="video-title"><%= @audio_video.name %><br /> <%= video_level(@audio_video.level_name) %></h1></td>
       </tr>
       <tr>
         <td class='link-to-original'>orignal</td><td class='link-to-original'><%= link_to truncate(@audio_video.url, length: 40), @audio_video.url %></td>
       </tr>
       <tr>
-        <td>share</td>
-        <td colspan='1'><%= social_share_button_tag(page_title) %></td>
+        <td colspan='2'>share:</td>
+      </tr>
+      <tr>
+        <td colspan='2'><%= social_share_button_tag(page_title) %></td>
       </tr>
       <% if current_user && current_user.admin? %> 
       <tr>
@@ -112,7 +107,7 @@
     <% end %> 
     </table>
   </div>
-  <div class="score span4" ng-controller="StatsCtrl">
+  <div class="game-stats span4" ng-controller="StatsCtrl">
     <h4>Stats</h4>
     <table class='table table-condensed sidebar-table'>
       <tr>

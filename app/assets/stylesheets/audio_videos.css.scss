@@ -20,9 +20,10 @@ $videoSetupBG: #44403C;
 }
 
 h1.video-title{
+  @extend .open-sans-bold;
   color: $navyblue;
   font-size: 18px;
-  line-height:16px;
+  line-height:22px;
   margin:0;
   padding:0;
 }
@@ -309,7 +310,7 @@ h3.audio-video-title{
   text-align: center;
   margin: auto auto;
   padding: 10px 0 0 0px;
-  background: $darkgrey;
+  background: $lightgrey;
   z-index: 99;
   opacity: 0.94;
   color:   #2BBBD8;
@@ -373,13 +374,7 @@ h3.audio-video-title{
   }
   h4{ color: $orange; }
   p{ margin:20px 0 0 0; }
-  table{
-    td{border:none;}
-    span{
-      padding:0 3px;
-      color: #fff;
-      background: $lightblue;
-    }
+  .shortcuts-help{
     width:60%;
     margin: 20px auto;
   }
