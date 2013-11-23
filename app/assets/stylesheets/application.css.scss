@@ -140,3 +140,14 @@ a.navbar-brand {
   padding: 0px;
   background: none;
 }
+.tooltip{
+  .tooltip-inner{
+    background: $lightblue;
+    z-index:99999;
+  }
+  .tooltip.bottom{ 
+    .tooltip-arrow{
+      border-bottom-color:$lightblue !important;
+    }
+  }
+}

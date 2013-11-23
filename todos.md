@@ -2,6 +2,8 @@
 - non sticky footer
 
 - fonts not loading -----
+- on play only don't show points...
+- 
 - [] line down when the current one has some missing words should trigger skip all words
 
 - [] Implement layout improvements 

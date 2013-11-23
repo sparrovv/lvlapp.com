@@ -36,13 +36,13 @@
         </div>
         <div class='video-info'>
           <div class='app-controls {{currentState}}'>
-            <a title='play/pause' class='play' ng-click='invokeAction("togglePlayer")'></a>
-            <a title='pause' class='pause' ng-click='invokeAction("togglePlayer")'></a>
-            <a title='replay line' class="replay-line" ng-click='invokeAction("beginningOfline")'></a>
-            <a title='skip word' class="skip-word" ng-click='invokeAction("skipWord")'></a>
-            <a title='line up' class="line-up" ng-click='invokeAction("lineUp")'></a>
-            <a title='line down' class="line-down" ng-click='invokeAction("lineDown")'></a>
-            <a title='restart game' class="restart-game" ng-click="restartGame()"></a>
+            <a tooltip='play' tooltip-placement="top" class='play' ng-click='invokeAction("togglePlayer")'></a>
+            <a tooltip='pause' tooltip-placement="top" class='pause' ng-click='invokeAction("togglePlayer")'></a>
+            <a tooltip='replay line' tooltip-placement="top" class="replay-line" ng-click='invokeAction("beginningOfline")'></a>
+            <a tooltip='skip word' tooltip-placement="top" class="skip-word" ng-click='invokeAction("skipWord")'></a>
+            <a tooltip='line up' tooltip-placement="top" class="line-up" ng-click='invokeAction("lineUp")'></a>
+            <a tooltip='line down' tooltip-placement="top" class="line-down" ng-click='invokeAction("lineDown")'></a>
+            <a tooltip='restart game' tooltip-placement="top" class="restart-game" ng-click="restartGame()"></a>
           </div>
           <div class='app-progress'>
             <progress percent="progressValue"></progress>
