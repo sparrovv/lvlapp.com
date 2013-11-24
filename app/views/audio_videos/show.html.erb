@@ -109,7 +109,7 @@
   </div>
   <div class="game-stats span4" ng-controller="StatsCtrl">
     <h4>Stats</h4>
-    <table class='table table-condensed sidebar-table'>
+    <table class='table table-condensed sidebar-table zebra'>
       <tr>
         <td>words</td><td>{{stats.guessed}} / {{stats.blanks}}</td>
       </tr>
@@ -128,13 +128,20 @@
   <div id="phrase-book" ng-controller='PhrasesCtrl' class="span4">
     <h4>Phrasebook</h4>
     <% if current_user %>
-    <table class='table table-condensed sidebar-table'>
+    <table class='table table-condensed sidebar-table zebra'>
+      <thead class="{{phrases.length > 0 && 'hidden'}}">
+        <tr class="">
+          <td class='call-to-action'>Click on a wrod to add it</td>
+        </tr>
+      </thead>
+      <tbody>
       <tr class="" ng-repeat="phrase in phrases">
         <td><phrase phrase-object={{phrase}}></phrase></td>
       </tr>
+      </tbody>
     </table>
     <% else %>
-      <p> Please <%= link_to 'sign in', user_session_path %> to add a word to your phrasebook.<br /> Just click on the word you're interested in.</p>
+      <p> Please <%= link_to 'sign in', user_session_path %> to add a word to your phrasebook. <%= link_to '(Read more)', about_path(anchor: 'adding-words-to-phrasebook') %></p>
     <% end %>
   </div>
 </div>

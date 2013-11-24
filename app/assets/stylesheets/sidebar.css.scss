@@ -8,6 +8,7 @@
   td:nth-child(2){
     text-align:right;
   }
+  margin-bottom:0px;
 }
 
 #help{
@@ -65,4 +66,9 @@
       padding:5px 5px;
     }
   }
+}
+
+.call-to-action{
+  background: #fff;
+  color:$orange;
 }
