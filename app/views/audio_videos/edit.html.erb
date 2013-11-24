@@ -13,7 +13,16 @@
       <% else %>
           <%= render 'shared/videojs', audio_video: @audio_video  %>
       <%end %>
-        <div class='game-menu game-shared-screen {{currentState}}'>
+        <div class='game-end over-player {{currentState}}'>
+          <h3>Congratulations! </h3>
+          <p>It took you {{stats.time | millisecondsToTime}} to complete that video.</p>
+          <p>And you guessed {{stats.guessed}} out of {{stats.blanks}} words.</p>
+
+          <p>Your score was saved</p>
+          <p><a ng-click="restartGame()">Restart game</a></p>
+        </div>
+
+        <div class='game-menu over-player {{currentState}}'>
           <h3>Select difficulty:</h3>
           <ul>
             <li><a ng-click="selectGameDifficulty('karaoke', 'true')">Karaoke and edit</a></li>
@@ -30,15 +39,6 @@
       </div>
     </div>
     <div id="transcript-player" data-id='text-player' tabindex="1" ng-keypress='listenForKey' class='transcript-player'>
-      <div class='game-end game-shared-screen {{currentState}}'>
-        <h3>Congratulations! </h3>
-        <p>It took you {{stats.time | millisecondsToTime}} to complete that video.</p>
-        <p>And you guessed {{stats.guessed}} out of {{stats.blanks}} words.</p>
-
-        <p>Your score was saved</p>
-        <p><a ng-click="restartGame()">Restart game</a></p>
-      </div>
-
       <div class='game-starting game-shared-screen {{currentState}}'></div>
 
       <ul class="lines" style="top:{{currentLineTopPosition}}px">
