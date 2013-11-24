@@ -24,7 +24,7 @@
       <%end %>
 
         <div class='game-end over-player {{currentState}}'>
-          <div class="{{stats.showMore() == false && 'hidden'}}">
+          <div class="score-info {{stats.showMore() == false && 'hidden'}}">
             <h4 class='total'> You scored: <span class='points'>{{stats.total_points}}</span> points</h4>
             <h4>{{stats.title()}}</h3>
 
@@ -33,8 +33,7 @@
               <li>time bonus: {{stats.summary.time_bonus}} </li>
             </ul>
           </div>
-
-          <div>
+          <div class="{{stats.showMore() == false && 'center'}}">
             <h4 class='restart'><a ng-click="restartGame()">Restart game</a></h4>
           </div>
         </div>

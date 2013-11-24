@@ -68,11 +68,11 @@ h3.audio-video-title{
   }
 
   .game-end{
-    color: #fff;
     display:none;
-    text-align: center;
     &.finished{ display: block; }
-    div{
+    color: #fff;
+    text-align: center;
+    .score-info{
       padding: 30px 0;
     }
 
@@ -90,7 +90,18 @@ h3.audio-video-title{
       font-size: 15px;
     }
 
+    .center{
+      margin-top: 125px
+    }
+
     .restart{
+      background: $navyblue;
+      width: 160px;
+      height: 28px;
+      line-height: 28px;
+      text-align: center;
+      padding: 4px;
+      margin: 0 auto;
       a{
         color: #fff;
         &:hover{

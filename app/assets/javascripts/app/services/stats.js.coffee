@@ -54,7 +54,10 @@ LApp.service 'Stats',
       @difficulty != 'karaoke'
 
     title: ->
-      'Good Job!'
+      if @total_points > 0
+        'Good Job.'
+      else
+        'Try Again.'
 
     _setupShared: ->
       @total_points = 0
