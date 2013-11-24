@@ -54,12 +54,7 @@ h3.audio-video-title{
   position: relative;
   height: 280px;
   background: image-url('spinner.gif') no-repeat 50% 50%;
-
-  .game-menu.setup{
-    display:block;
-  }
-
-  .game-menu{
+  .over-player{
     display: none;
     position: absolute;
     width: 640px;
@@ -70,6 +65,44 @@ h3.audio-video-title{
     background: $blackRgb;
     background-color: $blackRgbTransparent;
     color:   #2BBBD8;
+  }
+
+  .game-end{
+    color: #fff;
+    display:none;
+    text-align: center;
+    &.finished{ display: block; }
+    div{
+      padding: 30px 0;
+    }
+
+    h4{
+      @extend .open-sans-bold;
+      font-size: 22px;
+      .points{
+        color: $orange;
+      }
+    }
+
+    .breakdown{
+      display: none;
+      padding: 1% 10%;
+      font-size: 15px;
+    }
+
+    .restart{
+      a{
+        color: #fff;
+        &:hover{
+        color: $orange;
+        }
+      }
+    }
+  }
+
+  .game-menu{
+    &.setup{ display:block; }
+
     .menu-wrapper{
       opacity: none;
       position: absolute;
@@ -310,7 +343,7 @@ h3.audio-video-title{
   text-align: center;
   margin: auto auto;
   padding: 10px 0 0 0px;
-  background: $lightgrey;
+  background: #fff;
   z-index: 99;
   opacity: 0.94;
   color:   #2BBBD8;
@@ -327,51 +360,18 @@ h3.audio-video-title{
   }
 }
 
-
-.game-end{
-  display:none;
-  //text-align: left;
-
-  h3{
-    text-align: center;
-  }
-
-  h4.total{
-    .points{
-      color: #fff;
-    }
-
-    padding: 1% 10%;
-    font-size: 20px;
-  }
-
-  .breakdown{
-    display: none;
-    padding: 1% 10%;
-    font-size: 15px;
-  }
-
-  .restart{
-    text-align: center;
-  }
-}
-
-.game-end.finished{
-  display: block;
-}
-
 .game-starting{
   display: none;
 }
 
 .game-setup-info{
-  color: #000;
   display: none;
+  &.setup{ display: block; }
+  &.finished{ display: block; }
+
+  color: #000;
   background: #fff;
   opacity: 1;
-  &.setup{
-    display: block;
-  }
   h4{ color: $orange; }
   p{ margin:20px 0 0 0; }
   .shortcuts-help{

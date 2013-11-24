@@ -1,5 +1,6 @@
-LApp.controller "VideoInfoCtrl", ($scope, $rootScope, GameStates) ->
+LApp.controller "VideoInfoCtrl", ($scope, $rootScope, GameStates, Stats) ->
   $scope.currentState = GameStates.loading
+  $scope.stats = Stats
   $scope.currentVideoTime = 0
   $scope.videoDuration = 0
   $scope.progressValue = 0

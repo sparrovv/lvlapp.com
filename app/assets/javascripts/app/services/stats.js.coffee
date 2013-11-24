@@ -50,6 +50,12 @@ LApp.service 'Stats',
     generateScore: ->
       @scoreCalculator.calculate(@)
 
+    showMore: ->
+      @difficulty != 'karaoke'
+
+    title: ->
+      'Good Job!'
+
     _setupShared: ->
       @total_points = 0
       @guessed = 0
