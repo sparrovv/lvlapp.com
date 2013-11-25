@@ -98,13 +98,14 @@ a.navbar-brand {
   }
 }
 
+.main-content{
+  min-height:750px;
+}
 .footer{
-  min-height: 30px;
+  min-height: 150px;
   background: #eeeeee;
   font-size: 12px;
-  iframe{
-    margin-top: 7px;
-  }
+  iframe{ margin-top: 7px; }
   .nav{
     margin-bottom: 0px;
   }

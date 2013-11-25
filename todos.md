@@ -1,7 +1,5 @@
 # TODOs:
 
-- [] add breadcrumbs to about
-- [] switch to non sticky footer
 - [] line down when the current one has some missing words should trigger skip all words
 - [] stats page link from the game
 - [] Implement layout improvements 
@@ -141,3 +139,4 @@ DONE
 - [] improve controls - make proper icons
 - [] Add twitter/facebook/g+ buttons to like
 - [] Consider moving to 960 - looks really awful on bad dimensions
+- [] switch to non sticky footer
