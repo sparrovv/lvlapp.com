@@ -185,10 +185,15 @@ LApp.controller "TranscriptCtrl", ($scope, $rootScope, LineTorch, GameConfig, Ga
     action = args.action
 
     $scope.togglePlayer()              if action == 'togglePlayer'
-    $scope.navigator.lineDown()        if action == 'lineDown'
+    if action == 'lineDown'
+      SpellChecker.skipAllWords($scope.currentLine, $scope)
+      $scope.navigator.lineDown()
+
     $scope.navigator.lineUp()          if action == 'lineUp'
     $scope.navigator.beginningOfline() if action == 'beginningOfline'
-    SpellChecker.skipWord($scope)      if action == 'skipWord'
+    if action == 'skipWord'
+      line = transcriptFactory.firstWithBlanks()
+      SpellChecker.skipWord(line, $scope)
 
   $scope.addToPhrasebook = (attrs) ->
     return false if attrs.word.match(new RegExp(GameConfig.blankChar))

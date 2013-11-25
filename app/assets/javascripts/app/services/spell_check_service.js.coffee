@@ -21,7 +21,8 @@ LApp.factory 'SpellChecker', (Stats, transcriptFactory) ->
     else
       $scope.setCurrentLine(nextLine)
 
-  nextLetter: (letter, $scope) ->
+  self = {}
+  self.nextLetter = (letter, $scope) ->
     line = transcriptFactory.firstWithBlanks()
 
     result = line.guess(letter)
@@ -33,8 +34,7 @@ LApp.factory 'SpellChecker', (Stats, transcriptFactory) ->
 
     _playNextLine(line, $scope)
 
-  skipWord: ($scope) ->
-    line = transcriptFactory.firstWithBlanks()
+  self.skipWord = (line, $scope) ->
     return unless line
 
     line.clearBuffer()
@@ -42,7 +42,12 @@ LApp.factory 'SpellChecker', (Stats, transcriptFactory) ->
 
     return false unless nextWord
 
-    Stats.increaseSkpped()
+    Stats.increaseSkipped()
     line.guess(nextWord)
     _playNextLine(line, $scope)
     $scope.$digest() if !$scope.$$phase
+
+  self.skipAllWords = (line, $scope) ->
+    self.skipWord(line, $scope) while line.hasBlanks()
+
+  self

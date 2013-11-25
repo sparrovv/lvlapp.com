@@ -38,7 +38,7 @@ LApp.service 'Stats',
       else
         '0'
 
-    increaseSkpped: ->
+    increaseSkipped: ->
       @skipped += 1
 
     increaseGuessed: ->
