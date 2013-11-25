@@ -1,19 +1,19 @@
 # TODOs:
-- non sticky footer
 
-- fonts not loading -----
-- on play only don't show points...
-- 
+- [] add breadcrumbs to about
+- [] switch to non sticky footer
 - [] line down when the current one has some missing words should trigger skip all words
-
+- [] stats page link from the game
 - [] Implement layout improvements 
+  - some small things left
+
 - [] add "how-it-works" page, copy, etc
-- [] improve controls - make proper icons
-- [] Add twitter/facebook/g+ buttons to like
-- [] Consider moving to 960 - looks really awful on bad dimensions
+  - add images
+  - add to google index
 
 - [] Memorise - Finish up agree on first version: word | definition / usage in a word / translation .. more
   - [] better design
+
 - [] On click inside the transcript there always should be focus, and maybe some indication that the focus is in?
 
 VERSION 2
@@ -38,7 +38,6 @@ BUGS:
 
 SUGESTIONS:
 
-- key down should skip word as well
 
 FOR Further FUTURE:
 
@@ -58,8 +57,11 @@ FOR Further FUTURE:
   -[] fiverr - someone will read it
   -[] new format of transcript, where you can indicate what words are missing, instead of randoms
 
+- pay if you don't reach monthly points numbers
+
 - [] testing ?!
 - [] refactoring, more angularjs knowledge I need ?!
+
 
 DONE
 
@@ -134,3 +136,8 @@ DONE
 - [] Style game menus over the video - seems to wrok when it has absolutes values.
      There's
 - [] Add integrations tests - just to be certain that everything works.
+- [] fonts not loading -----
+- [] when karaoke mode don't show points...
+- [] improve controls - make proper icons
+- [] Add twitter/facebook/g+ buttons to like
+- [] Consider moving to 960 - looks really awful on bad dimensions
