@@ -140,3 +140,4 @@ DONE
 - [] Consider moving to 960 - looks really awful on bad dimensions
 - [] switch to non sticky footer
 - [] line down when the current one has some missing words should trigger skip all words
+- [] pagination
