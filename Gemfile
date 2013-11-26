@@ -36,8 +36,8 @@ gem 'friendly_id', git: 'https://github.com/norman/friendly_id.git', branch: '5.
 gem 'sitemap_generator'
 gem 'whenever', :require => false
 gem 'social-share-button'
-gem "devise"
-
+gem 'devise'
+gem 'kaminari'
 # errors reporting
 gem "sentry-raven", :git => "https://github.com/getsentry/raven-ruby.git"
 

@@ -54,4 +54,8 @@ module ApplicationHelper
   def video_level(level)
     "<span class='v-level-#{level}'>#{level}</span>".html_safe
   end
+
+  def active_class &block
+    'active' if block.call == true
+  end
 end

@@ -6,19 +6,29 @@
 </div>
 
 <div class='media-grid span10'>
+  <ul class='nav nav-pills'>
+    <li class="<%= active_class{ 'recent' == @order || @order.nil? }%>">
+      <%= link_to 'Recently added', audio_videos_path(order: 'recent', category_id: @category_id) %>
+    </li>
+    <li class="<%= active_class{ 'popular' == @order }%>">
+      <%= link_to 'Popular', audio_videos_path(order: 'popular', category_id: @category_id) %>
+    </li>
+  </ul>
 <% @audio_videos.each do |audio_video| %>
   <%= render 'shared/audio_video', audio_video: audio_video %>
 <% end %>
+
+<%= paginate @audio_videos %>
 </div>
 
 <div class='span2'>
   <ul class='category-nav-list nav nav-list'>
-    <li>
+    <li class="<%= active_class{ @category_id.nil? }%>">
       <%= link_to 'All', audio_videos_path %>
     </li>
   <% @categories.each do |category| %>
-    <li>
-      <%= link_to category.name, audio_videos_path(:category_id => category.id)%>
+    <li class="<%= active_class{ category.id.to_s == @category_id.to_s} %>">
+      <%= link_to category.name, audio_videos_path(:category_id => category.id, order: @order)%>
     </li>
   <% end %>
   <ul>

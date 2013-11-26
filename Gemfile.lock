@@ -323,6 +323,7 @@ DEPENDENCIES
   friendly_id!
   jbuilder (~> 1.2)
   jquery-rails
+  kaminari
   language_list (~> 1.0.0)
   mysql2
   nokogiri (~> 1.6)

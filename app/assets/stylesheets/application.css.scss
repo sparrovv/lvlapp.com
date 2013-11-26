@@ -167,3 +167,17 @@ table.zebra{
     background: $lightgrey;
   }
 }
+.nav-pills, .category-nav-list{
+  .active{
+    a{
+      color: black;
+      background-color: $grey;
+      border-radius: 0;
+    &:hover{
+      border-radius: 0;
+      color: black;
+      background-color: $grey;
+    }
+    }
+  }
+}

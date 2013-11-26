@@ -1,12 +1,18 @@
 class AudioVideosController < ApplicationController
+  PER_PAGE=15
   before_filter :load_categories, only: [:index, :show]
   before_filter :authenticate_user!, only: [:edit]
 
   def index
-    @category = load_category # can be nil
+    load_category # can be nil
+    @category_id = @category && @category.id
+    @order = params[:order]
+
     @audio_videos = AudioVideo.includes(:level).
       by_status(AudioVideo::ACTIVE).
-      by_category(@category).order('created_at desc')
+      by_category(@category).
+      page(params[:page]).per(PER_PAGE).
+      order("#{get_order_column(@order)} desc")
   end
 
   def show
@@ -29,6 +35,13 @@ class AudioVideosController < ApplicationController
   end
 
   private
+  def get_order_column(key)
+    h = Hash.new('created_at')
+    h['popular'] = 'views_count'
+
+    h[key]
+  end
+
   def load_categories
     @categories = Category.order(:position)
   end

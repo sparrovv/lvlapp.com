@@ -11,6 +11,7 @@ describe AudioVideosController do
       get :index
 
       assigns(:category).should be_nil
+      assigns(:category_id).should be_nil
       assigns(:audio_videos).should be_present
 
       should render_template :index
@@ -22,6 +23,7 @@ describe AudioVideosController do
       get :index, category_id: category.id
 
       assigns(:category).should == category
+      assigns(:category_id).should == category.id
       assigns(:audio_videos).should be_present
 
       response.should be_success
