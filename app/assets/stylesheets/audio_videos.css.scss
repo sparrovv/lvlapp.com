@@ -215,14 +215,10 @@ h3.audio-video-title{
       }
     }
     .pause{
-      background: image-url('lvlapp-sprites.png') no-repeat -0px 0px;
+      background: image-url('lvlapp-sprites.png') no-repeat -192px 0px;
       &:hover{
-        background: image-url('lvlapp-sprites.png') no-repeat -0px -32px;
+        background: image-url('lvlapp-sprites.png') no-repeat -192px -32px;
       }
-    }
-
-    .play, .pause{
-      display:none;
     }
 
     a{
@@ -240,16 +236,18 @@ h3.audio-video-title{
     }
   }
 
+  .app-controls{
+    .play{ display: none; }
+  }
 
   .app-controls.paused{
-    .play{
-      display: block;
-    }
+    .play{ display: block; }
+    .pause{ display: none; }
   }
+
   .app-controls.playing{
-    .pause{
-      display: block;
-    }
+    .pause{ display: block; }
+    .play{ display: none; }
   }
 
   .app-progress{
