@@ -4,14 +4,12 @@
 - [] Implement layout improvements 
   - some small things left
 
-- [] add "how-it-works" page, copy, etc
-  - add images
-  - add to google index
-
 - [] Memorise - Finish up agree on first version: word | definition / usage in a word / translation .. more
   - [] better design
 
 - [] On click inside the transcript there always should be focus, and maybe some indication that the focus is in?
+
+- [] like facebook button on first page
 
 VERSION 2
 
@@ -141,3 +139,7 @@ DONE
 - [] switch to non sticky footer
 - [] line down when the current one has some missing words should trigger skip all words
 - [] pagination
+- [] add "how-it-works" page, copy, etc
+  - add images
+  - add to google index
+

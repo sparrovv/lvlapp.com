@@ -1,14 +1,14 @@
-<h3>Game stats</h3>
+<h3>Your stats</h3>
 
 <table class='table table-bordered'>
 
   <% headers = [:total_points, :blanks, :guessed , :skipped , :mistakes, :time] %>
-  <% ths = headers.map{|name| "<th>#{name}</th>" }.join('') %>
+  <% ths = headers.map{|name| "<th>#{name.to_s.humanize}</th>" }.join('') %>
 
   <tr>
-    <th>nb</th><th>video</th>
+    <th>Nb</th><th>video</th>
     <%= ths.html_safe %>
-    <th>performed at</th>
+    <th>Performed at</th>
   </tr>
   <% @game_data.each_with_index do |datum, index| %>
     <tr>

@@ -17,7 +17,6 @@ describe GameDataController do
     end
 
     describe '#index' do
-
       it 'assigns @game_data for user' do
         game_datum.save
         get :index
