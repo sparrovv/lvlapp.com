@@ -41,7 +41,7 @@ feature "Shake Down tests" do
 
     visit game_data_path
 
-    expect(page).to have_text('Game stats')
+    expect(page).to have_text('Your stats')
     expect(page).to have_text(@audio_video.name)
     expect(page).to_not have_text(av.name)
   end
