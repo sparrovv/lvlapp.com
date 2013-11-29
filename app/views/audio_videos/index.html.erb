@@ -18,7 +18,9 @@
   <%= render 'shared/audio_video', audio_video: audio_video %>
 <% end %>
 
-<%= paginate @audio_videos %>
+  <div class="pagination pagination-medium">
+    <%= paginate @audio_videos %>
+  </div>
 </div>
 
 <div class='span2'>

@@ -1,6 +1,15 @@
 # TODOs:
 
+- [] Fix the learn iritating issues:
+   - video takes to learn
+   - save and exit takes you to the index page
+   ...
 - [] stats page link from the game
+   - consider informing about the % of the guessed words at the end
+   - Page with the points explained
+   - Validation that there won't be more than x points per person
+   - Glboal Profile points object - so the points are shon on every page...
+   
 - [] Implement layout improvements 
   - some small things left
 
