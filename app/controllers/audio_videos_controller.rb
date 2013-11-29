@@ -1,5 +1,5 @@
 class AudioVideosController < ApplicationController
-  PER_PAGE=25
+  PER_PAGE=24
   before_filter :load_categories, only: [:index, :show]
   before_filter :authenticate_user!, only: [:edit]
 
