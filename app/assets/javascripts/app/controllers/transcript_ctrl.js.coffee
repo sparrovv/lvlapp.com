@@ -1,4 +1,4 @@
-LApp.controller "TranscriptCtrl", ($scope, $rootScope, LineTorch, GameConfig, GameStates, transcriptFactory, Stats, Key, audioVideo, SpellChecker, lineTimeoutService, Phrase) ->
+LApp.controller "TranscriptCtrl", ($scope, $rootScope, GameConfig, GameStates, transcriptFactory, Stats, Key, audioVideo, SpellChecker, lineTimeoutService, Phrase) ->
   setCurrentState= (state) ->
     GameStates.current = state
     $scope.currentState = state
@@ -76,7 +76,8 @@ LApp.controller "TranscriptCtrl", ($scope, $rootScope, LineTorch, GameConfig, Ga
   $scope.navigator = LApp.navigateOverTranscript($scope, transcriptFactory)
 
   $scope.$watch "currentLine", ->
-    LineTorch.highlight($scope.currentLine, $scope)
+    $scope.currentLineTopPosition =
+      GameConfig.lineStartPosition - ($scope.currentLine.index * GameConfig.lineHeight)
 
   $scope.setCurrentLine = (line) ->
     setCurrentState(GameStates.playing)
@@ -112,6 +113,7 @@ LApp.controller "TranscriptCtrl", ($scope, $rootScope, LineTorch, GameConfig, Ga
 
       letter = String.fromCharCode(event.which)
       SpellChecker.nextLetter letter, $scope
+      $scope.firstWithBlanks = transcriptFactory.firstWithBlanks()
 
     $(document).keydown (e) ->
       _emit('togglePlayer')    if Key.isSpacebar(e.keyCode)

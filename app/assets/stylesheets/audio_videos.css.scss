@@ -1,4 +1,3 @@
-$videoSetupBG: #44403C;
 @import "colors.css.scss";
 
 .level-common{
@@ -52,7 +51,7 @@ h3.audio-video-title{
 
 .player-containter{
   position: relative;
-  height: 280px;
+  height: 316px;
   background: image-url('spinner.gif') no-repeat 50% 50%;
   .over-player{
     display: none;
@@ -60,7 +59,7 @@ h3.audio-video-title{
     width: 640px;
     left: 0px;
     top: 0px;
-    height: 298px;
+    height: 316px;
     z-index: 99;
     background: $blackRgb;
     background-color: $blackRgbTransparent;
@@ -170,7 +169,7 @@ h3.audio-video-title{
   height:36px;
   z-index:59px;
   text-left: right;
-  background: #000;
+  background: #221F1F;
   opacity: 0.9;
 
   .app-controls{
@@ -390,7 +389,7 @@ h3.audio-video-title{
 }
 
 .game-starting.starting{
-  background: $videoSetupBG image-url('game-loading.gif') no-repeat 50% 50%;
+  background: #fff image-url('ajax_loader.gif') no-repeat 50% 50%;
   display: block;
 }
 

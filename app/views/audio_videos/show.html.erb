@@ -52,12 +52,12 @@
         </div>
         <div class='video-info'>
           <div class='app-controls {{currentState}}'>
-            <a tooltip='play' tooltip-placement="top" class='play' ng-click='invokeAction("togglePlayer")'></a>
-            <a tooltip='pause' tooltip-placement="top" class='pause' ng-click='invokeAction("togglePlayer")'></a>
-            <a tooltip='replay line' tooltip-placement="top" class="replay-line" ng-click='invokeAction("beginningOfline")'></a>
-            <a tooltip='skip word' tooltip-placement="top" class="skip-word" ng-click='invokeAction("skipWord")'></a>
-            <a tooltip='line up' tooltip-placement="top" class="line-up" ng-click='invokeAction("lineUp")'></a>
-            <a tooltip='line down' tooltip-placement="top" class="line-down" ng-click='invokeAction("lineDown")'></a>
+            <a tooltip='[space] play' tooltip-placement="top" class='play' ng-click='invokeAction("togglePlayer")'></a>
+            <a tooltip='[space] pause' tooltip-placement="top" class='pause' ng-click='invokeAction("togglePlayer")'></a>
+            <a tooltip='[enter] replay line' tooltip-placement="top" class="replay-line" ng-click='invokeAction("beginningOfline")'></a>
+            <a tooltip='[tab] skip word' tooltip-placement="top" class="skip-word" ng-click='invokeAction("skipWord")'></a>
+            <a tooltip='[up] line up' tooltip-placement="top" class="line-up" ng-click='invokeAction("lineUp")'></a>
+            <a tooltip='[down] line down' tooltip-placement="top" class="line-down" ng-click='invokeAction("lineDown")'></a>
             <a tooltip='restart game' tooltip-placement="top" class="restart-game" ng-click="restartGame()"></a>
           </div>
           <div class='app-progress'>
@@ -81,7 +81,7 @@
 
       <ul class='lines' style="top:{{currentLineTopPosition}}px">
         <li ng-repeat="line in transcript">
-          <pline line="line" add-to-phrasebook="addToPhrasebook(phrasedata)"></pline>
+          <pline line="line" current-line="currentLine" add-to-phrasebook="addToPhrasebook(phrasedata)"></pline>
         </li>
       </ul>
     </div>
