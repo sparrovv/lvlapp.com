@@ -48,11 +48,12 @@ h3.audio-video-title{
 
 .highlight {
   background: #C7E7FF;
+}
+.first-with-blanks{
   missing {
     @extend .cursor_effect;
   }
 }
-
 .player-containter{
   position: relative;
   height: 316px;
@@ -321,10 +322,8 @@ h3.audio-video-title{
         position:absolute;
         left: 5px;
       }
-      .missing-word{
-        letter-spacing: 1px;
-      }
       .word{
+        letter-spacing: 0.05em;
         position: relative;
         fault{ color: red; }
         correct{ color: #1EA51E; }

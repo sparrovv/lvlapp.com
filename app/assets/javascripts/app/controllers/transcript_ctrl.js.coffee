@@ -45,6 +45,8 @@ LApp.controller "TranscriptCtrl", ($scope, $rootScope, GameConfig, GameStates, t
       bindKeyDownControlls() if $scope.editMode == 'true'
 
       transcriptFactory.setupBlanks($scope.difficulty)
+      $scope.firstWithBlanks = transcriptFactory.firstWithBlanks()
+
       Stats.init
         difficulty: $scope.difficulty
         videoLevel: audioVideo.level_name
@@ -196,6 +198,8 @@ LApp.controller "TranscriptCtrl", ($scope, $rootScope, GameConfig, GameStates, t
     if action == 'skipWord'
       line = transcriptFactory.firstWithBlanks()
       SpellChecker.skipWord(line, $scope)
+
+    $scope.firstWithBlanks = transcriptFactory.firstWithBlanks()
 
   $scope.addToPhrasebook = (attrs) ->
     return false if attrs.word.match(new RegExp(GameConfig.blankChar))

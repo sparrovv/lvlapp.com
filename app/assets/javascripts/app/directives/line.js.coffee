@@ -1,15 +1,15 @@
 @LApp.directive 'pline', ->
   restrict: 'E'
   template: '
-    <p class="{{heighlight()}}">
+    <p class="{{heighlight()}} {{isFirstLineWithBlanks()}}">
       <span
-        class="word {{isMissingWord(word)}}"
+        class="word"
         ng-click="addPhrase(this)"
-        ng-bind-html-unsafe="word + \' \'"
+        ng-bind-html-unsafe="word + \'&nbsp\'"
         ng-repeat="word in line.words()"></span>
     </p>
   '
-  scope: { line:'=line', addToPhrasebook: '&', currentLine: '=currentLine' }
+  scope: { line:'=line', addToPhrasebook: '&', currentLine: '=currentLine', firstWithBlanks: '=firstWithBlanks' }
   replace: true
 
   link: (scope, element, attrs) ->
@@ -23,3 +23,7 @@
     scope.isMissingWord = (word)->
       if word.indexOf('_') != -1
         'missing-word'
+
+    scope.isFirstLineWithBlanks = ->
+      if scope.firstWithBlanks &&  scope.firstWithBlanks.index == scope.line.index
+        'first-with-blanks'
