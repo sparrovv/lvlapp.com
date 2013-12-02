@@ -21,11 +21,16 @@ class LApp.TranscriptLine
     @guessedWords = []
     @textWithBlanks = ''
 
-  htmlId: ->
-    "#" + (@time.toFixed(2).replace('.','') )
-
   words: ->
-    @guessedWithBlanks().split(" ")
+    line_text = @guessedWithBlanks()
+    index = line_text.indexOf('_')
+    words = if index != -1
+      rep = '<missing>_</missing>'
+      line_text.replaceAtWithLength(index, rep, 1)
+    else
+      line_text
+
+    words.split(" ")
 
   removeLastFromBuffer: ->
     @currentLettersBuffer = @currentLettersBuffer.slice(0,-1)
@@ -40,12 +45,12 @@ class LApp.TranscriptLine
 
     decoratedBuffer.join('')
 
+  #money method !
   guessedWithBlanks: ->
     missingWordObj = @getMissingWordObj(@nextMissingWord())
 
     if missingWordObj
       decoratedBuffer = @decorateLettersWithErrors(missingWordObj.word, @currentLettersBuffer)
-
       @textWithBlanks.replaceAtWithLength(missingWordObj.index, decoratedBuffer, @currentLettersBuffer.length)
     else
       @textWithBlanks

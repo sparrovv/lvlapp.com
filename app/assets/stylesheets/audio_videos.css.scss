@@ -1,4 +1,5 @@
 @import "colors.css.scss";
+@import "blink.css.scss";
 
 .level-common{
   padding: 0 2px;
@@ -47,6 +48,9 @@ h3.audio-video-title{
 
 .highlight {
   background: #C7E7FF;
+  missing {
+    @extend .cursor_effect;
+  }
 }
 
 .player-containter{
@@ -316,6 +320,9 @@ h3.audio-video-title{
       .time{
         position:absolute;
         left: 5px;
+      }
+      .missing-word{
+        letter-spacing: 1px;
       }
       .word{
         position: relative;
