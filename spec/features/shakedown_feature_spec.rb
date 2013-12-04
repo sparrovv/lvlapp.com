@@ -46,12 +46,17 @@ feature "Shake Down tests" do
     expect(page).to_not have_text(av.name)
   end
 
-  scenario "Learn" do
-    create(:phrase)
+  scenario "it show notice when no phrases in the learn section" do
     click_link 'Learn'
+    expect(page).to have_text(/Before you start repetition/)
+  end
 
+  scenario "it shows words to repeat" do
+    create(:phrase, user: @user)
+    click_link 'Learn'
     expect(page).to have_text('Learn')
     expect(page).to have_text('due to repeat')
     expect(page).to have_text('all phrases')
+    expect(page).to_not have_text(/Before you start repetition/)
   end
 end
