@@ -1,7 +1,19 @@
 <div class="span12">
-  <h2>Learn</h2>
-  <table class='table table-bordered'>
+  <h3>Learn by repetition</h3>
 
+  <% if @number_of_phrases.zero? %>
+    <div class='notice'>
+    <p>Before you start repetition, add some words to <strong>phrasebook</strong>. <%= link_to 'Check out how to add words to phrasebook', about_path(anchor: 'adding-words-to-phrasebook')%></p>
+  </div>
+<% else %>
+
+    <h4>Random words:</h4>
+  <div class="btn-group">
+    <%= link_to('learn 10 random words', memorize_random_path(random: 10), class: 'btn') %>
+  </div>
+
+  <h4>Repeat by video:</h4>
+  <table class='table table-bordered'>
     <% headers = ['Video', 'due to repeat','all phrases', ''] %>
     <% ths = headers.map{|name| "<th>#{name}</th>" }.join('') %>
 
@@ -10,11 +22,13 @@
     </tr>
     <% @audio_video_phrases.sort_by{|o| o.due_to_repetition }.reverse.each do |audio_video_phrase| %>
       <tr>
-        <td><%= link_to audio_video_phrase.audio_video.name, audio_video_path(audio_video_phrase.audio_video) %></td>
-        <td><%= audio_video_phrase.due_to_repetition %></td>
-        <td><%= audio_video_phrase.size %></td>
-        <td><%= link_to('learn', memorize_show_path(audio_video_id: audio_video_phrase.audio_video.id))%></td>
-      </tr>
-    <% end %>
+      <td><%= link_to audio_video_phrase.audio_video.name, memorize_show_path(audio_video_id: audio_video_phrase.audio_video.id) %></td>
+      <td><%= audio_video_phrase.due_to_repetition %></td>
+      <td><%= audio_video_phrase.size %></td>
+      <td><%= link_to('learn', memorize_show_path(audio_video_id: audio_video_phrase.audio_video.id))%><span> | </span>
+        <%= link_to('video', audio_video_path(audio_video_phrase.audio_video))%></td>
+    </tr>
+  <% end %>
   </table>
+<% end %>
 </div>

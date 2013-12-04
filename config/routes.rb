@@ -4,6 +4,7 @@ Lvlapp::Application.routes.draw do
   get "memorize/index"
   get "memorize/create"
   get "memorize/update"
+  get "memorize/random"
 
   devise_for :users, :controllers => {:registrations => "registrations"}
 

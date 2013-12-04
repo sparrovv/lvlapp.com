@@ -24,9 +24,9 @@ LApp.controller "MemorizeCtrl", ($scope, $http, PhrasesCollection, FlashCards, S
     else
       $scope.state = 'endOfRepetition'
       $scope.soonestRepetitionDate = _getSoonestRepetitionDate()
-      $scope.saveAndExit()
+      $scope.save()
 
-  $scope.saveAndExit = ->
+  $scope.save = (callback) ->
     data = FlashCards.readyToUpdateAttrs()
 
     unless data.length > 0
@@ -36,6 +36,14 @@ LApp.controller "MemorizeCtrl", ($scope, $http, PhrasesCollection, FlashCards, S
     $http.post('/phrases/sm2_update', {phrases_sm2: data}).
       success (data, status, headers, config) ->
         FlashCards.updateSent()
+        callback() if callback
+
+  $scope.saveAndExit = ->
+    url = '/memorize/index'
+    exit = ->
+      window.location = url
+
+    $scope.save(exit)
 
   window.scope = $scope
 
