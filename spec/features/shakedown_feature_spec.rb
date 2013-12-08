@@ -59,4 +59,10 @@ feature "Shake Down tests" do
     expect(page).to have_text('all phrases')
     expect(page).to_not have_text(/Before you start repetition/)
   end
+
+  scenario "it shows total points in the navbar" do
+    create(:game_datum, user: @user, total_points: 101)
+    click_link 'Browse'
+    expect(page).to have_css('.points', text: '101')
+  end
 end

@@ -38,6 +38,7 @@ gem 'whenever', :require => false
 gem 'social-share-button'
 gem 'devise'
 gem 'kaminari'
+gem 'gravtastic'
 # errors reporting
 gem "sentry-raven", :git => "https://github.com/getsentry/raven-ruby.git"
 

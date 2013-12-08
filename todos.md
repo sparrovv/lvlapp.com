@@ -5,6 +5,7 @@
    - Page with the points explained
    - Validation that there won't be more than x points per person
    - Glboal Profile points object - so the points are shon on every page...
+   - identicons - so there is a profile img, points, logout, history in the profile dropdown
 
 - [] Implement layout improvements 
   - some small things left

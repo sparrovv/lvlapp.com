@@ -1,4 +1,7 @@
 class User < ActiveRecord::Base
+  include Gravtastic
+  gravtastic
+
   OTHER_NATIVE_LANG = 'other'
   # Include default devise modules. Others available are:
   # :token_authenticatable, :confirmable,
@@ -13,5 +16,13 @@ class User < ActiveRecord::Base
 
   def phrases_by_audio_video(audio_video)
     phrases.where(audio_video: audio_video)
+  end
+
+  def username
+    email[/(.+)@/,1]
+  end
+
+  def points
+    game_data.sum('total_points')
   end
 end

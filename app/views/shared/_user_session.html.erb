@@ -1,7 +1,9 @@
 <ul class="nav pull-right">
+  <% unless current_user %>
   <li>
     <%= link_to 'About', about_path %>
   </li>
+  <% end %>
   <li>
     <%= link_to 'Browse', audio_videos_path %>
   </li>
@@ -9,8 +11,14 @@
     <li>
       <%= link_to 'Learn', memorize_index_path %>
     </li>
+    <li class="profile">
+    <%= link_to game_data_path do %>
+      <%= image_tag(current_user.gravatar_url(size: 18)) %>
+      <span class="points"><%= number_with_delimiter(current_user.points) %></span>
+    <% end %>
+    </li>
     <li>
-    <%= button_to 'Log out', destroy_user_session_path, :method => 'delete' %>
+      <%= button_to 'Log out', destroy_user_session_path, :method => 'delete' %>
     </li>
   <% else %>
     <li><%= link_to 'Log in', user_session_path %></li>

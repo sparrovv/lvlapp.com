@@ -40,4 +40,23 @@ describe User do
     phrases.should include phrase_1
   end
 
+  describe '#points' do
+    it 'returns number of total points from game data for given user' do
+      user.save!
+      create(:game_datum, user: user, total_points: 20)
+      create(:game_datum, user: user, total_points: 45)
+      user_2 = create(:user)
+      create(:game_datum, user: user_2, total_points: 20)
+
+      expect(user.points).to eql 65
+    end
+  end
+
+  describe '#username' do
+    it 'returns first part of email - name' do
+      user.email = "foobar@foo.com"
+
+      expect(user.username).to eql 'foobar'
+    end
+  end
 end
