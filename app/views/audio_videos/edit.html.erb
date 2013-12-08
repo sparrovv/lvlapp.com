@@ -43,7 +43,7 @@
 
       <ul class="lines" style="top:{{currentLineTopPosition}}px">
         <li ng-repeat="line in transcript">
-        <p>
+        <p class="{{line.index == currentLine.index && 'highlight'}} ">
           <input class='time' ng-model="line.time">
           <input class='word' ng-model="line.text">
         </p>
