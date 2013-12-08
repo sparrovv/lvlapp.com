@@ -1,11 +1,11 @@
-LApp.factory "transcriptFactory", (audioVideo, blanksFactory)->
+LApp.factory "transcriptFactory", (audioVideo, blanksFactory, GameConfig)->
   factory = {}
 
   factory.transcript = decoratedTranscript = _.map audioVideo.rawTranscript, (line, index) ->
-    new LApp.TranscriptLine(line.time, line.text, index+1)
+    new LApp.TranscriptLine(line.time, line.text, index+1, GameConfig.blankChar)
 
   # put a null transcript line at the beginning of the transcript
-  factory.transcript.unshift(new LApp.TranscriptLine(0, '', 0))
+  factory.transcript.unshift(new LApp.TranscriptLine(0, '', 0, GameConfig.blankChar))
 
   factory.setupBlanks = (level)->
     factory.transcript = blanksFactory.generateBlanks(level, factory.transcript)

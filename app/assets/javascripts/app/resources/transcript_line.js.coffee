@@ -11,7 +11,7 @@ class LApp.RemovedWord
     @word.length
 
 class LApp.TranscriptLine
-  constructor: (time, @text, @index) ->
+  constructor: (time, @text, @index, @blankChar) ->
     @time = parseFloat(time)
     @initTemporaryState()
 
@@ -23,9 +23,9 @@ class LApp.TranscriptLine
 
   words: ->
     line_text = @guessedWithBlanks()
-    index = line_text.indexOf('_')
+    index = line_text.indexOf(@blankChar)
     words = if index != -1
-      rep = '<missing>_</missing>'
+      rep = "<missing>#{@blankChar}</missing>"
       line_text.replaceAtWithLength(index, rep, 1)
     else
       line_text
