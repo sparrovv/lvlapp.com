@@ -1,23 +1,24 @@
-<h3>Your stats</h3>
+<div class="row span12">
+  <h3>Stats</h3>
+  <table class='table table-bordered'>
 
-<table class='table table-bordered'>
+    <% headers = [:total_points, :blanks, :guessed , :skipped , :mistakes, :time] %>
+    <% ths = headers.map{|name| "<th>#{name.to_s.humanize}</th>" }.join('') %>
 
-  <% headers = [:total_points, :blanks, :guessed , :skipped , :mistakes, :time] %>
-  <% ths = headers.map{|name| "<th>#{name.to_s.humanize}</th>" }.join('') %>
-
-  <tr>
-    <th>Nb</th><th>video</th>
-    <%= ths.html_safe %>
-    <th>Performed at</th>
-  </tr>
-  <% @game_data.each_with_index do |datum, index| %>
     <tr>
+      <th>Nb</th><th>video</th>
+      <%= ths.html_safe %>
+      <th>Performed at</th>
+    </tr>
+    <% @game_data.each_with_index do |datum, index| %>
+      <tr>
       <td><%= index + 1 %></td>
       <td><%= link_to(datum.audio_video.name, audio_video_path(datum.audio_video))%></td>
       <% headers.each do |field_name| %>
         <td><%= datum.send(field_name) %></td>
-      <% end %>
+    <% end %>
       <td><%= time_tag datum.created_at %></td>
     </tr>
   <% end %>
-</table>
+  </table>
+</div>
