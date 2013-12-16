@@ -1,10 +1,14 @@
 <% audio_video = YoutubeAudioVideoDecorator.new(audio_video) %>
 <div class='video'>
+  <div class="image">
   <%= link_to image_tag(audio_video.image_url), audio_video_path(audio_video), :class => 'preview' %>
+
+    <%= video_duration(audio_video.duration) %>
+    <%= video_level(audio_video.level_name) %>
+  </div>
   <div class='info'>
     <div>
       <%= link_to truncate(audio_video.name, length: 40), audio_video_path(audio_video), :class => 'preview' %>
-      <%= video_level(audio_video.level_name) %>
     </div>
   </div>
 </div>

@@ -52,10 +52,20 @@ module ApplicationHelper
   end
 
   def video_level(level)
-    "<span class='v-level-#{level}'>#{level}</span>".html_safe
+    "<span class='level-info v-level-#{level}'>#{level}</span>".html_safe
+  end
+
+  def video_duration(duration)
+    m = duration.to_i / 60
+    sec = duration.to_i % 60
+    "<span class='duration' style='float:right'>#{add_zero(m)}:#{add_zero(sec)}</span>".html_safe
   end
 
   def active_class &block
     'active' if block.call == true
+  end
+
+  def add_zero(i)
+    i < 10 ? "0#{i}" : i.to_s
   end
 end
