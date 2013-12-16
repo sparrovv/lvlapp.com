@@ -196,3 +196,13 @@ table.zebra{
   }
 
 }
+
+.lvl-btn{
+  background-color: #F8F8F8;
+  background-image: linear-gradient(to bottom, #C2C2C2, #6F6F6F);
+  &:hover, &:active{
+  background-color: #F8F8F8;
+  background-image: linear-gradient(to bottom, #C2C2C2, #6F6F6F);
+  background-position: 0;
+  }
+}
