@@ -3,6 +3,7 @@
 a{
   cursor: pointer;
 }
+
 #front-about{
   background: $lightgrey;
   .container{
@@ -28,7 +29,7 @@ a{
   text-align: right;
 }
 .primary-info-text{
-  padding:40px 0;
+  padding:40px 0 0 0;
   h1{
     @extend .open-sans-bold;
     line-height: 24px;
@@ -129,9 +130,8 @@ a{
   }
 }
 .share-links{
-  margin-top: 10px;
+  margin-top: 20px;
   > div{
     float: right;
-    width: 125px;
   }
 }

@@ -73,6 +73,9 @@ a.navbar-brand {
   color: $orange;
   float: left;
   font-weight: bold;
+  img{
+    height: 76px;
+  }
 
   &:hover{
     color: $orange;
