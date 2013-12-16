@@ -39,6 +39,7 @@ gem 'social-share-button'
 gem 'devise'
 gem 'kaminari'
 gem 'gravtastic'
+gem 'mobile-fu'
 # errors reporting
 gem "sentry-raven", :git => "https://github.com/getsentry/raven-ruby.git"
 

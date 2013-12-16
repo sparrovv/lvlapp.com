@@ -24,7 +24,7 @@ feature "Shake Down tests" do
     expect(page).to_not have_link(@audio_video_pending.name)
   end
 
-  scenario "Audio Video" do
+  scenario "Audio Video normal browser" do
     click_link 'Browse'
     click_link @audio_video.name
     expect(page).to have_text(@audio_video.name)
@@ -32,6 +32,16 @@ feature "Shake Down tests" do
     expect(page).to have_text('Stats')
     expect(page).to have_text('Phrasebook')
     expect(page).to have_text(@audio_video.level_name)
+    expect(page).to_not have_css('.alert')
+    expect(page).to_not have_text('Warning - not supported device.')
+  end
+
+  scenario "Audio Video on mobile" do
+    page.driver.browser.header('User-Agent', 'Mozilla/5.0 (Linux; U; Android 4.0.3; ko-kr; LG-L160L Build/IML74K) AppleWebkit/534.30 (KHTML, like Gecko) Version/4.0 Mobile Safari/534.30')
+    click_link 'Browse'
+    click_link @audio_video.name
+    expect(page).to have_css('.alert')
+    expect(page).to have_text('Warning - not supported device.')
   end
 
   scenario "Game Data" do
@@ -41,7 +51,7 @@ feature "Shake Down tests" do
 
     visit game_data_path
 
-    expect(page).to have_text('Your stats')
+    expect(page).to have_text('Stats')
     expect(page).to have_text(@audio_video.name)
     expect(page).to_not have_text(av.name)
   end

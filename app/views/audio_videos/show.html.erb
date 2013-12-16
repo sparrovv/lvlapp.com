@@ -10,6 +10,7 @@
     <li><%= link_to @audio_video.category_name, audio_videos_path(:category_id => @audio_video.category_id)%><span class="divider">/</span></li>
     <li class="active"><%= @audio_video.name %></li>
   </ol>
+  <%= render 'shared/not_supported' %>
 </div>
 
 <div ng-app='LApp' class="lapp">
