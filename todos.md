@@ -153,3 +153,12 @@ DONE
    - video takes to learn
    - save and exit takes you to the index page
    ...
+- [] notice that doesn't work on mobiles
+- [] check the performance of the site AB
+
+- fix minor styles / ted border / stats.. check out asciicasts 
+
+- move "logo" to the right a bit
+- sign in/up colors
+
+
