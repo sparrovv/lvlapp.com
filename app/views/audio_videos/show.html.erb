@@ -80,7 +80,7 @@
 
       <div class='game-starting game-shared-screen {{currentState}}'></div>
 
-      <ul class='lines' style="top:{{currentLineTopPosition}}px">
+      <ul class='lines'>
         <li ng-repeat="line in transcript">
           <pline line="line" current-line="currentLine" first-with-blanks="firstWithBlanks" add-to-phrasebook="addToPhrasebook(phrasedata)"></pline>
         </li>

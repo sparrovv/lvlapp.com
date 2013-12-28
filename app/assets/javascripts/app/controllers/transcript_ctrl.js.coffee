@@ -80,6 +80,7 @@ LApp.controller "TranscriptCtrl", ($scope, $rootScope, GameConfig, GameStates, t
   $scope.$watch "currentLine", ->
     $scope.currentLineTopPosition =
       GameConfig.lineStartPosition - ($scope.currentLine.index * GameConfig.lineHeight)
+    $('ul.lines').css('top', $scope.currentLineTopPosition)
 
   $scope.setCurrentLine = (line) ->
     setCurrentState(GameStates.playing)
