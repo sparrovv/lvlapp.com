@@ -12,8 +12,9 @@
   var youtubePlayer;
 
   function onYouTubeIframeAPIReady() {
+
     youtubePlayer = new YT.Player('youtube-player', {
-      playerVars: { 'autoplay': 0, 'controls': 0, 'disablekb':1, 'modestbranding':1, 'rel':0, 'showinfo':0, 'theme': 'light' },
+      playerVars: { 'autoplay': 0, 'controls': 0, 'disablekb':1, 'modestbranding':1, 'rel':0, 'showinfo':0, 'theme': 'light', 'wmode': "opaque" },
       height: '280',
       width: '640',
       videoId: "<%= audio_video.url[/watch\?v=(.+)/, 1]%>",
