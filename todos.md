@@ -16,6 +16,9 @@
 - [] On click inside the transcript there always should be focus, and maybe some indication that the focus is in?
 
 
+- [] youtube video start seems not to be triggered ?  ---- hard to reproduce on my machine
+- [] game menu seems not to be over youtube on ie sometimes....
+
 VERSION 2
 
 - [] On hove on thumbnail show already the dificulty that you want to play with
@@ -162,3 +165,4 @@ DONE
 - sign in/up colors
 
 
+- [] change pass on the box

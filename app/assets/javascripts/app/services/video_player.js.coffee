@@ -8,7 +8,7 @@ class LApp.VideoPlayerFactory
   @youtube: (scope, callbacks) ->
     $(document).on 'youtubeVideoLoaded' , ->
       #
-      #youtubePlayer is an object on windows defined in view :////
+      #youtubePlayer is an object on windows defined in the view :////
       #
       scope.videoPlayer = new LApp.YoutubVideoPlayerProxy(youtubePlayer)
       scope.videoPlayer.onTimeUpdate(LApp.locateCurrentLine, scope)
