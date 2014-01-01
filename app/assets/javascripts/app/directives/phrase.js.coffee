@@ -1,7 +1,7 @@
 @LApp.directive 'phrase', ->
   restrict: 'E'
   template: '<div class="{{phrase.loading}}">
-      <span ng-click="showDef()" class="phrase-name">{{phrase.name}}<span class="small-indicator"></span></span>
+      <span ng-click="showDef()" class="phrase-name"><span>{{phrase.name}}</span><span class="small-indicator"></span></span>
       <a ng-href="" class="remove-phrase" ng-click="removePhrase()" data-phrase-id="{{phrase.id}}">x</a>
       <div class="hidden">
         <table class="table table-condensed">

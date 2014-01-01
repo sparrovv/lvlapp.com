@@ -32,13 +32,17 @@
   .phrase-name{
     width:95%;
     float:left;
+    position: relative;
   }
   .loading{
     a{
       display: none;
     }
     .small-indicator{
+      position: absolute;
+      top:2px;
       display: inline-block;
+      padding: 0 5px;
       width: 16px;
       height: 16px;
       background: image-url('small-indicator.gif') no-repeat 50% 50%;
