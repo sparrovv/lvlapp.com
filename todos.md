@@ -1,5 +1,6 @@
 # TODOs:
 
+- [] editing doesn't work for ted videos
 - [] stats page link from the game
    - consider informing about the % of the guessed words at the end
    - Page with the points explained

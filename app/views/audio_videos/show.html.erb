@@ -15,14 +15,13 @@
 
 <div ng-app='LApp' class="lapp">
   <div class="span8">
-
     <div ng-controller="VideoInfoCtrl">
       <div class='player-containter'>
         <% if @audio_video.youtube? %>
           <%= render 'shared/youtube', audio_video: @audio_video %>
-      <% else %>
+        <% else %>
           <%= render 'shared/videojs', audio_video: @audio_video  %>
-      <%end %>
+        <%end %>
 
         <div class='game-end over-player {{currentState}}'>
           <div class="score-info {{stats.showMore() == false && 'hidden'}}">
