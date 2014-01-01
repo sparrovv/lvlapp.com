@@ -12,8 +12,8 @@ gameConfig =
   isYoutubeVideo: ->
     window.isYoutubeVideo
   volumeMax: 100
-  lineStartPosition: 92
-  lineHeight: 32.5
+  lineStartPosition: 64
+  lineHeight: 32
   blankChar: '_'#'•'
 
 gameStates =

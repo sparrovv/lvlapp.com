@@ -47,7 +47,11 @@ h3.audio-video-title{
 }
 
 .highlight {
-  background: #C7E7FF;
+  background: #A7D7FC;
+  color: black;
+  //letter-spacing: 0.06em;
+  //font-weight: 700;
+  //font-size: 14px;
 }
 .first-with-blanks{
   missing {
@@ -275,7 +279,7 @@ h3.audio-video-title{
 .transcript-player{
   clear:left;
   position: relative;
-  height: 300px;
+  height: 224px;
   overflow: hidden;
   border: 1px #efefef solid;
 
@@ -306,6 +310,7 @@ h3.audio-video-title{
     width: 100%;
     position: absolute;
     margin: 0;
+    font-size: 13px;
 
     li:nth-child(odd){
       background-color: $lightgrey;
@@ -323,11 +328,10 @@ h3.audio-video-title{
         left: 5px;
       }
       .word{
-        font-size: 13px;
         letter-spacing: 0.06em;
         position: relative;
         fault{ color: red; }
-        correct{ color: #1EA51E; }
+        correct{ color: black; }
       }
 
       p{
@@ -357,7 +361,6 @@ h3.audio-video-title{
   height: 100%;
   text-align: center;
   margin: auto auto;
-  padding: 10px 0 0 0px;
   background: #fff;
   z-index: 99;
   opacity: 0.94;
@@ -388,10 +391,9 @@ h3.audio-video-title{
   background: #fff;
   opacity: 1;
   h4{ color: $orange; }
-  p{ margin:20px 0 0 0; }
   .shortcuts-help{
     width:60%;
-    margin: 20px auto;
+    margin: 10px auto;
   }
 }
 

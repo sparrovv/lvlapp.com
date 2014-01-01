@@ -2,7 +2,7 @@ LApp.factory "blanksHelper", (GameConfig) ->
   obj = {}
 
   obj.NO_MATCH = "there_was_no_word_matching_criteria"
-  obj.ANY_WORD_WITH_APOSTROPHE = /(\w{1,}(-|'|`|’|\*)\w{0,})|(^|\s)'\w+/g
+  obj.ANY_WORD_WITH_APOSTROPHE = /(\w{1,}(-|:|'|`|’|\*)\w{0,})|(^|\s)'\w+/g
   obj.SPECIAL_CHARS = /[<>",.\(\)\[\]:;\|\?\!\*]/g
   obj.SOUNDS = /\b\w*(\w)\1{2,}\w*\b/g
   obj.BLANK_CHAR = GameConfig.blankChar
