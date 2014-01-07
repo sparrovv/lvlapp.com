@@ -24,10 +24,7 @@
       }
     });
 
-    $(document).trigger('youtubeVideoLoaded')
-
     var videotime = 0;
-
     function onYoutubePlayerStateChanged(status) {
       if(status.data == 0) {
         $(document).trigger('youtubeVideoEnded');
@@ -41,6 +38,7 @@
     }
 
     function onYoutubePlayerReady() {
+      $(document).trigger('youtubeVideoLoaded')
       function updateTime() {
         var oldTime = videotime;
         if(youtubePlayer && youtubePlayer.getCurrentTime) {
