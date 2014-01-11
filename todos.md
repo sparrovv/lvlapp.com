@@ -1,5 +1,8 @@
 # TODOs:
 
+- [] Add duration - connect to youtube API or after first loading udpate duration.
+- [] Talking with youtube and validating that video is still available....
+
 - [] editing doesn't work for ted videos
 - [] stats page link from the game
    - consider informing about the % of the guessed words at the end
@@ -8,33 +11,29 @@
    - Glboal Profile points object - so the points are shon on every page...
    - identicons - so there is a profile img, points, logout, history in the profile dropdown
 
-- [] Implement layout improvements 
-  - some small things left
-
 - [] Memorise - Finish up agree on first version: word | definition / usage in a word / translation .. more
   - [] better design
 
 - [] On click inside the transcript there always should be focus, and maybe some indication that the focus is in?
 
-
-- [] youtube video start seems not to be triggered ?  ---- hard to reproduce on my machine
 - [] game menu seems not to be over youtube on ie sometimes....
 
 VERSION 2
 
 - [] On hove on thumbnail show already the dificulty that you want to play with
 - [] Use postgresql
-- [] Add duration - connect to youtube API or after first loading udpate duration.
 - [] smarter feeeling blanks: fix: good bye
 - [] Smarter blanks, there is some issue with: "why" whoa, ...
+
 - [] Memorize - 2nd version 
   - [] edit and your own stuff
   - [] add image search
   - [] last 20 unknown
   - [] Smarter adding line when adding to phrasebook, whole sentence (from . to . - it can be a problem casue transcript is without periods)
   - [] translate whole line, it can be useful in case of phrasals or some expressions with 
-- [] add go to the end when is the last line, and there is still plenty video to finsihed, becasue of ....
+- [] add "go to the end / fisnih" when is the last line, and there is still plenty video to finsihed, becasue of ....
 - [] Consider switching to google translate - it's about 20bucks for 125000 words, it's not so bad....
+- [] On Smylek's designs there was way to start a video from the browse section - nice, but not very necessary
 
 BUGS:
 - [] After adding gem I Had to stop and start puma, because restart didn't help
@@ -167,3 +166,7 @@ DONE
 
 
 - [] change pass on the box
+- [] Implement layout improvements
+  - some small things left
+
+- [] youtube video start seems not to be triggered ?  ---- hard to reproduce on my machine
