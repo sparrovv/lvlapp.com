@@ -28,6 +28,7 @@ module Lvlapp
     # CUSTOM CONFIG
     # Wordnik
     config.wordnik_api = '***REMOVED***'
+    config.google_api_key = ENV['GOOGLE_API_KEY']
 
     # Microsoft
     config.azure_primary_account_key = '***REMOVED***'

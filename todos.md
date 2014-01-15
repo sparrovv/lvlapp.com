@@ -17,6 +17,9 @@
 - [] On click inside the transcript there always should be focus, and maybe some indication that the focus is in?
 
 - [] game menu seems not to be over youtube on ie sometimes....
+- [] add terms of service
+- [] help should be somehow visible or possible to access when playing game....
+
 
 VERSION 2
 

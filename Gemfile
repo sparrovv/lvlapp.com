@@ -45,6 +45,8 @@ gem "sentry-raven", :git => "https://github.com/getsentry/raven-ruby.git"
 
 # parse srt input files
 gem 'srt'
+gem 'google-api-client', require: false
+
 group :development do
   gem 'quiet_assets'
   gem 'capistrano'

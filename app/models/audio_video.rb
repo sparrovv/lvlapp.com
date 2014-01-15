@@ -4,8 +4,9 @@ class AudioVideo < ActiveRecord::Base
 
   ACTIVE = 'active'
   PENDING = 'pending'
+  INACTIVE = 'inactive'
 
-  STATUSES = [PENDING, ACTIVE]
+  STATUSES = [PENDING, ACTIVE, INACTIVE]
 
   after_initialize :init
 
