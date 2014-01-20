@@ -7,8 +7,13 @@ class YoutubeVideo
       retrieve_results(raw_data(id))
     end
 
+    def client
+      @client ||= Google::APIClient.new(
+        application_name: 'lvlapp', application_version: '1.0'
+      )
+    end
+
     def raw_data(id)
-      client = Google::APIClient.new
       youtube = client.discovered_api('youtube', 'v3')
       client.authorization = nil
 
