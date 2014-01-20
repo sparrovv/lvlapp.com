@@ -1,7 +1,6 @@
 # TODOs:
 
 - [] Add duration - connect to youtube API or after first loading udpate duration.
-- [] Add cron job to check if youtube video is available
 
 - [] editing doesn't work for ted videos
 - [] stats page link from the game
@@ -174,3 +173,4 @@ DONE
 
 - [] youtube video start seems not to be triggered ?  ---- hard to reproduce on my machine
 - [] Talking with youtube and validating that video is still available....
+- [] Add cron job to check if youtube video is available
