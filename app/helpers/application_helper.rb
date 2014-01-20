@@ -19,6 +19,10 @@ module ApplicationHelper
     content_for :title, page_title.to_s
   end
 
+  def show_title(title)
+    "LvlApp - #{title}".html_safe
+  end
+
   def flash_messages
     return if flash.empty?
 
