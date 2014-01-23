@@ -1,6 +1,7 @@
 # TODOs:
 
 - [] Add duration - connect to youtube API or after first loading udpate duration.
+- [] restart game doesn't refreshes stats when you're sign off.
 
 - [] editing doesn't work for ted videos
 - [] stats page link from the game
@@ -15,9 +16,16 @@
 
 - [] On click inside the transcript there always should be focus, and maybe some indication that the focus is in?
 
+- [] [bug] guessing one before last word makes in instantly swtich to the last line.
 - [] game menu seems not to be over youtube on ie sometimes....
 - [] add terms of service
 - [] help should be somehow visible or possible to access when playing game....
+- [] puppet
+  - ruby 2.0
+  - runit
+  - postgresql
+  - deploy account
+  - nginx
 
 
 VERSION 2
