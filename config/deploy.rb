@@ -14,7 +14,7 @@ require 'capistrano/ext/multistage'
 set :application, "lvlapp"
 set :deploy_to, "/home/sparrovv/#{application}"
 set :scm, :git
-set :repository, "git@gitlab.com:sparrovv/landl.git"
+set :repository, "git@github.com:sparrovv/lvlapp.com.git"
 set :deploy_via, :remote_cache
 
 set :branch, ENV['branch'] || :master
