@@ -1,61 +1,9 @@
-## Story:
+## lvlapp - practices and play by listening and typing.
 
-There are many ways to improve your english. 
-The one that I find the most helpful is to go out and start speak with other people, especially with natives.
+This is the code behind the [lvlapp.com](http://lvlapp.com)
 
-Unfortunately this not always is an option.
-The other method that I find very helpful is to listen english without any subtitles.
-The listening has to be active, and you should make an effort to understand everything.
+### What is lvlapp?
 
-To validate that is to put down what you hear, and then compare with existing transcript and see how good was your understanding of heared audio.
-Listening and writing is very hard per se, and validating this is even more cumbersome.
-I created that app to help with that.
+LvlApp's goal is to help you to level up your  second language by listening, writing and repetition.
 
-Choose an audio from all available, choose the type that you're interested in.
-
-1. Pro - type all
-2. Intermediate - type only first letters
-3. Intermediate - type only missing words
-
-Gather exp, and compare with others. Observe how you language skill elevate over time.
-
-Videos are split into very categories:
-
-* by level [easy, medium, hard]
-* by time [short, …. long]
-* by tags [music, news, ….]
-
-## Technical Details
-
-Player, that would load mp
-
-Things that takes me a lot of time:
-
-  - new word, adding it, checking what does it mean, looking for sentences with that word/expression.
-  - converting it t
-IDEAS:
-
-- TEDex videos first batch
-
-- eventual business model
-
-   - more videos for subscribers
-   - saving words
-   - for the best, exp
-   - for those who adds videos
-   - export words to anki
-   - android app, maybe in the future
-   - google hangouts to speak
-
-
-Player Features - v .1
-
-- it has to be able to easily rewind, play again - lyrics training has nicely implemented
-- there has to be hint / skip functionality
-- keyboard shortcuts, bindings
-
-v .2
-
-- saving words
-- translations (android has off-line dict)
-- keeping
+At the moment only English is supported but the long term plan includes also other languages.
