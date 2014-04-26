@@ -1,22 +1,21 @@
-# TODOs:
+# TODOs - Move it to github issues
 
-- [] Add duration - connect to youtube API or after first loading udpate duration.
-- [] restart game doesn't refreshes stats when you're sign off.
+- [] Add duration - youtube API
+- [] restarted game doesn't refresh stats when you're signed off.
 
-- [] editing doesn't work for ted videos
+- [] editing doesn't work for TED videos
 - [] stats page link from the game
    - consider informing about the % of the guessed words at the end
    - Page with the points explained
    - Validation that there won't be more than x points per person
-   - Glboal Profile points object - so the points are shon on every page...
-   - identicons - so there is a profile img, points, logout, history in the profile dropdown
+   - Global Profile points object - so the points are visible on every page...
 
 - [] Memorise - Finish up agree on first version: word | definition / usage in a word / translation .. more
   - [] better design
 
 - [] On click inside the transcript there always should be focus, and maybe some indication that the focus is in?
 
-- [] [bug] guessing one before last word makes in instantly swtich to the last line.
+- [] [bug] guessing one word before the last one makes it instantly switch to the last line.
 - [] game menu seems not to be over youtube on ie sometimes....
 - [] add terms of service
 - [] help should be somehow visible or possible to access when playing game....
@@ -27,12 +26,13 @@
   - deploy account
   - nginx
 
-
 VERSION 2
 
+- [] Add possibility for a text selection, so you can add expressions to your phrasebook- http://jsfiddle.net/qY7gE/
+- [] Add printable version with blanks - This could be valuable for teachers who want to print the text and give it in the class
 - [] On hove on thumbnail show already the dificulty that you want to play with
 - [] Use postgresql
-- [] smarter feeeling blanks: fix: good bye
+- [] smarter filing in blanks: fix: good bye
 - [] Smarter blanks, there is some issue with: "why" whoa, ...
 
 - [] Memorize - 2nd version 
@@ -40,8 +40,8 @@ VERSION 2
   - [] add image search
   - [] last 20 unknown
   - [] Smarter adding line when adding to phrasebook, whole sentence (from . to . - it can be a problem casue transcript is without periods)
-  - [] translate whole line, it can be useful in case of phrasals or some expressions with 
-- [] add "go to the end / fisnih" when is the last line, and there is still plenty video to finsihed, becasue of ....
+  - [] translate whole line, it can be useful in case of phrasal verbs or expressions.
+- [] add "go to the end / finish" when is the last line, and there is still plenty video to finsihed, becasue of ....
 - [] Consider switching to google translate - it's about 20bucks for 125000 words, it's not so bad....
 - [] On Smylek's designs there was way to start a video from the browse section - nice, but not very necessary
 
@@ -49,10 +49,8 @@ BUGS:
 - [] After adding gem I Had to stop and start puma, because restart didn't help
 - [] compressed javascript doesn't work
 
-SUGESTIONS:
 
-
-FOR Further FUTURE:
+Suggestions: 
 
 - [] spaced repetition - exporting to anki / this should happen sometime in the future, not now
 
@@ -60,21 +58,6 @@ FOR Further FUTURE:
   -[x] List of phrases per video
   -[] Creating own lists
   -[x] Find some APIs and get usage of word / def / transalation
-
-- [] Shorter Videos
-  -[x] youtube music - is short and nice
-  -[] self hosting - have no clue what would be performance
-
-- [] Front Page 
-  -[]/ with video and lyrics player, at the end examples how to do it
-  -[] fiverr - someone will read it
-  -[] new format of transcript, where you can indicate what words are missing, instead of randoms
-
-- pay if you don't reach monthly points numbers
-
-- [] testing ?!
-- [] refactoring, more angularjs knowledge I need ?!
-
 
 DONE
 
@@ -146,7 +129,7 @@ DONE
 - [] validate transcript that after comma or colon, period there is a space
 - [] shorten video titles add dots ....
 - [] Add sitemap xml generator
-- [] Style game menus over the video - seems to wrok when it has absolutes values.
+- [] Style game menus over the video - seems to work when it has absolutes values.
      There's
 - [] Add integrations tests - just to be certain that everything works.
 - [] fonts not loading -----
