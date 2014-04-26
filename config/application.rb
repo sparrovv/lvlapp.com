@@ -26,6 +26,7 @@ module Lvlapp
     # config.i18n.default_locale = :de
 
     # CUSTOM CONFIG
+
     # Wordnik
     config.wordnik_api = ENV['WORDNIK_API']
     config.google_api_key = ENV['GOOGLE_API_KEY']
@@ -34,5 +35,11 @@ module Lvlapp
     config.azure_primary_account_key = ENV['AZURE_PRIMARY_ACCOUNT_KEY']
     config.azure_customer_id = ENV['AZURE_CUSTOMER_ID']
     config.azure_secret = ENV['AZURE_SECRET']
+
+    # Sentry error logging
+    config.raven_dsn = ENV['RAVEN_DSN']
+
+    # rails secret
+    config.secret_key_base = ENV['RAILS_SECRET_KEY_BASE']
   end
 end
