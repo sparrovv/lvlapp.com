@@ -7,10 +7,11 @@ set :whenever_environment, defer { stage }
 require "whenever/capistrano"
 
 load 'deploy/assets'
-set :stages, ['production']
+set :stages, ['production', 'vagrant']
 set :default_stage, 'production'
 require 'capistrano/ext/multistage'
 
+set :ssh_options, { :forward_agent => true }
 set :application, "lvlapp"
 set :deploy_to, "/home/sparrovv/#{application}"
 set :scm, :git
