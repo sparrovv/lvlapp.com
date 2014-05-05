@@ -4,75 +4,103 @@
 <div class="">
   <h3 > <%= @audio_video.name %> </h3>
 </div>
-<div ng-app='LApp' class="row">
-  <div class="span8" ng-controller="TranscriptCtrl" >
+<div ng-app='LApp' class="lapp">
+  <div class="span8">
     <div ng-controller="VideoInfoCtrl">
       <div class='player-containter'>
         <% if @audio_video.youtube? %>
           <%= render 'shared/youtube', audio_video: @audio_video %>
-      <% else %>
+        <% else %>
           <%= render 'shared/videojs', audio_video: @audio_video  %>
-      <%end %>
-        <div class='game-end over-player {{currentState}}'>
-          <h3>Congratulations! </h3>
-          <p>It took you {{stats.time | millisecondsToTime}} to complete that video.</p>
-          <p>And you guessed {{stats.guessed}} out of {{stats.blanks}} words.</p>
+        <%end %>
 
-          <p>Your score was saved</p>
-          <p><a ng-click="restartGame()">Restart game</a></p>
+        <div class='game-end over-player {{currentState}}'>
+          <div class="score-info {{stats.showMore() == false && 'hidden'}}">
+            <h4 class='total'> You scored: <span class='points'>{{stats.total_points}}</span> points</h4>
+            <h4>{{stats.title()}}</h4>
+
+            <ul class='breakdown'>
+              <li>words: {{stats.guessed}} guessed words = {{stats.guessed}} points</li>
+              <li>time bonus: {{stats.summary.time_bonus}} </li>
+            </ul>
+          </div>
+          <div class="{{stats.showMore() == false && 'center'}}">
+            <h4 class='restart'><a ng-click="restartGame()">Restart game</a></h4>
+          </div>
         </div>
 
-        <div class='game-menu over-player {{currentState}}'>
-          <h3>Select difficulty:</h3>
+        <div class='over-player game-menu {{currentState}}'>
+          <div class='menu-wrapper'>
           <ul>
-            <li><a ng-click="selectGameDifficulty('karaoke', 'true')">Karaoke and edit</a></li>
+            <li class='just-listen'><a ng-click="selectGameDifficulty('karaoke', 'true')">EDIT</a></li>
           </ul>
+        </div>
 
         </div>
         <div class='video-info'>
           <div class='app-controls {{currentState}}'>
-            <a title='replay line' ng-click='invokeAction("beginningOfline")'>↺</a>
-            <a title='restart game' ng-click="restartGame()">⌽</a>
+            <a tooltip='[space] play' tooltip-placement="top" class='play' ng-click='invokeAction("togglePlayer")'></a>
+            <a tooltip='[space] pause' tooltip-placement="top" class='pause' ng-click='invokeAction("togglePlayer")'></a>
+            <a tooltip='[enter] replay line' tooltip-placement="top" class="replay-line" ng-click='invokeAction("beginningOfline")'></a>
+            <a tooltip='[up] line up' tooltip-placement="top" class="line-up" ng-click='invokeAction("lineUp")'></a>
+            <a tooltip='[down] line down' tooltip-placement="top" class="line-down" ng-click='invokeAction("lineDown")'></a>
+            <a tooltip='restart game' tooltip-placement="top" class="restart-game" ng-click="restartGame()"></a>
           </div>
-          <div class='app-time'>{{currentVideoTime}} / {{videoDuration | toMinSec}}</div>
+          <div class='app-progress'>
+            <progress percent="progressValue"></progress>
+          </div>
+          <div class='app-time'>{{currentVideoTime}}<span style="color:gray"></span></div>
         </div>
       </div>
     </div>
-    <div id="transcript-player" data-id='text-player' tabindex="1" ng-keypress='listenForKey' class='transcript-player'>
-      <div class='game-starting game-shared-screen {{currentState}}'></div>
 
-      <ul class="lines" style="top:{{currentLineTopPosition}}px">
-        <li ng-repeat="line in transcript">
-        <p class="{{line.index == currentLine.index && 'highlight'}} ">
+    <div ng-controller="TranscriptCtrl">
+      <div id="transcript-player" data-id='text-player' tabindex="1"  ng-keypress='listenForKey' class='transcript-player'>
+
+        <div class='game-setup-info game-shared-screen {{currentState}}'>
+          <div>
+            <h4>Type and fill in the blank spaces after the game starts</h4>
+            <%= render 'shared/shortcuts_help' %>
+          </div>
+        </div>
+
+        <div class='game-starting game-shared-screen {{currentState}}'></div>
+
+        <ul class='lines'>
+          <li ng-repeat="line in transcript">
+          <p class="{{line.index == currentLine.index && 'highlight'}} ">
           <input class='time' ng-model="line.time">
           <input class='word' ng-model="line.text">
-        </p>
-        </li>
-      </ul>
+          </p>
+          </li>
+        </ul>
+
+      </div>
+      <textarea style="width: 760px; height: 500px;">{{transcript | onlyTimeAndText}}</textarea>
     </div>
-
-    <textarea style="width: 760px; height: 500px;">{{transcript | onlyTimeAndText}}</textarea>
-
-    <p>END</p>
-
   </div>
 
-  <div id="help" class="span4" ng-controller='HelpCtrl' >
-    <h4>Help</h4>
-    <h5>Type and fill in the blank spaces</h5>
-
-    <table class='table table-condensed sidebar-table'>
-      <tr> <td><a ng-click='invokeAction("skipWord")'>tab</a></td><td>skip word</td> </tr>
-      <tr> <td><a ng-click='invokeAction("togglePlayer")'>space</a></td><td>play / pause</td> </tr>
-      <tr> <td><a ng-click='invokeAction("beginningOfline")'>enter</a></td><td>replay line</td> </tr>
-      <tr> <td><a ng-click='invokeAction("lineUp")'>&uarr;</a></td><td>previous line</td> </tr>
-      <tr> <td><a ng-click='invokeAction("lineDown")'>&darr;</a></td><td>next line</td> </tr>
+  <div class="game-stats span4" ng-controller="StatsCtrl">
+    <h4>Stats</h4>
+    <table class='table table-condensed sidebar-table zebra'>
+      <tr>
+        <td>words</td><td>{{stats.guessed}} / {{stats.blanks}}</td>
+      </tr>
+      <tr>
+        <td>skipped</td><td>{{stats.skipped}}</td>
+      </tr>
+      <tr>
+        <td>mistakes</td><td>{{stats.mistakes}}</td>
+      </tr>
+      <tr>
+        <td>time</td><td>{{stats.currentTime() | millisecondsToTime}}</td>
+      </tr>
     </table>
   </div>
-
   <div ng-controller='AdminActionsCtrl' class="span4">
     <table class='table table-condensed sidebar-table'>
       <tr> <td><a ng-click='saveVideoDuration()'>save</a></td><td>save Video length</td> </tr>
     </table>
   </div>
+
 </div>
