@@ -42,5 +42,8 @@ module Lvlapp
 
     # rails secret
     config.secret_key_base = ENV['RAILS_SECRET_KEY_BASE']
+
+    # google analytics
+    config.google_analytics = ENV['GOOGLE_ANALYTICS']
   end
 end
