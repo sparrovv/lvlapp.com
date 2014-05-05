@@ -45,8 +45,7 @@ environment 'production'
 # used by “pumactl” to query and control the server.
 
 # Rails.root doesn't work in puma DSL
-_cap_lvlapp_root = File.expand_path(File.dirname(__FILE__) + '/../../../../')
-state_path "#{_cap_lvlapp_root}/shared/sockets/puma.state"
+#state_path ""
 
 # Redirect STDOUT and STDERR to files specified. The 3rd parameter
 # (“append”) specifies whether the output is appended, the default is
