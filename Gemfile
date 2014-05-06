@@ -1,4 +1,5 @@
 source 'https://rubygems.org'
+ruby '2.1.1'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '~> 4.0.0'
@@ -57,6 +58,7 @@ end
 group :test, :development do
   gem 'pry-rails'
   gem 'pry-plus'
+  gem 'debugger'
   gem 'rspec-rails'
   gem 'factory_girl_rails'
   gem 'capybara'
