@@ -15,6 +15,7 @@ set :ssh_options, { :forward_agent => true }
 set :application, "lvlapp"
 set :deploy_to, "/home/sparrovv/#{application}"
 set :scm, :git
+set :current_branch, ($1 if `git branch` =~ /\* ([^\s()]+)\s/m) || "master"
 set :repository, "git@github.com:sparrovv/lvlapp.com.git"
 set :deploy_via, :remote_cache
 
