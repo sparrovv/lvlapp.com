@@ -45,7 +45,7 @@ environment 'production'
 # used by “pumactl” to query and control the server.
 
 # Rails.root doesn't work in puma DSL
-#state_path ""
+state_path "tmp/sockets/puma.state"
 
 # Redirect STDOUT and STDERR to files specified. The 3rd parameter
 # (“append”) specifies whether the output is appended, the default is
