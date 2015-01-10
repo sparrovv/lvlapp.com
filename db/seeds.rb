@@ -28,3 +28,6 @@ if Level.count.zero?
   end
 end
 
+if User.count.zero?
+  User.create(:email => 'test@test.com', password: '', native_language: 'pl', admin: true)
+end
