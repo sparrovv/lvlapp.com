@@ -76,8 +76,12 @@ describe Phrase do
       result = Phrase.grouped_by_audio_video(phrase_1.user)
 
       expect(result.size).to eql expected.size
-      expect(result[1]).to eql expected[0]
-      expect(result[0]).to eql expected[1]
+
+      result_1 = result.detect{|p| p.audio_video == phrase_1.audio_video}
+      expect(result_1).to eql expected[1]
+
+      result_2 = result.detect{|p| p.audio_video == phrase_2.audio_video}
+      expect(result_2).to eql expected[0]
     end
   end
 end

@@ -170,7 +170,6 @@ GEM
       rails
     multi_json (1.8.2)
     multipart-post (1.2.0)
-    mysql2 (0.3.13)
     nested_form (0.3.2)
     net-scp (1.1.2)
       net-ssh (>= 2.6.5)
@@ -182,6 +181,7 @@ GEM
     nokogiri (1.6.0)
       mini_portile (~> 0.5.0)
     orm_adapter (0.5.0)
+    pg (0.18.1)
     polyglot (0.3.3)
     pry (0.9.12.6)
       coderay (~> 1.0)
@@ -359,8 +359,8 @@ DEPENDENCIES
   kaminari
   language_list (~> 1.0.0)
   mobile-fu
-  mysql2
   nokogiri (~> 1.6)
+  pg
   pry-plus
   pry-rails
   puma
