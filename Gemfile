@@ -51,8 +51,9 @@ gem 'google-api-client', require: false
 group :development do
   gem 'quiet_assets'
   gem 'capistrano'
-  gem 'capistrano_colors'
-  gem 'capistrano-ext'
+  gem 'capistrano-rails'
+  gem 'capistrano-bundler'
+  gem 'capistrano3-puma'
 end
 
 group :test, :development do

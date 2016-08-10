@@ -1,12 +1,7 @@
-require 'puma/capistrano'
-
 set :domain, "146.185.132.161" # digital ocean
-set :user, "deployer"
-set :port, 22
 
 set :rails_env, "production"
-set :deploy_to, "/home/deployer/#{application}"
 
-server domain, :app, :web
+server fetch(:domain), user: 'deployer', roles: ["app", "web", "db"]
 
-role :db, domain, :primary => true
+#role :db, fetch(:domain), :primary => true
