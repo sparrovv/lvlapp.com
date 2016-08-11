@@ -20,7 +20,7 @@ class Phrase < ActiveRecord::Base
 
   def self.grouped_by_audio_video(user)
     results = self.by_user(user).group('audio_video_id').
-      select('phrases.*, count(*) as count_all')
+      select('phrases.audio_video_id, count(*) as count_all')
 
     results.inject([]) do |r, phrase|
       audio_video = AudioVideo.find(phrase.audio_video_id)
